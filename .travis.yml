@@ -15,9 +15,9 @@ script:
 - cmake .
 - cmake --build .
 - make test
-- Otus/./Otus_1
-- Otus/./boost_test_version
-- Otus/./gtest_test_version
+- Otus_1/./Otus_1
+- Otus_1/./boost_test_version
+- Otus_1/./gtest_test_version
 - cmake --build . --target package
 - ls
 #deploy:
