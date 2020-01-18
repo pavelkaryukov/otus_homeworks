@@ -1,0 +1,27 @@
+language: cpp
+before_script:
+- sudo apt-get install libboost-test-dev -y
+- sudo apt-get install libgtest-dev
+- sudo apt-get install cmake # install cmake
+- cd /usr/src/gtest
+- sudo cmake CMakeLists.txt
+- sudo make
+- sudo cp *.a /usr/lib # copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
+- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+- sudo apt-get update -qq
+script:
+- cd /home/travis/build/pavelkaryukov/otus_homeworks
+- pwd
+- cmake .
+- cmake --build .
+- make test
+- Otus/./Otus_1
+- Otus/./boost_test_version
+- Otus/./gtest_test_version
+- cmake --build . --target package
+- ls
+#deploy:
+# provider: script
+# skip_cleanup: true																			 
+# script:
+# - curl -T OtusHomework_1-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -upavelkaryukov:$BINTRAY_API_KEY "https://api.bintray.com/content/karyukov/otus/otus_1/$TRAVIS_BUILD_NUMBER/OtusHomework_1-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
