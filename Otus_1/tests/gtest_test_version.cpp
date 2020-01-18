@@ -1,5 +1,5 @@
 #include <gtest/gtest.h> // googletest header file
-#include "..\version.h"
+#include "../version.h"
 
 TEST(gtest_test_version, Test1)
 {
