@@ -4,7 +4,7 @@
 namespace acm_timus
 {
     //-----------------------------------------------------------------------------
-    std::string ToLocalizedStr(const std::string& aStr); //Task 1785
+    std::pair<bool, std::string> ToLocalizedStr(const std::string& aStr); //Task 1785
     //-----------------------------------------------------------------------------
     std::string InvSqr(std::string Str);//Task 1001
     //-----------------------------------------------------------------------------

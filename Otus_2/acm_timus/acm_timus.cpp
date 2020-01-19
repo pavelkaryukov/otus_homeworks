@@ -40,8 +40,7 @@ enum class LocalizedNumber
     unk
 };
 //-----------------------------------------------------------------------------
-using LocalizedResult = std::optional<LocalizedNumber>;
-LocalizedResult GetLocalizedNumber(const int aNumber)
+std::optional<LocalizedNumber> GetLocalizedNumber(const int aNumber)
 {
     auto FromRange = [&aNumber](const int aLeft, const int aRight) -> bool {
         return (aNumber >= aLeft) && (aNumber <= aRight);
@@ -77,18 +76,18 @@ std::string ConvertToStr(const LocalizedNumber aLocalizedNum)
 }
 //-----------------------------------------------------------------------------
 static const std::string kErrorInputData = "Некорректные входные данные:";
-std::string acm_timus::ToLocalizedStr(const std::string& aStr)
+std::pair<bool, std::string> acm_timus::ToLocalizedStr(const std::string& aStr)
 {
     if (!IsCorrectNumber(aStr.c_str()))
-        return  kErrorInputData + "Не число\r\n";
+        return  { false, kErrorInputData + "Не число\r\n" };
     auto digit = std::atoi(aStr.c_str());
     if ((digit < 1) || (digit > 2000)) 
-        return kErrorInputData + ":Число не из диапозона (1..2000)\r\n";
+        return { false, kErrorInputData + ":Число не из диапозона (1..2000)\r\n" };
     auto localizedNum = GetLocalizedNumber(digit);
     if (!localizedNum)
-        return kErrorInputData + ":Число не из диапозона (1..2000)\r\n";
+        return { false, kErrorInputData + ":Число не из диапозона (1..2000)\r\n" };
 
-    return ConvertToStr(*localizedNum);
+    return {true, ConvertToStr(*localizedNum)};
 }
 //-----------------------------------------------------------------------------
 std::string acm_timus::InvSqr(std::string aStr)
