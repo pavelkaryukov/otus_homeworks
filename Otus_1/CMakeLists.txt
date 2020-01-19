@@ -110,7 +110,7 @@ endif()
 enable_testing()
 add_test(boost_test_version boost_test_version)
 add_test(gtest_test_version gtest_test_version)
- #Сборка пакета
+#Сборка пакета
 install(TARGETS Otus_1 DESTINATION bin)
 set(CPACK_PACKAGE_NAME "OtusHomework_1")
 set(CPACK_GENERATOR DEB)

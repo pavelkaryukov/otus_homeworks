@@ -16,6 +16,11 @@ void AcmTimusTaskExecute()
         allStr += str;
     }
     auto task1001 = acm_timus::InvSqr(allStr);
+    auto task1785a = acm_timus::ToLocalizedStr("7");
+    auto task1785b = acm_timus::ToLocalizedStr("7.2");
+    auto task1785c = acm_timus::ToLocalizedStr("400");
+    auto task1785d = acm_timus::ToLocalizedStr("40");
+    auto task1785f = acm_timus::ToLocalizedStr("0");
 }
 
 int main()
