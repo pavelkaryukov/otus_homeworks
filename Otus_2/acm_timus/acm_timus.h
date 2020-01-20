@@ -3,7 +3,9 @@
 
 namespace acm_timus
 {
-    std::string GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr);
+    size_t NecessarySulfideThoriumWeight(std::string aStr);//Task 1293
+    //-----------------------------------------------------------------------------
+    std::string GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr);  //Task 2012
     //-----------------------------------------------------------------------------
     std::pair<bool, std::string> ToLocalizedStr(const std::string& aStr); //Task 1785
     //-----------------------------------------------------------------------------

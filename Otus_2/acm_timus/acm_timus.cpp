@@ -17,13 +17,13 @@ bool IsCorrectNumber(const char* aStr)
 std::vector<std::string> GetAllNumbers(std::string aStr)
 {
     std::vector<std::string> tokens;
-    const std::string delimeters = "\r\n\t ";
+    const std::string kDelimeters = "\r\n\t ";
     char* str = (char*)aStr.c_str(); //Maybe strcpy ?
-    char * pch = strtok(str, delimeters.c_str());;// strtok(str, delimeters.c_str());
+    char * pch = strtok(str, kDelimeters.c_str());;// strtok(str, delimeters.c_str());
     while (pch) {
         if ((pch != nullptr) && IsCorrectNumber(pch))
             tokens.push_back(std::string(pch));
-        pch = strtok(NULL, delimeters.c_str());
+        pch = strtok(NULL, kDelimeters.c_str());
     }
     return tokens;
 }
@@ -126,5 +126,32 @@ std::string acm_timus::GrishaCanSolve(const std::string& aSolvedInFirstHourTasks
     return IsGrishaCanSolve(numberOfTasks) ? "YES" : "NO";
 }
 //-----------------------------------------------------------------------------
+bool IsNumberFromRange(const int aNumber, const int aLeft, const int aRight)
+{
+    return (aNumber >= 1) && (aNumber <= 100);
+}
+//-----------------------------------------------------------------------------
+size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
+{
+    auto tokens = GetAllNumbers(aStr);
+    if (tokens.size() < 3) {
+        std::cout << kErrorInputData << "Не достаточное количество аргументов" << std::endl;
+        return 0;
+    }
+    auto numberOfPannels = std::atoi(tokens[0].c_str()), sizeA = std::atoi(tokens[1].c_str()), sizeB = std::atoi(tokens[2].c_str());
+
+    auto FromRange = [leftBorder = 1, rightBorder = 100](const int aNumber) -> bool {
+        return (aNumber >= leftBorder) && (aNumber <= rightBorder);
+    };
+
+    if (!FromRange(numberOfPannels) || !FromRange(sizeA) || !FromRange(sizeB)) {
+        std::cout << kErrorInputData << numberOfPannels << ", " << sizeA << ", " << sizeB << " вне диапазона  1..100" << std::endl;
+        return 0;
+    }
+    return 2 * numberOfPannels * sizeA * sizeB;
+}
+//-----------------------------------------------------------------------------
+
+
 
 

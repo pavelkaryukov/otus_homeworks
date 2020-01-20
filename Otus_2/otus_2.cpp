@@ -25,6 +25,10 @@ void AcmTimusTaskExecute()
     auto task2012b = acm_timus::GrishaCanSolve("5");
     auto task2012c = acm_timus::GrishaCanSolve("s7");
     auto task2012d = acm_timus::GrishaCanSolve("70");
+    auto task1293a = acm_timus::NecessarySulfideThoriumWeight("5 2 3");
+    auto task1293b = acm_timus::NecessarySulfideThoriumWeight("5 223 3");
+    auto task1293c = acm_timus::NecessarySulfideThoriumWeight("5 2 ");
+    //TODO:: ¬ывод в командную строку на английском €зыке
 }
 
 int main()
