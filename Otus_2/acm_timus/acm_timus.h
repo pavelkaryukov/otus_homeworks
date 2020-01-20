@@ -3,6 +3,7 @@
 
 namespace acm_timus
 {
+    std::string GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr);
     //-----------------------------------------------------------------------------
     std::pair<bool, std::string> ToLocalizedStr(const std::string& aStr); //Task 1785
     //-----------------------------------------------------------------------------

@@ -2,11 +2,13 @@
 #include <vector>
 #include <cctype>
 #include <optional>
+#include <iostream>
+
 //-----------------------------------------------------------------------------
-bool IsCorrectNumber(const char* aToken)
+bool IsCorrectNumber(const char* aStr)
 {
-    for (int i = 0; i < strlen(aToken); i++) {        
-        if (!std::isdigit(aToken[i]))
+    for (int i = 0; i < strlen(aStr); i++) {        
+        if (!std::isdigit(aStr[i]))
             return false;
     }
     return true;
@@ -104,4 +106,25 @@ std::string acm_timus::InvSqr(std::string aStr)
     return resStr;
 }
 //-----------------------------------------------------------------------------
+bool IsGrishaCanSolve(const size_t aSolvedInFirstHourTasks)
+{
+    if ((aSolvedInFirstHourTasks > 11) || (aSolvedInFirstHourTasks < 0))
+        return false;
+    const size_t kNumberOfTasks = 12, kRestTime = 4 * 60; // 12 заданий на 5 часов, 
+    const size_t restTasks = kNumberOfTasks - aSolvedInFirstHourTasks;
+    return  restTasks * 45 <= kRestTime;
+}
+//-----------------------------------------------------------------------------
+std::string acm_timus::GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr)
+{
+    if (!IsCorrectNumber(aSolvedInFirstHourTasksStr.c_str()))
+        return kErrorInputData + aSolvedInFirstHourTasksStr + " - Не число\r\n";
+    auto numberOfTasks = std::atoi(aSolvedInFirstHourTasksStr.c_str());
+    if ((numberOfTasks < 0) || (numberOfTasks > 11)) {
+        return kErrorInputData + "Число {" + aSolvedInFirstHourTasksStr + "} < 0 или > 11";
+    }
+    return IsGrishaCanSolve(numberOfTasks) ? "YES" : "NO";
+}
+//-----------------------------------------------------------------------------
+
 

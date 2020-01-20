@@ -21,6 +21,10 @@ void AcmTimusTaskExecute()
     auto task1785c = acm_timus::ToLocalizedStr("400");
     auto task1785d = acm_timus::ToLocalizedStr("40");
     auto task1785f = acm_timus::ToLocalizedStr("0");
+    auto task2012a = acm_timus::GrishaCanSolve("7");
+    auto task2012b = acm_timus::GrishaCanSolve("5");
+    auto task2012c = acm_timus::GrishaCanSolve("s7");
+    auto task2012d = acm_timus::GrishaCanSolve("70");
 }
 
 int main()
