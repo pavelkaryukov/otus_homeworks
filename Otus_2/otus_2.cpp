@@ -13,11 +13,12 @@ void AcmTimusTaskExecute()
     //task 1000
     auto task1000 = acm_timus::Sum(5, 1);
     //task 1001
-    std::ifstream testFile("c:\\my_programs\\otus\\otus_homeworks\\Otus_2\\task1001.txt"); // Переделать путь на относительный (думаю пусть cmake копирует в папку с бинарниками)
-    std::string str, allStr;
-    while (std::getline(testFile, str)) {
-        allStr += str;
-    }
+//     std::ifstream testFile("c:\\my_programs\\otus\\otus_homeworks\\Otus_2\\task1001.txt"); // Переделать путь на относительный (думаю пусть cmake копирует в папку с бинарниками)
+//     std::string str, allStr;
+//     while (std::getline(testFile, str)) {
+//         allStr += str;
+//     }
+    std::string allStr(" 1427  0   \r\n\r\n876652098643267843\r\n5276538\r\n\r\n");
     auto task1001 = acm_timus::InvSqr(allStr);
     auto task1785a = acm_timus::ToLocalizedNumberOfUnits("7");
     auto task1785b = acm_timus::ToLocalizedNumberOfUnits("7.2");
