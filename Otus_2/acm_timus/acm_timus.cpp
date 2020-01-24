@@ -28,7 +28,7 @@ std::vector<std::string> GetAllNumbers(std::string aStr)
     return tokens;
 }
 //-----------------------------------------------------------------------------
-enum class LocalizedNumber
+enum class NumberOfUnits
 {
     few,        //от 1   до 4	  несколько few
     several,    //от 5   до 9	  немного several
@@ -42,50 +42,50 @@ enum class LocalizedNumber
     unk
 };
 //-----------------------------------------------------------------------------
-std::optional<LocalizedNumber> GetLocalizedNumber(const int aNumber)
+std::optional<NumberOfUnits> GetLocalizedNumberOfUnits(const int aNumber)
 {
     auto FromRange = [&aNumber](const int aLeft, const int aRight) -> bool {
         return (aNumber >= aLeft) && (aNumber <= aRight);
     };
 
-    if (FromRange(1   , 4   )) return { LocalizedNumber::few     };
-    if (FromRange(5   , 9   )) return { LocalizedNumber::several };
-    if (FromRange(10  , 19  )) return { LocalizedNumber::pack    };
-    if (FromRange(20  , 49  )) return { LocalizedNumber::lots    };
-    if (FromRange(50  , 99  )) return { LocalizedNumber::horde   };
-    if (FromRange(100 , 249 )) return { LocalizedNumber::throng  };
-    if (FromRange(250 , 499 )) return { LocalizedNumber::swarm   };
-    if (FromRange(500 , 999 )) return { LocalizedNumber::zounds  };
-    if (FromRange(1000, 2000)) return { LocalizedNumber::swarm   };
+    if (FromRange(1   , 4   )) return { NumberOfUnits::few     };
+    if (FromRange(5   , 9   )) return { NumberOfUnits::several };
+    if (FromRange(10  , 19  )) return { NumberOfUnits::pack    };
+    if (FromRange(20  , 49  )) return { NumberOfUnits::lots    };
+    if (FromRange(50  , 99  )) return { NumberOfUnits::horde   };
+    if (FromRange(100 , 249 )) return { NumberOfUnits::throng  };
+    if (FromRange(250 , 499 )) return { NumberOfUnits::swarm   };
+    if (FromRange(500 , 999 )) return { NumberOfUnits::zounds  };
+    if (FromRange(1000, 2000)) return { NumberOfUnits::swarm   };
     return std::nullopt;
 }
 //-----------------------------------------------------------------------------
-std::string ConvertToStr(const LocalizedNumber aLocalizedNum)
+std::string ConvertToStr(const NumberOfUnits aLocalizedNum)
 {
     switch (aLocalizedNum) {
     default:    return "unknown";
-    case LocalizedNumber::few    :     return "few"    ;
-    case LocalizedNumber::several:     return "several";
-    case LocalizedNumber::pack   :     return "pack"   ;
-    case LocalizedNumber::lots   :     return "lots"   ;
-    case LocalizedNumber::horde  :     return "horde"  ;
-    case LocalizedNumber::throng :     return "throng" ;
-    case LocalizedNumber::swarm  :     return "swarm"  ;
-    case LocalizedNumber::zounds :     return "zounds" ;
-    case LocalizedNumber::legion :     return "legion" ;
-    case LocalizedNumber::unk    :     return "unk"    ;
+    case NumberOfUnits::few    :     return "few"    ;
+    case NumberOfUnits::several:     return "several";
+    case NumberOfUnits::pack   :     return "pack"   ;
+    case NumberOfUnits::lots   :     return "lots"   ;
+    case NumberOfUnits::horde  :     return "horde"  ;
+    case NumberOfUnits::throng :     return "throng" ;
+    case NumberOfUnits::swarm  :     return "swarm"  ;
+    case NumberOfUnits::zounds :     return "zounds" ;
+    case NumberOfUnits::legion :     return "legion" ;
+    case NumberOfUnits::unk    :     return "unk"    ;
     }
 }
 //-----------------------------------------------------------------------------
 static const std::string kErrorInputData = "Некорректные входные данные:";
-std::pair<bool, std::string> acm_timus::ToLocalizedStr(const std::string& aStr)
+std::pair<bool, std::string> acm_timus::ToLocalizedNumberOfUnits(const std::string& aStr)
 {
     if (!IsCorrectNumber(aStr.c_str()))
         return  { false, kErrorInputData + "Не число\r\n" };
     auto digit = std::atoi(aStr.c_str());
     if ((digit < 1) || (digit > 2000)) 
         return { false, kErrorInputData + ":Число не из диапозона (1..2000)\r\n" };
-    auto localizedNum = GetLocalizedNumber(digit);
+    auto localizedNum = GetLocalizedNumberOfUnits(digit);
     if (!localizedNum)
         return { false, kErrorInputData + ":Число не из диапозона (1..2000)\r\n" };
 

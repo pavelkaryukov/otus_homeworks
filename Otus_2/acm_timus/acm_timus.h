@@ -7,7 +7,7 @@ namespace acm_timus
     //-----------------------------------------------------------------------------
     std::string GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr);  //Task 2012
     //-----------------------------------------------------------------------------
-    std::pair<bool, std::string> ToLocalizedStr(const std::string& aStr); //Task 1785
+    std::pair<bool, std::string> ToLocalizedNumberOfUnits(const std::string& aStr); //Task 1785
     //-----------------------------------------------------------------------------
     std::string InvSqr(std::string Str);//Task 1001
     //-----------------------------------------------------------------------------
