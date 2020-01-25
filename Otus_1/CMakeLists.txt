@@ -1,9 +1,9 @@
 ﻿cmake_minimum_required (VERSION 3.8)
 
-if (NOT DEFINED ENV{TRAVIS_BUILD_NUMBER})
-	set(ENV{TRAVIS_BUILD_NUMBER} 1) # не считается ли назначение TRAVIS_BUILD_NUMBER дурным тоном ?
-	message("Failed to find ENV TRAVIS_BUILD_NUMBER, set default value = 1")
-endif()
+#if (NOT DEFINED ENV{TRAVIS_BUILD_NUMBER})
+#	set(ENV{TRAVIS_BUILD_NUMBER} 1) # не считается ли назначение TRAVIS_BUILD_NUMBER дурным тоном ?
+#	message("Failed to find ENV TRAVIS_BUILD_NUMBER, set default value = 1")
+#endif()
 
 project ("Otus_1" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
