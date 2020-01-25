@@ -11,6 +11,9 @@ before_script:
 - sudo apt-get update -qq
 - sudo apt install build-essential
 - sudo apt-get install manpages-dev
+- emerge --ask --depclean =sys-devel/gcc-5.4.0
+- revdep-rebuild
+- sudo apt-get install gcc
 script:
 - gcc --version
 - cd /home/travis/build/pavelkaryukov/otus_homeworks
