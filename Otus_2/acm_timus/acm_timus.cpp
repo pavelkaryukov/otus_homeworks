@@ -6,7 +6,7 @@
 //-----------------------------------------------------------------------------
 bool IsCorrectNumber(const char* aStr)
 {
-    for (int i = 0; i < strlen(aStr); i++) {        
+    for (int i = 0; i < std::strlen(aStr); i++) {        
         if (!std::isdigit(aStr[i]))
             return false;
     }
