@@ -3,6 +3,7 @@
 #include <cctype>
 #include <iostream>
 #include <cmath>
+#include <optional>
 
 //-----------------------------------------------------------------------------
 bool IsCorrectNumber(const char* aStr)
@@ -44,24 +45,22 @@ enum class NumberOfUnits
     null
 };
 //-----------------------------------------------------------------------------
-using ResultOfLocalize = std::pair< bool, NumberOfUnits>;
-//-----------------------------------------------------------------------------
-ResultOfLocalize GetLocalizedNumberOfUnits(const int aNumber)
+std::optional<NumberOfUnits> GetLocalizedNumberOfUnits(const int aNumber)
 {
     auto FromRange = [&aNumber](const int aLeft, const int aRight) -> bool {
         return (aNumber >= aLeft) && (aNumber <= aRight);
     };
 
-    if (FromRange(1   , 4   )) return { true, NumberOfUnits::few     };
-    if (FromRange(5   , 9   )) return { true, NumberOfUnits::several };
-    if (FromRange(10  , 19  )) return { true, NumberOfUnits::pack    };
-    if (FromRange(20  , 49  )) return { true, NumberOfUnits::lots    };
-    if (FromRange(50  , 99  )) return { true, NumberOfUnits::horde   };
-    if (FromRange(100 , 249 )) return { true, NumberOfUnits::throng  };
-    if (FromRange(250 , 499 )) return { true, NumberOfUnits::swarm   };
-    if (FromRange(500 , 999 )) return { true, NumberOfUnits::zounds  };
-    if (FromRange(1000, 2000)) return { true, NumberOfUnits::swarm   };
-    return {false, NumberOfUnits::null};
+    if (FromRange(1   , 4   )) return { NumberOfUnits::few     };
+    if (FromRange(5   , 9   )) return { NumberOfUnits::several };
+    if (FromRange(10  , 19  )) return { NumberOfUnits::pack    };
+    if (FromRange(20  , 49  )) return { NumberOfUnits::lots    };
+    if (FromRange(50  , 99  )) return { NumberOfUnits::horde   };
+    if (FromRange(100 , 249 )) return { NumberOfUnits::throng  };
+    if (FromRange(250 , 499 )) return { NumberOfUnits::swarm   };
+    if (FromRange(500 , 999 )) return { NumberOfUnits::zounds  };
+    if (FromRange(1000, 2000)) return { NumberOfUnits::swarm   };
+    return std::nullopt;
 }
 //-----------------------------------------------------------------------------
 std::string ConvertToStr(const NumberOfUnits aLocalizedNum)
@@ -89,11 +88,11 @@ std::pair<bool, std::string> acm_timus::ToLocalizedNumberOfUnits(const std::stri
     auto digit = std::atoi(aStr.c_str());
     if ((digit < 1) || (digit > 2000)) 
         return { false, kErrorInputData + ":Число не из диапозона (1..2000)\r\n" };
-    auto [isLocalized, numberOfUnits] = GetLocalizedNumberOfUnits(digit);
-    if (!isLocalized)
+    auto numberOfUnits = GetLocalizedNumberOfUnits(digit);
+    if (!numberOfUnits)
         return { false, kErrorInputData + ":Число не из диапозона (1..2000)\r\n" };
 
-    return {true, ConvertToStr(numberOfUnits)};
+    return {true, ConvertToStr(*numberOfUnits)};
 }
 //-----------------------------------------------------------------------------
 std::string acm_timus::InvSqr(std::string aStr)
