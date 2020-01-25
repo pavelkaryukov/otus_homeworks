@@ -102,7 +102,7 @@ std::string acm_timus::InvSqr(std::string aStr)
     auto tokens = GetAllNumbers(aStr);
     for (auto token = tokens.crbegin(); token != tokens.crend(); token++) {
         auto digit = std::atoll(token->c_str());
-        auto sqrtRes = std::sqrtl(digit);
+        auto sqrtRes = sqrt(digit);
         char buffer[256] = {};
         sprintf(buffer, "%.4f\r\n", sqrtRes);
         resStr += std::string(buffer);

@@ -9,6 +9,7 @@ before_script:
 - sudo cp *.a /usr/lib # copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
+- sudo apt-get upgrade
 script:
 - cd /home/travis/build/pavelkaryukov/otus_homeworks
 - pwd
