@@ -54,32 +54,32 @@ target_link_libraries(boost_test_version
     ${Boost_LIBRARIES}
 )
 
-#Google Test
-find_package(GTest REQUIRED)
-
-if(NOT GTEST_FOUND )
-	message(SEND_ERROR "Failed to find GTest")
-	return()
-endif()
-
-add_executable(gtest_test_version ${TESTS_SRC}/gtest_test_version.cpp ${VERSION_SRC} )
-set_target_properties (
-	gtest_test_version PROPERTIES 
-	CXX_STANDARD 14
-	CXX_STANDARD_REQUIRED ON	
-)
-
-target_link_libraries(gtest_test_version ${GTEST_BOTH_LIBRARIES})
-if (NOT MSVC)
-	target_link_libraries(gtest_test_version pthread)
-endif()
-
-target_include_directories(
-	gtest_test_version 
-	PRIVATE
-	${CMAKE_CURRENT_BINARY_DIR}
-	${GTEST_INCLUDE_DIRS}
-)
+##Google Test
+#find_package(GTest REQUIRED)
+#
+#if(NOT GTEST_FOUND )
+#	message(SEND_ERROR "Failed to find GTest")
+#	return()
+#endif()
+#
+#add_executable(gtest_test_version ${TESTS_SRC}/gtest_test_version.cpp ${VERSION_SRC} )
+#set_target_properties (
+#	gtest_test_version PROPERTIES 
+#	CXX_STANDARD 14
+#	CXX_STANDARD_REQUIRED ON	
+#)
+#
+#target_link_libraries(gtest_test_version ${GTEST_BOTH_LIBRARIES})
+#if (NOT MSVC)
+#	target_link_libraries(gtest_test_version pthread)
+#endif()
+#
+#target_include_directories(
+#	gtest_test_version 
+#	PRIVATE
+#	${CMAKE_CURRENT_BINARY_DIR}
+#	${GTEST_INCLUDE_DIRS}
+#)
 
 
 if (MSVC)
@@ -89,9 +89,9 @@ if (MSVC)
     target_compile_options(boost_test_version PRIVATE
         /W4
     )
-	target_compile_options(gtest_test_version PRIVATE
-        /W4
-    )
+#	target_compile_options(gtest_test_version PRIVATE
+#        /W4
+#    )
 else ()
     target_compile_options(Otus_1 PRIVATE
         -Wall -Wextra -pedantic -Werror
@@ -102,14 +102,14 @@ else ()
 	set_target_properties( boost_test_version PROPERTIES
 		COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
 	)
-    target_compile_options(gtest_test_version PRIVATE
-        -Wall -Wextra -pedantic -Werror
-    )
+ #   target_compile_options(gtest_test_version PRIVATE
+ #       -Wall -Wextra -pedantic -Werror
+ #   )
 endif()
 
 enable_testing()
 add_test(boost_test_version boost_test_version)
-add_test(gtest_test_version gtest_test_version)
+#add_test(gtest_test_version gtest_test_version)
 #Сборка пакета
 install(TARGETS Otus_1 DESTINATION bin)
 set(CPACK_PACKAGE_NAME "OtusHomework_1")
