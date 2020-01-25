@@ -18,7 +18,7 @@ set_target_properties (
 add_executable(Otus_2 "otus_2.cpp" ${ACM_TIMUS_SRC} ${BIN_POW_SRC} ${IP_FILTER_SRC}) 
 message("PROJECT_SOURCE_DIR = " ${PROJECT_SOURCE_DIR})
 #message("CURRENT_SOURCE_DIR = " ${CURRENT_SOURCE_DIR})
-target_include_directories(Otus_2 PUBLIC ${PROJECT_SOURCE_DIR})
+target_include_directories(Otus_2 PUBLIC ${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER})
 
 target_link_libraries(Otus_2 mystr)
 set_target_properties (

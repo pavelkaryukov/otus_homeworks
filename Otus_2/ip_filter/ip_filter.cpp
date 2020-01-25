@@ -1,7 +1,7 @@
 #include "ip_filter.h"
 #include <iostream>
 #include <vector>
-#include "my_str\my_str.h"
+#include "my_str.h"
 
 //-----------------------------------------------------------------------------
 namespace ip_filter

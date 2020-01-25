@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <optional>
-#include "my_str\my_str.h"
+#include "my_str.h"
 //-----------------------------------------------------------------------------
 enum class NumberOfUnits
 {
