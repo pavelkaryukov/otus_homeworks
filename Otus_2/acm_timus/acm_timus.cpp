@@ -109,12 +109,12 @@ std::string acm_timus::InvSqr(std::string aStr)
     return resStr;
 }
 //-----------------------------------------------------------------------------
-bool IsGrishaCanSolve(const size_t aSolvedInFirstHourTasks)
+bool IsGrishaCanSolve(const std::size_t aSolvedInFirstHourTasks)
 {
     if ((aSolvedInFirstHourTasks > 11) || (aSolvedInFirstHourTasks < 0))
         return false;
-    const size_t kNumberOfTasks = 12, kRestTime = 4 * 60; // 12 заданий на 5 часов, 
-    const size_t restTasks = kNumberOfTasks - aSolvedInFirstHourTasks;
+    const std::size_t kNumberOfTasks = 12, kRestTime = 4 * 60; // 12 заданий на 5 часов, 
+    const std::size_t restTasks = kNumberOfTasks - aSolvedInFirstHourTasks;
     return  restTasks * 45 <= kRestTime;
 }
 //-----------------------------------------------------------------------------
@@ -134,7 +134,7 @@ bool IsNumberFromRange(const int aNumber, const int aLeft, const int aRight)
     return (aNumber >= 1) && (aNumber <= 100);
 }
 //-----------------------------------------------------------------------------
-size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
+std::size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
 {
     auto tokens = GetAllNumbers(aStr);
     if (tokens.size() < 3) {

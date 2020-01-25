@@ -1,6 +1,7 @@
 #include "bin_pow.h"
 #include <type_traits>
 #include <assert.h>
+#include <cstddef>
 //-----------------------------------------------------------------------------
 void bin_pow::BinPowTest()
 {

@@ -3,7 +3,7 @@
 #include <cstring>
 namespace acm_timus
 {
-    size_t NecessarySulfideThoriumWeight(std::string aStr);//Task 1293
+    std::size_t NecessarySulfideThoriumWeight(std::string aStr);//Task 1293
     //-----------------------------------------------------------------------------
     std::string GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr);  //Task 2012
     //-----------------------------------------------------------------------------
