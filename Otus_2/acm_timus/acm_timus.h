@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include <cstring>
 namespace acm_timus
 {
     size_t NecessarySulfideThoriumWeight(std::string aStr);//Task 1293
