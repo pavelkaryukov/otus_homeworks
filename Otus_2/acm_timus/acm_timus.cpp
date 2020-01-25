@@ -151,6 +151,25 @@ size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
     return 2 * numberOfPannels * sizeA * sizeB;
 }
 //-----------------------------------------------------------------------------
+void acm_timus::AcmTimusTaskExecute()
+{
+    auto task1000 = acm_timus::Sum(5, 1);
+    std::string allStr(" 1427  0   \r\n\r\n876652098643267843\r\n5276538\r\n\r\n");
+    auto task1001 = acm_timus::InvSqr(allStr);
+    auto task1785a = acm_timus::ToLocalizedNumberOfUnits("7");
+    auto task1785b = acm_timus::ToLocalizedNumberOfUnits("7.2");
+    auto task1785c = acm_timus::ToLocalizedNumberOfUnits("400");
+    auto task1785d = acm_timus::ToLocalizedNumberOfUnits("40");
+    auto task1785f = acm_timus::ToLocalizedNumberOfUnits("0");
+    auto task2012a = acm_timus::GrishaCanSolve("7");
+    auto task2012b = acm_timus::GrishaCanSolve("5");
+    auto task2012c = acm_timus::GrishaCanSolve("s7");
+    auto task2012d = acm_timus::GrishaCanSolve("70");
+    auto task1293a = acm_timus::NecessarySulfideThoriumWeight("5 2 3");
+    auto task1293b = acm_timus::NecessarySulfideThoriumWeight("5 223 3");
+    auto task1293c = acm_timus::NecessarySulfideThoriumWeight("5 2 ");
+    //TODO:: ¬ывод в командную строку на английском €зыке
+}
 
 
 
