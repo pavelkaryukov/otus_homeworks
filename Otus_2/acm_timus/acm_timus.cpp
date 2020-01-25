@@ -4,32 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <optional>
-
-//-----------------------------------------------------------------------------
-bool IsCorrectNumber(const char* aStr)
-{
-    const auto len = strlen(aStr);
-    for (int i = 0; i < len; i++) {        
-        if (!std::isdigit(aStr[i]))
-            return false;
-    }
-    return true;
-}
-//-----------------------------------------------------------------------------
-std::vector<std::string> GetAllNumbers(std::string aStr)
-{
-    std::vector<std::string> tokens;
-    const std::string kDelimeters = "\r\n\t ";
-    char* str = (char*)aStr.c_str(); //Maybe strcpy ?
-    char * pch = strtok(str, kDelimeters.c_str());;// strtok(str, delimeters.c_str());
-    while (pch) {
-        if ((pch != nullptr) && IsCorrectNumber(pch))
-            tokens.push_back(std::string(pch));
-        pch = strtok(NULL, kDelimeters.c_str());
-    }
-    return tokens;
-}
-//-----------------------------------------------------------------------------
+#include "..\my_str\my_str.h"
 enum class NumberOfUnits
 {
     few,        //от 1   до 4	  несколько few
@@ -83,7 +58,7 @@ std::string ConvertToStr(const NumberOfUnits aLocalizedNum)
 static const std::string kErrorInputData = "Некорректные входные данные:";
 std::pair<bool, std::string> acm_timus::ToLocalizedNumberOfUnits(const std::string& aStr)
 {
-    if (!IsCorrectNumber(aStr.c_str()))
+    if (!mystr::IsCorrectNumber(aStr.c_str()))
         return  { false, kErrorInputData + "Не число\r\n" };
     auto digit = std::atoi(aStr.c_str());
     if ((digit < 1) || (digit > 2000)) 
@@ -98,7 +73,7 @@ std::pair<bool, std::string> acm_timus::ToLocalizedNumberOfUnits(const std::stri
 std::string acm_timus::InvSqr(std::string aStr)
 {
     std::string resStr;
-    auto tokens = GetAllNumbers(aStr);
+    auto tokens = mystr::GetAllNumbers(aStr);
     for (auto token = tokens.crbegin(); token != tokens.crend(); token++) {
         auto digit = std::atoll(token->c_str());
         auto sqrtRes = sqrt(digit);
@@ -120,7 +95,7 @@ bool IsGrishaCanSolve(const std::size_t aSolvedInFirstHourTasks)
 //-----------------------------------------------------------------------------
 std::string acm_timus::GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr)
 {
-    if (!IsCorrectNumber(aSolvedInFirstHourTasksStr.c_str()))
+    if (!mystr::IsCorrectNumber(aSolvedInFirstHourTasksStr.c_str()))
         return kErrorInputData + aSolvedInFirstHourTasksStr + " - Не число\r\n";
     auto numberOfTasks = std::atoi(aSolvedInFirstHourTasksStr.c_str());
     if ((numberOfTasks < 0) || (numberOfTasks > 11)) {
@@ -136,7 +111,7 @@ bool IsNumberFromRange(const int aNumber, const int aLeft, const int aRight)
 //-----------------------------------------------------------------------------
 std::size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
 {
-    auto tokens = GetAllNumbers(aStr);
+    auto tokens = mystr::GetAllNumbers(aStr);
     if (tokens.size() < 3) {
         std::cout << kErrorInputData << "Не достаточное количество аргументов" << std::endl;
         return 0;
