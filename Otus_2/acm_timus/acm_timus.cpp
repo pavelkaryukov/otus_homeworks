@@ -6,6 +6,8 @@
 #include <optional>
 #include "my_str.h"
 //-----------------------------------------------------------------------------
+static const std::string kDelimeters = "\r\n\t ";
+//-----------------------------------------------------------------------------
 enum class NumberOfUnits
 {
     few,        //от 1   до 4	  несколько few
@@ -74,7 +76,7 @@ std::pair<bool, std::string> acm_timus::ToLocalizedNumberOfUnits(const std::stri
 std::string acm_timus::InvSqr(std::string aStr)
 {
     std::string resStr;
-    auto tokens = mystr::GetAllNumbers(aStr);
+    auto tokens = mystr::GetAllNumbers(aStr, kDelimeters);
     for (auto token = tokens.crbegin(); token != tokens.crend(); token++) {
         auto digit = std::atoll(token->c_str());
         auto sqrtRes = sqrt(digit);
@@ -112,7 +114,7 @@ bool IsNumberFromRange(const int aNumber, const int aLeft, const int aRight)
 //-----------------------------------------------------------------------------
 std::size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
 {
-    auto tokens = mystr::GetAllNumbers(aStr);
+    auto tokens = mystr::GetAllNumbers(aStr, kDelimeters);
     if (tokens.size() < 3) {
         std::cout << kErrorInputData << "Не достаточное количество аргументов" << std::endl;
         return 0;

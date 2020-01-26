@@ -11,5 +11,9 @@ int main()
     acm_timus::AcmTimusTaskExecute();
     bin_pow::BinPowTest();
     ip_filter::TestFunc();
+//     for (std::string line; std::getline(std::cin, line);) {
+//         int  i = 0;
+//     }
+
     return 0;
 }

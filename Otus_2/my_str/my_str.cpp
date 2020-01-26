@@ -29,7 +29,7 @@ std::string mystr::Fmt(const char *fmt, ...) //TODO:: загнать в либу
     }
 }
 //-----------------------------------------------------------------------------
-bool mystr::IsCorrectNumber(const char* aStr) //TODO::Вынести
+bool mystr::IsCorrectNumber(const char* aStr) 
 {
     const auto len = strlen(aStr);
     for (int i = 0; i < len; i++) {
@@ -39,17 +39,32 @@ bool mystr::IsCorrectNumber(const char* aStr) //TODO::Вынести
     return true;
 }
 //-----------------------------------------------------------------------------
-std::vector<std::string> mystr::GetAllNumbers(std::string aStr)//TODO::Вынести
+std::vector<std::string> mystr::GetAllNumbers(std::string aStr, const std::string& aDelimeters)
 {
     std::vector<std::string> tokens;
-    const std::string kDelimeters = "\r\n\t ";
+    //const std::string kDelimeters = "\r\n\t ";
     char* str = (char*)aStr.c_str(); //Maybe strcpy ?
-    char * pch = strtok(str, kDelimeters.c_str());;// strtok(str, delimeters.c_str());
+    char * pch = strtok(str, aDelimeters.c_str());;// strtok(str, delimeters.c_str());
     while (pch) {
         if ((pch != nullptr) && IsCorrectNumber(pch))
             tokens.push_back(std::string(pch));
-        pch = strtok(NULL, kDelimeters.c_str());
+        pch = strtok(NULL, aDelimeters.c_str());
     }
     return tokens;
 }
+//-----------------------------------------------------------------------------
+std::vector<std::size_t> mystr::ConvertStrArrayToNumbers(const std::vector<std::string>& aStrings, /*const*/ std::function<bool(std::size_t)> aIsCorrectNum /*= nullptr*/)
+{
+    auto res = std::vector<std::size_t>();
+    for (auto& elem : aStrings) {
+        auto digit = std::atoi(elem.c_str());
+        if ((aIsCorrectNum == nullptr) || aIsCorrectNum(digit)) {
+            res.emplace_back(digit);
+        } else {
+            return {};//Если число не соответсвует определенному условию - вернуть пустой вектор
+        }
+    }
+    return res;
+}
+
 //-----------------------------------------------------------------------------
