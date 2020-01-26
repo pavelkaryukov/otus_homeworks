@@ -8,7 +8,9 @@ set (IP_FILTER_SRC "ip_filter/ip_filter.cpp" "ip_filter/ip_filter.h")
 
 set (MYSTR_FOLDER "my_str")
 set (MYSTR_SRC ${MYSTR_FOLDER}/my_str.cpp ${MYSTR_FOLDER}/my_str.h)
-set (TEST_FILE_PATH ${PROJECT_SOURCE_DIR}/examples)
+set (TEST_FILE_PATH ${PROJECT_SOURCE_DIR}/examples/ip_filter-12995-758870.tsv)
+file(COPY ${TEST_FILE_PATH}
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 message("TEST_FILE_PATH =" ${TEST_FILE_PATH})
 add_library(mystr STATIC ${MYSTR_SRC}) 
 

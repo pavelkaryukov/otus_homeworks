@@ -39,14 +39,14 @@ bool mystr::IsCorrectNumber(const char* aStr)
     return true;
 }
 //-----------------------------------------------------------------------------
-std::vector<std::string> mystr::GetAllNumbers(std::string aStr, const std::string& aDelimeters)
+std::vector<std::string> mystr::GetTokens(std::string aStr, const std::string& aDelimeters, std::function<bool(const char*)> aIsCorrectNum)
 {
     std::vector<std::string> tokens;
     //const std::string kDelimeters = "\r\n\t ";
     char* str = (char*)aStr.c_str(); //Maybe strcpy ?
     char * pch = strtok(str, aDelimeters.c_str());;// strtok(str, delimeters.c_str());
     while (pch) {
-        if ((pch != nullptr) && IsCorrectNumber(pch))
+        if ((pch != nullptr) && ((aIsCorrectNum == nullptr) || IsCorrectNumber(pch)))
             tokens.push_back(std::string(pch));
         pch = strtok(NULL, aDelimeters.c_str());
     }

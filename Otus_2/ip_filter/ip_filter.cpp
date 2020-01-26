@@ -2,31 +2,112 @@
 #include "my_str.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 //-----------------------------------------------------------------------------
 namespace ip_filter
 {
     const static std::string kInputDataError = "Input data error";
+    //-----------------------------------------------------------------------------
+//     std::vector<ip_filter::IPv4> Filter(const std::vector<IPv4>& aIpVect, const std::uint8_t aFirstByte)
+//     {
+//         auto filtered = std::vector<ip_filter::IPv4>();
+//         for (const auto& ip : aIpVect) {
+//             if (ip.GetByte1() == aFirstByte) {
+//                 filtered.emplace_back(ip);
+//             }
+//         }
+//         return filtered;
+//     }
+    //-----------------------------------------------------------------------------
+    std::vector<ip_filter::IPv4> Filter(const std::vector<IPv4>& aIpVect, std::function<bool(IPv4)> aCondition, const bool aFilterAll /*= false*/)
+    {
+        auto filtered = std::vector<ip_filter::IPv4>();
+        bool elementWasFinded = false;
+        for (const auto& ip : aIpVect) {
+            if (aCondition(ip)) {
+                filtered.emplace_back(ip);
+                elementWasFinded = true;
+            } else  if (!aFilterAll && elementWasFinded){
+                break; 
+            }
+        }
+        return filtered;
+    }
+//-----------------------------------------------------------------------------
+    void FillIpVect(std::string aStr, std::vector<IPv4>& aIpVect)
+    {
+        auto strIp = mystr::GetTokens(aStr, "\t\x20");
+        if (strIp.empty())
+            return;
+        auto ipv4 = IPv4(strIp[0]);
+        if (ipv4.Empty())
+            return;
+
+        aIpVect.emplace_back(ipv4);
+    }
+    //-----------------------------------------------------------------------------
+    bool CmpLess(const IPv4 &a, const IPv4 &b)
+    {
+        return a < b;
+    }
+    //-----------------------------------------------------------------------------
+    bool CmpMore(const IPv4 &a, const IPv4 &b)
+    {
+        return a > b;
+    }
+    //-----------------------------------------------------------------------------
+    std::string IpListToStr(const std::vector<IPv4>& aIpVect)
+    {
+        std::string str;
+        for (const auto& ip : aIpVect) {
+            str += mystr::Fmt("%s\r\n", ip.ToStr().c_str());
+        }
+        return str;
+    }
+    //-----------------------------------------------------------------------------
     void TestFunc()
     {
-        auto file = std::ifstream("ip_filter-12995-758870.tsv");
-        while (file.is_open()) {
-            int stop1;
-
+        auto infile = std::ifstream("ip_filter-12995-758870.tsv");
+        if (!infile.is_open())
+            return;
+        std::string str;
+        std::vector<IPv4> ipVect;
+        while (std::getline(infile, str)) {
+            FillIpVect(str, ipVect);
         }
-        auto test1 = IPv4(0xFF'FE'11'02u);
-        auto test1str = test1.ToStr();
-        auto test1u = test1.ToUINT32();
+        
 
-        auto test2 = IPv4(0xFFu, 0xFEu, 0x11u, 0x02u);
+        std::sort(ipVect.begin(), ipVect.end(), CmpLess); // лексеграфический порядок
+        auto str1 = IpListToStr(ipVect);
+        std::sort(ipVect.begin(), ipVect.end(), CmpMore);// обратный лексеграфический порядок
+        auto str2 = IpListToStr(ipVect);
 
-        auto test2str = test2.ToStr();
-        auto test2u = test2.ToUINT32();
-        auto test3 = IPv4("172.16.147.35");
-        auto test4 = IPv4("192.168.0.35");      
-        auto test5 = IPv4("256.16.147.35");
-        auto test3str = test3.ToStr();
-        auto test3u = test3.ToUINT32();
+        auto a1 = [](IPv4 aIP)->bool {
+            return aIP.GetByte1() == 1;
+        };
+
+        auto a2 = [](IPv4 aIP)->bool {
+            return (aIP.GetByte1() == 46) && (aIP.GetByte2() == 70);
+        };
+
+        auto a_any = [](IPv4 aIP)->bool {
+            return (aIP.GetByte1() == 46) || (aIP.GetByte2() == 46) || (aIP.GetByte3() == 46) || (aIP.GetByte4() == 46);
+        };
+
+
+
+        auto filtered1 = Filter(ipVect, a1);
+        auto filtered1Str = IpListToStr(filtered1);
+
+
+        auto filtered2 = Filter(ipVect, a2);
+        auto filtered2Str = IpListToStr(filtered2);
+
+
+        auto filteredAny = Filter(ipVect, a_any, true);
+        auto filteredAnyStr = IpListToStr(filteredAny);
         int stop1 = 0;
+
     }
     //-----------------------------------------------------------------------------
     IPv4::IPv4(std::uint8_t aIP_1, std::uint8_t aIP_2, std::uint8_t aIP_3, std::uint8_t aIP_4)
@@ -44,7 +125,7 @@ namespace ip_filter
     {
         auto str = aIPv4;
         static const std::string kDelimeters = ".\x20";
-        auto numbers = mystr::GetAllNumbers(aIPv4, kDelimeters);
+        auto numbers = mystr::GetTokens(aIPv4, kDelimeters, mystr::IsCorrectNumber);
         if (numbers.size() > std::tuple_size<decltype(m_IP)>::value) {
             std::cout << "Input data error: to many bytes for IPv4"<<std::endl;
         }
@@ -56,19 +137,43 @@ namespace ip_filter
             std::cout << "Input data error: one or few numbers more 255 (byte range)" << std::endl;
             return;
         }
-
         m_IP = ConvertVectToIPv4(res);
     }
     //-----------------------------------------------------------------------------
-    std::string IPv4::ToStr()
+    std::string IPv4::ToStr() const
     {
         const auto&[a1, a2, a3, a4] = m_IP;
         return mystr::Fmt("%u.%u.%u.%u", a1, a2, a3, a4);
     }
     //-----------------------------------------------------------------------------
-    std::uint32_t IPv4::ToUINT32()
+    std::uint32_t IPv4::ToUINT32() const
     {
         return *(std::uint32_t*)&m_IP;
+    }
+    //-----------------------------------------------------------------------------
+    bool IPv4::Empty() const
+    {
+        return ToUINT32() == 0;
+    }
+    //-----------------------------------------------------------------------------
+    std::uint8_t IPv4::GetByte1() const
+    {
+        return std::get<0>(m_IP);
+    }
+    //-----------------------------------------------------------------------------
+    std::uint8_t IPv4::GetByte2() const
+    {
+        return std::get<1>(m_IP);
+    }
+    //-----------------------------------------------------------------------------
+    std::uint8_t IPv4::GetByte3() const
+    {
+        return std::get<2>(m_IP);
+    }
+    //-----------------------------------------------------------------------------
+    std::uint8_t IPv4::GetByte4() const
+    {
+        return std::get<3>(m_IP);
     }
     //-----------------------------------------------------------------------------
     bool IPv4::IsCorrectNumber(std::size_t aDigit)

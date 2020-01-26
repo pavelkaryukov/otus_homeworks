@@ -76,7 +76,8 @@ std::pair<bool, std::string> acm_timus::ToLocalizedNumberOfUnits(const std::stri
 std::string acm_timus::InvSqr(std::string aStr)
 {
     std::string resStr;
-    auto tokens = mystr::GetAllNumbers(aStr, kDelimeters);
+    auto tokens = mystr::GetTokens(aStr, kDelimeters, mystr::IsCorrectNumber);
+
     for (auto token = tokens.crbegin(); token != tokens.crend(); token++) {
         auto digit = std::atoll(token->c_str());
         auto sqrtRes = sqrt(digit);
@@ -114,7 +115,7 @@ bool IsNumberFromRange(const int aNumber, const int aLeft, const int aRight)
 //-----------------------------------------------------------------------------
 std::size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
 {
-    auto tokens = mystr::GetAllNumbers(aStr, kDelimeters);
+    auto tokens = mystr::GetTokens(aStr, kDelimeters, mystr::IsCorrectNumber);
     if (tokens.size() < 3) {
         std::cout << kErrorInputData << "Ќе достаточное количество аргументов" << std::endl;
         return 0;
