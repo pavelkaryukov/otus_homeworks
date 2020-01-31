@@ -26,10 +26,10 @@ namespace ip_filter
     //-----------------------------------------------------------------------------
     void FillIpVect(std::string aStr, IpList& aIPv4List)
     {
-        auto strIp = mystr::GetTokens(aStr, "\t\x20");
-        if (strIp.empty())
+        auto tokens = mystr::GetTokens(aStr, "\t\x20");
+        if (tokens.empty())
             return;
-        auto ipv4 = IPv4(strIp[0]);
+        auto ipv4 = IPv4(tokens[0]);
         if (ipv4.Empty())
             return;
 
@@ -103,7 +103,7 @@ namespace ip_filter
     std::string SortAndFilterIPv4ForOtus(const std::string& aFilePath, const std::string& aResultFilePath)
     {
         auto resStr = SortAndFilterIPv4ForOtus(aFilePath);
-        std::ofstream resfile("filtered_ip.txt");
+        std::ofstream resfile(aResultFilePath);
         resfile << resStr;
         return resStr;
     }
@@ -140,8 +140,8 @@ namespace ip_filter
     //-----------------------------------------------------------------------------
     std::string IPv4::ToStr() const
     {
-        const auto&[CmpB1, CmpB4670, a3, a4] = m_IP;
-        return mystr::Fmt("%u.%u.%u.%u", CmpB1, CmpB4670, a3, a4);
+        const auto&[b1, b2, b3, b4] = m_IP;
+        return mystr::Fmt("%u.%u.%u.%u", b1, b2, b3, b4);
     }
     //-----------------------------------------------------------------------------
     std::uint32_t IPv4::ToUINT32() const

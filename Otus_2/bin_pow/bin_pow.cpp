@@ -5,7 +5,6 @@
 //-----------------------------------------------------------------------------
 void bin_pow::BinPowTest()
 {
-    //const auto test = GetMinBinPow(1);
     static_assert(bin_pow::Step(5, 2));
     static_assert(bin_pow::BinExp(4));
     static_assert(bin_pow::GetMinBinPow(4));

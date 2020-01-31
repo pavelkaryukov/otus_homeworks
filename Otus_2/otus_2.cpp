@@ -2,22 +2,21 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "acm_timus/acm_timus.h"
 #include "bin_pow/bin_pow.h"
 #include "ip_filter/ip_filter.h"
 #include "md5/md5.h"
 //-----------------------------------------------------------------------------
-void  Test()
+void ProcessExampleFile()
 {
     bin_pow::BinPowTest();
-    auto res = ip_filter::SortAndFilterIPv4ForOtus("ip_filter-12995-758870.tsv");
+    auto res = ip_filter::SortAndFilterIPv4ForOtus("ip_filter-12995-758870.tsv", "filtered_ip.txt");
     auto md5Sum = md5(res);
     bool test = md5Sum == "24e7a7b2270daee89c64d3ca5fb3da1a";
 }
 //-----------------------------------------------------------------------------
 int main()
 {
-    Test();
+    ProcessExampleFile();
     try {
         std::string line;
         ip_filter::IpList ipv4List;
