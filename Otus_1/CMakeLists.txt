@@ -112,7 +112,7 @@ add_test(boost_test_version boost_test_version)
 add_test(gtest_test_version gtest_test_version)
 #Сборка пакета
 install(TARGETS Otus_1 DESTINATION bin)
-set(CPACK_PACKAGE_NAME "OtusHomework_1")
+set(CPACK_PACKAGE_NAME "OtusHomework")
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
