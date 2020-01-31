@@ -5,8 +5,7 @@
 #include <vector>
 #include <functional>
 namespace ip_filter
-{    
-    
+{        
     struct IPv4
     {
         using IPv4Data = std::tuple<std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t>;
@@ -15,7 +14,7 @@ namespace ip_filter
         IPv4(std::uint8_t aIP_1, std::uint8_t aIP_2, std::uint8_t aIP_3, std::uint8_t aIP_4 );
         explicit IPv4(std::uint32_t aIPv4);//старший байт слева в IP
         explicit IPv4(std::string aIPv4);
-        //To
+        //Convert Methods
         std::string ToStr() const;
         std::uint32_t ToUINT32() const;
         bool Empty() const;
@@ -38,19 +37,20 @@ namespace ip_filter
         IPv4Data m_IP;
         static bool IsCorrectNumber(std::size_t aDigit);
         IPv4Data ConvertVectToIPv4(std::vector<std::size_t>& aVect);
-
-        //friend std::vector<IPv4> Filter(const std::vector<IPv4>& aIpVect, const std::uint8_t aFirstByte); //Переделать на std::function
-        //friend std::vector<IPv4> Filter(const std::vector<IPv4>& aIpVect, std::function<bool(IPv4)> aCondition, const bool aFilterAll);
     };
     //-----------------------------------------------------------------------------
-    //std::vector<IPv4> Filter(const std::vector<IPv4>& aIpVect, const std::uint8_t aFirstByte);
+    using IpList = std::vector<IPv4>;
     //-----------------------------------------------------------------------------
-    std::vector<IPv4> Filter(const std::vector<IPv4>& aIpVect, std::function<bool(IPv4)> aCondition, const bool aFilterAll = false);
+    IpList Filter(const IpList& aIpVect, std::function<bool(IPv4)> aCondition, const bool aFilterAll = false);
     //-----------------------------------------------------------------------------
-    void FillIpVect(std::string aStr, std::vector<IPv4>& aIpVect);
+    void FillIpVect(std::string aStr, IpList& aIPv4List);
     //-----------------------------------------------------------------------------
-    std::string IpListToStr(const std::vector<IPv4>& aIpVect);
+    std::string IpListToStr(const IpList& aIpVect);
     //-----------------------------------------------------------------------------
-    void TestFunc();
+    std::string SortAndFilterIPv4ForOtus(IpList& aIpVect);
+    //-----------------------------------------------------------------------------
+    std::string SortAndFilterIPv4ForOtus(const std::string& aFilePath);
+    //-----------------------------------------------------------------------------
+    std::string SortAndFilterIPv4ForOtus(const std::string& aFilePath, const std::string& aResultFilePath);
     //-----------------------------------------------------------------------------
 }

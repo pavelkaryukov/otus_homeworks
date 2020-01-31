@@ -3,30 +3,17 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include <functional>
-//#include <filesystem>
-//#include <boost/uuid/detail/md5.hpp>
 //-----------------------------------------------------------------------------
 namespace ip_filter
 {
+    //-----------------------------------------------------------------------------
     const static std::string kInputDataError = "Input data error";
     //-----------------------------------------------------------------------------
-//     std::vector<ip_filter::IPv4> Filter(const std::vector<IPv4>& aIpVect, const std::uint8_t aFirstByte)
-//     {
-//         auto filtered = std::vector<ip_filter::IPv4>();
-//         for (const auto& ip : aIpVect) {
-//             if (ip.GetByte1() == aFirstByte) {
-//                 filtered.emplace_back(ip);
-//             }
-//         }
-//         return filtered;
-//     }
-    //-----------------------------------------------------------------------------
-    std::vector<ip_filter::IPv4> Filter(const std::vector<IPv4>& aIpVect, std::function<bool(IPv4)> aCondition, const bool aFilterAll /*= false*/)
+    std::vector<ip_filter::IPv4> Filter(const IpList& aIPv4List, std::function<bool(IPv4)> aCondition, const bool aFilterAll /*= false*/)
     {
         auto filtered = std::vector<ip_filter::IPv4>();
         bool elementWasFinded = false;
-        for (const auto& ip : aIpVect) {
+        for (const auto& ip : aIPv4List) {
             if (aCondition(ip)) {
                 filtered.emplace_back(ip);
                 elementWasFinded = true;
@@ -36,8 +23,8 @@ namespace ip_filter
         }
         return filtered;
     }
-//-----------------------------------------------------------------------------
-    void FillIpVect(std::string aStr, std::vector<IPv4>& aIpVect)
+    //-----------------------------------------------------------------------------
+    void FillIpVect(std::string aStr, IpList& aIPv4List)
     {
         auto strIp = mystr::GetTokens(aStr, "\t\x20");
         if (strIp.empty())
@@ -46,7 +33,7 @@ namespace ip_filter
         if (ipv4.Empty())
             return;
 
-        aIpVect.emplace_back(ipv4);
+        aIPv4List.emplace_back(ipv4);
     }
     //-----------------------------------------------------------------------------
     bool CmpLess(const IPv4 &a, const IPv4 &b)
@@ -59,68 +46,66 @@ namespace ip_filter
         return a > b;
     }
     //-----------------------------------------------------------------------------
-    std::string IpListToStr(const std::vector<IPv4>& aIpVect)
+    std::string IpListToStr(const IpList& aIPv4List)
     {
         std::string str;
-        for (const auto& ip : aIpVect) {
+        for (const auto& ip : aIPv4List) {
             str += mystr::Fmt("%s\n", ip.ToStr().c_str());
         }
         return str;
     }
     //-----------------------------------------------------------------------------
-    void TestFunc()
+    auto CmpB1 = [](IPv4 aIP)->bool {
+        return aIP.GetByte1() == 1;
+    };
+    //-----------------------------------------------------------------------------
+    auto CmpB4670 = [](IPv4 aIP)->bool {
+        return (aIP.GetByte1() == 46) && (aIP.GetByte2() == 70);
+    };
+    //-----------------------------------------------------------------------------
+    auto CmpAnyB46 = [](IPv4 aIP)->bool {
+        return (aIP.GetByte1() == 46) || (aIP.GetByte2() == 46) || (aIP.GetByte3() == 46) || (aIP.GetByte4() == 46);
+    };
+    //-----------------------------------------------------------------------------
+    std::string SortAndFilterIPv4ForOtus(IpList& aIPv4List)
     {
-        //auto infile = std::ifstream("ip_filter-12995-758870.tsv");
-        //c:\my_programs\otus\otus_homeworks\Otus_2\examples\ip_filter-12995-758870.tsv 
-        //auto infile = std::ifstream("c:\\my_programs\\otus\\otus_homeworks\\Otus_2\\examples\\ip_filter-12995-758870.tsv");
-        //auto test1 = std::filesystem::current_path();
-        //auto testFilePath = std::filesystem::current_path()/".."/"Otus_2"/"ip_filter-12995-758870.tsv";
+        std::sort(aIPv4List.begin(), aIPv4List.end(), CmpMore);// обратный лексеграфический порядок
+        std::string resStr = IpListToStr(aIPv4List);
+
+        auto filtered1 = Filter(aIPv4List, CmpB1);
+        resStr += IpListToStr(filtered1);
+
+        auto filtered2 = Filter(aIPv4List, CmpB4670);
+        resStr += IpListToStr(filtered2);
+
+        auto filteredAny = Filter(aIPv4List, CmpAnyB46, true);
+        resStr += IpListToStr(filteredAny);
+        return resStr;
+    }
+    //-----------------------------------------------------------------------------
+    std::string SortAndFilterIPv4ForOtus(const std::string& aFilePath)
+    {
         auto testFilePath = "ip_filter-12995-758870.tsv";
 
         auto infile = std::ifstream(testFilePath);
         if (!infile.is_open())
-            return;
+            return "";
         std::cout << "file is opened" << std::endl;
         std::string str;
-        std::vector<IPv4> ipVect;
+        IpList ipVect;
         while (std::getline(infile, str)) {
             FillIpVect(str, ipVect);
         }
-        
-
-        std::sort(ipVect.begin(), ipVect.end(), CmpLess); // лексеграфический порядок
-        auto str1 = IpListToStr(ipVect);
-        std::sort(ipVect.begin(), ipVect.end(), CmpMore);// обратный лексеграфический порядок
-        auto sortedStr = IpListToStr(ipVect);
-
-        auto a1 = [](IPv4 aIP)->bool {
-            return aIP.GetByte1() == 1;
-        };
-
-        auto a2 = [](IPv4 aIP)->bool {
-            return (aIP.GetByte1() == 46) && (aIP.GetByte2() == 70);
-        };
-
-        auto a_any = [](IPv4 aIP)->bool {
-            return (aIP.GetByte1() == 46) || (aIP.GetByte2() == 46) || (aIP.GetByte3() == 46) || (aIP.GetByte4() == 46);
-        };
-
-
-
-        auto filtered1 = Filter(ipVect, a1);
-        auto filtered1Str = IpListToStr(filtered1);
-
-        
-        auto filtered2 = Filter(ipVect, a2);
-        auto filtered2Str = IpListToStr(filtered2);
-
-
-        auto filteredAny = Filter(ipVect, a_any, true);
-        auto filteredAnyStr = IpListToStr(filteredAny);
-        std::string resStr = sortedStr + filtered1Str + filtered2Str +filteredAnyStr;
+        auto resStr = SortAndFilterIPv4ForOtus(ipVect);
+        return resStr;
+    }
+    //-----------------------------------------------------------------------------
+    std::string SortAndFilterIPv4ForOtus(const std::string& aFilePath, const std::string& aResultFilePath)
+    {
+        auto resStr = SortAndFilterIPv4ForOtus(aFilePath);
         std::ofstream resfile("filtered_ip.txt");
         resfile << resStr;
-        int stop1 = 0;
+        return resStr;
     }
     //-----------------------------------------------------------------------------
     IPv4::IPv4(std::uint8_t aIP_1, std::uint8_t aIP_2, std::uint8_t aIP_3, std::uint8_t aIP_4)
@@ -155,8 +140,8 @@ namespace ip_filter
     //-----------------------------------------------------------------------------
     std::string IPv4::ToStr() const
     {
-        const auto&[a1, a2, a3, a4] = m_IP;
-        return mystr::Fmt("%u.%u.%u.%u", a1, a2, a3, a4);
+        const auto&[CmpB1, CmpB4670, a3, a4] = m_IP;
+        return mystr::Fmt("%u.%u.%u.%u", CmpB1, CmpB4670, a3, a4);
     }
     //-----------------------------------------------------------------------------
     std::uint32_t IPv4::ToUINT32() const

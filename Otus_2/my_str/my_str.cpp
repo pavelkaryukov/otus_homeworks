@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdarg.h>
 //-----------------------------------------------------------------------------
-std::string mystr::Fmt(const char *fmt, ...) //TODO:: загнать в либу
+std::string mystr::Fmt(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
