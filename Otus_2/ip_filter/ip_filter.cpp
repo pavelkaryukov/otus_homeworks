@@ -4,7 +4,7 @@
 #include <fstream>
 #include <algorithm>
 #include <functional>
-#include <filesystem>
+//#include <filesystem>
 //#include <boost/uuid/detail/md5.hpp>
 //-----------------------------------------------------------------------------
 namespace ip_filter
@@ -74,7 +74,9 @@ namespace ip_filter
         //c:\my_programs\otus\otus_homeworks\Otus_2\examples\ip_filter-12995-758870.tsv 
         //auto infile = std::ifstream("c:\\my_programs\\otus\\otus_homeworks\\Otus_2\\examples\\ip_filter-12995-758870.tsv");
         //auto test1 = std::filesystem::current_path();
-        auto testFilePath = std::filesystem::current_path()/".."/"Otus_2"/"ip_filter-12995-758870.tsv";
+        //auto testFilePath = std::filesystem::current_path()/".."/"Otus_2"/"ip_filter-12995-758870.tsv";
+        auto testFilePath = "ip_filter-12995-758870.tsv";
+
         auto infile = std::ifstream(testFilePath);
         if (!infile.is_open())
             return;
