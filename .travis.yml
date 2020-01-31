@@ -21,13 +21,13 @@ script:
 - pwd
 - cmake .
 - cmake --build .
-- Otus_1/./Otus_1
 - Otus_1/./boost_test_version
-#- Otus_1/./gtest_test_version
+- Otus_1/./gtest_test_version
+- Otus_2/./boost_test
 - cmake --build . --target package
 - ls
 deploy:
  provider: script
  skip_cleanup: true																			 
  script:
- - curl -T OtusHomework_1-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -upavelkaryukov:$BINTRAY_API_KEY "https://api.bintray.com/content/karyukov/otus_homeworks/homeworks/$TRAVIS_BUILD_NUMBER/OtusHomework_1-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+ - curl -T OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -upavelkaryukov:$BINTRAY_API_KEY "https://api.bintray.com/content/karyukov/otus_homeworks/homeworks/$TRAVIS_BUILD_NUMBER/OtusHomework-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"

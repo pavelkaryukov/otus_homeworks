@@ -92,7 +92,7 @@ add_test(boost_test boost_test)
 
 #—борка пакета
 install(TARGETS Otus_2 DESTINATION bin)
-#set(CPACK_PACKAGE_NAME "OtusHomework")
+#set(CPACK_PACKAGE_NAME "OtusHomeworks")
 #set(CPACK_GENERATOR DEB)
 #set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 #set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
