@@ -3,6 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <functional>
+#include <filesystem>
+//#include <boost/uuid/detail/md5.hpp>
 //-----------------------------------------------------------------------------
 namespace ip_filter
 {
@@ -60,16 +63,22 @@ namespace ip_filter
     {
         std::string str;
         for (const auto& ip : aIpVect) {
-            str += mystr::Fmt("%s\r\n", ip.ToStr().c_str());
+            str += mystr::Fmt("%s\n", ip.ToStr().c_str());
         }
         return str;
     }
     //-----------------------------------------------------------------------------
     void TestFunc()
     {
-        auto infile = std::ifstream("ip_filter-12995-758870.tsv");
+        //auto infile = std::ifstream("ip_filter-12995-758870.tsv");
+        //c:\my_programs\otus\otus_homeworks\Otus_2\examples\ip_filter-12995-758870.tsv 
+        //auto infile = std::ifstream("c:\\my_programs\\otus\\otus_homeworks\\Otus_2\\examples\\ip_filter-12995-758870.tsv");
+        //auto test1 = std::filesystem::current_path();
+        auto testFilePath = std::filesystem::current_path()/".."/"Otus_2"/"ip_filter-12995-758870.tsv";
+        auto infile = std::ifstream(testFilePath);
         if (!infile.is_open())
             return;
+        std::cout << "file is opened" << std::endl;
         std::string str;
         std::vector<IPv4> ipVect;
         while (std::getline(infile, str)) {
@@ -80,7 +89,7 @@ namespace ip_filter
         std::sort(ipVect.begin(), ipVect.end(), CmpLess); // лексеграфический порядок
         auto str1 = IpListToStr(ipVect);
         std::sort(ipVect.begin(), ipVect.end(), CmpMore);// обратный лексеграфический порядок
-        auto str2 = IpListToStr(ipVect);
+        auto sortedStr = IpListToStr(ipVect);
 
         auto a1 = [](IPv4 aIP)->bool {
             return aIP.GetByte1() == 1;
@@ -99,15 +108,17 @@ namespace ip_filter
         auto filtered1 = Filter(ipVect, a1);
         auto filtered1Str = IpListToStr(filtered1);
 
-
+        
         auto filtered2 = Filter(ipVect, a2);
         auto filtered2Str = IpListToStr(filtered2);
 
 
         auto filteredAny = Filter(ipVect, a_any, true);
         auto filteredAnyStr = IpListToStr(filteredAny);
+        std::string resStr = sortedStr + filtered1Str + filtered2Str +filteredAnyStr;
+        std::ofstream resfile("filtered_ip.txt");
+        resfile << resStr;
         int stop1 = 0;
-
     }
     //-----------------------------------------------------------------------------
     IPv4::IPv4(std::uint8_t aIP_1, std::uint8_t aIP_2, std::uint8_t aIP_3, std::uint8_t aIP_4)

@@ -37,7 +37,7 @@ std::optional<NumberOfUnits> GetLocalizedNumberOfUnits(const int aNumber)
     if (FromRange(100 , 249 )) return { NumberOfUnits::throng  };
     if (FromRange(250 , 499 )) return { NumberOfUnits::swarm   };
     if (FromRange(500 , 999 )) return { NumberOfUnits::zounds  };
-    if (FromRange(1000, 2000)) return { NumberOfUnits::swarm   };
+    if (FromRange(1000, 2000)) return { NumberOfUnits::legion   };
     return std::nullopt;
 }
 //-----------------------------------------------------------------------------

@@ -19,7 +19,18 @@ set_target_properties (
 	CXX_STANDARD 17 
 	CXX_STANDARD_REQUIRED ON	
 )
+#Boost Hash
+#find_package(Boost)
+#
+#if(NOT Boost_FOUND)
+#	message(SEND_ERROR "Failed to find boost")
+#	return()
+#else ()
+#	message("My boost path =" ${Boost_INCLUDE_DIRS})
+#endif()
+
 add_executable(Otus_2 "otus_2.cpp" ${ACM_TIMUS_SRC} ${BIN_POW_SRC} ${IP_FILTER_SRC}) 
+#target_include_directories(Otus_2 PUBLIC ${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER} ${CMAKE_CURRENT_BINARY_DIR} ${TEST_FILE_PATH} ${Boost_INCLUDE_DIRS})
 target_include_directories(Otus_2 PUBLIC ${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER} ${CMAKE_CURRENT_BINARY_DIR} ${TEST_FILE_PATH})
 
 target_link_libraries(Otus_2 mystr)
@@ -28,3 +39,6 @@ set_target_properties (
 	CXX_STANDARD 17 
 	CXX_STANDARD_REQUIRED ON	
 )
+
+
+
