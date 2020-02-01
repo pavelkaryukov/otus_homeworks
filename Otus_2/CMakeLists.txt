@@ -99,6 +99,6 @@ install(TARGETS Otus_2 DESTINATION bin)
 #set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 #set(CPACK_PACKAGE_VENDOR "Karyukov")
 #set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
-include (CPack)
+#include (CPack)
 
 
