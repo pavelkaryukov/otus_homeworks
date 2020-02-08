@@ -65,14 +65,21 @@ endif()
 add_executable(gtest_test_version ${TESTS_SRC}/gtest_test_version.cpp ${VERSION_SRC} )
 set_target_properties (
 	gtest_test_version PROPERTIES 
-	CXX_STANDARD 14
+	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON	
 )
 
 target_link_libraries(gtest_test_version ${GTEST_BOTH_LIBRARIES})
-if (NOT MSVC)
-	target_link_libraries(gtest_test_version pthread)
+find_package(Threads)
+message("MyMSG" ${CMAKE_USE_PTHREADS_INIT})
+if (Threads_FOUND)
+	target_link_libraries(gtest_test_version ${CMAKE_THREAD_LIBS_INIT})	
 endif()
+
+
+#if (NOT MSVC)
+#	target_link_libraries(gtest_test_version pthread)
+#endif()
 
 target_include_directories(
 	gtest_test_version 
