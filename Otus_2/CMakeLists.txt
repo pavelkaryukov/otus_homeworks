@@ -67,7 +67,7 @@ set_target_properties (
 
 find_package(Threads)
 if (Threads_FOUND)
-	target_link_libraries(gtest_test_version ${CMAKE_THREAD_LIBS_INIT})	
+	target_link_libraries(gtest_test ${CMAKE_THREAD_LIBS_INIT})	
 endif()
 
 target_link_libraries(gtest_test 
