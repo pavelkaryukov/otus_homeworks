@@ -8,6 +8,8 @@ set (MD5_SRC "md5/md5.cpp" "md5/md5.h")#Заменить на lib файд
 set (MYSTR_FOLDER "my_str")
 set (MYSTR_SRC ${MYSTR_FOLDER}/my_str.cpp ${MYSTR_FOLDER}/my_str.h)
 set (TEST_FILE_PATH ${PROJECT_SOURCE_DIR}/examples/ip_filter-12995-758870.tsv)
+#Test 
+set(TESTS_SRC "tests")
 
 file(COPY ${TEST_FILE_PATH}
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -31,7 +33,7 @@ set_target_properties (
 )
 
 
-add_executable(Otus_2 "otus_2.cpp" ${IP_FILTER_SRC}) 
+add_executable(Otus_2 "otus_2.cpp" ${IP_FILTER_SRC} "tests/boost_test.cpp" "tests/gtest_test.cpp") 
 target_include_directories(Otus_2 PUBLIC ${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER} ${CMAKE_CURRENT_BINARY_DIR} ${TEST_FILE_PATH})
 
 target_link_libraries(Otus_2 
@@ -47,8 +49,7 @@ set_target_properties (
 	CXX_STANDARD_REQUIRED ON	
 )
 
-#Test 
-set(TESTS_SRC "tests")
+
 
 #Google Test
 find_package(GTest REQUIRED)
