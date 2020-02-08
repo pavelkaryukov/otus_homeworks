@@ -71,15 +71,9 @@ set_target_properties (
 
 target_link_libraries(gtest_test_version ${GTEST_BOTH_LIBRARIES})
 find_package(Threads)
-message("MyMSG" ${CMAKE_USE_PTHREADS_INIT})
 if (Threads_FOUND)
 	target_link_libraries(gtest_test_version ${CMAKE_THREAD_LIBS_INIT})	
 endif()
-
-
-#if (NOT MSVC)
-#	target_link_libraries(gtest_test_version pthread)
-#endif()
 
 target_include_directories(
 	gtest_test_version 

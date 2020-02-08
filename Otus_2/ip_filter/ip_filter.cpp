@@ -9,7 +9,7 @@ namespace ip_filter
     //-----------------------------------------------------------------------------
     const static std::string kInputDataError = "Input data error";
     //-----------------------------------------------------------------------------
-    std::vector<ip_filter::IPv4> Filter(const IpList& aIPv4List, std::function<bool(IPv4)> aCondition, const bool aFilterAll /*= false*/)
+    IpList Filter(const IpList& aIPv4List, std::function<bool(IPv4)> aCondition, const bool aFilterAll /*= false*/)
     {
         auto filtered = std::vector<ip_filter::IPv4>();
         bool elementWasFinded = false;

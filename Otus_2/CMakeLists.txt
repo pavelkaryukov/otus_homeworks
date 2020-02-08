@@ -31,7 +31,7 @@ set_target_properties (
 )
 
 
-add_executable(Otus_2 "otus_2.cpp" ${IP_FILTER_SRC} ${TESTS_SRC}) 
+add_executable(Otus_2 "otus_2.cpp" ${IP_FILTER_SRC}) 
 target_include_directories(Otus_2 PUBLIC ${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER} ${CMAKE_CURRENT_BINARY_DIR} ${TEST_FILE_PATH})
 
 target_link_libraries(Otus_2 
@@ -48,17 +48,51 @@ set_target_properties (
 )
 
 #Test 
-set(TESTS_SRC "tests/boost_test.cpp")
+set(TESTS_SRC "tests")
+
+#Google Test
+find_package(GTest REQUIRED)
+
+if(NOT GTEST_FOUND )
+	message(SEND_ERROR "Failed to find GTest")
+	return()
+endif()
+
+add_executable(gtest_test ${TESTS_SRC}/gtest_test.cpp ${IP_FILTER_SRC} )
+set_target_properties (
+	gtest_test PROPERTIES 
+	CXX_STANDARD 17
+	CXX_STANDARD_REQUIRED ON	
+)
+
+find_package(Threads)
+if (Threads_FOUND)
+	target_link_libraries(gtest_test_version ${CMAKE_THREAD_LIBS_INIT})	
+endif()
+
+target_link_libraries(gtest_test 
+	${GTEST_BOTH_LIBRARIES} 	
+	mystr
+	md5sum
+	binpow
+)
+
+target_include_directories(
+	gtest_test
+	PRIVATE
+	${CMAKE_CURRENT_BINARY_DIR}
+	${GTEST_INCLUDE_DIRS}
+	${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER}
+)
 
 #Boost Test
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-
 if(NOT Boost_FOUND)
 	message(SEND_ERROR "Failed to find boost")
 	return()
 endif()
 
-add_executable(boost_test ${TESTS_SRC} ${IP_FILTER_SRC})
+add_executable(boost_test ${TESTS_SRC}/boost_test.cpp ${IP_FILTER_SRC})
 
 set_target_properties (
 	boost_test PROPERTIES 
@@ -89,6 +123,7 @@ endif()
 
 enable_testing()
 add_test(boost_test boost_test)
+add_test(gtest_test gtest_test)
 
 #—борка пакета
 install(TARGETS Otus_2 DESTINATION bin)
