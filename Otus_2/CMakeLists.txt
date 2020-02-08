@@ -33,7 +33,7 @@ set_target_properties (
 )
 
 
-add_executable(Otus_2 "otus_2.cpp" ${IP_FILTER_SRC} "tests/boost_test.cpp" "tests/gtest_test.cpp") 
+add_executable(Otus_2 "otus_2.cpp" ${IP_FILTER_SRC}) # "tests/boost_test.cpp" "tests/gtest_test.cpp"
 target_include_directories(Otus_2 PUBLIC ${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER} ${CMAKE_CURRENT_BINARY_DIR} ${TEST_FILE_PATH})
 
 target_link_libraries(Otus_2 

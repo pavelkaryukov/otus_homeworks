@@ -3,9 +3,9 @@
 #include "../ip_filter/ip_filter.h"
 #include "../md5/md5.h"
 #include "../bin_pow/bin_pow.h"
-BOOST_AUTO_TEST_SUITE(boost_test_version)
+BOOST_AUTO_TEST_SUITE(boost_test)
 
-BOOST_AUTO_TEST_CASE(boost_test_valid_version)
+BOOST_AUTO_TEST_CASE(boost_test)
 {
     BOOST_CHECK_NO_THROW(bin_pow::BinPowTest());
     auto res = ip_filter::SortAndFilterIPv4ForOtus("ip_filter-12995-758870.tsv");
