@@ -115,10 +115,29 @@ target_link_libraries(boost_test
 	binpow
 )
 
-if (NOT MSVC)
-  	set_target_properties(boost_test PROPERTIES
+if (MSVC)
+    target_compile_options(Otus_2 PRIVATE
+        /W4
+    )
+    target_compile_options(boost_test PRIVATE
+        /W4
+    )
+	target_compile_options(gtest_test PRIVATE
+        /W4
+    )
+else ()
+    target_compile_options(Otus_2 PRIVATE
+        -Wall -Wextra -pedantic -Werror
+    )
+    target_compile_options(boost_test PRIVATE
+        -Wall -Wextra -pedantic -Werror
+    )
+	set_target_properties( boost_test PROPERTIES
 		COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
 	)
+    target_compile_options(gtest_test PRIVATE
+        -Wall -Wextra -pedantic -Werror
+    )
 endif()
 
 enable_testing()
