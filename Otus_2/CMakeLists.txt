@@ -9,7 +9,7 @@ set (MYSTR_FOLDER "my_str")
 set (MYSTR_SRC ${MYSTR_FOLDER}/my_str.cpp ${MYSTR_FOLDER}/my_str.h)
 set (TEST_FILE_PATH ${PROJECT_SOURCE_DIR}/examples/ip_filter-12995-758870.tsv)
 #Test 
-set(TESTS_SRC2 "tests")
+set(TESTS_SRC "tests")
 
 file(COPY ${TEST_FILE_PATH}
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -59,7 +59,7 @@ if(NOT GTEST_FOUND )
 	return()
 endif()
 
-add_executable(gtest_test ${TESTS_SRC2}/gtest_test.cpp ${IP_FILTER_SRC})
+add_executable(gtest_test ${TESTS_SRC}/gtest_test.cpp ${IP_FILTER_SRC})
 set_target_properties (
 	gtest_test PROPERTIES 
 	CXX_STANDARD 17
@@ -93,7 +93,7 @@ if(NOT Boost_FOUND)
 	return()
 endif()
 
-add_executable(boost_test ${TESTS_SRC2}/boost_test.cpp ${IP_FILTER_SRC})
+add_executable(boost_test ${TESTS_SRC}/boost_test.cpp ${IP_FILTER_SRC})
 
 set_target_properties (
 	boost_test PROPERTIES 
