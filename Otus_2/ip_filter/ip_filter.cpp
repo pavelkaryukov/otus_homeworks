@@ -127,10 +127,10 @@ namespace ip_filter
         if (numbers.size() > std::tuple_size<decltype(m_IP)>::value) {
             std::cout << "Input data error: to many bytes for IPv4"<<std::endl;
         }
-        auto lambda1 = [](std::size_t aDigit) {
+        auto IsByte = [](std::size_t aDigit) {
             return aDigit<=0xff;
         };
-        auto res = mystr::ConvertStrArrayToNumbers(numbers, lambda1);
+        auto res = mystr::ConvertStrArrayToNumbers(numbers, IsByte);
         if (res.empty()) {
             std::cout << "Input data error: one or few numbers more 255 (byte range)" << std::endl;
             return;
