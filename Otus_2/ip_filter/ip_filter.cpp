@@ -56,15 +56,18 @@ namespace ip_filter
     }
     //-----------------------------------------------------------------------------
     auto CmpB1 = [](IPv4 aIP)->bool {
-        return aIP.GetByte1() == 1;
+        return std::get<0>(aIP.GetData()) == 1;
     };
     //-----------------------------------------------------------------------------
     auto CmpB4670 = [](IPv4 aIP)->bool {
-        return (aIP.GetByte1() == 46) && (aIP.GetByte2() == 70);
+        const auto& [a1, a2, a3, a4] = aIP.GetData();
+        return (a1 == 46) && (a2 == 70);
     };
     //-----------------------------------------------------------------------------
     auto CmpAnyB46 = [](IPv4 aIP)->bool {
-        return (aIP.GetByte1() == 46) || (aIP.GetByte2() == 46) || (aIP.GetByte3() == 46) || (aIP.GetByte4() == 46);
+        const auto&[a1, a2, a3, a4] = aIP.GetData();
+        
+        return (a1 == 46) || (a2 == 46) || (a3 == 46) || (a4 == 46);
     };
     //-----------------------------------------------------------------------------
     std::string SortAndFilterIPv4ForOtus(IpList& aIPv4List)
@@ -154,24 +157,9 @@ namespace ip_filter
         return ToUINT32() == 0;
     }
     //-----------------------------------------------------------------------------
-    std::uint8_t IPv4::GetByte1() const
+    const ip_filter::IPv4::IPv4Data& IPv4::GetData() const
     {
-        return std::get<0>(m_IP);
-    }
-    //-----------------------------------------------------------------------------
-    std::uint8_t IPv4::GetByte2() const
-    {
-        return std::get<1>(m_IP);
-    }
-    //-----------------------------------------------------------------------------
-    std::uint8_t IPv4::GetByte3() const
-    {
-        return std::get<2>(m_IP);
-    }
-    //-----------------------------------------------------------------------------
-    std::uint8_t IPv4::GetByte4() const
-    {
-        return std::get<3>(m_IP);
+        return m_IP;
     }
     //-----------------------------------------------------------------------------
     bool IPv4::IsCorrectNumber(std::size_t aDigit)

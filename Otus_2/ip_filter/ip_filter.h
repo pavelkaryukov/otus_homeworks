@@ -12,7 +12,7 @@ namespace ip_filter
         //constructors
         IPv4() = default;
         IPv4(std::uint8_t aIP_1, std::uint8_t aIP_2, std::uint8_t aIP_3, std::uint8_t aIP_4 );
-        explicit IPv4(std::uint32_t aIPv4);//старший байт слева в IP
+        explicit IPv4(std::uint32_t aIPv4);//пусть старший байт слева в IP
         explicit IPv4(std::string aIPv4);
         //Convert Methods
         std::string ToStr() const;
@@ -28,11 +28,8 @@ namespace ip_filter
         {
             return ToUINT32() > rhs.ToUINT32();
         }
-        //
-        std::uint8_t GetByte1() const;
-        std::uint8_t GetByte2() const;
-        std::uint8_t GetByte3() const;
-        std::uint8_t GetByte4() const;
+
+        const IPv4Data& GetData() const;
     private: 
         IPv4Data m_IP;
         static bool IsCorrectNumber(std::size_t aDigit);
