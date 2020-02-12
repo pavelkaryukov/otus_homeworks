@@ -6,17 +6,18 @@
 #include "ip_filter/ip_filter.h"
 #include "md5/md5.h"
 //-----------------------------------------------------------------------------
-void ProcessExampleFile()
+bool ProcessExampleFile()
 {
     bin_pow::BinPowTest();
     auto res = ip_filter::SortAndFilterIPv4ForOtus("ip_filter-12995-758870.tsv", "filtered_ip.txt");
     auto md5Sum = md5(res);
     bool test = md5Sum == "24e7a7b2270daee89c64d3ca5fb3da1a";
+    return test;
 }
 //-----------------------------------------------------------------------------
 int main()
 {
-    ProcessExampleFile();
+    // bool res = ProcessExampleFile();
     try {
         std::string line;
         ip_filter::IpList ipv4List;
@@ -25,7 +26,6 @@ int main()
         }
         auto res = ip_filter::SortAndFilterIPv4ForOtus(ipv4List);
         if (!res.empty()) {
-            std::cout << "Filtered and sorted IPv4 List:" << std::endl;
             std::cout << res << std::endl;
         }
     }
