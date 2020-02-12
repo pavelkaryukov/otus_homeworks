@@ -147,9 +147,18 @@ namespace ip_filter
         return mystr::Fmt("%u.%u.%u.%u", b1, b2, b3, b4);
     }
     //-----------------------------------------------------------------------------
-    std::uint32_t IPv4::ToUINT32() const
+    std::uint32_t IPv4::ToUINT32(const ByteOrder aOrder /*= ByteOrder::LittleEndian*/) const
     {
-        return *(std::uint32_t*)&m_IP;
+        const auto&[b1, b2, b3, b4] = m_IP;
+        auto lBitShift = [](const std::uint8_t aByte, const size_t aBitShift)->std::uint32_t
+        {
+            return static_cast<std::uint32_t>(aByte) << aBitShift;
+        };
+
+        if (aOrder == ByteOrder::BigEndian)
+            return lBitShift(b4, 24) + lBitShift(b3, 16) + lBitShift(b2, 8) + b1;
+        else         
+            return lBitShift(b1, 24) + lBitShift(b2, 16) + lBitShift(b3, 8) + b4;   
     }
     //-----------------------------------------------------------------------------
     bool IPv4::Empty() const

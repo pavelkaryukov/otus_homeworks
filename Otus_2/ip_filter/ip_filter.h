@@ -16,7 +16,13 @@ namespace ip_filter
         explicit IPv4(std::string aIPv4);
         //Convert Methods
         std::string ToStr() const;
-        std::uint32_t ToUINT32() const;
+        enum class ByteOrder
+        {
+            BigEndian,
+            LittleEndian
+        };
+        std::uint32_t ToUINT32(const ByteOrder aOrder = ByteOrder::LittleEndian) const;
+
         bool Empty() const;
 
         bool operator < (const IPv4& rhs) const
@@ -34,6 +40,7 @@ namespace ip_filter
         IPv4Data m_IP;
         static bool IsCorrectNumber(std::size_t aDigit);
         IPv4Data ConvertVectToIPv4(std::vector<std::size_t>& aVect);
+        
     };
     //-----------------------------------------------------------------------------
     using IpList = std::vector<IPv4>;
