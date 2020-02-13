@@ -57,7 +57,7 @@ std::vector<std::size_t> mystr::ConvertStrArrayToNumbers(const std::vector<std::
 {
     auto res = std::vector<std::size_t>();
     for (auto& elem : aStrings) {
-        auto digit = std::atoi(elem.c_str());
+        auto digit = std::stoi(elem);
         if ((aIsCorrectNum == nullptr) || aIsCorrectNum(digit)) {
             res.emplace_back(digit);
         } else {
@@ -66,5 +66,4 @@ std::vector<std::size_t> mystr::ConvertStrArrayToNumbers(const std::vector<std::
     }
     return res;
 }
-
 //-----------------------------------------------------------------------------

@@ -3,6 +3,9 @@
 #include <cstring>
 namespace acm_timus
 {
+    //-----------------------------------------------------------------------------
+    void TwoGangsta(const std::string& aStr);//Task 1409
+    //-----------------------------------------------------------------------------
     std::size_t NecessarySulfideThoriumWeight(std::string aStr);//Task 1293
     //-----------------------------------------------------------------------------
     std::string GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr);  //Task 2012
@@ -19,5 +22,6 @@ namespace acm_timus
     //-----------------------------------------------------------------------------
     void AcmTimusTaskExecute();
     //-----------------------------------------------------------------------------
-
+    bool CanOpen(const std::pair<std::string, std::string>& aLocksStr);// 1877
+    //-----------------------------------------------------------------------------
 }

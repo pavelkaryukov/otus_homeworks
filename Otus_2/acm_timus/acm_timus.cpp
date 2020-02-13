@@ -23,22 +23,22 @@ enum class NumberOfUnits
     null
 };
 //-----------------------------------------------------------------------------
-std::optional<NumberOfUnits> GetLocalizedNumberOfUnits(const int aNumber)
+NumberOfUnits GetLocalizedNumberOfUnits(const int aNumber)
 {
     auto FromRange = [&aNumber](const int aLeft, const int aRight) -> bool {
         return (aNumber >= aLeft) && (aNumber <= aRight);
     };
 
-    if (FromRange(1   , 4   )) return { NumberOfUnits::few     };
-    if (FromRange(5   , 9   )) return { NumberOfUnits::several };
-    if (FromRange(10  , 19  )) return { NumberOfUnits::pack    };
-    if (FromRange(20  , 49  )) return { NumberOfUnits::lots    };
-    if (FromRange(50  , 99  )) return { NumberOfUnits::horde   };
-    if (FromRange(100 , 249 )) return { NumberOfUnits::throng  };
-    if (FromRange(250 , 499 )) return { NumberOfUnits::swarm   };
-    if (FromRange(500 , 999 )) return { NumberOfUnits::zounds  };
-    if (FromRange(1000, 2000)) return { NumberOfUnits::legion   };
-    return std::nullopt;
+    if (FromRange(1   , 4   )) return  NumberOfUnits::few     ;
+    if (FromRange(5   , 9   )) return  NumberOfUnits::several ;
+    if (FromRange(10  , 19  )) return  NumberOfUnits::pack    ;
+    if (FromRange(20  , 49  )) return  NumberOfUnits::lots    ;
+    if (FromRange(50  , 99  )) return  NumberOfUnits::horde   ;
+    if (FromRange(100 , 249 )) return  NumberOfUnits::throng  ;
+    if (FromRange(250 , 499 )) return  NumberOfUnits::swarm   ;
+    if (FromRange(500 , 999 )) return  NumberOfUnits::zounds  ;
+    if (FromRange(1000, 2000)) return  NumberOfUnits::legion  ;
+    return NumberOfUnits::null;
 }
 //-----------------------------------------------------------------------------
 std::string ConvertToStr(const NumberOfUnits aLocalizedNum)
@@ -67,10 +67,10 @@ std::pair<bool, std::string> acm_timus::ToLocalizedNumberOfUnits(const std::stri
     if ((digit < 1) || (digit > 2000)) 
         return { false, kErrorInputData + ":„исло не из диапозона (1..2000)\r\n" };
     auto numberOfUnits = GetLocalizedNumberOfUnits(digit);
-    if (!numberOfUnits)
+    if (numberOfUnits == NumberOfUnits::null)
         return { false, kErrorInputData + ":„исло не из диапозона (1..2000)\r\n" };
 
-    return {true, ConvertToStr(*numberOfUnits)};
+    return {true, ConvertToStr(numberOfUnits)};
 }
 //-----------------------------------------------------------------------------
 std::string acm_timus::InvSqr(std::string aStr)
@@ -152,6 +152,36 @@ void acm_timus::AcmTimusTaskExecute()
     auto task1293c = acm_timus::NecessarySulfideThoriumWeight("5 2 ");
     //TODO:: ¬ывод в командную строку на английском €зыке
 }
+//-----------------------------------------------------------------------------
+void acm_timus::TwoGangsta(const std::string& aStr)
+{
+    auto tokens = mystr::GetTokens(aStr, " \r\n\t", mystr::IsCorrectNumber);
+    if (tokens.size() < 2)
+        return;
+    const std::size_t maxNumberOfTin = 10;
+    auto numbers = mystr::ConvertStrArrayToNumbers(tokens, [&maxNumberOfTin](const std::size_t aNum)->bool { return aNum <= maxNumberOfTin; });
+    if ((numbers.size() < 2) || (numbers[0] == 0) || (numbers[1] == 0))
+        return;
+
+    const std::size_t  numberOfTin = numbers[0] + numbers[1] - 1;
+    if (numberOfTin > maxNumberOfTin)
+        return;
+
+    std::cout << numberOfTin - numbers[0] << " " << numberOfTin - numbers[1] << std::endl;
+}
+//-----------------------------------------------------------------------------
+bool acm_timus::CanOpen(const std::pair<std::string, std::string>& aLocksStr)
+{
+    const std::size_t kLockStrSize = 4;
+    if ((aLocksStr.first.size() != kLockStrSize) || (aLocksStr.second.size() != kLockStrSize))
+        return false;
+    if (!mystr::IsCorrectNumber(aLocksStr.first.c_str()) || !mystr::IsCorrectNumber(aLocksStr.second.c_str()))
+        return false;
+    std::pair<std::size_t, std::size_t> locks = { std::stoi(aLocksStr.first),  std::stoi(aLocksStr.second) };    
+    // поидеи - в первый день будут только четные числа, во второй только не четные
+    return (locks.first % 2 == 0) || (locks.second % 2 == 1);
+}
+
 
 
 
