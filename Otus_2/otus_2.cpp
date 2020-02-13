@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <iostream>
 #include "bin_pow/bin_pow.h"
 #include "ip_filter/ip_filter.h"
 #include "md5/md5.h"
