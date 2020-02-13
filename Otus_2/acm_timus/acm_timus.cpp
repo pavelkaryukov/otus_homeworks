@@ -1,5 +1,4 @@
 #include "acm_timus.h"
-#include <vector>
 #include <cctype>
 #include <iostream>
 #include <cmath>
@@ -182,6 +181,42 @@ bool acm_timus::CanOpen(const std::pair<std::string, std::string>& aLocksStr)
     return (locks.first % 2 == 0) || (locks.second % 2 == 1);
 }
 
+//-----------------------------------------------------------------------------
+bool acm_timus::BerryWeight(const std::vector<std::string>& aWeighingResStr, std::pair<std::size_t, std::size_t>& aBerrysWeight)
+{
+    if (aWeighingResStr.size() != 3)
+        return false;
+    std::vector<std::pair<std::size_t, std::size_t>> aWeighingRes;
+    for (const auto& str : aWeighingResStr) {
+        auto tokens = mystr::GetTokens(str, " \r\n\t", mystr::IsCorrectNumber);
+        if (tokens.size() != 2)
+            return false;
+        auto weights = mystr::ConvertStrArrayToNumbers(tokens, [](std::size_t aWeight)->bool { return aWeight <= 10000; });
+        if (weights.size() != 2)
+            return false;
+        aWeighingRes.push_back({ weights[0], weights[1] });
+    }
+    if (aWeighingRes.size() != 3) 
+        return false;
+    bool correctWeights1 = (aWeighingRes[2].first <= aWeighingRes[0].first) && (aWeighingRes[0].first <= aWeighingRes[1].first);
+    bool correctWeights2 = (aWeighingRes[2].second >= aWeighingRes[0].second) && (aWeighingRes[0].second >= aWeighingRes[1].second);
+    if (!correctWeights1 || !correctWeights2)
+        return false;
+
+    std::size_t berrys1 = aWeighingRes[0].first - aWeighingRes[2].first;
+    std::size_t berrys2 = aWeighingRes[0].second - aWeighingRes[1].second;
+    
+    std::size_t basket1 = aWeighingRes[2].first;
+    std::size_t basket2 = aWeighingRes[1].second;
+    bool correctWeights3 = basket1 + berrys2 + berrys1 == aWeighingRes[1].first;
+    bool correctWeights4 = basket2 + berrys2 + berrys1 == aWeighingRes[2].second;
+    if (!correctWeights3 || !correctWeights4)
+        return false;
+    //std::size_t basket1 = 
+    aBerrysWeight = { berrys1 , berrys2 };
+    return true;
+}
+//-----------------------------------------------------------------------------
 
 
 

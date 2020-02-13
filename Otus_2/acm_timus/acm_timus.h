@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <cstring>
+#include <vector>
 namespace acm_timus
 {
     //-----------------------------------------------------------------------------
@@ -24,4 +25,5 @@ namespace acm_timus
     //-----------------------------------------------------------------------------
     bool CanOpen(const std::pair<std::string, std::string>& aLocksStr);// 1877
     //-----------------------------------------------------------------------------
+    bool BerryWeight(const std::vector<std::string>& aWeighingResStr, std::pair<std::size_t, std::size_t>& aBerrysWeight);// 2001
 }
