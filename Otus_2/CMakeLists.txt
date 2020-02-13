@@ -49,24 +49,24 @@ set_target_properties (
 	CXX_STANDARD_REQUIRED ON	
 )
 
-set(TIMUS_FOLDER "acm_timus")
-set (TIMUS_SRC ${TIMUS_FOLDER}/timus.cpp ${TIMUS_FOLDER}/acm_timus.cpp ${TIMUS_FOLDER}/acm_timus.h)
-#set (TIMUS_SRC ${TIMUS_FOLDER}/timus.cpp)
-add_executable(timus  ${TIMUS_SRC}) 
-target_include_directories(timus   PUBLIC ${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER} ${CMAKE_CURRENT_BINARY_DIR} ${TEST_FILE_PATH})
-
-target_link_libraries(timus   
-	mystr 
-	md5sum 
-	binpow
-)
-
-set_target_properties (
-	timus
-	PROPERTIES 
-	CXX_STANDARD 14 
-	CXX_STANDARD_REQUIRED ON	
-)
+#Timus Block
+#set(TIMUS_FOLDER "acm_timus")
+#set (TIMUS_SRC ${TIMUS_FOLDER}/timus.cpp ${TIMUS_FOLDER}/acm_timus.cpp ${TIMUS_FOLDER}/acm_timus.h)
+#add_executable(timus  ${TIMUS_SRC}) 
+#target_include_directories(timus   PUBLIC ${PROJECT_SOURCE_DIR}/${MYSTR_FOLDER} ${CMAKE_CURRENT_BINARY_DIR} ${TEST_FILE_PATH})
+#target_link_libraries(timus   
+#	mystr 
+#	md5sum 
+#	binpow
+#)
+#
+#set_target_properties (
+#	timus
+#	PROPERTIES 
+#	CXX_STANDARD 14 
+#	CXX_STANDARD_REQUIRED ON	
+#)
+#\Timus Block
 
 #Google Test
 find_package(GTest REQUIRED)
