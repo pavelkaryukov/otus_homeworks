@@ -217,7 +217,16 @@ bool acm_timus::BerryWeight(const std::vector<std::string>& aWeighingResStr, std
     return true;
 }
 //-----------------------------------------------------------------------------
+std::pair<bool, std::size_t> acm_timus::NecessarySeconds(std::string& aStr)
+{
+    const std::pair<bool, std::size_t> kNegativeRes{ false, 0 };
+    auto tokens = mystr::GetTokens(aStr, " \r\n\t", mystr::IsCorrectNumber);
+    if (tokens.size() != 2)
+        return kNegativeRes;
+    auto numbers = mystr::ConvertStrArrayToNumbers(tokens, [](std::size_t aNum)->bool { return aNum <= 40000; });
+    if (numbers.size() != 2)
+        return kNegativeRes;
 
-
-
-
+    return { true, numbers[0] * (numbers[1] + 1) };
+}
+//-----------------------------------------------------------------------------
