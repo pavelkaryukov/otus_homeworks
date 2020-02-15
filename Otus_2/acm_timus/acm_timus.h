@@ -28,5 +28,6 @@ namespace acm_timus
     bool BerryWeight(const std::vector<std::string>& aWeighingResStr, std::pair<std::size_t, std::size_t>& aBerrysWeight);// 2001
     //-----------------------------------------------------------------------------
     std::pair<bool, std::size_t> NecessarySeconds(std::string& aStr);// 1264
-
+    //-----------------------------------------------------------------------------
+    std::pair<bool, std::size_t> RestOfCar(std::vector<std::string> aStrs);//1787
 }

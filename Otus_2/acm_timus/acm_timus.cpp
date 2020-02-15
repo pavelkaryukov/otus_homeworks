@@ -230,3 +230,31 @@ std::pair<bool, std::size_t> acm_timus::NecessarySeconds(std::string& aStr)
     return { true, numbers[0] * (numbers[1] + 1) };
 }
 //-----------------------------------------------------------------------------
+std::pair<bool, std::size_t> acm_timus::RestOfCar(std::vector<std::string> aStrs)
+{
+    const std::pair<bool, std::size_t> kNegativeRes{ false, 0 };
+    if (aStrs.size() != 2)
+        return kNegativeRes;
+    
+    const std::string kDelimeters = " \r\n\t";
+    auto bound = [](std::size_t aNum)->bool { return aNum <= 100; };
+    auto bandwidthAndDuration = mystr::ConvertStrArrayToNumbers(mystr::GetTokens(aStrs[0], kDelimeters), bound);
+    if (bandwidthAndDuration.size() != 2)
+        return kNegativeRes;                                          
+    
+    auto bandwidth = bandwidthAndDuration[0], duration = bandwidthAndDuration[1];
+    auto cars = mystr::ConvertStrArrayToNumbers(mystr::GetTokens(aStrs[1], kDelimeters), bound);
+    if (cars.size() != duration)
+        return kNegativeRes;
+
+    std::size_t restOfCars = 0;
+    for (const auto& car : cars) {
+        restOfCars += car;
+        if (restOfCars >= bandwidth)
+            restOfCars -= bandwidth;
+        else
+            restOfCars = 0;
+    }
+    return {true, restOfCars};
+}
+//-----------------------------------------------------------------------------
