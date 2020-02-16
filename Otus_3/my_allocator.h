@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <stdlib.h>
+#include <array>
 const std::size_t kMaxSize = 10;//TODO::Переделать в параметр шаблона
 template<typename T>
 struct MapAllocator
@@ -25,25 +27,30 @@ struct MapAllocator
     ~MapAllocator()
     {
 //          if (m_Data != nullptr) {
-//              delete[](m_Data);
+//              std::free(m_Data);
 //              m_Data = nullptr;
-//              //std::free(m_Data);
+//              
 //          }
     };
 
     template<typename U>
-    MapAllocator(const MapAllocator<U>&)
-    {
+    MapAllocator(const MapAllocator<U>& aRhs)
+    {    
+        //m_Data = (T*)aRhs.m_Data;
+        //InitMemory();
+        //memcpy(m_Data, aRhs.m_Data, __min(aRhs.max_size(), max_size()));
+
+
         //Похорошему перенести указатели
         //return logging_allocator<U>();
     }
 
     T *allocate(std::size_t n)
     {
-        std::cout << "allocate: [n = " << n << "]" << std::endl;
-        if (m_Data == nullptr) {
-            InitMemory();
-        }
+        //std::cout << "allocate: [n = " << n << "]" << std::endl;
+//         if (m_Data == nullptr) {
+//             InitMemory();
+//         }
         const std::size_t sizeObj = sizeof(T);
         std::size_t currentPos = m_Pos;
         m_Pos += n;
@@ -55,7 +62,7 @@ struct MapAllocator
 
     void deallocate(T *p, std::size_t n)
     {
-        std::cout << "deallocate: [n  = " << n << "] " << std::endl;
+        //std::cout << "deallocate: [n  = " << n << "] " << std::endl;
         if (n > m_Pos) {
             m_Pos = 0;
             return;
@@ -67,13 +74,13 @@ struct MapAllocator
     template<typename U, typename ...Args>
     void construct(U *p, Args &&...args)
     {
-        std::cout << "construct" << std::endl;
+        //std::cout << "construct" << std::endl;
         new(p) U(std::forward<Args>(args)...);
     };
 
     void destroy(T *p)
     {
-        std::cout << "destroy" << std::endl;
+        //std::cout << "destroy" << std::endl;
         //memset(p, 0xff, sizeof(T));
         p->~T();
     }
@@ -81,10 +88,12 @@ struct MapAllocator
     {
         return m_MaxSize;
     }
+
+    //pointer m_Data = nullptr;
+    std::array<value_type, kMaxSize + 1> m_Data;
 private:
 
     const std::size_t m_MaxSize = kMaxSize + 1;
-    pointer m_Data = nullptr;
     //pointer m_CurrentPtr = nullptr;
     std::size_t m_Pos = 0;
     std::size_t m_MaxCurrentPos = 0;
