@@ -11,6 +11,6 @@ if (NOT DEFINED ENV{TRAVIS_BUILD_NUMBER})
 endif()
 # Include sub-projects.
 
-#add_subdirectory ("Otus_1")	
-#add_subdirectory ("Otus_2")
+add_subdirectory ("Otus_1")	
+add_subdirectory ("Otus_2")
 add_subdirectory ("Otus_3")
