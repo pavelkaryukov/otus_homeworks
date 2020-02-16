@@ -11,12 +11,13 @@ void TestAllocator()
         m[i] = 11 * i;
         //std::cout << std::endl;
     }
-    auto& test = m._Getal();
 }
 //-----------------------------------------------------------------------------
 int main(int, char *[])
 {
+    std::cout << "Start Program" << std::endl;
     for (int i = 0; i < 5000000; ++i)
         TestAllocator();
+    std::cout << "Close Program" << std::endl;
     return 0;
 }
