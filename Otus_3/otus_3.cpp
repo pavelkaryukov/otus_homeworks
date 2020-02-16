@@ -6,9 +6,10 @@
 void TestAllocator()
 {
     auto m = std::map<short, long long, std::less<int>, MapAllocator<std::pair<const short, long long>>>();
-    int i = 0;
-    for (; i < 10; ++i) {
+    std::cout << "Map Test" << std::endl;
+    for (int i = 0; i < 10; ++i) {
         m[i] = 11 * i;
+        std::cout << m[i] << std::endl;
         //std::cout << std::endl;
     }
 }
@@ -16,14 +17,16 @@ void TestAllocator()
 int main(int, char *[])
 {
     std::cout << "Start Program" << std::endl;
-    long long count=0;
-    for (int i = 0; i < 5000000; ++i) {
-        TestAllocator();
-        ++count;
-        if (count % 10000==0) {
-            std::cout << count << std::endl;
-        }
-    }
+    TestAllocator();
+// 
+//     long long count=0;
+//     for (int i = 0; i < 5000000; ++i) {
+//         TestAllocator();
+//         ++count;
+//         if (count % 10000) {
+//             std::cout << count << std::endl;
+//         }
+//     }
     std::cout << "Close Program" << std::endl;
     return 0;
 }
