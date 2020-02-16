@@ -16,8 +16,14 @@ void TestAllocator()
 int main(int, char *[])
 {
     std::cout << "Start Program" << std::endl;
-    for (int i = 0; i < 5000000; ++i)
+    long long count=0;
+    for (int i = 0; i < 5000000; ++i) {
         TestAllocator();
+        ++count;
+        if (count % 10000) {
+            std::cout << count << std::endl;
+        }
+    }
     std::cout << "Close Program" << std::endl;
     return 0;
 }
