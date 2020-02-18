@@ -3,13 +3,10 @@
 #include <stdlib.h>
 #include <array>
 #include <cstring>
-const std::size_t kMaxSize = 10;//TODO::Переделать в параметр шаблона
-template<typename T>
+template<typename T, std::size_t TNum>
 struct MapAllocator
 {
-    // ИСПОЛЬЗОВАТЬ ТОЛЬКО С MAP
     using value_type = T;
-
     using pointer = T * ;
     using const_pointer = const T*;
     using reference = T & ;
@@ -18,7 +15,7 @@ struct MapAllocator
     template<typename U>
     struct rebind
     {
-        using other = MapAllocator<U>;
+        using other = MapAllocator<U, TNum>;
     };
 
     MapAllocator()
@@ -26,16 +23,16 @@ struct MapAllocator
     };
     ~MapAllocator()
     {
-        //return;
+        return;
         //TODO::При комите вернуть строчку
-        if (m_Data != nullptr) {
+        /*if (m_Data != nullptr) {
             std::free(m_Data);
             m_Data = nullptr;
-        }
+        }*/
     };
 
-    template<typename U>
-    MapAllocator(const MapAllocator<U>& aRhs)
+    template<typename U, std::size_t TNum2>
+    MapAllocator(const MapAllocator<U, TNum2>& aRhs)
     {    
     }
 
@@ -47,8 +44,7 @@ struct MapAllocator
         const std::size_t sizeObj = sizeof(T);
         std::size_t currentPos = m_Pos;
         m_Pos += aNum;
-        m_MaxCurrentPos = currentPos > m_MaxCurrentPos ? currentPos : m_MaxCurrentPos;
-        if (m_Pos >= Reserved()) {
+        if (currentPos >= Reserved()) {
             Reserve(m_Pos);
         }
         return (T*)&m_Data[currentPos];
@@ -86,9 +82,8 @@ struct MapAllocator
 
 private:
     pointer     m_Data = nullptr;
-    std::size_t m_MaxSize = kMaxSize + 1;//Первый раз задастся на основе шаблонного параметра 
+    std::size_t m_MaxSize = TNum/* + 1*/;//Первый раз задастся на основе шаблонного параметра 
     std::size_t m_Pos = 0;
-    std::size_t m_MaxCurrentPos = 0;
 
     void Reserve(const size_t aPos) // Выделит память, скопируют старую, освободит старую
     {
@@ -101,7 +96,7 @@ private:
         if (m_Data != nullptr) {
             std::memcpy(ptr, m_Data, m_MaxSize * sizeof(T));
             //TODO::При комите вернуть строчку            
-            std::free(m_Data);
+            /*std::free(m_Data);*/
         }
         m_MaxSize = newMaxSize;
         m_Data = ptr;
