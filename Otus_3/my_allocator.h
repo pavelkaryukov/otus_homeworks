@@ -98,7 +98,7 @@ private:
 
         auto ptr = (pointer)std::malloc(newMaxSize * sizeof(T));;
         if (m_Data != nullptr) {
-            memcpy(ptr, m_Data, m_MaxSize * sizeof(T));
+            std::memcpy(ptr, m_Data, m_MaxSize * sizeof(T));
             std::free(m_Data);
         }
         m_MaxSize = newMaxSize;
