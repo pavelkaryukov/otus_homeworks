@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <array>
+#include <cstring>
 const std::size_t kMaxSize = 10;//TODO::Переделать в параметр шаблона
 template<typename T>
 struct MapAllocator
@@ -99,6 +100,7 @@ private:
         auto ptr = (pointer)std::malloc(newMaxSize * sizeof(T));;
         if (m_Data != nullptr) {
             std::memcpy(ptr, m_Data, m_MaxSize * sizeof(T));
+            //TODO::При комите вернуть строчку            
             std::free(m_Data);
         }
         m_MaxSize = newMaxSize;
