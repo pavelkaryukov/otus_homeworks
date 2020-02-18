@@ -25,9 +25,8 @@ struct MapAllocator
     };
     ~MapAllocator()
     {
-        return;
-
-
+        //return;
+        //TODO::При комите вернуть строчку
         if (m_Data != nullptr) {
             std::free(m_Data);
             m_Data = nullptr;
@@ -39,17 +38,18 @@ struct MapAllocator
     {    
     }
 
-    T *allocate(std::size_t n)
+    T *allocate(std::size_t aNum)
     {
          if (m_Data == nullptr) {
              InitMemory();
          }
         const std::size_t sizeObj = sizeof(T);
         std::size_t currentPos = m_Pos;
-        m_Pos += n;
+        m_Pos += aNum;
         m_MaxCurrentPos = currentPos > m_MaxCurrentPos ? currentPos : m_MaxCurrentPos;
-        if (m_Pos > max_size())
-            throw std::bad_alloc();
+        if (m_Pos >= Reserved()) {
+            Reserve(m_Pos);
+        }
         return (T*)&m_Data[currentPos];
     }
 
@@ -72,20 +72,42 @@ struct MapAllocator
     {
         p->~T();
     }
-    std::size_t max_size() const
+    
+    std::size_t Reserved() const
     {
         return m_MaxSize;
     }
 
+    std::size_t max_size() const
+    {
+        return size_t(-1) / sizeof(T);
+    }
+
 private:
-    pointer m_Data = nullptr;
-    const std::size_t m_MaxSize = kMaxSize + 1;
+    pointer     m_Data = nullptr;
+    std::size_t m_MaxSize = kMaxSize + 1;//Первый раз задастся на основе шаблонного параметра 
     std::size_t m_Pos = 0;
     std::size_t m_MaxCurrentPos = 0;
+
+    void Reserve(const size_t aPos) // Выделит память, скопируют старую, освободит старую
+    {
+        if (aPos > max_size())
+            throw std::bad_alloc();
+            
+        auto newMaxSize =  std::max(m_MaxSize, aPos) * 2;
+
+        auto ptr = (pointer)std::malloc(newMaxSize * sizeof(T));;
+        if (m_Data != nullptr) {
+            memcpy(ptr, m_Data, m_MaxSize * sizeof(T));
+            std::free(m_Data);
+        }
+        m_MaxSize = newMaxSize;
+        m_Data = ptr;
+    }
+
     void InitMemory()
     {
         m_Data = (pointer)std::malloc(m_MaxSize * sizeof(T));
         m_Pos = 0;
     }
-
 };
