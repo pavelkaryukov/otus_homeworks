@@ -23,9 +23,9 @@ script:
 - cmake --build .
 - Otus_1/./boost_test_version
 - Otus_1/./gtest_test_version
-- cd Otus_2 
-- ./boost_test
-- ./gtest_test
+- Otus_2/./boost_test
+- Otus_2/./gtest_test
+- Otus_3/./gtest_test_otus3
 - cd ..
 - cmake --build . --target package
 - ls

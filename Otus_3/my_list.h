@@ -173,7 +173,7 @@ public:
         m_LastNode = ptr;// TODO:: проверить
 	};
     //-----------------------------------------------------------------------------
-    std::size_t Size() const
+    std::size_t size() const
     {
         return m_Size;
     }
