@@ -3,9 +3,10 @@
 #include <stdlib.h>
 #include <array>
 #include <cstring>
-template<typename T, std::size_t TNum>
+template<typename T, std::size_t TNum = 10>
 struct MapAllocator
 {
+    static_assert(TNum != 0);
     using value_type = T;
     using pointer = T * ;
     using const_pointer = const T*;
@@ -44,9 +45,9 @@ struct MapAllocator
         const std::size_t sizeObj = sizeof(T);
         std::size_t currentPos = m_Pos;
         m_Pos += aNum;
-        if (currentPos >= Reserved()) {
-            Reserve(m_Pos);
-        }
+        if (currentPos > max_size())
+            throw std::bad_alloc();
+       
         return (T*)&m_Data[currentPos];
     }
 
@@ -62,6 +63,7 @@ struct MapAllocator
     template<typename U, typename ...Args>
     void construct(U *p, Args &&...args)
     {
+        //++m_FreeData;
         new(p) U(std::forward<Args>(args)...);
     };
 
@@ -77,30 +79,18 @@ struct MapAllocator
 
     std::size_t max_size() const
     {
-        return size_t(-1) / sizeof(T);
+        return m_MaxSize;
     }
 
 private:
-    pointer     m_Data = nullptr;
+    pointer     m_Data      = nullptr;
+    pointer     m_FreeData = nullptr;
+
+    std::size_t Allocated;
+    std::size_t Constructed;
+
     std::size_t m_MaxSize = TNum/* + 1*/;//Первый раз задастся на основе шаблонного параметра 
     std::size_t m_Pos = 0;
-
-    void Reserve(const size_t aPos) // Выделит память, скопируют старую, освободит старую
-    {
-        if (aPos > max_size())
-            throw std::bad_alloc();
-            
-        auto newMaxSize =  std::max(m_MaxSize, aPos) * 2;
-
-        auto ptr = (pointer)std::malloc(newMaxSize * sizeof(T));;
-        if (m_Data != nullptr) {
-            std::memcpy(ptr, m_Data, m_MaxSize * sizeof(T));
-            //TODO::При комите вернуть строчку            
-            /*std::free(m_Data);*/
-        }
-        m_MaxSize = newMaxSize;
-        m_Data = ptr;
-    }
 
     void InitMemory()
     {
