@@ -21,26 +21,55 @@ void FactorialTest()
     static_assert(Factorial(9) == 362880);
 }
 //-----------------------------------------------------------------------------
-int main(int, char *[])
+using StandardMap = std::map<std::size_t, std::size_t>;
+using CustomMap = std::map<std::size_t, std::size_t, std::less<std::size_t>, MyAllocator<std::pair<const std::size_t, std::size_t>, 10>>;
+using StandardMyList = MyList<int>;
+using CustomMyList = MyList<int, MyAllocator<TNode<int>>>;
+//-----------------------------------------------------------------------------
+void FillMap(StandardMap& aMap)
 {
-    TNode<int> a(-22);
-    TNode<int> a2 = a;
-    TNode<int> a3 = TNode<int>(a);
-
-
-    auto myList = MyList<std::pair<int, int>>();
-    myList.Add({2,1});
-    myList.Add({7,2});
-    myList.Add({9,3});
-    myList.Add({ 22, 4});
-    myList.Add({2, 19});
-    myList.Add({5, 6});
-    auto listSize = myList.Size();
-    auto listData = myList.GetData();
-    auto beginIter = myList.begin();
-    auto iter11 = beginIter++;
-    auto iter12 = ++beginIter;
-    auto f = iter12->first;
-    auto s = iter12->second;
+    for (int i = 0; i <= 9; ++i) {
+        aMap.insert({ i, Factorial(i) });
+    }
+}
+//-----------------------------------------------------------------------------
+void FillMap(CustomMap& aMap)
+{
+    for (int i = 0; i <= 9; ++i) {
+        aMap.insert({ i, Factorial(i) });
+    }
+}
+//-----------------------------------------------------------------------------
+void FillMyList(StandardMyList& aList)
+{
+    for (int i = 0; i <= 9; ++i) {
+        aList.Add(i);
+    }
+}
+//-----------------------------------------------------------------------------
+void FillMyList(CustomMyList& aList)
+{
+    for (int i = 0; i <= 9; ++i) {
+        aList.Add(i);
+    }
+}
+//-----------------------------------------------------------------------------
+int main(int, char *[])
+{    
+   
+    StandardMap mapStandartAllocator;
+    CustomMap mapCustomAllocator;
+    FillMap(mapStandartAllocator);
+    FillMap(mapCustomAllocator);
+    for (auto& [key, value] : mapCustomAllocator) {
+        std::cout << key << " " << value << std::endl;
+    }
+    StandardMyList myListStandartAllocator;
+    CustomMyList   myListCustomAllocator;
+    FillMyList(myListStandartAllocator);
+    FillMyList(myListCustomAllocator);
+    for (auto& elem : myListCustomAllocator) {
+        std::cout << elem << std::endl;
+    }
     return 0;
 }

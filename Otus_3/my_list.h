@@ -1,6 +1,5 @@
 #pragma once 
 #include <memory>
-//Перечитать move и форвард
 ////-----------------------------------------------------------------------------
 template<class T>
 struct TNode
@@ -160,7 +159,7 @@ public:
         } while (node != nullptr);
     };
     //-----------------------------------------------------------------------------
-    void Add(T&& aObj)
+    void Add(T aObj)
     {
         ++m_Size;
         auto ptr = m_Allocator.allocate(1);
