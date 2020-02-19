@@ -4,36 +4,34 @@
 #include <array>
 #include <cstring>
 template<typename T, std::size_t TNum = 10>
-struct MapAllocator
+struct MyAllocator
 {
     static_assert(TNum != 0);
     using value_type = T;
     using pointer = T * ;
     using const_pointer = const T*;
-    using reference = T & ;
+    using reference = T&;
     using const_reference = const T&;
 
     template<typename U>
     struct rebind
     {
-        using other = MapAllocator<U, TNum>;
+        using other = MyAllocator<U, TNum>;
     };
 
-    MapAllocator()
+    MyAllocator()
     {
     };
-    ~MapAllocator()
+    ~MyAllocator()
     {
-        return;
-        //TODO::ѕри комите вернуть строчку
-        /*if (m_Data != nullptr) {
+        if (m_Data != nullptr) {
             std::free(m_Data);
             m_Data = nullptr;
-        }*/
+        }
     };
 
     template<typename U, std::size_t TNum2>
-    MapAllocator(const MapAllocator<U, TNum2>& aRhs)
+    MyAllocator(const MyAllocator<U, TNum2>& aRhs)
     {    
     }
 
@@ -89,7 +87,7 @@ private:
     std::size_t Allocated;
     std::size_t Constructed;
 
-    std::size_t m_MaxSize = TNum/* + 1*/;//ѕервый раз задастс€ на основе шаблонного параметра 
+    std::size_t m_MaxSize = 2 * TNum;
     std::size_t m_Pos = 0;
 
     void InitMemory()

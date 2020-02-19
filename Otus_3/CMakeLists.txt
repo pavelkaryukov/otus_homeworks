@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project ("Otus_2" VERSION 0.0.1) 
+project ("Otus_3" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
 set(ALLOCATOR_SRC "my_allocator.h")
 set(FACTORIAL_SRC "factorial.h")
