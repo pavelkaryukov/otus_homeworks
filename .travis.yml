@@ -28,7 +28,6 @@ script:
 - ./gtest_test
 - cd ..
 - Otus_3/./gtest_test_otus3
-- cd ..
 - cmake --build . --target package
 - ls
 deploy:
