@@ -30,4 +30,11 @@ namespace acm_timus
     std::pair<bool, std::size_t> NecessarySeconds(std::string& aStr);// 1264
     //-----------------------------------------------------------------------------
     std::pair<bool, std::size_t> RestOfCar(std::vector<std::string> aStrs);//1787
+    //-----------------------------------------------------------------------------
+    std::size_t SteakCookingTime(std::string aStr);//1820
+    //-----------------------------------------------------------------------------
+    std::string MinPossibleNumber(std::size_t a, std::size_t b, std::size_t c);//2066
+    //-----------------------------------------------------------------------------
+    std::vector<std::size_t> PossibleChessHorseMovment(const std::vector<std::string>& aStrs);
+    //-----------------------------------------------------------------------------
 }

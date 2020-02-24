@@ -4,6 +4,7 @@
 #include <cmath>
 #include <optional>
 #include "my_str.h"
+#include <algorithm>
 //-----------------------------------------------------------------------------
 static const std::string kDelimeters = "\r\n\t ";
 //-----------------------------------------------------------------------------
@@ -256,5 +257,94 @@ std::pair<bool, std::size_t> acm_timus::RestOfCar(std::vector<std::string> aStrs
             restOfCars = 0;
     }
     return {true, restOfCars};
+}
+//-----------------------------------------------------------------------------
+std::size_t acm_timus::SteakCookingTime(std::string aStr)
+{
+    auto bound = [](std::size_t aNum)->bool { return (aNum >= 1) && (aNum <= 1000); };
+    const std::string kDelimeters = " \r\n\t";
+    auto conditions = mystr::ConvertStrArrayToNumbers(mystr::GetTokens(aStr, kDelimeters, nullptr), bound);
+    if (conditions.size() != 2)
+        return 0;
+    const std::size_t number = conditions[0], capacity = conditions[1];
+    const std::size_t minSteakCookingTime = 2;
+    if (number <= capacity)
+        return minSteakCookingTime;
+    return  ceil((number * 2) / (capacity + .0));
+}
+//-----------------------------------------------------------------------------
+std::string acm_timus::MinPossibleNumber(std::size_t a, std::size_t b, std::size_t c)
+{
+    const size_t kMaxNum = 100;
+    if ((a > kMaxNum) || (b > kMaxNum) || (c > kMaxNum))
+        return "";
+    std::vector<std::size_t> numbers = { a,b,c };
+std:size_t minNum = 0;
+    for (auto iter = numbers.begin(); iter != numbers.end(); ++iter) {
+        if ((*iter <= a) && (*iter <= b) && (*iter <= c)) {
+            minNum = *iter;
+            numbers.erase(iter);
+            break;
+        }
+    }
+    int res1 = minNum - numbers[0] * numbers[1];
+    int res2 = minNum - numbers[0] - numbers[1];
+    return std::to_string(std::min(res1, res2));
+}
+//-----------------------------------------------------------------------------
+bool IsCorrectChessNumber(const char* aStr)
+{
+    const auto len = strlen(aStr);
+    if (len <= 1 || len > 2)
+        return false;
+
+    if ((!std::isalpha(aStr[0])) || (!std::islower(aStr[0])) || (aStr[0] > 'h'))
+        return false;
+    for (int i = 1; i < len; i++) {
+        if (!std::isdigit(aStr[i]) || (aStr[i] == '0') || (aStr[i] > '8'))
+            return false;
+    }
+    return true;
+}
+//-----------------------------------------------------------------------------
+bool IsPossibleMovement(const char aPosX, const char aPosY)
+{
+    if (aPosX <'a' || aPosX > 'h')
+        return false;
+    if (aPosY <'1' || aPosY > '8')
+        return false;
+    return true;
+}
+//-----------------------------------------------------------------------------
+std::size_t PossibleMovementNumber(const char aPosX, const char aPosY)
+{
+    std::size_t movementNumber = 0;
+
+    movementNumber += IsPossibleMovement(aPosX + 2, aPosY + 1) ? 1 : 0;
+    movementNumber += IsPossibleMovement(aPosX + 2, aPosY - 1) ? 1 : 0;
+    movementNumber += IsPossibleMovement(aPosX - 2, aPosY + 1) ? 1 : 0;
+    movementNumber += IsPossibleMovement(aPosX - 2, aPosY - 1) ? 1 : 0;
+
+
+    movementNumber += IsPossibleMovement(aPosX + 1, aPosY + 2) ? 1 : 0;
+    movementNumber += IsPossibleMovement(aPosX + 1, aPosY - 2) ? 1 : 0;
+    movementNumber += IsPossibleMovement(aPosX - 1, aPosY + 2) ? 1 : 0;
+    movementNumber += IsPossibleMovement(aPosX - 1, aPosY - 2) ? 1 : 0;
+
+    return movementNumber;
+}
+//-----------------------------------------------------------------------------
+std::vector<std::size_t> acm_timus::PossibleChessHorseMovment(const std::vector<std::string>& aStrs)
+{
+    std::vector<std::size_t> res;
+    for (auto& str : aStrs){
+        auto tokens = mystr::GetTokens(str, kDelimeters, IsCorrectChessNumber);
+        for (const auto& token : tokens){
+            if (token.size() != 2)
+                continue;
+            res.emplace_back(PossibleMovementNumber(token[0], token[1]));
+        }
+    }
+    return std::move(res);
 }
 //-----------------------------------------------------------------------------

@@ -46,7 +46,7 @@ std::vector<std::string> mystr::GetTokens(std::string aStr, const std::string& a
     char* str = (char*)aStr.c_str(); //Maybe strcpy ?
     char * pch = strtok(str, aDelimeters.c_str());;// strtok(str, delimeters.c_str());
     while (pch) {
-        if ((pch != nullptr) && ((aIsCorrectNum == nullptr) || IsCorrectNumber(pch)))
+        if ((pch != nullptr) && ((aIsCorrectNum == nullptr) || aIsCorrectNum(pch)))
             tokens.push_back(std::string(pch));
         pch = strtok(NULL, aDelimeters.c_str());
     }
