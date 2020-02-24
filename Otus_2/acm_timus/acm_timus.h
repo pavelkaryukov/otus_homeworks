@@ -35,6 +35,6 @@ namespace acm_timus
     //-----------------------------------------------------------------------------
     std::string MinPossibleNumber(std::size_t a, std::size_t b, std::size_t c);//2066
     //-----------------------------------------------------------------------------
-    std::vector<std::size_t> PossibleChessHorseMovment(const std::vector<std::string>& aStrs);
+    std::vector<std::size_t> PossibleChessHorseMovment(const std::vector<std::string>& aStrs);//1197
     //-----------------------------------------------------------------------------
 }
