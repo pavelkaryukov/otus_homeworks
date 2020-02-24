@@ -37,4 +37,8 @@ namespace acm_timus
     //-----------------------------------------------------------------------------
     std::vector<std::size_t> PossibleChessHorseMovment(const std::vector<std::string>& aStrs);//1197
     //-----------------------------------------------------------------------------
+    std::string DinnerCost(const std::vector<std::string>& aStrs);//2100
+    //-----------------------------------------------------------------------------
+    std::string CommandNumbersCount(std::vector<std::pair<std::size_t, std::string>> aCommandData);//1880
+    //-----------------------------------------------------------------------------
 }

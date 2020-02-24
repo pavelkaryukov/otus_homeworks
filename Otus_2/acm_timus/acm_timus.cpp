@@ -348,3 +348,43 @@ std::vector<std::size_t> acm_timus::PossibleChessHorseMovment(const std::vector<
     return std::move(res);
 }
 //-----------------------------------------------------------------------------
+std::string acm_timus::DinnerCost(const std::vector<std::string>& aStrs)
+{
+    std::size_t clientsNumber = 2;
+    for (const auto& invite : aStrs) {
+        if ((invite.size() < 1) /*|| (invite.size() > 20)*/)
+            continue;
+
+        auto names = mystr::GetTokens(invite, " +\r\n\t", nullptr);
+        if ((names.size() > 1) && (names[1] != "one"))
+            continue;
+        clientsNumber += names.size();
+    }
+
+    clientsNumber = clientsNumber == 13 ? clientsNumber + 1 : clientsNumber;
+    const std::size_t kClienCost = 100;
+    auto dinnerCost = clientsNumber * kClienCost;
+    return std::to_string(dinnerCost);
+}
+//-----------------------------------------------------------------------------
+std::string acm_timus::CommandNumbersCount(std::vector<std::pair<std::size_t, std::string>> aCommandData)
+{
+    std::map<std::size_t, std::size_t> teamNumbersMap;
+    for (const auto& playerData : aCommandData) {
+        auto numbers = mystr::ConvertStrArrayToNumbers(
+            mystr::GetTokens(playerData.second, " +\r\n\t", mystr::IsCorrectNumber),
+            [](std::size_t aNum)->bool { return aNum <= 1'000'000'000; }
+        );
+        if ((numbers.size() != playerData.first))
+            continue;//Как бы не ретерн
+        for (const auto number : numbers) {
+            teamNumbersMap[number]++;
+        }
+    }
+    std::size_t teamNumbersCount = 0;
+    for (const auto& numberCost : teamNumbersMap) {
+        teamNumbersCount += (numberCost.second == aCommandData.size()) ? 1 : 0;
+    }
+    return std::to_string(teamNumbersCount);
+}
+//-----------------------------------------------------------------------------
