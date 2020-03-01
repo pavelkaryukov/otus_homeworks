@@ -5,6 +5,7 @@
 #include <tuple>
 #include <iostream>
 #include "tuple_utils.h"
+#include <typeinfo>
 //-----------------------------------------------------------------------------
 //TODO:: печать адресов длинее 4 байт.
 //-----------------------------------------------------------------------------
@@ -23,7 +24,6 @@ namespace MyIPv4
     {
         DifferentTypesInTuple,
         NotEnoughData,
-        NullArgument,
         WrongArgument,
         MoreMaxByteValue,
         Success
@@ -79,38 +79,58 @@ namespace MyIPv4
     //-----------------------------------------------------------------------------
     struct ForeachCallback
     {
-        ForeachCallback(const std::size_t aMaxIndex) : m_MaxIndex(aMaxIndex) {};
+        ForeachCallback(const std::size_t aMaxIndex, const ByteOrder aOrder = ByteOrder::BigEndian) : m_MaxIndex(aMaxIndex), m_Order(aOrder) 
+        { 
+        };
 
         template<std::size_t Index, class T>
         void operator()(T&& element)
         {
+            const auto typeName = std::string(typeid(T).name());
+            if (Index == 0 || m_FirstTupleType.empty())
+                m_FirstTupleType = typeName;
+            if (m_FirstTupleType != typeName)
+                 m_ErrorCode = ErrorCode::DifferentTypesInTuple;
+
             if (static_cast<std::size_t>(element) > 0xFF)
                 m_ErrorCode = ErrorCode::MoreMaxByteValue;
+            
+            m_Str.insert(InsertedPos(), std::to_string(element));
 
-            m_Str += std::to_string(element);
             if (Index + 1 < m_MaxIndex)
-                m_Str += ".";
-            std::cout << "( " << Index << " : " << element << " ) ";
+                m_Str.insert(InsertedPos(), ".");;
         }
+
         ErrorCode   GetErrorCode() const { return m_ErrorCode; };
         std::string GetStr() const { return m_Str; };
-
+    
     private:
-        ForeachCallback() = default;
-        std::string m_Str;
+        std::string       m_Str;
         const std::size_t m_MaxIndex;
-        ErrorCode m_ErrorCode = ErrorCode::Success;
+        ErrorCode         m_ErrorCode = ErrorCode::Success;
+        const ByteOrder   m_Order;
+        std::string       m_FirstTupleType; //Achtung:: Bycicle
+
+
+        //Methods
+        ForeachCallback() = default;
+        std::size_t InsertedPos()
+        {
+            return (m_Order == ByteOrder::BigEndian) ? m_Str.size() : 0;
+        }
     };
     //-----------------------------------------------------------------------------
     template<typename...Types>
-    ConvertResult ToStr(const std::tuple<Types...> aTuple, const ByteOrder = ByteOrder::BigEndian) //TODO::добавить порядок байт
+    ConvertResult ToStr(const std::tuple<Types...> aTuple, const ByteOrder aOrder = ByteOrder::BigEndian) //TODO::добавить порядок байт
     {
         const std::size_t size = std::tuple_size< std::tuple<Types...>>::value;
 
-        auto callback = ForeachCallback(size);
+        auto callback = ForeachCallback(size, aOrder);
         tuple_utils::tupleForeach(callback, aTuple);
+        if (callback.GetErrorCode() == ErrorCode::Success)
+            return { callback.GetStr(), callback.GetErrorCode() };
         //Проверка на разные типы
-        return { callback.GetStr(), callback.GetErrorCode() };
+        return { "", callback.GetErrorCode() };
     }
     //-----------------------------------------------------------------------------
     std::string ErrorCodeToStr(const ErrorCode aCode)
@@ -127,6 +147,8 @@ namespace MyIPv4
             return "Wrong argument\r\n";
         case ErrorCode::MoreMaxByteValue:
             return "One Element > 0xFF\r\n";
+        case ErrorCode::DifferentTypesInTuple:
+            return "Different Types In Tuple > 0xFF\r\n";
         }
     }
     //-----------------------------------------------------------------------------

@@ -28,7 +28,8 @@ int main(int, char *[])
     auto str22 = MyIPv4::ToStr("MyTEstString");
     std::tuple<int, int, int, int> tuple1 = { 1, 12, 25, 67 };
     std::tuple<int, short, long long/*, int*/> tuple2 = { 1, 12, 25/*, 67 */};
-    auto str612 = MyIPv4::ToStr(tuple1);
+    auto str612 = MyIPv4::ToStr(tuple1, MyIPv4::ByteOrder::BigEndian);
+    auto str613 = MyIPv4::ToStr(tuple1, MyIPv4::ByteOrder::LittleEndian);
     auto str622 = MyIPv4::ToStr(tuple2);
 
     return 0;
