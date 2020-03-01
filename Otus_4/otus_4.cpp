@@ -6,7 +6,9 @@ int main(int, char *[])
 {
     std::array<int, 4>  test1 = { 1, 12, 33, 44 };
     std::array<int, 3>  test2 = { 1, 12, 33};
-    std::array<int, 4>  test3 = { 1, 12, 256, 0 };
+    std::array<int, 4>  test3 = { 1, -1, 255, 0 };
+
+    auto res2222 = static_cast<std::size_t>(test3[1]);
     std::array<int, 88> test4 = { 1};
     auto str1 = MyIPv4::ToStr(test1);
     auto str2 = MyIPv4::ToStr(test2);

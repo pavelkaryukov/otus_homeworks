@@ -11,6 +11,7 @@
 //-----------------------------------------------------------------------------
 namespace MyIPv4
 {
+    using ConvertResult = std::pair<std::string, ErrorCode>;
     //-----------------------------------------------------------------------------
     enum class ByteOrder
     {
@@ -18,35 +19,30 @@ namespace MyIPv4
         LittleEndian
     };
     //-----------------------------------------------------------------------------
-    const std::size_t kMinSize = 4;
-    //-----------------------------------------------------------------------------
     enum class ErrorCode
     {
         DifferentTypesInTuple,
         NotEnoughData,
         WrongArgument,
-        MoreMaxByteValue,
         Success
     };
-    using ConvertResult = std::pair<std::string, ErrorCode>;
     //-----------------------------------------------------------------------------
     template<class T>
     ConvertResult ToStr(const T aBegin, const T aEnd, const ByteOrder aOrder)
     {
         if (aBegin > aEnd)
             return { "", ErrorCode::WrongArgument };
-        if (std::distance(aBegin, aEnd) < kMinSize)
-            return  { "", ErrorCode::NotEnoughData };
+
+        const auto size = std::distance(aBegin, aEnd);
         std::string res;
-        res.reserve(kMinSize * 5);
+        static std::size_t kOneElementStrSize = 4;
+        res.reserve(size * kOneElementStrSize);
         auto iter = aBegin;
-        while ((iter < aBegin + kMinSize) && (aBegin != aEnd)) {
-            if (*iter > 0xff)
-                return { "", ErrorCode::MoreMaxByteValue };
+        while (iter != aEnd) {
             auto insertedPos = [&res, &aOrder]()->std::size_t { return  (aOrder == ByteOrder::BigEndian) ? res.size() : 0; };
             res.insert(insertedPos(), std::to_string(static_cast<std::uint8_t>(*iter)));
             ++iter; 
-            if (iter < aBegin + kMinSize) {
+            if (iter != aEnd) {
                 res.insert(insertedPos(), ".");
             }
         }
@@ -54,16 +50,13 @@ namespace MyIPv4
     }
     //-----------------------------------------------------------------------------
     template<class T>
-    ConvertResult ToStr(const T& aObj, const ByteOrder aOrder = ByteOrder::BigEndian) //TODO::добавить порядок байт
+    ConvertResult ToStr(const T& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
     {
         if constexpr (std::is_integral<T>::value) {
-            //Этот блок переделать под печать кривых
-             if (sizeof(aObj) < kMinSize)
-                 return { "", ErrorCode::NotEnoughData };
-            auto ipv4 = *(std::uint32_t*)&aObj;
-            ipv4 = _byteswap_ulong(ipv4);
-            auto ptr = (std::uint8_t*)&ipv4;
-            return ToStr(ptr, ptr + kMinSize, aOrder);
+            const std::size_t len = sizeof(T);
+            auto ptr = (std::uint8_t*)&aObj;
+            auto order = (aOrder == ByteOrder::BigEndian) ? ByteOrder::LittleEndian : ByteOrder::BigEndian;
+            return ToStr(ptr, ptr + len, order);
         }
         else {
              auto beginIter =  std::begin(aObj);
@@ -72,7 +65,7 @@ namespace MyIPv4
         }
     }
     //-----------------------------------------------------------------------------
-    ConvertResult ToStr(const std::string aStr, const ByteOrder) //TODO::добавить порядок байт
+    ConvertResult ToStr(const std::string aStr, const ByteOrder)
     {
         return { aStr, ErrorCode::Success };
     }
@@ -87,15 +80,15 @@ namespace MyIPv4
         void operator()(T&& element)
         {
             const auto typeName = std::string(typeid(T).name());
+            
             if (Index == 0 || m_FirstTupleType.empty())
                 m_FirstTupleType = typeName;
+
             if (m_FirstTupleType != typeName)
                  m_ErrorCode = ErrorCode::DifferentTypesInTuple;
 
-            if (static_cast<std::size_t>(element) > 0xFF)
-                m_ErrorCode = ErrorCode::MoreMaxByteValue;
             
-            m_Str.insert(InsertedPos(), std::to_string(element));
+            m_Str.insert(InsertedPos(), std::to_string(static_cast<std::uint8_t>(element)));
 
             if (Index + 1 < m_MaxIndex)
                 m_Str.insert(InsertedPos(), ".");;
@@ -145,8 +138,6 @@ namespace MyIPv4
             return "Convert to str was corrected\r\n";
         case ErrorCode::WrongArgument:
             return "Wrong argument\r\n";
-        case ErrorCode::MoreMaxByteValue:
-            return "One Element > 0xFF\r\n";
         case ErrorCode::DifferentTypesInTuple:
             return "Different Types In Tuple > 0xFF\r\n";
         }
