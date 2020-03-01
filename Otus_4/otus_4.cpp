@@ -1,5 +1,6 @@
 #include "ip_to_str.h"
 #include <array>
+ 
 //-----------------------------------------------------------------------------
 int main(int, char *[])
 {
@@ -24,6 +25,11 @@ int main(int, char *[])
     int otus_1 = 1234;
     auto stra1 = MyIPv4::ToStr(otus_1);
     auto stra2 = MyIPv4::ToStr(otus_1, MyIPv4::ByteOrder::LittleEndian);
+    auto str22 = MyIPv4::ToStr("MyTEstString");
+    std::tuple<int, int, int, int> tuple1 = { 1, 12, 25, 67 };
+    std::tuple<int, short, long long/*, int*/> tuple2 = { 1, 12, 25/*, 67 */};
+    auto str612 = MyIPv4::ToStr(tuple1);
+    auto str622 = MyIPv4::ToStr(tuple2);
 
     return 0;
 }
