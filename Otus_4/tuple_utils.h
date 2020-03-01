@@ -47,4 +47,3 @@ namespace tuple_utils
     }
 
 } // tuple_utils
-#pragma once
