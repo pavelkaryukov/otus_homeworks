@@ -5,10 +5,10 @@ TEST(gtest_print_ip,  PrintTuple)
 {
     std::tuple<int, int, int, int>   tuple1 = { 1, 12, 25, 67 };
     std::tuple<int, short, long long> tuple2 = { 1, 12, 25};
-    auto res11 = MyIP::ToStr/*<std::tuple<int, int, int, int   >>*/(tuple1, MyIP::ByteOrder::BigEndian);
-    auto res12 = MyIP::ToStr/*<std::tuple<int, int, int, int   >>*/(tuple1, MyIP::ByteOrder::LittleEndian);
-    auto res21 = MyIP::ToStr/*<std::tuple<int, short, long long>>*/(tuple2);
-    auto res22 = MyIP::ToStr/*<std::tuple<int, short, long long>>*/(tuple2);
+    auto res11 = MyIP::ToStr<std::tuple<int, int, int, int   >>(tuple1, MyIP::ByteOrder::BigEndian);
+    auto res12 = MyIP::ToStr<std::tuple<int, int, int, int   >>(tuple1, MyIP::ByteOrder::LittleEndian);
+    auto res21 = MyIP::ToStr<std::tuple<int, short, long long>>(tuple2);
+    auto res22 = MyIP::ToStr<std::tuple<int, short, long long>>(tuple2);
 
    ASSERT_EQ(res11.second, MyIP::ErrorCode::Success);
     ASSERT_EQ(res12.second, MyIP::ErrorCode::Success);
