@@ -1,49 +1,26 @@
 #pragma once
 #include <tuple>
-//стянуто https://habr.com/ru/post/318236/
+///Стянуто https://blog.tartanllama.xyz/exploding-tuples-fold-expressions/
 namespace tuple_utils
 {
-    // вызвать 'callback' для каждого элемента кортежа
-    /*
-        struct callback
-        {
-            template<std::size_t, class T>
-            void operator()( T&& element )
-            {
-                // do something
-            }
-        };
-        tupleForeach( callback(), myTuple );
-    */
-    template<class TCallback, class ...TParams>
-    void tupleForeach(TCallback& callback, const std::tuple<TParams...>& tuple);
-
-    namespace
+   
+    template <std::size_t... Idx>
+    auto make_index_dispatcher(std::index_sequence<Idx...>)
     {
-
-        template<std::size_t Index, class TCallback, class ...TParams>
-        struct _foreach_
-        {
-            static void tupleForeach_(TCallback& callback, const std::tuple<TParams...>& tuple)
-            {
-                // такой пересчёт необходим для выполнения callback'a над элементами в порядке их следования
-                const std::size_t idx = sizeof...(TParams) - Index;
-                callback/*.operator*/()<idx> (std::get<idx>(tuple));
-                _foreach_<Index - 1, TCallback, TParams...>::tupleForeach_(callback, tuple);
-            }
-        };
-
-        template<class TCallback, class ...TParams>
-        struct _foreach_<0, TCallback, TParams...>
-        {
-            static void tupleForeach_(TCallback& /*callback*/, const std::tuple<TParams...>& /*tuple*/) {}
-        };
-
-    } //
-    template<class TCallback, class ...TParams>
-    void tupleForeach(TCallback& callback, const std::tuple<TParams...>& tuple)
-    {
-        _foreach_<sizeof...(TParams), TCallback, TParams...>::tupleForeach_(callback, tuple);
+        return [](auto&& f) { (f(std::integral_constant<std::size_t, Idx>{}), ...); };
     }
 
+    template <std::size_t N>
+    auto make_index_dispatcher()
+    {
+        return make_index_dispatcher(std::make_index_sequence<N>{});
+    }
+    //-----------------------------------------------------------------------------
+    template <typename Tuple, typename Func>
+    void for_each(Tuple&& t, Func&& f)
+    {
+        constexpr auto n = std::tuple_size<std::decay_t<Tuple>>::value;
+        auto dispatcher = make_index_dispatcher<n>();
+        dispatcher([&f, &t](auto idx) { f(std::get<idx>(std::forward<Tuple>(t))); });
+    }
 } // tuple_utils

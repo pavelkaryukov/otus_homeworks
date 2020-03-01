@@ -3,25 +3,25 @@
 //-----------------------------------------------------------------------------
 TEST(gtest_print_ip,  PrintTuple)
 {
-    //std::tuple<int, int, int, int>   tuple1 = { 1, 12, 25, 67 };
-    //std::tuple<int, short, long long> tuple2 = { 1, 12, 25};
+    std::tuple<int, int, int, int>   tuple1 = { 1, 12, 25, 67 };
+    std::tuple<int, short, long long> tuple2 = { 1, 12, 25};
 
-    //auto res11 = MyIP::ToStr<int, int, int, int >(tuple1, MyIP::ByteOrder::BigEndian);
-    //auto res12 = MyIP::ToStr<int, int, int, int>(tuple1, MyIP::ByteOrder::LittleEndian);
-    //auto res21 = MyIP::ToStr<int, short, std::uint64_t >(tuple2);
-    //auto res22 = MyIP::ToStr<int, short, std::uint64_t >(tuple2);
+    auto res11 = MyIP::ToStr<int, int, int, int >(tuple1, MyIP::ByteOrder::BigEndian);
+    auto res12 = MyIP::ToStr<int, int, int, int>(tuple1, MyIP::ByteOrder::LittleEndian);
+    auto res21 = MyIP::ToStr<int, short, std::uint64_t >(tuple2);
+    auto res22 = MyIP::ToStr<int, short, std::uint64_t >(tuple2);
 
-    //ASSERT_EQ(res11.second, MyIP::ErrorCode::Success);
-    //ASSERT_EQ(res12.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res11.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res12.second, MyIP::ErrorCode::Success);
 
-    //ASSERT_NE(res21.second, MyIP::ErrorCode::Success); 
-    //ASSERT_NE(res22.second, MyIP::ErrorCode::Success); 
+    ASSERT_NE(res21.second, MyIP::ErrorCode::Success); 
+    ASSERT_NE(res22.second, MyIP::ErrorCode::Success); 
 
-    //ASSERT_EQ(res11.first, "1.12.25.67");
-    //ASSERT_EQ(res12.first, "67.25.12.1");
+    ASSERT_EQ(res11.first, "1.12.25.67");
+    ASSERT_EQ(res12.first, "67.25.12.1");
 
-    //ASSERT_TRUE(res11.first.empty());
-    //ASSERT_TRUE(res12.first.empty());
+    ASSERT_TRUE(res11.first.empty());
+    ASSERT_TRUE(res12.first.empty());
 }
 //-----------------------------------------------------------------------------
 // TEST(gtest_test_otus3, TestAllocator)

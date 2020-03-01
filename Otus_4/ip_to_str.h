@@ -11,6 +11,7 @@
 //-----------------------------------------------------------------------------
 namespace MyIP
 {
+    std::size_t kOneElementStrSize = 4;
     //-----------------------------------------------------------------------------
     enum class ByteOrder
     {
@@ -36,7 +37,6 @@ namespace MyIP
 
         const auto size = std::distance(aBegin, aEnd);
         std::string res;
-        static std::size_t kOneElementStrSize = 4;
         res.reserve(size * kOneElementStrSize);
         auto iter = aBegin;
         while (iter != aEnd) {
@@ -71,58 +71,36 @@ namespace MyIP
         return { aStr, ErrorCode::Success };
     }
     //-----------------------------------------------------------------------------
-    struct ForeachCallback
-    {
-        ForeachCallback(const std::size_t aMaxIndex, const ByteOrder aOrder = ByteOrder::BigEndian) : m_MaxIndex(aMaxIndex), m_Order(aOrder) {};
-
-        template<std::size_t Index, class T>
-        void operator()(T&& element)
-        {
-            const auto typeName = std::string(typeid(T).name());
-            
-            if (Index == 0 || m_FirstTupleType.empty())
-                m_FirstTupleType = typeName;
-
-            if (m_FirstTupleType != typeName)
-                 m_ErrorCode = ErrorCode::DifferentTypesInTuple;
-
-            
-            m_Str.insert(InsertedPos(), std::to_string(static_cast<std::uint8_t>(element)));
-
-            if (Index + 1 < m_MaxIndex)
-                m_Str.insert(InsertedPos(), ".");;
-        }
-
-        ErrorCode   GetErrorCode() const { return m_ErrorCode; };
-        std::string GetStr() const { return m_Str; };
     
-    private:
-        std::string       m_Str;
-        const std::size_t m_MaxIndex;
-        ErrorCode         m_ErrorCode = ErrorCode::Success;
-        const ByteOrder   m_Order;
-        std::string       m_FirstTupleType; //Achtung:: Bycicle
-
-
-        //Methods
-        ForeachCallback() = default;
-        std::size_t InsertedPos()
-        {
-            return (m_Order == ByteOrder::BigEndian) ? m_Str.size() : 0;                                                              
-        }
-    };
-    //-----------------------------------------------------------------------------
+    std::size_t InsertedPos(const std::string& aStr, const ByteOrder aOrder)
+    {
+        return (aOrder == ByteOrder::BigEndian) ? aStr.size() : 0;
+    }
     template<typename...Types>
     ConvertResult ToStr(const std::tuple<Types...> aTuple, const ByteOrder aOrder = ByteOrder::BigEndian) //TODO::добавить пор€док байт
     {
         const std::size_t size = std::tuple_size< std::tuple<Types...>>::value;
+        std::string resStr;
+        resStr.reserve(size * kOneElementStrSize);
+        auto errorCode = ErrorCode::Success;
+        std::size_t index = 0;
 
-        auto callback = ForeachCallback(size, aOrder);
-        tuple_utils::tupleForeach(callback, aTuple);
-        if (callback.GetErrorCode() == ErrorCode::Success)
-            return { callback.GetStr(), callback.GetErrorCode() };
-        //ѕроверка на разные типы
-        return { "", callback.GetErrorCode() };
+        tuple_utils::for_each(aTuple,
+            [&](auto&& e)
+        { 
+            if (typeid(e) != typeid(std::get<0>(aTuple)))
+                errorCode = ErrorCode::DifferentTypesInTuple;
+
+
+            resStr.insert(InsertedPos(resStr, aOrder), std::to_string(static_cast<std::uint8_t>(e)));
+            ++index;
+            if (index < size)
+                resStr.insert(InsertedPos(resStr, aOrder), ".");
+        }
+        );
+        
+
+        return { resStr, errorCode };
     }
     //-----------------------------------------------------------------------------
     std::string ErrorCodeToStr(const ErrorCode aCode)
