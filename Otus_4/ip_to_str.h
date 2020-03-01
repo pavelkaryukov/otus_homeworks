@@ -108,7 +108,7 @@ namespace MyIP
         ForeachCallback() = default;
         std::size_t InsertedPos()
         {
-            return (m_Order == ByteOrder::BigEndian) ? m_Str.size() : 0;
+            return (m_Order == ByteOrder::BigEndian) ? m_Str.size() : 0;                                                              
         }
     };
     //-----------------------------------------------------------------------------

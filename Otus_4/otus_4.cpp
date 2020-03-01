@@ -15,11 +15,11 @@ void PrintForOtus()
     MyIP::PrintIpAddr(MyIP::ToStr<decltype(test4)>(test4));
 
     std::tuple<int, int, int, int>   tuple1 = { 1, 12, 25, 67 };
-    std::tuple<int, short, std::uint64_t> tuple2 = { 1, 12, 25 };
+    std::tuple<int, short, int> tuple2 = { 1, 12, 25 };
     auto res11 = MyIP::ToStr<int, int, int, int > (tuple1, MyIP::ByteOrder::BigEndian);
     auto res12 = MyIP::ToStr<int, int, int, int> (tuple1, MyIP::ByteOrder::LittleEndian);
-    auto res21 = MyIP::ToStr<int, short, std::uint64_t >(tuple2);
-    auto res22 = MyIP::ToStr<int, short, std::uint64_t >(tuple2);
+    auto res21 = MyIP::ToStr<int, short, int>(tuple2);
+    auto res22 = MyIP::ToStr<int, short, int>(tuple2);
 }
 //-----------------------------------------------------------------------------
 int main(int, char *[])
