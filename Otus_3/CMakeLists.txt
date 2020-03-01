@@ -48,6 +48,7 @@ target_include_directories(
 	${GTEST_INCLUDE_DIRS}
 )
 
+enable_testing()
 add_test(gtest_test_otus3 gtest_test_otus3)
 #Сборка пакета
 #Не забудь её как нибудь вынести

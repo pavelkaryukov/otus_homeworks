@@ -9,9 +9,8 @@
 //-----------------------------------------------------------------------------
 //TODO:: печать адресов длинее 4 байт.
 //-----------------------------------------------------------------------------
-namespace MyIPv4
+namespace MyIP
 {
-    using ConvertResult = std::pair<std::string, ErrorCode>;
     //-----------------------------------------------------------------------------
     enum class ByteOrder
     {
@@ -27,10 +26,12 @@ namespace MyIPv4
         Success
     };
     //-----------------------------------------------------------------------------
+    using ConvertResult = std::pair<std::string, ErrorCode>;
+    //-----------------------------------------------------------------------------
     template<class T>
     ConvertResult ToStr(const T aBegin, const T aEnd, const ByteOrder aOrder)
     {
-        if (aBegin > aEnd)
+        if (aBegin == aEnd)
             return { "", ErrorCode::WrongArgument };
 
         const auto size = std::distance(aBegin, aEnd);
@@ -56,12 +57,12 @@ namespace MyIPv4
             const std::size_t len = sizeof(T);
             auto ptr = (std::uint8_t*)&aObj;
             auto order = (aOrder == ByteOrder::BigEndian) ? ByteOrder::LittleEndian : ByteOrder::BigEndian;
-            return ToStr(ptr, ptr + len, order);
+            return ToStr<std::uint8_t*>(ptr, ptr + len, order);
         }
         else {
              auto beginIter =  std::begin(aObj);
              auto endIter   =  std::end(aObj)  ;
-             return ToStr(beginIter, endIter, aOrder);
+             return ToStr<decltype(beginIter)>(beginIter, endIter, aOrder);
         }
     }
     //-----------------------------------------------------------------------------
@@ -72,9 +73,7 @@ namespace MyIPv4
     //-----------------------------------------------------------------------------
     struct ForeachCallback
     {
-        ForeachCallback(const std::size_t aMaxIndex, const ByteOrder aOrder = ByteOrder::BigEndian) : m_MaxIndex(aMaxIndex), m_Order(aOrder) 
-        { 
-        };
+        ForeachCallback(const std::size_t aMaxIndex, const ByteOrder aOrder = ByteOrder::BigEndian) : m_MaxIndex(aMaxIndex), m_Order(aOrder) {};
 
         template<std::size_t Index, class T>
         void operator()(T&& element)
@@ -142,6 +141,13 @@ namespace MyIPv4
             return "Different Types In Tuple > 0xFF\r\n";
         }
     }
+    //-----------------------------------------------------------------------------
+    void PrintIpAddr(const ConvertResult& aRes)
+    {
+        if (aRes.second == ErrorCode::Success)
+            std::cout << aRes.first << std::endl;
+    }
+
     //-----------------------------------------------------------------------------
 }
 
