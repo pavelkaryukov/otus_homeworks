@@ -28,7 +28,7 @@ namespace tuple_utils
             {
                 // такой пересчёт необходим для выполнения callback'a над элементами в порядке их следования
                 const std::size_t idx = sizeof...(TParams) - Index;
-                callback.operator() < idx > (std::get<idx>(tuple));
+                callback/*.operator*/()<idx> (std::get<idx>(tuple));
                 _foreach_<Index - 1, TCallback, TParams...>::tupleForeach_(callback, tuple);
             }
         };
