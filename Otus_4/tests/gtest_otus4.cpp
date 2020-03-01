@@ -4,7 +4,7 @@
 TEST(gtest_print_ip,  PrintTuple)
 {
     std::tuple<int, int, int, int>   tuple1 = { 1, 12, 25, 67 };
-    std::tuple<int, short, long long> tuple2 = { 1, 12, 25};
+    std::tuple<int, short, std::uint64_t> tuple2 = { 1, 12, 25};
 
     auto res11 = MyIP::ToStr<int, int, int, int >(tuple1, MyIP::ByteOrder::BigEndian);
     auto res12 = MyIP::ToStr<int, int, int, int>(tuple1, MyIP::ByteOrder::LittleEndian);

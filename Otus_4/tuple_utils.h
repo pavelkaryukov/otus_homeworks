@@ -3,13 +3,13 @@
 ///Стянуто https://blog.tartanllama.xyz/exploding-tuples-fold-expressions/
 namespace tuple_utils
 {
-   
+    //-----------------------------------------------------------------------------
     template <std::size_t... Idx>
     auto make_index_dispatcher(std::index_sequence<Idx...>)
     {
         return [](auto&& f) { (f(std::integral_constant<std::size_t, Idx>{}), ...); };
     }
-
+    //-----------------------------------------------------------------------------
     template <std::size_t N>
     auto make_index_dispatcher()
     {
