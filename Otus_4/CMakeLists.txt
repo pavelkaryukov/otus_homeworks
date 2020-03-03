@@ -41,4 +41,13 @@ target_include_directories(
 enable_testing()
 add_test(gtest_print_ip gtest_print_ip)
 
+install(TARGETS print_ip DESTINATION bin)
+set(CPACK_PACKAGE_NAME "print_ip")
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VENDOR "Karyukov")
+set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
+include (CPack)
 

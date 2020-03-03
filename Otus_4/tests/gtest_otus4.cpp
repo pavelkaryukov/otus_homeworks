@@ -1,5 +1,7 @@
 #include <gtest/gtest.h> // googletest header file
 #include "ip_to_str.h"
+#include <array>
+//TODO::Сделать остальные тесты
 //-----------------------------------------------------------------------------
 TEST(gtest_print_ip,  PrintTuple)
 {
@@ -20,44 +22,68 @@ TEST(gtest_print_ip,  PrintTuple)
     ASSERT_EQ(res11.first, "1.12.25.67");
     ASSERT_EQ(res12.first, "67.25.12.1");
 
-    ASSERT_TRUE(res11.first.empty());
-    ASSERT_TRUE(res12.first.empty());
+    ASSERT_TRUE(res21.first.empty());
+    ASSERT_TRUE(res22.first.empty());
 }
 //-----------------------------------------------------------------------------
-// TEST(gtest_test_otus3, TestAllocator)
-// {
-//     otus::StandardMap mapStandartAllocator;
-//     otus::CustomMap mapCustomAllocator;
-//     otus::FillMap(mapStandartAllocator);
-//     ASSERT_NO_THROW(otus::FillMap(mapCustomAllocator));
-//     ASSERT_EQ(mapCustomAllocator.size(), mapStandartAllocator.size());
-//     const int mapSize = mapStandartAllocator.size();
-//     for (auto i = 0; i < mapSize; ++i) {
-//         ASSERT_EQ(mapCustomAllocator[i], mapStandartAllocator[i]);
-//     }
-// }
-// 
-// TEST(gtest_test_otus3, TestMyContainer)
-// {
-//     otus::StandardMyList myListStandartAllocator;
-//     otus::CustomMyList   myListCustomAllocator;
-//     ASSERT_NO_THROW(otus::FillMyList(myListStandartAllocator));
-//     ASSERT_NO_THROW(otus::FillMyList(myListCustomAllocator));
-//     ASSERT_EQ(myListStandartAllocator.size(), 10);
-//     ASSERT_EQ(myListCustomAllocator.size(), 10);
-//     const std::size_t listSize = myListCustomAllocator.size();
-//     auto standardIter = myListStandartAllocator.begin();
-//     auto customIter = myListCustomAllocator.begin();
-// 
-//     for (auto i = 0; i < listSize; ++i) {
-//         ASSERT_EQ(*standardIter, i);
-//         ASSERT_EQ(*customIter, i);
-//         ++standardIter;
-//         ++customIter;
-//     }
-// }
+TEST(gtest_print_ip, PrintContainer)
+{
+    std::array <int, 4> array1 = { 1, 12, 25, 67 };
+    std::vector<int>    vect1  = { 1, 12, 25, 67 };
+    std::list  <int>    list1  = { 1, 12, 25, 67 };
+
+    auto resArray11 = MyIP::ToStr<std::array<int, 4>>(array1, MyIP::ByteOrder::BigEndian);
+    auto resArray12 = MyIP::ToStr<std::array<int, 4>>(array1, MyIP::ByteOrder::LittleEndian);
+    auto resVect11  = MyIP::ToStr<std::vector<int>>(vect1, MyIP::ByteOrder::BigEndian);
+    auto resVect12  = MyIP::ToStr<std::vector<int>>(vect1, MyIP::ByteOrder::LittleEndian);
+    auto resList11  = MyIP::ToStr<std::list<int>>(list1, MyIP::ByteOrder::BigEndian);
+    auto resList12  = MyIP::ToStr<std::list<int>>(list1, MyIP::ByteOrder::LittleEndian);
 
 
+    
+    ASSERT_EQ(resArray11.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resArray12.second, MyIP::ErrorCode::Success);
+
+    ASSERT_EQ(resVect11 .second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resVect12 .second, MyIP::ErrorCode::Success);
+
+    ASSERT_EQ(resList11 .second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resList12 .second, MyIP::ErrorCode::Success);
+
+    ASSERT_EQ(resArray11.first, "1.12.25.67");
+    ASSERT_EQ(resArray12.first, "67.25.12.1");
+
+    ASSERT_EQ(resVect11.first, "1.12.25.67");
+    ASSERT_EQ(resVect12.first, "67.25.12.1");
+
+    ASSERT_EQ(resList11.first, "1.12.25.67");
+    ASSERT_EQ(resList12.first, "67.25.12.1");
+}
+//-----------------------------------------------------------------------------
+TEST(gtest_print_ip, PrintIntegral)
+{
+    auto test1 = char(-1);
+    auto test2 = short(0);
+    auto test3 = int(2130706433);
+    auto test4 = std::uint64_t(8875824491850138409);
+    
+    auto res1 = MyIP::ToStr<decltype(test1)>(test1);
+    auto res2 = MyIP::ToStr<decltype(test2)>(test2);
+    auto res3 = MyIP::ToStr<decltype(test3)>(test3);
+    auto res4 = MyIP::ToStr<decltype(test4)>(test4);
+
+    ASSERT_EQ(res1.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res2.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res3.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res4.second, MyIP::ErrorCode::Success);
+    
+    ASSERT_EQ(res1.first, "255"                        );
+    ASSERT_EQ(res2.first, "0.0"                        );
+    ASSERT_EQ(res3.first, "127.0.0.1"                  );
+    ASSERT_EQ(res4.first, "123.45.67.89.101.112.131.41");
+}
+
+//-----------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
     ::testing::InitGoogleTest(&argc, argv);

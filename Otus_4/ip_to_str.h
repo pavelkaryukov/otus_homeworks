@@ -41,7 +41,7 @@ namespace MyIP
         auto iter = aBegin;
         while (iter != aEnd) {
             auto insertedPos = [&res, &aOrder]()->std::size_t { return  (aOrder == ByteOrder::BigEndian) ? res.size() : 0; };
-            res.insert(insertedPos(), std::to_string(static_cast<std::uint8_t>(*iter)));
+            res.insert(insertedPos(), std::to_string(static_cast<std::size_t>(*iter)));
             ++iter; 
             if (iter != aEnd) {
                 res.insert(insertedPos(), ".");
@@ -99,6 +99,8 @@ namespace MyIP
         }
         );
         
+        if (errorCode != ErrorCode::Success)
+            resStr.clear();
 
         return { resStr, errorCode };
     }
