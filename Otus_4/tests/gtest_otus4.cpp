@@ -1,7 +1,8 @@
 #include <gtest/gtest.h> // googletest header file
 #include "ip_to_str.h"
 #include <array>
-//TODO::Сделать остальные тесты
+#include <list>
+#include <vector>
 //-----------------------------------------------------------------------------
 TEST(gtest_print_ip,  PrintTuple)
 {
@@ -82,7 +83,6 @@ TEST(gtest_print_ip, PrintIntegral)
     ASSERT_EQ(res3.first, "127.0.0.1"                  );
     ASSERT_EQ(res4.first, "123.45.67.89.101.112.131.41");
 }
-
 //-----------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
