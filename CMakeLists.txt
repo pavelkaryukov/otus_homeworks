@@ -13,4 +13,5 @@ endif()
 
 add_subdirectory ("Otus_1")	
 add_subdirectory ("Otus_2")
-add_subdirectory ("Otus_3")
+add_subdirectory ("Otus_3")	  
+add_subdirectory ("Otus_4")
