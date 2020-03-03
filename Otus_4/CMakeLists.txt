@@ -42,7 +42,7 @@ enable_testing()
 add_test(gtest_print_ip gtest_print_ip)
 
 install(TARGETS print_ip DESTINATION bin)
-set(CPACK_PACKAGE_NAME "print_ip")
+set(CPACK_PACKAGE_NAME "OtusHomeworks")
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
