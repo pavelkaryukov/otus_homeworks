@@ -32,7 +32,7 @@ script:
 - cd ../Otus_4
 - ls
 - cmake --build . --target package
-- ./gtest_print_ip
+- ./gtest_print_ip  
 - doxygen
 deploy:
  provider: script
