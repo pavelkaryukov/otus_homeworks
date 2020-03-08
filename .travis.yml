@@ -29,8 +29,11 @@ script:
 - ./gtest_test
 - cd ..
 - Otus_3/./gtest_test_otus3
-- cmake --build . --target package
+- cd ../Otus_4
 - ls
+- cmake --build . --target package
+- ./gtest_print_ip
+- doxygen
 deploy:
  provider: script
  skip_cleanup: true																			 
