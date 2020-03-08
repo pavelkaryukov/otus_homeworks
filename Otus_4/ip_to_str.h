@@ -142,7 +142,8 @@ namespace MyIP
     //-----------------------------------------------------------------------------
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aStr строка, которая будет возвращена
+    * \param[in] aTuple объект Tuple
+    * \param[in] aOrder порядок байт (little endian - big endian)
     * \return  ConvertResult = std::pair<std::string, ErrorCode> где
     * \return  std::string  строковое представление ip адреса
     * \return  ErrorCode  код ошибки
@@ -175,12 +176,8 @@ namespace MyIP
         return { resStr, errorCode };
     }
     /**
-    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aObj объект интегрального типа или же контейнер с поддержой итераторов
-    * \param[in] aOrder порядок байт (little endian - big endian)
-    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * \return  std::string  строковое представление ip адреса
-    * \return  ErrorCode  код ошибки
+    * \brief функция вывода на экран текста кода ошибки
+    * \param[in] aCode код ошибки 
     */
     std::string ErrorCodeToStr(const ErrorCode aCode)
     {
@@ -200,7 +197,7 @@ namespace MyIP
     }
     /**
     * \brief функция вывода на экран ip адреса, полученно в результате работы функции ToStr
-    * \param[in] ConvertResult результат обработки функции ToStr
+    * \param[in] aRes результат обработки функции ToStr
     */
     void PrintIpAddr(const ConvertResult& aRes)
     {
