@@ -7,6 +7,7 @@
 #include "tuple_utils.h"
 #include <typeinfo>
 //-----------------------------------------------------------------------------
+///Функции  печати IPv4 Style
 namespace MyIP
 {
     //-----------------------------------------------------------------------------
@@ -37,13 +38,13 @@ namespace MyIP
     using ConvertResult = std::pair<std::string, ErrorCode>;
     //-----------------------------------------------------------------------------
     /**
-     * @brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-     * @param[in] aBegin указатель (итератор) на начало
-     * @param[in] aEnd указатель (итератор) на конец  
-     * @param[in] aOrder порядок байт (little endian - big endian)
-     * @return  ConvertResult = std::pair<std::string, ErrorCode> где
-     * @return  std::string  строковое представление ip адреса
-     * @return  ErrorCode  код ошибки
+     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
+     * \param[in] aBegin указатель (итератор) на начало
+     * \param[in] aEnd указатель (итератор) на конец  
+     * \param[in] aOrder порядок байт (little endian - big endian)
+     * \return  ConvertResult = std::pair<std::string, ErrorCode> где
+     * \return  std::string  строковое представление ip адреса
+     * \return  ErrorCode  код ошибки
      */
     template<class T>
     ConvertResult ToStr(const T aBegin, const T aEnd, const ByteOrder aOrder)
@@ -67,12 +68,12 @@ namespace MyIP
     }
     //-----------------------------------------------------------------------------
     /**
-     * @brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-     * @param[in] aObj объект интегрального типа или же контейнер с поддержой итераторов
-     * @param[in] aOrder порядок байт (little endian - big endian)
-     * @return  ConvertResult = std::pair<std::string, ErrorCode> где
-     * @return  std::string  строковое представление ip адреса
-     * @return  ErrorCode  код ошибки
+     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
+     * \param[in] aObj объект интегрального типа или же контейнер с поддержой итераторов
+     * \param[in] aOrder порядок байт (little endian - big endian)
+     * \return  ConvertResult = std::pair<std::string, ErrorCode> где
+     * \return  std::string  строковое представление ip адреса
+     * \return  ErrorCode  код ошибки
      */
     template<class T>
     ConvertResult ToStr(const T& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
@@ -91,11 +92,11 @@ namespace MyIP
     }
     //-----------------------------------------------------------------------------
      /**
-     * @brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-     * @param[in] aStr строка, которая будет возвращена
-     * @return  ConvertResult = std::pair<std::string, ErrorCode> где
-     * @return  std::string  строковое представление ip адреса
-     * @return  ErrorCode  код ошибки
+     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
+     * \param[in] aStr строка, которая будет возвращена
+     * \return  ConvertResult = std::pair<std::string, ErrorCode> где
+     * \return  std::string  строковое представление ip адреса
+     * \return  ErrorCode  код ошибки
      */
     ConvertResult ToStr(const std::string aStr, const ByteOrder)
     {
@@ -103,11 +104,11 @@ namespace MyIP
     }
     //-----------------------------------------------------------------------------
     /**
-    * @brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * @param[in] aStr строка, которая будет возвращена
-    * @return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * @return  std::string  строковое представление ip адреса
-    * @return  ErrorCode  код ошибки
+    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
+    * \param[in] aStr строка, которая будет возвращена
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
+    * \return  std::string  строковое представление ip адреса
+    * \return  ErrorCode  код ошибки
     */
     template<typename...Types>
     ConvertResult ToStr(const std::tuple<Types...> aTuple, const ByteOrder aOrder = ByteOrder::BigEndian) //TODO::добавить порядок байт
@@ -155,8 +156,8 @@ namespace MyIP
     }
     //-----------------------------------------------------------------------------
     /**
-    * @brief функция вывода на экран ip адреса, полученно в результате работы функции ToStr
-    * @param[in] ConvertResult результат обработки функции ToStr
+    * \brief функция вывода на экран ip адреса, полученно в результате работы функции ToStr
+    * \param[in] ConvertResult результат обработки функции ToStr
     */
     void PrintIpAddr(const ConvertResult& aRes)
     {
