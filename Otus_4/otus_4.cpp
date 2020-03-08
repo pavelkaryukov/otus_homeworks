@@ -18,7 +18,6 @@ void PrintForOtus()
 int main(int, char *[])
 {
     PrintForOtus();
-
     return 0;
 }
 //-----------------------------------------------------------------------------
