@@ -49,4 +49,4 @@ deploy:
   on:
 	branch: master
   script:
-	curl -T OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ukaryukov1991:$BINTRAY_API_KEY "https://api.bintray.com/content/karyukov1991/otus_homeworks/homeworks/$TRAVIS_BUILD_NUMBER/OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+	- curl -T OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ukaryukov1991:$BINTRAY_API_KEY "https://api.bintray.com/content/karyukov1991/otus_homeworks/homeworks/$TRAVIS_BUILD_NUMBER/OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
