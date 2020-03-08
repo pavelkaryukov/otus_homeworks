@@ -9,7 +9,7 @@
 /*! \mainpage Otus_4 (Print_IP)
  *
  * link: https://otus.ru/media-private/5c/4e/04_homework-12995-5c4ebc.pdf?hash=JvrtYNNSngfx3plRVe-kPg&expires=1583690347
- * Реализация функции печати условного IP адреса 
+ * \r\nРеализация функции печати условного IP адреса 
  *
  */
 //-----------------------------------------------------------------------------
