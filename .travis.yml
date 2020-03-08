@@ -29,7 +29,7 @@ script:
 - ./gtest_test
 - cd ..
 - Otus_3/./gtest_test_otus3
-- cd ../Otus_4
+- cd Otus_4
 - ls
 - cmake --build . --target package
 - ./gtest_print_ip  
