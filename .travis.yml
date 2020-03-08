@@ -36,7 +36,14 @@ script:
 - cd ..
 - cmake --build . --target package
 deploy:
- provider: script
- skip_cleanup: true																			 
- script:
- - curl -T OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ukaryukov1991:$BINTRAY_API_KEY "https://api.bintray.com/content/karyukov1991/otus_homeworks/homeworks/$TRAVIS_BUILD_NUMBER/OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+- provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local-dir: Otus_4/doxygen/html
+  on:
+    all_branches: true
+ - provider: script
+   skip_cleanup: true																			 
+   script:
+   - curl -T OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ukaryukov1991:$BINTRAY_API_KEY "https://api.bintray.com/content/karyukov1991/otus_homeworks/homeworks/$TRAVIS_BUILD_NUMBER/OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
