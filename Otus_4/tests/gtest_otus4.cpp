@@ -35,10 +35,10 @@ TEST(gtest_print_ip, PrintContainer)
 
     auto resArray11 = MyIP::ToStr<std::array<int, 4>>(array1, MyIP::ByteOrder::BigEndian);
     auto resArray12 = MyIP::ToStr<std::array<int, 4>>(array1, MyIP::ByteOrder::LittleEndian);
-    auto resVect11  = MyIP::ToStr<std::vector<int>>(vect1, MyIP::ByteOrder::BigEndian);
-    auto resVect12  = MyIP::ToStr<std::vector<int>>(vect1, MyIP::ByteOrder::LittleEndian);
-    auto resList11  = MyIP::ToStr<std::list<int>>(list1, MyIP::ByteOrder::BigEndian);
-    auto resList12  = MyIP::ToStr<std::list<int>>(list1, MyIP::ByteOrder::LittleEndian);
+    auto resVect11  = MyIP::ToStr<std::vector<int>>  (vect1, MyIP::ByteOrder::BigEndian);
+    auto resVect12  = MyIP::ToStr<std::vector<int>>  (vect1, MyIP::ByteOrder::LittleEndian);
+    auto resList11  = MyIP::ToStr<std::list<int>>    (list1, MyIP::ByteOrder::BigEndian);
+    auto resList12  = MyIP::ToStr<std::list<int>>    (list1, MyIP::ByteOrder::LittleEndian);
 
 
     

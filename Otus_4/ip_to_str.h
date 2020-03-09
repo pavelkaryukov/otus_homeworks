@@ -1,10 +1,10 @@
 #pragma once
+#include "tuple_utils.h"
 #include <cstdint>
 #include <string>  
 #include <stdlib.h>
 #include <tuple>
 #include <iostream>
-#include "tuple_utils.h"
 #include <typeinfo>
 /*! \mainpage Otus_4 (Print_IP)
  *
@@ -12,7 +12,6 @@
  * \r\nРеализация функции печати условного IP адреса 
  *
  */
-//-----------------------------------------------------------------------------
 ///\brief Функции  печати IPv4 Style
 namespace MyIP
 {
@@ -71,6 +70,16 @@ namespace MyIP
         {
             return (aOrder == ByteOrder::BigEndian) ? aStr.size() : 0;
         }
+        //стянуто с http://coliru.stacked-crooked.com/a/a5d838b098495d9f
+        ///\brief Определяет имеет ли объект итератор
+        template <typename T, typename = void>
+        struct is_iterable : std::false_type {};
+        // this gets used only when we can call std::begin() and std::end() on that type
+        template <typename T>
+        struct is_iterable<T, std::void_t<decltype(std::begin(std::declval<T>())), decltype(std::end(std::declval<T>()))>> : std::true_type {};
+        // Here is a helper:
+        template <typename T>
+        constexpr bool is_iterable_v = is_iterable<T>::value;
     }
     ///\brief возврашаемый результат функций ToStr, пара строка + код ошибки
     using ConvertResult = std::pair<std::string, ErrorCode>;
@@ -103,31 +112,37 @@ namespace MyIP
         }
         return { res, ErrorCode::Success };
     }
-    //-----------------------------------------------------------------------------
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aObj объект интегрального типа или же контейнер с поддержой итераторов
+    * \param[in] aObj объект контейнер
+    * \param[in] aOrder порядок байт (little endian - big endian)
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
+    * \return  std::string  строковое представление ip адреса
+    * \return  ErrorCode  код ошибки
+    */
+    template <class TContainer>
+    typename std::enable_if<PrivateIP::is_iterable_v<TContainer>, ConvertResult>::type ToStr(const TContainer& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
+    {
+        auto beginIter = std::begin(aObj);
+        auto endIter = std::end(aObj);
+        return ToStr<decltype(beginIter)>(beginIter, endIter, aOrder);
+    }
+    /**
+    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
+    * \param[in] aObj объект интегрального типа
     * \param[in] aOrder порядок байт (little endian - big endian)
     * \return  ConvertResult = std::pair<std::string, ErrorCode> где
     * \return  std::string  строковое представление ip адреса
     * \return  ErrorCode  код ошибки
     */
     template<class T>
-    ConvertResult ToStr(const T& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
+    typename std::enable_if<std::is_integral_v<T>, ConvertResult>::type ToStr(const T& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
     {
-        if constexpr (std::is_integral<T>::value) {
-            const std::size_t len = sizeof(T);
-            auto ptr = (std::uint8_t*)&aObj;
-            auto order = (aOrder == ByteOrder::BigEndian) ? ByteOrder::LittleEndian : ByteOrder::BigEndian;
-            return ToStr<std::uint8_t*>(ptr, ptr + len, order);
-        }
-        else {
-             auto beginIter =  std::begin(aObj);
-             auto endIter   =  std::end(aObj)  ;
-             return ToStr<decltype(beginIter)>(beginIter, endIter, aOrder);
-        }
-    }
-    //-----------------------------------------------------------------------------
+         const std::size_t len = sizeof(T);
+         auto ptr = (std::uint8_t*)&aObj;
+         auto order = (aOrder == ByteOrder::BigEndian) ? ByteOrder::LittleEndian : ByteOrder::BigEndian;
+         return ToStr<std::uint8_t*>(ptr, ptr + len, order);
+     }
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
     * \param[in] aStr строка, которая будет возвращена
@@ -139,7 +154,6 @@ namespace MyIP
     {
         return { aStr, ErrorCode::Success };
     }
-    //-----------------------------------------------------------------------------
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
     * \param[in] aTuple объект Tuple
@@ -204,7 +218,6 @@ namespace MyIP
         if (aRes.second == ErrorCode::Success)
             std::cout << aRes.first << std::endl;
     }
-    //-----------------------------------------------------------------------------
 }
 
 
