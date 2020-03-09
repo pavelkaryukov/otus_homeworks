@@ -54,7 +54,7 @@ namespace MyIP
         Success
     };
     ///\brief Приватные функции и константы
-    namespace PrivateIP
+    namespace Private
     {
         /**
         * \brief При конвертации в строку среднестастическая длина элемента, нужно при резервирование памяти для строки
@@ -100,7 +100,7 @@ namespace MyIP
 
         const auto size = std::distance(aBegin, aEnd);
         std::string res;
-        res.reserve(size * PrivateIP::kOneElementStrSize);
+        res.reserve(size * Private::kOneElementStrSize);
         auto iter = aBegin;
         while (iter != aEnd) {
             auto insertedPos = [&res, &aOrder]()->std::size_t { return  (aOrder == ByteOrder::BigEndian) ? res.size() : 0; };
@@ -121,7 +121,7 @@ namespace MyIP
     * \return  ErrorCode  код ошибки
     */
     template <class TContainer>
-    typename std::enable_if<PrivateIP::is_iterable_v<TContainer>, ConvertResult>::type ToStr(const TContainer& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
+    typename std::enable_if<Private::is_iterable_v<TContainer>, ConvertResult>::type ToStr(const TContainer& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
     {
         auto beginIter = std::begin(aObj);
         auto endIter = std::end(aObj);
@@ -167,7 +167,7 @@ namespace MyIP
     {
         const std::size_t size = std::tuple_size< std::tuple<Types...>>::value;
         std::string resStr;
-        resStr.reserve(size * PrivateIP::kOneElementStrSize);
+        resStr.reserve(size * Private::kOneElementStrSize);
         auto errorCode = ErrorCode::Success;
         std::size_t index = 0;
 
@@ -177,10 +177,10 @@ namespace MyIP
             if (typeid(e) != typeid(std::get<0>(aTuple)))
                 errorCode = ErrorCode::DifferentTypesInTuple;
 
-            resStr.insert(PrivateIP::InsertedPos(resStr, aOrder), std::to_string(static_cast<std::uint8_t>(e)));
+            resStr.insert(Private::InsertedPos(resStr, aOrder), std::to_string(static_cast<std::uint8_t>(e)));
             ++index;
             if (index < size)
-                resStr.insert(PrivateIP::InsertedPos(resStr, aOrder), ".");
+                resStr.insert(Private::InsertedPos(resStr, aOrder), ".");
         }
         );
         
