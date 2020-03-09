@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['koneelementstrsize',['kOneElementStrSize',['../namespaceMyIP_1_1PrivateIP.html#ae20aff9ed2e47e6cdb5d4368e356283d',1,'MyIP::PrivateIP']]]
+  ['koneelementstrsize',['kOneElementStrSize',['../namespaceMyIP_1_1Private.html#a2fb78e2e95942e07a184066f7c399f18',1,'MyIP::Private']]]
 ];

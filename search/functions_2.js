@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['insertedpos',['InsertedPos',['../namespaceMyIP_1_1PrivateIP.html#aecfae65aec09f15f3c138c66f051e15d',1,'MyIP::PrivateIP']]]
+  ['insertedpos',['InsertedPos',['../namespaceMyIP_1_1Private.html#abafb228178e5b64eed69f386f21fb2ae',1,'MyIP::Private']]]
 ];
