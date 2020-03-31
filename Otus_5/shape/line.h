@@ -18,8 +18,8 @@ struct Line : public IShape {
          return std::make_unique<Line>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
      }
 
-    ErrorCode Paint(Canvas* aCanvas) override {
-        std::cout << "class Line:: method Paint(); Canvas: " << aCanvas << std::endl;
+    ErrorCode Paint() override {
+        std::cout << "class Line:: method Paint(); Canvas: " << m_Canvas.get() << std::endl;
         return ErrorCode::Succes;
     }
 

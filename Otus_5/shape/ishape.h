@@ -44,7 +44,7 @@ struct IShape {
     * \brief функция Отрисовывает фигуру на рабочей поверхности
     * \return  ErrorCode  Код возможной ошибки
     */
-    virtual ErrorCode Paint(Canvas* aCanvas) = 0;
+    virtual ErrorCode Paint() = 0;
     ///\brief деструктор
     virtual ~IShape() {
         Erase();

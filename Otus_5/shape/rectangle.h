@@ -18,11 +18,8 @@ struct Rectangle : public IShape {
         return std::make_unique<Rectangle>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint(Canvas* aCanvas) override {
-        if (aCanvas == nullptr) {
-            throw std::logic_error("Canvas* aCanvas == nullptr");
-        }
-        std::cout << "class Rectangle:: method Paint(); Canvas: " << aCanvas << std::endl;
+    ErrorCode Paint() override {
+        std::cout << "class Rectangle:: method Paint(); Canvas: " << m_Canvas.get() << std::endl;
         return ErrorCode::Succes;
     }
 

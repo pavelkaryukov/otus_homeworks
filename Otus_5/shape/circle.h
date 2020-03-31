@@ -19,9 +19,9 @@ struct Circle : public IShape {
          return std::make_unique<Circle>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
      }
 
-    ErrorCode Paint(Canvas* aCanvas) override {
+    ErrorCode Paint() override {
         // Отображать память в 16-ричном виде
-        std::cout << "class Circle:: method Paint(); Canvas: " << aCanvas << std::endl;
+        std::cout << "class Circle:: method Paint(); Canvas: " << m_Canvas.get() << std::endl;
         return ErrorCode::Succes;
     }
 
