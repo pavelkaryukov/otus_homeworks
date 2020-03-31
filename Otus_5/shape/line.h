@@ -17,10 +17,17 @@ struct Line : public IShape {
         return std::make_unique<Line>(aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint(/*Canvas* aCanvas*/) override {
-        std::cout << "class Line:: method Paint(); Canvas: " << 0 << std::endl;
+    ErrorCode Paint(Canvas* aCanvas) override {
+        std::cout << "class Line:: method Paint(); Canvas: " << aCanvas << std::endl;
         return ErrorCode::Succes;
     }
 
     ~Line() {};
+
+private:
+    ErrorCode Erase() override {
+        std::cout << "class Line:: method Erase(); Canvas: " << 0 << std::endl;
+        return ErrorCode::Succes;
+    }
+
 };

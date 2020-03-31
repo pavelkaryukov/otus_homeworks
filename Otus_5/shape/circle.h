@@ -18,11 +18,19 @@ struct Circle : public IShape {
         return std::make_unique<Circle>(aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint(/*Canvas* aCanvas*/) override {
+    ErrorCode Paint(Canvas* aCanvas) override {
         // Отображать память в 16-ричном виде
-        std::cout << "class Circle:: method Paint(); Canvas: " << 0 << std::endl;
+        std::cout << "class Circle:: method Paint(); Canvas: " << aCanvas << std::endl;
         return ErrorCode::Succes;
     }
 
-    ~Circle() {};
+    ~Circle() {
+        int stop1 = 0;
+    };
+
+private:
+    ErrorCode Erase() override {
+        std::cout << "class Circle:: method Erase(); Canvas: " << 0 << std::endl; 
+        return ErrorCode::Succes;
+    }
 };

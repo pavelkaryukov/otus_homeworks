@@ -17,10 +17,21 @@ struct Rectangle : public IShape {
         return std::make_unique<Rectangle>(aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint(/*Canvas* aCanvas*/) override {
-        std::cout << "class Rectangle:: method Paint(); Canvas: " << 0 << std::endl;
+    ErrorCode Paint(Canvas* aCanvas) override {
+        if (aCanvas == nullptr) {
+            throw std::logic_error("Canvas* aCanvas == nullptr");
+        }
+        std::cout << "class Rectangle:: method Paint(); Canvas: " << aCanvas << std::endl;
         return ErrorCode::Succes;
     }
 
-    ~Rectangle() {};
+    ~Rectangle() {
+    
+    };
+
+private :
+    ErrorCode Erase() override {
+        std::cout << "class Rectangle:: method Erase(); Canvas: " << 0 << std::endl;
+        return ErrorCode::Succes;
+    }
 };
