@@ -7,15 +7,16 @@ struct Line : public IShape {
     Line() = default;
     
     Line(
+        std::shared_ptr<Canvas> aCanvas,
         const TCoord       aCoordBegin,
         const TCoord       aCoordEnd,
         const std::uint8_t aThickness,
         const TColor       aColor
-    ) : IShape(aCoordBegin, aCoordEnd, aThickness, aColor) {}
+    ) : IShape(aCanvas, aCoordBegin, aCoordEnd, aThickness, aColor) {}
 
-    std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) override {
-        return std::make_unique<Line>(aCoordBegin, aCoordEnd, GetThickness(), GetColor());
-    }
+     std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) override {
+         return std::make_unique<Line>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
+     }
 
     ErrorCode Paint(Canvas* aCanvas) override {
         std::cout << "class Line:: method Paint(); Canvas: " << aCanvas << std::endl;
@@ -25,9 +26,4 @@ struct Line : public IShape {
     ~Line() {};
 
 private:
-    ErrorCode Erase() override {
-        std::cout << "class Line:: method Erase(); Canvas: " << 0 << std::endl;
-        return ErrorCode::Succes;
-    }
-
 };

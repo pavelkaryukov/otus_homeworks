@@ -8,16 +8,19 @@
 #include "shape/utility/coord.h"
 #include "shape/utility/color.h"
 #include "application/canvas.h"
+#include <iostream>
 ///\brief Интерфейс фигуры
 struct IShape { 
     using thickens_t = std::uint8_t;
 
     IShape(
+        std::shared_ptr<Canvas> aCanvas,
         const TCoord aCoordBegin,
         const TCoord aCoordEnd,
         const std::uint8_t aThickness,
         const TColor aColor
     ) :
+        m_Canvas(aCanvas),
         m_CoordBegin(aCoordBegin),
         m_CoordEnd  (aCoordEnd),
         m_Thickness (aThickness),
@@ -32,7 +35,6 @@ struct IShape {
         m_Color      = aColor     ;
         return StateIsValid() ? ErrorCode::Succes : ErrorCode::Error1;
     }
-    IShape() = default;
     /**
     * \brief функция создает копию фигуры
     * \return  std::unique_ptr<IShape>  указатель на интерфейс IShape
@@ -44,7 +46,9 @@ struct IShape {
     */
     virtual ErrorCode Paint(Canvas* aCanvas) = 0;
     ///\brief деструктор
-    virtual ~IShape() {}
+    virtual ~IShape() {
+        Erase();
+    }
     
     ///\brief Получить ширину линии
     thickens_t GetThickness() const {
@@ -62,13 +66,16 @@ struct IShape {
     void ChangeColor(TColor aColor) {
         m_Color = aColor;
     }
+protected:
+    std::shared_ptr<Canvas> m_Canvas;
 private:
+    IShape() = default;
     /**
     * \brief функция Стирает фигуру с рабочей поверхности ()
     * \return  ErrorCode  Код возможной ошибки
     */
-    virtual ErrorCode Erase() {
-        throw std::logic_error("Method Erase Not implemented");
+    void Erase() {
+        std::cout << "Erase figure from Canvas: " << m_Canvas.get() << std::endl;
     }
 
     bool StateIsValid() {
