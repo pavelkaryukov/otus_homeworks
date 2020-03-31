@@ -5,17 +5,20 @@
 struct Line : public IShape {
 
     Line() = default;
+    
+    Line(
+        const TCoord       aCoordBegin,
+        const TCoord       aCoordEnd,
+        const std::uint8_t aThickness,
+        const TColor       aColor
+    ) : IShape(aCoordBegin, aCoordEnd, aThickness, aColor) {}
 
-    std::unique_ptr<IShape> Clone() override {
-        auto[error, shape] = CreateShape<Line>(this->CoordBegin, this->CoordEnd, this->Thickness, this->Color);
-        if ((error == ErrorCode::Succes) && (shape != nullptr)) {
-            return std::move(shape);
-        }
-        return nullptr;
+    std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) override {
+        return std::make_unique<Line>(aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint() override {
-        std::cout << "class Line:: method Paint()" << std::endl;
+    ErrorCode Paint(Canvas* aCanvas) override {
+        std::cout << "class Line:: method Paint(); Canvas: " << aCanvas << std::endl;
         return ErrorCode::Succes;
     }
 

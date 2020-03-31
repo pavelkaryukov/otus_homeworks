@@ -5,18 +5,22 @@
 struct Circle : public IShape {
 
     Circle() = default;
+    Circle(
+        const TCoord       aCoordBegin,
+        const TCoord       aCoordEnd,
+        const std::uint8_t aThickness,
+        const TColor       aColor 
+    ) : IShape( aCoordBegin, aCoordEnd, aThickness, aColor) 
+    {}
 
-    std::unique_ptr<IShape> Clone() override {
-        auto[error, shape] = CreateShape<Circle>(this->CoordBegin, this->CoordEnd, this->Thickness, this->Color);
-        if ((error == ErrorCode::Succes) && (shape != nullptr)) {
-            return std::move(shape);
-        }
-        return nullptr;
+
+    std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) override {
+        return std::make_unique<Circle>(aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-
-    ErrorCode Paint() override {
-        std::cout << "class Circle:: method Paint()" << std::endl;
+    ErrorCode Paint(Canvas* aCanvas) override {
+        // Отображать память в 16-ричном виде
+        std::cout << "class Circle:: method Paint(); Canvas: " << aCanvas << std::endl;
         return ErrorCode::Succes;
     }
 

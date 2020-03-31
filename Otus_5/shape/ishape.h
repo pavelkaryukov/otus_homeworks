@@ -7,56 +7,78 @@
 #include "error_code/my_error_code.h"
 #include "shape/utility/coord.h"
 #include "shape/utility/color.h"
+#include "application/canvas.h"
 ///\brief Интерфейс фигуры
-struct IShape {                
-    ///\brief положение начала объекта на экране
-    TCoord CoordBegin;
-    ///\brief положение конца объекта на экране
-    TCoord CoordEnd;
-    ///\brief толщина линии
-    std::uint8_t Thickness;
-    ///\brief цвет фигуры
-    TColor Color;
+struct IShape { 
+    using thickens_t = std::uint8_t;
+
+    IShape(
+        const TCoord aCoordBegin,
+        const TCoord aCoordEnd,
+        const std::uint8_t aThickness,
+        const TColor aColor
+    ) :
+        m_CoordBegin(aCoordBegin),
+        m_CoordEnd  (aCoordEnd),
+        m_Thickness (aThickness),
+        m_Color     (aColor)
+    {}
+
     //TODO::Возможно стоит переделать под SetState или типа того
     ErrorCode SetState( const TCoord aCoordBegin, const TCoord aCoordEnd, const std::uint8_t aThickness, const TColor aColor ) {
-        CoordBegin = aCoordBegin; 
-        CoordEnd   = aCoordEnd  ; 
-        Thickness  = aThickness ; 
-        Color      = aColor     ;
+        m_CoordBegin = aCoordBegin; 
+        m_CoordEnd   = aCoordEnd  ; 
+        m_Thickness  = aThickness ; 
+        m_Color      = aColor     ;
         return StateIsValid() ? ErrorCode::Succes : ErrorCode::Error1;
     }
     IShape() = default;
-
-    ///\brief цвет ширину линии фигуры
-    void ChangeThickness(const std::uint8_t aThickness) 
-    {
-        Thickness = aThickness; //Оператор сравнения
-    }
-    ///\brief изменить цвет фигуры
-    void ChangeColor(TColor aColor) {
-        Color = aColor;
-    }
     /**
     * \brief функция создает копию фигуры
     * \return  std::unique_ptr<IShape>  указатель на интерфейс IShape
     */
-    virtual std::unique_ptr<IShape> Clone() = 0;
+    virtual std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) = 0;
     /**
     * \brief функция Отрисовывает фигуру на рабочей поверхности
     * \return  ErrorCode  Код возможной ошибки
     */
-    virtual ErrorCode Paint() = 0;
+    virtual ErrorCode Paint(Canvas* aCanvas) = 0;
     ///\brief деструктор
     virtual ~IShape() {}
+    
+    ///\brief Получить ширину линии
+    thickens_t GetThickness() const {
+        return m_Thickness;
+    }
+    ///\brief цвет ширину линии фигуры
+    void ChangeThickness(const std::uint8_t aThickness) {
+        m_Thickness = aThickness; //Оператор сравнения
+    }
+    ///\brief получить цвет фигуры
+    TColor GetColor() const {
+        return m_Color;
+    }
+    ///\brief изменить цвет фигуры
+    void ChangeColor(TColor aColor) {
+        m_Color = aColor;
+    }
 private:
     bool StateIsValid() {
         return true;
     }
+    ///\brief положение начала объекта на экране
+    TCoord m_CoordBegin;
+    ///\brief положение конца объекта на экране
+    TCoord m_CoordEnd;
+    ///\brief толщина линии
+    std::uint8_t m_Thickness;
+    ///\brief цвет фигуры
+    TColor m_Color;
 };
 ///\brief Создает фигуру
 //TODO::Не уверен, что правильно все продумал, но мне кажется логичным, сделать функцию, что возвращает ещё и код ошибки
 template<class T>
-std::pair<ErrorCode, std::unique_ptr<T>> CreateShape
+std::pair<ErrorCode, std::unique_ptr<T>> CreateShapeOld
 ( 
     const TCoord       aCoordBegin, 
     const TCoord       aCoordEnd  , 
