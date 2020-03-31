@@ -17,8 +17,8 @@ struct Rectangle : public IShape {
         return std::make_unique<Rectangle>(aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint(Canvas* aCanvas) override {
-        std::cout << "class Rectangle:: method Paint(); Canvas: " << aCanvas << std::endl;
+    ErrorCode Paint(/*Canvas* aCanvas*/) override {
+        std::cout << "class Rectangle:: method Paint(); Canvas: " << 0 << std::endl;
         return ErrorCode::Succes;
     }
 

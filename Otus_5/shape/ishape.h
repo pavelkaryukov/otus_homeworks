@@ -7,7 +7,6 @@
 #include "error_code/my_error_code.h"
 #include "shape/utility/coord.h"
 #include "shape/utility/color.h"
-#include "application/canvas.h"
 ///\brief Интерфейс фигуры
 struct IShape { 
     using thickens_t = std::uint8_t;
@@ -42,7 +41,7 @@ struct IShape {
     * \brief функция Отрисовывает фигуру на рабочей поверхности
     * \return  ErrorCode  Код возможной ошибки
     */
-    virtual ErrorCode Paint(Canvas* aCanvas) = 0;
+    virtual ErrorCode Paint() = 0;
     ///\brief деструктор
     virtual ~IShape() {}
     
