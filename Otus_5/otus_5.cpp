@@ -3,7 +3,7 @@
 #include "shape\circle.h"
 #include "shape\line.h"
 #include <vector>
-#include "application/application.h"
+#include "application/painter.h"
 //бйпсрхрэ кнццеп
 //void TestFigureCreator() {
 //    std::vector<std::unique_ptr<IShape>>  allShapes;
@@ -36,7 +36,7 @@
 void TestCanvas() {
     std::cout << "\r\n\r\nTest Canvas\r\n";
     //Application app(new Canvas(800, 600));
-    Application app(Canvas(1024, 768));
+    Painter app(Canvas(1024, 768));
     std::vector<Canvas> testVect;
     testVect.emplace_back(Canvas(1024, 768));
     app.AddShape<Circle>(TCoord(0, 12), TCoord(22, 34), 1, TColor(0xf0, 0xFF, 0x82, 0x34   ));

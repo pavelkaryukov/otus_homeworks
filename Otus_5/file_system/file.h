@@ -8,6 +8,7 @@ struct IFile {
     virtual ErrorCode Save() = 0;
     virtual ErrorCode Write() = 0;
     virtual ErrorCode Close() = 0;
+    //std::vector<IShape> Transform
     virtual ~IFile() = 0;
 };
 
