@@ -18,19 +18,19 @@ struct Application {
         const TColor                   aColor,
         const IShape::thickens_t       aThickness ) : m_Color(aColor), m_Thickness(aThickness)
     {
-        m_Painter = std::make_unique<Painter>(Canvas(aX, aY));
+        m_Painter = Painter(Canvas(aX, aY));
     }
 #pragma endregion
 
 #pragma region ShapeAddingMethods
     ErrorCode AddCircle(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
         std::cout << boost::format("Class Application:: method AddCircle\r\n");
-        return GetPainter()->AddShape<Circle>(aBegin, aEnd, aThck, aColor);
+        return m_Painter.AddShape<Circle>(aBegin, aEnd, aThck, aColor);
     }
 
     ErrorCode AddLine(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
         std::cout << boost::format("Class Application:: method AddLine\r\n");
-        return GetPainter()->AddShape<Line>(aBegin, aEnd, aThck, aColor);
+        return m_Painter.AddShape<Line>(aBegin, aEnd, aThck, aColor);
     }
 
     ErrorCode AddRectangle(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
@@ -47,7 +47,7 @@ struct Application {
     }
 
     ErrorCode AddRectangle(const TCoord aBegin, const TCoord aEnd) {
-        return GetPainter()->AddShape<Rectangle>(aBegin, aEnd, m_Thickness, m_Color);
+        return m_Painter.AddShape<Rectangle>(aBegin, aEnd, m_Thickness, m_Color);
     }
 #pragma endregion
 
@@ -70,7 +70,7 @@ struct Application {
     };
 
     ErrorCode DeleteShape(const std::size_t aID) {
-        return GetPainter()->EraseShape(aID);
+        return m_Painter.EraseShape(aID);
     }
 
     ErrorCode DeleteShape(const std::size_t aX, const std::size_t aY) { //aX, aY - координаты полученные в результате движени€ мышкой
@@ -89,24 +89,24 @@ struct Application {
     }
     
     ErrorCode ResizeCanvas(const std::size_t aX, const std::size_t aY) {
-        return GetPainter()->ResizeCanvas(aX, aY);
+        return m_Painter.ResizeCanvas(aX, aY);
     }
     
     ErrorCode ChangeCanvasColor(const TColor aColor) {
-        return GetPainter()->ChangeCanvasColor(aColor);
+        return m_Painter.ChangeCanvasColor(aColor);
     }
 
     std::pair<std::size_t, std::size_t> GetCanvasSize() {
-        return GetPainter()->GetCanvasSize();
+        return m_Painter.GetCanvasSize();
     }
 #pragma endregion
 
 #pragma region FileSystemMethods
     //ѕо задумке тут будут вызыватьс€ вс€кие контексные меню выбора файла и тд
     ErrorCode Import() {
-        GetPainter()->Clear();
-        auto errorCode = m_FileManager.Import(*GetPainter());
-        auto res = GetPainter()->GetCanvasSize();
+        m_Painter.Clear();
+        auto errorCode = m_FileManager.Import(m_Painter);
+        auto res = m_Painter.GetCanvasSize();
 //         m_X = res.first;
 //         m_Y = res.second;
         return ErrorCode::Succes;
@@ -126,18 +126,8 @@ struct Application {
 #pragma endregion
 
 private:
-    //std::size_t              m_X = 800;   //TODO::”б–ј“№ X и Y
-    //std::size_t              m_Y = 600;   //TODO::”б–ј“№ X и Y
     TColor                   m_Color;
     IShape::thickens_t       m_Thickness;
-
-    std::unique_ptr<Painter> m_Painter = std::make_unique<Painter>(Canvas(800, 600));//ќдин и уникаленю замутим ленивую инициализацию 
+    Painter                  m_Painter = Painter(Canvas(800, 600));//ќдин и уникаленю замутим ленивую инициализацию 
     FileManager              m_FileManager;
-    
-    Painter* GetPainter() {  //TODO::”брать GET PAINTER METHOD
-        if (m_Painter == nullptr) {
-            m_Painter = std::make_unique<Painter>(Canvas(800, 600));
-        }
-        return m_Painter.get();
-    }
 };
