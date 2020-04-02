@@ -60,6 +60,7 @@ struct Painter {
             return ErrorCode::Error1;
         }
         m_Shapes.erase(iter);
+        return ErrorCode::Succes;
     }
 
     ErrorCode ChangeCanvas(std::unique_ptr<Canvas> aCanvas) {
