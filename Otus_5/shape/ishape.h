@@ -1,13 +1,13 @@
 #pragma once
+#include "error_code/my_error_code.h"
+#include "shape/utility/coord.h"
+#include "shape/utility/color.h"
+#include "work_space/canvas.h"
 #include <exception>
 #include <stdexcept>
 #include <cstdint>
 #include <type_traits>
 #include <memory>
-#include "error_code/my_error_code.h"
-#include "shape/utility/coord.h"
-#include "shape/utility/color.h"
-#include "application/canvas.h"
 #include <iostream>
 ///\brief Интерфейс фигуры
 struct IShape { 

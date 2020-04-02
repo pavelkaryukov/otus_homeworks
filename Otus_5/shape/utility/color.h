@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 ///\brief цвет объекта на экране
 struct TColor {
     ///\brief прозрачность пикселя

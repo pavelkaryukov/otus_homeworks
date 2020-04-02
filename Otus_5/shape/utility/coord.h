@@ -1,4 +1,5 @@
 #pragma once
+#include <cstddef>
 ///\brief Координата объекта на экране
 struct TCoord {
     ///\brief Координата объекта на экране

@@ -1,6 +1,6 @@
 #pragma once
 #include "shape/ishape.h"
-#include "application/canvas.h"
+#include "work_space/canvas.h"
 #include <map>
 
 
@@ -27,6 +27,16 @@ struct Painter {
     void Clear() {
         m_Id.Clear();
         m_Shapes.clear();
+        m_Canvas->Clear();
+    }
+
+    ErrorCode ResizeCanvas(const std::size_t aX, const std::size_t aY) {
+        std::cout << "Painter: Resize Canvas\r\n";
+        auto res = m_Canvas->Resize(aX, aY);
+        if (res != ErrorCode::Succes)
+            return res;
+        PaintAllShapes();
+        return ErrorCode::Succes;
     }
 
     //Запуск этого метода предполагается после импорта файла, замены холста и тд и тп
@@ -52,13 +62,22 @@ struct Painter {
         m_Shapes.erase(iter);
     }
 
+    ErrorCode ChangeCanvas(std::unique_ptr<Canvas> aCanvas) {
+        m_Canvas = std::move(aCanvas);
+        return ErrorCode::Succes;
+    }
+
+    std::pair<std::size_t, std::size_t> GetSize() {
+        return m_Canvas->GetSize();
+    }
+
+    
     Painter() = delete;
 
     Painter(Canvas&& aCanvas) {
         m_Canvas = std::make_shared<Canvas>(std::move(aCanvas));
         //m_Canvas = std::shared_ptr<Canvas>(new Canvas(std::move(aCanvas)));
     }
-
 
 private:
 
