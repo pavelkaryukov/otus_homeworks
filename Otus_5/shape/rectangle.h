@@ -1,5 +1,5 @@
 #pragma once
-#include "shape\ishape.h"
+#include "shape/ishape.h"
 #include <iostream>
 ///\brief фигура прямоугольник 
 struct Rectangle : public IShape {
