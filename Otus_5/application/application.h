@@ -88,7 +88,7 @@ struct Application {
 
     ErrorCode Export() {
         //Вызывается окно экспорта из класса - MyFileSystem;
-        throw std::logic_error("Method not implemented - ErrorCode Export(IFile* aFile)");
+        return m_FileManager.Export();
     }
 
     ErrorCode Save() {

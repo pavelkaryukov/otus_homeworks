@@ -1,9 +1,9 @@
-#include "shape\ishape.h"
-#include "shape\rectangle.h"
-#include "shape\circle.h"
-#include "shape\line.h"
-#include <vector>
-#include "work_space/painter.h"
+//#include "shape\ishape.h"
+//#include "shape\rectangle.h"
+//#include "shape\circle.h"
+//#include "shape\line.h"
+//#include <vector>
+//#include "work_space/painter.h"
 #include "application/application.h"
 //¬ –”“»“‹ ÀŒ√√≈–
 //void TestFigureCreator() {
@@ -34,18 +34,18 @@
 //    allShapes.clear();
 //}
 //
-void TestPainter() {
-    std::cout << "\r\n\r\nTest Canvas\r\n";
-    //Application app(new Canvas(800, 600));
-    Painter painter(Canvas(1024, 768));
-    std::vector<Canvas> testVect;
-    testVect.emplace_back(Canvas(1024, 768));
-    painter.AddShape<Circle>(TCoord(0, 12), TCoord(22, 34), 1, TColor(0xf0, 0xFF, 0x82, 0x34   ));
-    painter.AddShape<Rectangle>(TCoord(10, 78), TCoord(85, 129), 45, TColor(0x23, 0x7a, 0xbc, 0xde));
-    painter.AddShape<Line>(TCoord(8, 99), TCoord(0xde, 87), 9, TColor(0x23, 0x7a, 0xaa, 0xb2 ));
-    painter.Clear();
-}
-
+//void TestPainter() {
+//    std::cout << "\r\n\r\nTest Canvas\r\n";
+//    //Application app(new Canvas(800, 600));
+//    Painter painter(Canvas(1024, 768));
+//    std::vector<Canvas> testVect;
+//    testVect.emplace_back(Canvas(1024, 768));
+//    painter.AddShape<Circle>(TCoord(0, 12), TCoord(22, 34), 1, TColor(0xf0, 0xFF, 0x82, 0x34   ));
+//    painter.AddShape<Rectangle>(TCoord(10, 78), TCoord(85, 129), 45, TColor(0x23, 0x7a, 0xbc, 0xde));
+//    painter.AddShape<Line>(TCoord(8, 99), TCoord(0xde, 87), 9, TColor(0x23, 0x7a, 0xaa, 0xb2 ));
+//    painter.Clear();
+//}
+//
 void TestApplication() {
     Application app;
     app.SetColor(TColor(87, 128, 22, 88));
