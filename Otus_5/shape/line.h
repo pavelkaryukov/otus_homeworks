@@ -19,7 +19,7 @@ struct Line : public IShape {
      }
 
     ErrorCode Paint() override {
-        std::cout << "class Line:: method Paint(); Canvas: " << m_Canvas.get() << std::endl;
+        std::cout << boost::format("\x20\x20\x20\Class Line:: method Paint(); Canvas:%1%\r\n") % m_Canvas.get();
         return ErrorCode::Succes;
     }
 

@@ -66,6 +66,7 @@ void TestApplication() {
     
     int stop1 = 0;
 }
+//вкрутить boost fmt/ сделать табуляции при выводе реализованных методов
 
 int main() {
     //std::pair<ErrorCode, std::unique_ptr<T>> CreateShape

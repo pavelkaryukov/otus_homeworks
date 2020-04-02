@@ -1,13 +1,20 @@
 #pragma once
 #include "shape/ishape.h"
-#include "work_space/canvas.h"
+#include "work_space/canvas.h" 
 #include <map>
-
-
 //Класс художник, хранит в себе все фигуры и отрисовывает их на холств
 struct Painter {
     using shapeid_t = std::size_t;
+#pragma region Constructors
+    Painter() = delete;
 
+    Painter(Canvas&& aCanvas) {
+        m_Canvas = std::make_shared<Canvas>(std::move(aCanvas));
+        //m_Canvas = std::shared_ptr<Canvas>(new Canvas(std::move(aCanvas)));
+    }
+#pragma endregion
+
+#pragma region ShapeHandlers
     template<class T>
     ErrorCode AddShape(
         const TCoord       aCoordBegin,
@@ -21,21 +28,6 @@ struct Painter {
             return ErrorCode::Error1;
         }
         iter->second->Paint();
-        return ErrorCode::Succes;
-    }
- 
-    void Clear() {
-        m_Id.Clear();
-        m_Shapes.clear();
-        m_Canvas->Clear();
-    }
-
-    ErrorCode ResizeCanvas(const std::size_t aX, const std::size_t aY) {
-        std::cout << "Painter: Resize Canvas\r\n";
-        auto res = m_Canvas->Resize(aX, aY);
-        if (res != ErrorCode::Succes)
-            return res;
-        PaintAllShapes();
         return ErrorCode::Succes;
     }
 
@@ -62,28 +54,51 @@ struct Painter {
         m_Shapes.erase(iter);
         return ErrorCode::Succes;
     }
+#pragma endregion
 
+#pragma region ChangeStatePainterMethods
+    void Clear() {
+        m_Id.Clear();
+        m_Shapes.clear();
+        m_Canvas->Clear();
+    }
+#pragma endregion
+
+#pragma region CanvasHandlers
+    ErrorCode ResizeCanvas(const std::size_t aX, const std::size_t aY) {
+        std::cout << "Painter: Resize Canvas\r\n";
+        auto res = m_Canvas->Resize(aX, aY);
+        if (res != ErrorCode::Succes)
+            return res;
+        PaintAllShapes();
+        return ErrorCode::Succes;
+    }
+
+    ErrorCode ChangeCanvasColor(const TColor aColor) {
+        std::cout << "Painter: Resize Canvas\r\n";//Фигуры перерисовывать не надо
+        auto res = m_Canvas->ChangeColor(aColor);
+        if (res != ErrorCode::Succes)
+            return res;
+        return ErrorCode::Succes;
+    }
+    
     ErrorCode ChangeCanvas(std::unique_ptr<Canvas> aCanvas) {
         m_Canvas = std::move(aCanvas);
         return ErrorCode::Succes;
     }
 
-    std::pair<std::size_t, std::size_t> GetSize() {
+    std::pair<std::size_t, std::size_t> GetCanvasSize() {
         return m_Canvas->GetSize();
     }
-
-    
-    Painter() = delete;
-
-    Painter(Canvas&& aCanvas) {
-        m_Canvas = std::make_shared<Canvas>(std::move(aCanvas));
-        //m_Canvas = std::shared_ptr<Canvas>(new Canvas(std::move(aCanvas)));
-    }
+#pragma endregion
 
 private:
+    std::map<std::size_t, std::unique_ptr<IShape>> m_Shapes;
 
+    std::shared_ptr<Canvas> m_Canvas;
+
+#pragma region GeneratorID
     struct IdGenerator {
-
         shapeid_t Generate() {
             return m_ShapeCounter++;
         }
@@ -93,16 +108,11 @@ private:
         }
 
         IdGenerator() = default;
-
     private:
         shapeid_t m_ShapeCounter = 0;
     };
 
     IdGenerator m_Id;
-
-    std::map<std::size_t, std::unique_ptr<IShape>> m_Shapes;
-
-    std::shared_ptr<Canvas> m_Canvas;
-
+#pragma endregion
 };
 

@@ -9,6 +9,7 @@
 #include <type_traits>
 #include <memory>
 #include <iostream>
+#include <boost/format.hpp>
 ///\brief Интерфейс фигуры
 struct IShape { 
     using thickens_t = std::uint8_t;

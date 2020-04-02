@@ -19,13 +19,11 @@ struct Rectangle : public IShape {
     }
 
     ErrorCode Paint() override {
-        std::cout << "class Rectangle:: method Paint(); Canvas: " << m_Canvas.get() << std::endl;
+        std::cout << boost::format("\x20\x20\x20\Class Rectangle:: method Paint(); Canvas:%1%\r\n") % m_Canvas.get();
         return ErrorCode::Succes;
     }
 
-    ~Rectangle() {
-    
-    };
+    ~Rectangle() {};
 
 private :
 };

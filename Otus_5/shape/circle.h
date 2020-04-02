@@ -20,13 +20,11 @@ struct Circle : public IShape {
      }
 
     ErrorCode Paint() override {
-        // Отображать память в 16-ричном виде
-        std::cout << "class Circle:: method Paint(); Canvas: " << m_Canvas.get() << std::endl;
+        std::cout << boost::format("\x20\x20\x20\Class Circle:: method Paint(); Canvas:%1%\r\n") % m_Canvas.get();
         return ErrorCode::Succes;
     }
 
     ~Circle() {
-        int stop1 = 0;
     };
 
 private:

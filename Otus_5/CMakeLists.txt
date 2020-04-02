@@ -12,10 +12,22 @@ set(WORK_SPACE_SRC    "work_space/canvas.h" "work_space/painter.h")
 
 add_executable(graphic_editor otus_5.cpp ${APP_SRC} ${FILES_SRC} ${SHAPES_SRC} ${ERRORS_SRC} ${WORK_SPACE_SRC}) 
 
-target_include_directories(graphic_editor PUBLIC ${PROJECT_SOURCE_DIR})
-target_link_libraries(graphic_editor PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+#Boost FMT
+find_package(Boost REQUIRED)
+if(NOT Boost_FOUND)
+	message(SEND_ERROR "Failed to find boost")
+	return()
+endif()
 set_target_properties (
 	graphic_editor PROPERTIES 
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON	
 )
+
+
+target_link_libraries(graphic_editor  
+						#${Boost_LIBRARIES} 
+						PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+target_include_directories(graphic_editor PRIVATE ${PROJECT_SOURCE_DIR}  ${Boost_INCLUDE_DIRS})
+
+
