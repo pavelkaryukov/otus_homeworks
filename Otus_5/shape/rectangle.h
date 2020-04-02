@@ -3,7 +3,6 @@
 #include <iostream>
 ///\brief фигура прямоугольник 
 struct Rectangle : public IShape {
-
     Rectangle() = default;
     
     Rectangle(
@@ -24,6 +23,4 @@ struct Rectangle : public IShape {
     }
 
     ~Rectangle() {};
-
-private :
 };

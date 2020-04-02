@@ -16,7 +16,10 @@ struct Application {
         const std::size_t              aX,
         const std::size_t              aY,
         const TColor                   aColor,
-        const IShape::thickens_t       aThickness ) : m_X(aX), m_Y(aY), m_Color(aColor), m_Thickness(aThickness){}
+        const IShape::thickens_t       aThickness ) : m_Color(aColor), m_Thickness(aThickness)
+    {
+        m_Painter = std::make_unique<Painter>(Canvas(aX, aY));
+    }
 #pragma endregion
 
 #pragma region ShapeAddingMethods
@@ -86,9 +89,7 @@ struct Application {
     }
     
     ErrorCode ResizeCanvas(const std::size_t aX, const std::size_t aY) {
-        m_X = aX;
-        m_Y = aY;
-        return GetPainter()->ResizeCanvas(m_X, m_Y);
+        return GetPainter()->ResizeCanvas(aX, aY);
     }
     
     ErrorCode ChangeCanvasColor(const TColor aColor) {
@@ -96,7 +97,7 @@ struct Application {
     }
 
     std::pair<std::size_t, std::size_t> GetCanvasSize() {
-        return { m_X, m_Y };
+        return GetPainter()->GetCanvasSize();
     }
 #pragma endregion
 
@@ -106,8 +107,8 @@ struct Application {
         GetPainter()->Clear();
         auto errorCode = m_FileManager.Import(*GetPainter());
         auto res = GetPainter()->GetCanvasSize();
-        m_X = res.first;
-        m_Y = res.second;
+//         m_X = res.first;
+//         m_Y = res.second;
         return ErrorCode::Succes;
 
         //¬ызываетс€ окно импорта из класса - MyFileSystem;
@@ -125,17 +126,17 @@ struct Application {
 #pragma endregion
 
 private:
-    std::size_t              m_X = 800;   //TODO::”б–ј“№ X и Y
-    std::size_t              m_Y = 600;   //TODO::”б–ј“№ X и Y
+    //std::size_t              m_X = 800;   //TODO::”б–ј“№ X и Y
+    //std::size_t              m_Y = 600;   //TODO::”б–ј“№ X и Y
     TColor                   m_Color;
     IShape::thickens_t       m_Thickness;
 
-    std::unique_ptr<Painter> m_Painter;//ќдин и уникаленю замутим ленивую инициализацию 
+    std::unique_ptr<Painter> m_Painter = std::make_unique<Painter>(Canvas(800, 600));//ќдин и уникаленю замутим ленивую инициализацию 
     FileManager              m_FileManager;
     
     Painter* GetPainter() {  //TODO::”брать GET PAINTER METHOD
         if (m_Painter == nullptr) {
-            m_Painter = std::make_unique<Painter>(Canvas(m_X, m_Y));
+            m_Painter = std::make_unique<Painter>(Canvas(800, 600));
         }
         return m_Painter.get();
     }

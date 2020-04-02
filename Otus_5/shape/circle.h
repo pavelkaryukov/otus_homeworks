@@ -3,7 +3,6 @@
 #include <iostream>
 ///\brief фигура круг 
 struct Circle : public IShape {
-
     Circle() = default;
     Circle(
         std::shared_ptr<Canvas> aCanvas,
@@ -14,10 +13,9 @@ struct Circle : public IShape {
     ) : IShape( aCanvas, aCoordBegin, aCoordEnd, aThickness, aColor) 
     {}
 
-
-     std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) override {
-         return std::make_unique<Circle>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
-     }
+    std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) override {
+        return std::make_unique<Circle>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
+    }
 
     ErrorCode Paint() override {
         std::cout << boost::format("\x20\x20\x20\Class Circle:: method Paint(); Canvas:%1%\r\n") % m_Canvas.get();
@@ -26,6 +24,4 @@ struct Circle : public IShape {
 
     ~Circle() {
     };
-
-private:
 };

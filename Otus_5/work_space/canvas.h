@@ -33,5 +33,5 @@ struct Canvas {
 private:
     std::size_t m_X = 0;
     std::size_t m_Y = 0;
-    TColor m_Color;
+    TColor      m_Color;
 };

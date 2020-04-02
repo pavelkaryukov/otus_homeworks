@@ -94,8 +94,7 @@ struct Painter {
 
 private:
     std::map<std::size_t, std::unique_ptr<IShape>> m_Shapes;
-
-    std::shared_ptr<Canvas> m_Canvas;
+    std::shared_ptr<Canvas>                        m_Canvas;
 
 #pragma region GeneratorID
     struct IdGenerator {
