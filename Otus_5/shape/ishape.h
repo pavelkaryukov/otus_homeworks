@@ -66,6 +66,10 @@ struct IShape {
     void ChangeColor(TColor aColor) {
         m_Color = aColor;
     }
+
+    void ChangeCanvas(std::shared_ptr<Canvas> aCanvas) {
+        m_Canvas = aCanvas;
+    }
 protected:
     std::shared_ptr<Canvas> m_Canvas;
 private:

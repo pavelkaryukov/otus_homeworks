@@ -1,7 +1,7 @@
 #pragma once
 #include "shape/ishape.h"
 #include <iostream>
-///\brief фигура круг 
+///\brief фигура круг, реализует интерфейс IShape 
 struct Circle : public IShape {
     Circle() = default;
     Circle(

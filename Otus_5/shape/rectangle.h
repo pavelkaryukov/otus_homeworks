@@ -1,7 +1,7 @@
 #pragma once
 #include "shape/ishape.h"
 #include <iostream>
-///\brief фигура прямоугольник 
+///\brief фигура прямоугольник, реализует интерфейс IShape 
 struct Rectangle : public IShape {
     Rectangle() = default;
     

@@ -1,7 +1,7 @@
 #pragma once       
 #include "shape/ishape.h"
 #include <iostream>
-///\brief фигура круг
+///\brief фигура Линия, реализует интерфейс IShape
 struct Line : public IShape {
     Line() = default;
     

@@ -2,12 +2,22 @@
 #include "shape/ishape.h"
 #include "work_space/canvas.h" 
 #include <map>
-//Класс художник, хранит в себе все фигуры и отрисовывает их на холств
+
+/**
+* \brief класс Painter (маляр)
+* \details Класс Маляр, хранит в себе все фигуры и отрисовывает их на холств
+*/
 struct Painter {
     using shapeid_t = std::size_t;
 #pragma region Constructors
     Painter() = delete;
 
+    /**
+    * \brief Конструктор класса Painter
+    * \param[in] aCanvas rvalue Canvas - холс
+    * \details создает объект класса маляр
+    * \return  объект класса Painter
+    */
     Painter(Canvas&& aCanvas) {
         m_Canvas = std::make_shared<Canvas>(std::move(aCanvas));
         //m_Canvas = std::shared_ptr<Canvas>(new Canvas(std::move(aCanvas)));
@@ -15,6 +25,15 @@ struct Painter {
 #pragma endregion
 
 #pragma region ShapeHandlers
+    /**
+    * \brief Добавляет фигуру и отрисовывает на холсте
+    * \param[in] aCoordBegin координата начала фигуры
+    * \param[in] aCoordEnd координата конца фигуры
+    * \param[in] aThickness ширина линии фигуры
+    * \param[in] aColor цвет фигуры - ARGB
+    * \details Добавляет фигуру  в m_Shapes и отрисовывает на холсте
+    * \return ErrorCode код ошибки
+    */
     template<class T>
     ErrorCode AddShape(
         const TCoord       aCoordBegin,
@@ -31,13 +50,20 @@ struct Painter {
         return ErrorCode::Succes;
     }
 
-    //Запуск этого метода предполагается после импорта файла, замены холста и тд и тп
+    /**
+    * \brief Отрисовывает все фигуры на холсте
+    */
     void PaintAllShapes() {
         for (const auto&[id, shape] : m_Shapes) {
             shape->Paint();
         }
     }
 
+    /**
+    * \brief Отрисовка фигуры на холсте
+    * \param[in] aID идентификатор фигуры
+    * \return ErrorCode код ошибки
+    */
     ErrorCode PaintShape(const shapeid_t aID) {
         auto iter = m_Shapes.find(aID);
         if (iter == m_Shapes.end()) {
@@ -46,6 +72,11 @@ struct Painter {
         return iter->second->Paint();
     }
 
+    /**
+    * \brief Удаляет фигуру с холста
+    * \param[in] aID идентификатор фигуры
+    * \return ErrorCode код ошибки
+    */
     ErrorCode EraseShape(const shapeid_t aID) {
         auto iter = m_Shapes.find(aID);
         if (iter == m_Shapes.end()) {
@@ -57,6 +88,10 @@ struct Painter {
 #pragma endregion
 
 #pragma region ChangeStatePainterMethods
+    /**
+    * \brief Отчистить состояние маляра
+    * \details уничтожит все фигуры, обнулит холст, сбросит генератор ID
+    */
     void Clear() {
         m_Id.Clear();
         m_Shapes.clear();
@@ -65,15 +100,25 @@ struct Painter {
 #pragma endregion
 
 #pragma region CanvasHandlers
+    /**
+    * \brief Изменеяет размер холста
+    * \param[in] aX новая ширина холста
+    * \param[in] aY новая высота холста
+    * \return ErrorCode код ошибки
+    */
     ErrorCode ResizeCanvas(const std::size_t aX, const std::size_t aY) {
         std::cout << "Painter: Resize Canvas\r\n";
         auto res = m_Canvas->Resize(aX, aY);
         if (res != ErrorCode::Succes)
             return res;
-        PaintAllShapes();
         return ErrorCode::Succes;
     }
 
+    /**
+    * \brief Замена фона холста
+    * \param[in] aColor новый цвет ARGB
+    * \return ErrorCode код ошибки
+    */
     ErrorCode ChangeCanvasColor(const TColor aColor) {
         std::cout << "Painter: Resize Canvas\r\n";//Фигуры перерисовывать не надо
         auto res = m_Canvas->ChangeColor(aColor);
@@ -82,11 +127,25 @@ struct Painter {
         return ErrorCode::Succes;
     }
     
+    /**
+    * \brief Замена холста
+    * \param[in] aCanvas новый холст 
+    * \details после изменения холста все фигуры получат новый холст и будут заново отрисованы
+    * \return ErrorCode код ошибки
+    */
     ErrorCode ChangeCanvas(std::unique_ptr<Canvas> aCanvas) {
         m_Canvas = std::move(aCanvas);
+        for (auto&[id, shape] : m_Shapes) {
+            shape->ChangeCanvas(m_Canvas);
+        }
+        PaintAllShapes();
         return ErrorCode::Succes;
     }
 
+    /**
+    * \brief Получить размер текущего холста
+    * \return std::pair<std::size_t, std::size_t>  ширина и высота холста
+    */
     std::pair<std::size_t, std::size_t> GetCanvasSize() const{
         return m_Canvas->GetSize();
     }
