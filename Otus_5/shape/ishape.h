@@ -28,19 +28,30 @@ struct IShape {
         m_Color     (aColor)
     {}
 
-    //TODO::Возможно стоит переделать под SetState или типа того
-    ErrorCode SetState( const TCoord aCoordBegin, const TCoord aCoordEnd, const std::uint8_t aThickness, const TColor aColor ) {
+    /**
+    * \brief смена состояния фигуры
+    * \param[in] aCoordBegin - координаты нового  фигуры
+    * \param[in] aCoordEnd   - координаты нового  фигуры
+    * \param[in] aThickness  - новая ширина фигуры
+    * \param[in] aColor      - новый цвет фигуры
+    * \return ErrorCode код ошибки
+    */
+    ErrorCode SetState( const TCoord aCoordBegin, const TCoord aCoordEnd, const thickens_t aThickness, const TColor aColor ) {
         m_CoordBegin = aCoordBegin; 
         m_CoordEnd   = aCoordEnd  ; 
         m_Thickness  = aThickness ; 
         m_Color      = aColor     ;
         return StateIsValid() ? ErrorCode::Succes : ErrorCode::SomeError;
     }
+
     /**
     * \brief функция создает копию фигуры
+    * \param[in] aCoordBegin - координаты положения копии фигуры
+    * \param[in] aCoordEnd   - координаты положения копии фигуры
     * \return  std::unique_ptr<IShape>  указатель на интерфейс IShape
     */
     virtual std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) = 0;
+
     /**
     * \brief функция Отрисовывает фигуру на рабочей поверхности
     * \return  ErrorCode  Код возможной ошибки
@@ -50,25 +61,35 @@ struct IShape {
     virtual ~IShape() {
         Erase();
     }
+
     ///\brief Получить ширину линии
     thickens_t GetThickness() const {
         return m_Thickness;
     }
     ///\brief цвет ширину линии фигуры
-    void ChangeThickness(const std::uint8_t aThickness) {
+    ErrorCode ChangeThickness(const std::uint8_t aThickness) {
         m_Thickness = aThickness; //Оператор сравнения
+        return ErrorCode::Succes;
     }
     ///\brief получить цвет фигуры
     TColor GetColor() const {
         return m_Color;
     }
+
     ///\brief изменить цвет фигуры
-    void ChangeColor(TColor aColor) {
+    ErrorCode ChangeColor(TColor aColor) {
         m_Color = aColor;
+        return ErrorCode::Succes;
     }
 
-    void ChangeCanvas(std::shared_ptr<Canvas> aCanvas) {
+    /**
+    * \brief перенос фигуры на другой холст
+    * \param[in] aCanvas - указатель на новый холст
+    * \return  ErrorCode код ошибки
+    */
+    ErrorCode ChangeCanvas(std::shared_ptr<Canvas> aCanvas) {
         m_Canvas = aCanvas;
+        return ErrorCode::Succes;
     }
 protected:
     std::shared_ptr<Canvas> m_Canvas;

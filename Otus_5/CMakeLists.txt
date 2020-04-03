@@ -24,10 +24,7 @@ set_target_properties (
 	CXX_STANDARD_REQUIRED ON	
 )
 
-
-target_link_libraries(graphic_editor  
-						#${Boost_LIBRARIES} 
-						PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+target_link_libraries(graphic_editor PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 target_include_directories(graphic_editor PRIVATE ${PROJECT_SOURCE_DIR}  ${Boost_INCLUDE_DIRS})
 
 

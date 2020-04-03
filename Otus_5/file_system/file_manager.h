@@ -18,7 +18,6 @@ struct FileManager {
         auto errorCode = aPainter.ChangeCanvas(m_File->GetCanvas());
         if (errorCode != ErrorCode::Succes)
             return errorCode;
-
         errorCode = m_File->GetShapes(aPainter);
         if (errorCode != ErrorCode::Succes)
             return errorCode;
