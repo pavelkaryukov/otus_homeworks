@@ -33,14 +33,16 @@ script:
 - ./gtest_print_ip  
 - doxygen
 - cd ..
-- Otus_5/./graphic_editor
+- cd Otus_5/
+- ./graphic_editor
+- doxygen
 - cmake --build . --target package
 deploy:
 - provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
-  local-dir: Otus_4/doxygen/html
+  local-dir: Otus_5/doxygen/html
   on:
     all_branches: true
 
