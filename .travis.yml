@@ -38,11 +38,11 @@ script:
 - doxygen
 - cmake --build . --target package
 deploy:
-- provider: pages
+- provider: pages2
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
-  local-dir: Otus_5/doxygen/html
+  local-dir: doxygen
   on:
     all_branches: true
 
