@@ -12,7 +12,14 @@ struct TColor {
     std::uint8_t Blue = 0;
 
     TColor() = default;
-
+    /**
+    * @brief Конструктор TColor
+    * @param aAlpha Прозрачность
+    * @param aRed Интенсивность красного
+    * @param aGreen Интенсивность зеленого
+    * @param aBlue Интенсивность синиго
+    * @return объект TColor
+    */
     TColor(const std::uint8_t aAlpha, const std::uint8_t aRed, const std::uint8_t aGreen, const std::uint8_t aBlue) :
         Alpha(aAlpha),
         Red(aRed),

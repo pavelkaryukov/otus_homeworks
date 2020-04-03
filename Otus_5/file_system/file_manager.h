@@ -3,9 +3,13 @@
 #include "work_space/canvas.h"
 //Засунуть лямбду вызова select file from application
 struct FileManager {
-    //Аргументом подадим художника
-    //Замена холста, размерности(под холст), получение фигу - все файлы кроме векторного вернут только размулеванный холст, замена файла 
     
+    /**
+    * \brief импортирует класс художника из файла
+    * \param[out] aPainter перенастраиваемый художник
+    * \details Осуществляется замена холста и отрисованных фигур
+    * \return  ErrorCode  код ошибки
+    */
     ErrorCode Import(Painter& aPainter) {
         auto [res, filePtr] = SelectFile();
         if (res != ErrorCode::Succes)
@@ -21,8 +25,12 @@ struct FileManager {
         return ErrorCode::Succes;
     }
     
-    //тупо сохранит в файл, на вход можно подать файл, файл старый заменить на новый
-    ErrorCode Export() {
+    /**
+    * \brief экспорт состояние художника в файл
+    * \param[in] aPainter объект класса художник
+    * \return  ErrorCode  код ошибки
+    */
+    ErrorCode Export(const Painter& aPainter) {
         auto [res, filePtr] = SelectFile();
         if (res != ErrorCode::Succes)
             return res;
@@ -30,7 +38,12 @@ struct FileManager {
         return ErrorCode::Succes;
     }
 
-    ErrorCode Save() {
+    /**
+    * \brief сохранение состояние художника в файл
+    * \param[in] aPainter объект класса художник
+    * \return  ErrorCode  код ошибки
+    */
+    ErrorCode Save(const Painter& aPainter) {
         if (m_File != nullptr)
             return m_File->Save();
 
@@ -67,7 +80,7 @@ private:
          }
 
         if (ptr == nullptr) 
-            errorCode = ErrorCode::Error1;
+            errorCode = ErrorCode::SomeError;
 
         return res;
     }

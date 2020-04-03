@@ -33,7 +33,8 @@ struct FileVect : public IFile {
 
     std::unique_ptr<Canvas> GetCanvas() override {
         const std::size_t testX = 1600, testY = 1200;//Тестовые размеры, 
-        return std::make_unique<Canvas>(testX, testY);
+        const TColor testColor = { 89, 76, 25, 9 };
+        return std::make_unique<Canvas>(testX, testY, testColor);
     }
 
 

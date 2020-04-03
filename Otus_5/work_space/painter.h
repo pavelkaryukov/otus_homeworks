@@ -25,7 +25,7 @@ struct Painter {
         static_assert(std::is_base_of<IShape, T>::value);
         auto[iter, res] = m_Shapes.insert({ m_Id.Generate(), std::make_unique<T>(m_Canvas, aCoordBegin, aCoordEnd, aThickness, aColor) });
         if (!res) {
-            return ErrorCode::Error1;
+            return ErrorCode::SomeError;
         }
         iter->second->Paint();
         return ErrorCode::Succes;
@@ -41,7 +41,7 @@ struct Painter {
     ErrorCode PaintShape(const shapeid_t aID) {
         auto iter = m_Shapes.find(aID);
         if (iter == m_Shapes.end()) {
-            return ErrorCode::Error1;
+            return ErrorCode::SomeError;
         }
         return iter->second->Paint();
     }
@@ -49,7 +49,7 @@ struct Painter {
     ErrorCode EraseShape(const shapeid_t aID) {
         auto iter = m_Shapes.find(aID);
         if (iter == m_Shapes.end()) {
-            return ErrorCode::Error1;
+            return ErrorCode::SomeError;
         }
         m_Shapes.erase(iter);
         return ErrorCode::Succes;
@@ -87,7 +87,7 @@ struct Painter {
         return ErrorCode::Succes;
     }
 
-    std::pair<std::size_t, std::size_t> GetCanvasSize() {
+    std::pair<std::size_t, std::size_t> GetCanvasSize() const{
         return m_Canvas->GetSize();
     }
 #pragma endregion

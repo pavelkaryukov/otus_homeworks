@@ -6,57 +6,127 @@
 #include "shape/line.h"
 #include "file_system/file_manager.h"
 #include <optional>
-//контролит состояние канваса, художника, файловой системы
+/*! \mainpage Otus_5 (graphic_editor)
+ *
+ * \r\n   Макет классов простейшего векторного редактора
+ *
+ */
 
-//Задумка такая - Application управляется GUI,  и наружу торчит то что в paint торчит
+/// \brief Класс векторный редактор (предполагается что гуи будет использовать его методы)
+/// \details содержит в себе файловый мэнеджер (class FileManager) и класс художник(ClassPainter)
 struct Application {
 #pragma region Constructros
+    
+    ///\brief конструктор по умолчанию - размер холста будет 800x600
     Application() = default;
+    
+    /**
+        * \brief конструктор
+        * \param[in] aX Ширина холста
+        * \param[in] aY Высота холста
+        * \param[in] TColor Цвет фона холста
+        * \param[in] aThickness Толщина линий, рисуемых фигур
+        * \return  объект класса Application
+        */
     Application(
         const std::size_t              aX,
         const std::size_t              aY,
         const TColor                   aColor,
         const IShape::thickens_t       aThickness ) : m_Color(aColor), m_Thickness(aThickness)
     {
-        m_Painter = Painter(Canvas(aX, aY));
+        m_Painter = Painter(Canvas(aX, aY, TColor()));
     }
 #pragma endregion
 
-#pragma region ShapeAddingMethods
+#pragma region ShapeAddingMethods  
+    /**
+    * \brief метод добавляет окружность на холст
+    * \param[in] aBegin координата начала фигуры
+    * \param[in] aEnd координата конца фигуры
+    * \param[in] aThickness Толщина линий, рисуемых фигур
+    * \param[in] TColor Цвет фона холста
+    * \return  ErrorCode  код ошибки
+    */
     ErrorCode AddCircle(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
         std::cout << boost::format("Class Application:: method AddCircle\r\n");
         return m_Painter.AddShape<Circle>(aBegin, aEnd, aThck, aColor);
     }
-
+    
+    /**
+    * \brief метод добавляет линию на холст
+    * \param[in] aBegin координата начала фигуры
+    * \param[in] aEnd координата конца фигуры
+    * \param[in] aThickness Толщина линий, рисуемых фигур
+    * \param[in] TColor Цвет фона холста
+    * \return  ErrorCode  код ошибки
+    */
     ErrorCode AddLine(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
         std::cout << boost::format("Class Application:: method AddLine\r\n");
         return m_Painter.AddShape<Line>(aBegin, aEnd, aThck, aColor);
     }
-
+    
+    /**
+    * \brief метод добавляет прямоугольник на холст
+    * \param[in] aBegin координата начала фигуры
+    * \param[in] aEnd координата конца фигуры
+    * \param[in] aThickness Толщина линий, рисуемых фигур
+    * \param[in] TColor Цвет фона холста
+    * \return  ErrorCode  код ошибки  
+    */
     ErrorCode AddRectangle(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
         std::cout << boost::format("Class Application:: method AddRectangle\r\n");
         return AddRectangle(aBegin, aEnd, aThck, aColor);
     }
-
+    
+    /**
+    * \brief метод добавляет окружность на холст
+    * \param[in] aBegin координата начала фигуры
+    * \param[in] aEnd координата конца фигуры
+    * \details Толщина линий и цвет будут выданы классом Application
+    * \return  ErrorCode  код ошибки
+    */
     ErrorCode AddCircle(const TCoord aBegin, const TCoord aEnd) {
         return AddCircle(aBegin, aEnd, m_Thickness, m_Color);
     }
-
+    
+    /**
+    * \brief метод добавляет линию на холст
+    * \param[in] aBegin координата начала фигуры
+    * \param[in] aEnd координата конца фигуры
+    * \details Толщина линий и цвет будут выданы классом Application
+    * \return  ErrorCode  код ошибки
+    */
     ErrorCode AddLine(const TCoord aBegin, const TCoord aEnd) {
         return AddLine(aBegin, aEnd, m_Thickness, m_Color);
     }
-
+    
+    /**
+    * \brief метод добавляет прямоугольник на холст
+    * \param[in] aBegin координата начала фигуры
+    * \param[in] aEnd координата конца фигуры
+    * \details Толщина линий и цвет будут выданы классом Application
+    * \return  ErrorCode  код ошибки
+    */
     ErrorCode AddRectangle(const TCoord aBegin, const TCoord aEnd) {
         return m_Painter.AddShape<Rectangle>(aBegin, aEnd, m_Thickness, m_Color);
     }
 #pragma endregion
 
 #pragma region ChangeStateAppMethods
+    
+    /**
+    * \brief метод задает толщину рисуемых на холсте фигур
+    * \param[in] aThickness толщина от 0 до 255
+    */
     void SetThickness(const IShape::thickens_t aThickness) {
         std::cout << boost::format("Class Application:: method SetThickness\r\n");
         m_Thickness = aThickness;
     }
-
+    
+    /**
+    * \brief метод задает цвет рисуемых на холсте фигур
+    * \param[in] aColor цвет и интенсивность (ARGB)
+    */
     void SetColor(const TColor aColor) {
         std::cout << boost::format("Class Application:: method SetColor\r\n");
         m_Color = aColor;
@@ -64,70 +134,105 @@ struct Application {
 #pragma endregion
 
 #pragma  region ShapeHandlers
+    
+    /**
+    * \brief метод возвращает ID выделенной фигуры
+    * \param[in] aX положение мышки на холсте - ось абсцисс
+    * \param[in] aY положение мышки на холсте - ось ординат
+    * \details положение мышки передаст GUI
+    * \return опциональное значение которого ID выделенной фигуры
+    */
     std::optional<Painter::shapeid_t> SelectShape(const std::size_t aX, const std::size_t aY) {
         //Ткнул мышкой в экра - получил id фигуры  
-        return std::nullopt;
-    };
-
+        throw std::logic_error("Method SelectShape not implemented");
+    }
+    
+    /**
+    * \brief Метод удаляет фигуру с холста
+    * \param[in] aID айдишник удаляемой фигуры
+    * \details предполагается использование вкупе с SelectShape 
+    * \return ErrorCode код ошибки
+    */
     ErrorCode DeleteShape(const std::size_t aID) {
         return m_Painter.EraseShape(aID);
-    }
-
-    ErrorCode DeleteShape(const std::size_t aX, const std::size_t aY) { //aX, aY - координаты полученные в результате движения мышкой
-        auto id = SelectShape(aX, aY);
-        if (!id)
-            return ErrorCode::Error1;
-        return DeleteShape(*id);
     }
 #pragma endregion
 
 #pragma region CanvasHandlers
+    
+    /**
+    * \brief Метод заменяет холст
+    * \details предполагается вызов диалога выбора холста и его замена
+    * \return ErrorCode код ошибки
+    */
     ErrorCode ChangeCanvas() {
         //Диалог Смены канваса
-        //Вызов ResizeCanvas
         //Вызов ChangeCanvasColor
+        return ErrorCode::Succes;
     }
     
+    /**
+    * \brief Метод изменяет размер холста
+    * \details все фигуры сохранятся на холсте
+    * \return ErrorCode код ошибки
+    */
     ErrorCode ResizeCanvas(const std::size_t aX, const std::size_t aY) {
         return m_Painter.ResizeCanvas(aX, aY);
     }
     
+    /**
+    * \brief Метод изменяет цвет холста
+    * \details все фигуры сохранятся на холсте
+    * \return ErrorCode код ошибки
+    */
     ErrorCode ChangeCanvasColor(const TColor aColor) {
         return m_Painter.ChangeCanvasColor(aColor);
     }
-
-    std::pair<std::size_t, std::size_t> GetCanvasSize() {
+    
+    /**
+    * \brief Метод возвращает текущий размер холста
+    * \return std::pair<std::size_t, std::size_t> ширина + высота холста
+    */
+    std::pair<std::size_t, std::size_t> GetCanvasSize() const {
         return m_Painter.GetCanvasSize();
     }
 #pragma endregion
 
 #pragma region FileSystemMethods
-    //По задумке тут будут вызываться всякие контексные меню выбора файла и тд
+    
+    /**
+    * \brief Импорт состояния редактора из файла
+    * \details Импорт холст и фигур (фигуры будут получены только если файл *.vect) из файла
+    * \return ErrorCode код ошибки
+    */
     ErrorCode Import() {
         m_Painter.Clear();
         auto errorCode = m_FileManager.Import(m_Painter);
         auto res = m_Painter.GetCanvasSize();
-//         m_X = res.first;
-//         m_Y = res.second;
         return ErrorCode::Succes;
-
-        //Вызывается окно импорта из класса - MyFileSystem;
-        //throw std::logic_error("Method not implemented - ErrorCode Import(IFile* aFile)");
     }
-
+    
+    /**
+    * \brief Экспорт состояния редактора в файл
+    * \details Экспорт холста и фигур (фигуры будут экспортированны только если файл *.vect) в файла
+    * \return ErrorCode код ошибки
+    */
     ErrorCode Export() {
-        //Вызывается окно экспорта из класса - MyFileSystem;
-        return m_FileManager.Export();
+        return m_FileManager.Export(m_Painter);
     }
-
+    
+    /**
+    * \brief Сохранение текущего состояния редактора 
+    * \return ErrorCode код ошибки
+    */
     ErrorCode Save() {
-        return m_FileManager.Save();
+        return m_FileManager.Save(m_Painter);
     }
 #pragma endregion
 
 private:
     TColor                   m_Color;
     IShape::thickens_t       m_Thickness;
-    Painter                  m_Painter = Painter(Canvas(800, 600));//Один и уникаленю замутим ленивую инициализацию 
+    Painter                  m_Painter = Painter(Canvas(800, 600, TColor()));
     FileManager              m_FileManager;
 };

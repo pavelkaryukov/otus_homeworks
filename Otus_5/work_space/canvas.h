@@ -5,7 +5,7 @@
 
 struct Canvas {
     Canvas() = default;
-    Canvas(const std::size_t aX, const std::size_t aY) : m_X(aX), m_Y(aY) {};
+    Canvas(const std::size_t aX, const std::size_t aY, const TColor aColor) : m_X(aX), m_Y(aY), m_Color(aColor) {}
 
     ErrorCode Resize(const std::size_t aX, const std::size_t aY) {
         if (Clear() != ErrorCode::Succes) { // предполагается какое то условие, холст больше монитора или ещё какой ад
@@ -26,7 +26,7 @@ struct Canvas {
         return ErrorCode::Succes;
     }
 
-    std::pair<std::size_t, std::size_t> GetSize() {
+    std::pair<std::size_t, std::size_t> GetSize() const{
         return { m_X, m_Y };
     }
 

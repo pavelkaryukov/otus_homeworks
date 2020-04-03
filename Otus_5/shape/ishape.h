@@ -34,7 +34,7 @@ struct IShape {
         m_CoordEnd   = aCoordEnd  ; 
         m_Thickness  = aThickness ; 
         m_Color      = aColor     ;
-        return StateIsValid() ? ErrorCode::Succes : ErrorCode::Error1;
+        return StateIsValid() ? ErrorCode::Succes : ErrorCode::SomeError;
     }
     /**
     * \brief функция создает копию фигуры

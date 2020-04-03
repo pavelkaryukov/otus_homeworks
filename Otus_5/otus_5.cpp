@@ -63,7 +63,6 @@ void TestApplication() {
     app.Export();
     app.Save();
     app.Import();
-    
     int stop1 = 0;
 }
 //вкрутить boost fmt/ сделать табуляции при выводе реализованных методов
