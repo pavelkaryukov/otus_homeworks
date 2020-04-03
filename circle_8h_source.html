@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Graphic Editor: Исходный файл shape/circle.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Graphic Editor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_65a711511fcaa88f756fdc31471317d6.html">shape</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">circle.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="circle_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ishape_8h.html">shape/ishape.h</a>&quot;</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="structCircle.html">    5</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCircle.html">Circle</a> : <span class="keyword">public</span> <a class="code" href="structIShape.html">IShape</a> {</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="structCircle.html#a6609904d9bc761d37b017d3bb17c533c">Circle</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="structCircle.html#a30bfdd5dfc954061f429cdda065ecbc6">    7</a></span>&#160;    <a class="code" href="structCircle.html#a30bfdd5dfc954061f429cdda065ecbc6">Circle</a>(</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        std::shared_ptr&lt;Canvas&gt; aCanvas,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keyword">const</span> <a class="code" href="structTCoord.html">TCoord</a>       aCoordBegin,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keyword">const</span> <a class="code" href="structTCoord.html">TCoord</a>       aCoordEnd,</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keyword">const</span> std::uint8_t aThickness,</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">const</span> <a class="code" href="structTColor.html">TColor</a>       aColor </div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    ) : <a class="code" href="structIShape.html">IShape</a>( aCanvas, aCoordBegin, aCoordEnd, aThickness, aColor) </div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {}</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structCircle.html#a1612befb940099d244cb1af6cc9d8bcc">   16</a></span>&#160;    std::unique_ptr&lt;IShape&gt; <a class="code" href="structCircle.html#a1612befb940099d244cb1af6cc9d8bcc">Clone</a>(<span class="keyword">const</span> <a class="code" href="structTCoord.html">TCoord</a> aCoordBegin, <span class="keyword">const</span> <a class="code" href="structTCoord.html">TCoord</a> aCoordEnd)<span class="keyword"> override </span>{</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">return</span> std::make_unique&lt;Circle&gt;(<a class="code" href="structIShape.html#a2abab86669d4e8c76c4a06697db61eb1">m_Canvas</a>, aCoordBegin, aCoordEnd, <a class="code" href="structIShape.html#a4a8d7d0ee286b62fc0f0db249fe4980c">GetThickness</a>(), <a class="code" href="structIShape.html#aa625ad831d6679344920728682cad483">GetColor</a>());</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structCircle.html#aed258b7e34f2644b8a683fee5aa42c59">   20</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structCircle.html#aed258b7e34f2644b8a683fee5aa42c59">Paint</a>()<span class="keyword"> override </span>{</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        std::cout &lt;&lt; boost::format(<span class="stringliteral">&quot;\x20\x20\x20\Class Circle:: method Paint(); Canvas:%1%\r\n&quot;</span>) % <a class="code" href="structIShape.html#a2abab86669d4e8c76c4a06697db61eb1">m_Canvas</a>.get();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structCircle.html#ae3f30436e645d73e368e8ee55f8d1650">   25</a></span>&#160;    <a class="code" href="structCircle.html#ae3f30436e645d73e368e8ee55f8d1650">~Circle</a>() {</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div><div class="ttc" id="structCircle_html_ae3f30436e645d73e368e8ee55f8d1650"><div class="ttname"><a href="structCircle.html#ae3f30436e645d73e368e8ee55f8d1650">Circle::~Circle</a></div><div class="ttdeci">~Circle()</div><div class="ttdef"><b>Definition:</b> circle.h:25</div></div>
+<div class="ttc" id="my__error__code_8h_html_a59e56af19e754a6aa26a612ebf91d05f"><div class="ttname"><a href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a></div><div class="ttdeci">ErrorCode</div><div class="ttdoc">Коды возвращаемых ошибок </div><div class="ttdef"><b>Definition:</b> my_error_code.h:3</div></div>
+<div class="ttc" id="structCircle_html_a30bfdd5dfc954061f429cdda065ecbc6"><div class="ttname"><a href="structCircle.html#a30bfdd5dfc954061f429cdda065ecbc6">Circle::Circle</a></div><div class="ttdeci">Circle(std::shared_ptr&lt; Canvas &gt; aCanvas, const TCoord aCoordBegin, const TCoord aCoordEnd, const std::uint8_t aThickness, const TColor aColor)</div><div class="ttdef"><b>Definition:</b> circle.h:7</div></div>
+<div class="ttc" id="structTCoord_html"><div class="ttname"><a href="structTCoord.html">TCoord</a></div><div class="ttdoc">Координата объекта на экране </div><div class="ttdef"><b>Definition:</b> coord.h:4</div></div>
+<div class="ttc" id="my__error__code_8h_html_a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1"><div class="ttname"><a href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a></div></div>
+<div class="ttc" id="structTColor_html"><div class="ttname"><a href="structTColor.html">TColor</a></div><div class="ttdoc">цвет объекта на экране </div><div class="ttdef"><b>Definition:</b> color.h:4</div></div>
+<div class="ttc" id="structIShape_html"><div class="ttname"><a href="structIShape.html">IShape</a></div><div class="ttdoc">Интерфейс фигуры </div><div class="ttdef"><b>Definition:</b> ishape.h:14</div></div>
+<div class="ttc" id="structIShape_html_aa625ad831d6679344920728682cad483"><div class="ttname"><a href="structIShape.html#aa625ad831d6679344920728682cad483">IShape::GetColor</a></div><div class="ttdeci">TColor GetColor() const </div><div class="ttdoc">получить цвет фигуры </div><div class="ttdef"><b>Definition:</b> ishape.h:75</div></div>
+<div class="ttc" id="structCircle_html"><div class="ttname"><a href="structCircle.html">Circle</a></div><div class="ttdoc">фигура круг, реализует интерфейс IShape. </div><div class="ttdef"><b>Definition:</b> circle.h:5</div></div>
+<div class="ttc" id="structIShape_html_a4a8d7d0ee286b62fc0f0db249fe4980c"><div class="ttname"><a href="structIShape.html#a4a8d7d0ee286b62fc0f0db249fe4980c">IShape::GetThickness</a></div><div class="ttdeci">thickens_t GetThickness() const </div><div class="ttdoc">Получить ширину линии </div><div class="ttdef"><b>Definition:</b> ishape.h:66</div></div>
+<div class="ttc" id="structCircle_html_aed258b7e34f2644b8a683fee5aa42c59"><div class="ttname"><a href="structCircle.html#aed258b7e34f2644b8a683fee5aa42c59">Circle::Paint</a></div><div class="ttdeci">ErrorCode Paint() override</div><div class="ttdoc">функция Отрисовывает фигуру на рабочей поверхности </div><div class="ttdef"><b>Definition:</b> circle.h:20</div></div>
+<div class="ttc" id="structCircle_html_a1612befb940099d244cb1af6cc9d8bcc"><div class="ttname"><a href="structCircle.html#a1612befb940099d244cb1af6cc9d8bcc">Circle::Clone</a></div><div class="ttdeci">std::unique_ptr&lt; IShape &gt; Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) override</div><div class="ttdoc">функция создает копию фигуры </div><div class="ttdef"><b>Definition:</b> circle.h:16</div></div>
+<div class="ttc" id="structCircle_html_a6609904d9bc761d37b017d3bb17c533c"><div class="ttname"><a href="structCircle.html#a6609904d9bc761d37b017d3bb17c533c">Circle::Circle</a></div><div class="ttdeci">Circle()=default</div></div>
+<div class="ttc" id="ishape_8h_html"><div class="ttname"><a href="ishape_8h.html">ishape.h</a></div></div>
+<div class="ttc" id="structIShape_html_a2abab86669d4e8c76c4a06697db61eb1"><div class="ttname"><a href="structIShape.html#a2abab86669d4e8c76c4a06697db61eb1">IShape::m_Canvas</a></div><div class="ttdeci">std::shared_ptr&lt; Canvas &gt; m_Canvas</div><div class="ttdef"><b>Definition:</b> ishape.h:95</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

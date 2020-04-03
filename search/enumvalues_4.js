@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['success',['Success',['../namespaceMyIP.html#aff5b391691147a530d7e58f182aa1fb6a505a83f220c02df2f85c3810cd9ceb38',1,'MyIP']]]
+  ['someerror',['SomeError',['../my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa06a7b98e0aa41cc322a1f3c528e5a308',1,'my_error_code.h']]],
+  ['succes',['Succes',['../my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1',1,'my_error_code.h']]]
 ];

@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Graphic Editor: Исходный файл file_system/files/ifile.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Graphic Editor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_4e6f6143140453f754a149b7bdc910fe.html">file_system</a></li><li class="navelem"><a class="el" href="dir_56be87eb1989ac7efac9d12100bec3d7.html">files</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ifile.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ifile_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="my__error__code_8h.html">error_code/my_error_code.h</a>&quot;</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="canvas_8h.html">work_space/canvas.h</a>&quot;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ishape_8h.html">shape/ishape.h</a>&quot;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;filesystem&gt;</span> </div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//Поддерживаемые файлы</span></div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2a">    7</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2a">FileTypes</a> {</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aaa5d5ca1447586e23dc011f8c0cc0a6db">BMP</a>,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa92769fe7c40229f4301d6125e0a9e928">JPG</a>,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa96d7c7be8080a01a03707e6f361147bf">VECT</a>,</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa0708dad23080f2c5981fceb97af02108">UNK</a></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;};</div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structIFile.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structIFile.html">IFile</a> {</div><div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structIFile.html#a20099bb4a024acbea0bc182c574d8cce">   15</a></span>&#160;    <a class="code" href="structIFile.html#a20099bb4a024acbea0bc182c574d8cce">IFile</a>() : m_Path(<span class="stringliteral">&quot;&quot;</span>) {}</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structIFile.html#a44c056635caab4d78d4eb757ea19ea72">   22</a></span>&#160;    <a class="code" href="structIFile.html#a44c056635caab4d78d4eb757ea19ea72">IFile</a>(<span class="keyword">const</span> std::filesystem::path aPath) : m_Path(aPath) {}</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> Open() = 0;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> Create() = 0;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> Save() = 0;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> Close() = 0;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    </div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> std::unique_ptr&lt;Canvas&gt; GetCanvas() = 0;              <span class="comment">// При экспорте файла - файловый мэнеджер получает канвас и набор фигур</span></div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    </div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> GetShapes(<a class="code" href="structPainter.html">Painter</a>&amp; aPainter) = 0; <span class="comment">// При экспорте файла - файловый мэнеджер получает канвас и набор фигур</span></div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div><div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structIFile.html#a76500162bca75cb662439cb352762310">   65</a></span>&#160;    std::filesystem::path <a class="code" href="structIFile.html#a76500162bca75cb662439cb352762310">GetFileName</a>()<span class="keyword"> const </span>{</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> m_Path;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structIFile.html#a4ce94ee31ac6aed63a0c94975f999bb8">   69</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="structIFile.html#a4ce94ee31ac6aed63a0c94975f999bb8">~IFile</a>() {};</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::filesystem::path m_Path;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div><div class="ttc" id="structIFile_html_a4ce94ee31ac6aed63a0c94975f999bb8"><div class="ttname"><a href="structIFile.html#a4ce94ee31ac6aed63a0c94975f999bb8">IFile::~IFile</a></div><div class="ttdeci">virtual ~IFile()</div><div class="ttdef"><b>Definition:</b> ifile.h:69</div></div>
+<div class="ttc" id="my__error__code_8h_html_a59e56af19e754a6aa26a612ebf91d05f"><div class="ttname"><a href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a></div><div class="ttdeci">ErrorCode</div><div class="ttdoc">Коды возвращаемых ошибок </div><div class="ttdef"><b>Definition:</b> my_error_code.h:3</div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2aa0708dad23080f2c5981fceb97af02108"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa0708dad23080f2c5981fceb97af02108">FileTypes::UNK</a></div></div>
+<div class="ttc" id="structIFile_html_a44c056635caab4d78d4eb757ea19ea72"><div class="ttname"><a href="structIFile.html#a44c056635caab4d78d4eb757ea19ea72">IFile::IFile</a></div><div class="ttdeci">IFile(const std::filesystem::path aPath)</div><div class="ttdoc">Конструктор файла </div><div class="ttdef"><b>Definition:</b> ifile.h:22</div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2aa92769fe7c40229f4301d6125e0a9e928"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa92769fe7c40229f4301d6125e0a9e928">FileTypes::JPG</a></div></div>
+<div class="ttc" id="canvas_8h_html"><div class="ttname"><a href="canvas_8h.html">canvas.h</a></div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2aaa5d5ca1447586e23dc011f8c0cc0a6db"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aaa5d5ca1447586e23dc011f8c0cc0a6db">FileTypes::BMP</a></div></div>
+<div class="ttc" id="structIFile_html_a76500162bca75cb662439cb352762310"><div class="ttname"><a href="structIFile.html#a76500162bca75cb662439cb352762310">IFile::GetFileName</a></div><div class="ttdeci">std::filesystem::path GetFileName() const </div><div class="ttdoc">Получить холст из файла </div><div class="ttdef"><b>Definition:</b> ifile.h:65</div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2a"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2a">FileTypes</a></div><div class="ttdeci">FileTypes</div><div class="ttdef"><b>Definition:</b> ifile.h:7</div></div>
+<div class="ttc" id="my__error__code_8h_html"><div class="ttname"><a href="my__error__code_8h.html">my_error_code.h</a></div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2aa96d7c7be8080a01a03707e6f361147bf"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa96d7c7be8080a01a03707e6f361147bf">FileTypes::VECT</a></div></div>
+<div class="ttc" id="structIFile_html_a20099bb4a024acbea0bc182c574d8cce"><div class="ttname"><a href="structIFile.html#a20099bb4a024acbea0bc182c574d8cce">IFile::IFile</a></div><div class="ttdeci">IFile()</div><div class="ttdef"><b>Definition:</b> ifile.h:15</div></div>
+<div class="ttc" id="structIFile_html"><div class="ttname"><a href="structIFile.html">IFile</a></div><div class="ttdoc">интерфейс файла </div><div class="ttdef"><b>Definition:</b> ifile.h:14</div></div>
+<div class="ttc" id="structPainter_html"><div class="ttname"><a href="structPainter.html">Painter</a></div><div class="ttdoc">класс Painter (маляр) </div><div class="ttdef"><b>Definition:</b> painter.h:10</div></div>
+<div class="ttc" id="ishape_8h_html"><div class="ttname"><a href="ishape_8h.html">ishape.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="108,233,225,260"/>
+<area shape="rect" id="node3" href="$structApplication.html#a0ef5e6c6d5cd7508e13df6391ec91451" title="метод задает цвет рисуемых на холсте фигур " alt="" coords="289,5,444,32"/>
+<area shape="rect" id="node4" href="$structApplication.html#afa17e3dcc4d0d63ac8f33117b2cba806" title="метод задает толщину рисуемых на холсте фигур " alt="" coords="275,56,459,83"/>
+<area shape="rect" id="node5" href="$structApplication.html#a482473b5af821d3b3d76d3f24c6a289b" title="метод добавляет окружность на холст " alt="" coords="287,107,447,133"/>
+<area shape="rect" id="node7" href="$structApplication.html#a3e021e43c664fd9eb01358ca52c1988e" title="метод добавляет линию на холст " alt="" coords="291,157,442,184"/>
+<area shape="rect" id="node8" href="$structApplication.html#a807c83b15dd077a6b3618e65c713fec9" title="метод добавляет прямоугольник на холст " alt="" coords="273,208,460,235"/>
+<area shape="rect" id="node9" href="$structApplication.html#ab50e501c7683187ef6007356259c3666" title="Метод удаляет фигуру с холста " alt="" coords="275,259,458,285"/>
+<area shape="rect" id="node11" href="$structApplication.html#a4a7dc6e21bd7223ecfa3900318b1bba1" title="Метод изменяет размер холста " alt="" coords="273,309,460,336"/>
+<area shape="rect" id="node13" href="$structApplication.html#a308ae9c493eca65f3c226dce59fa8b73" title="Экспорт состояния редактора в файл " alt="" coords="296,360,437,387"/>
+<area shape="rect" id="node15" href="$structApplication.html#a0545a49e9e7223da7ba3db43addf557d" title="Сохранение текущего состояния редактора " alt="" coords="301,411,433,437"/>
+<area shape="rect" id="node17" href="$structApplication.html#ae730fc011933c7643a17741a4a267718" title="Импорт состояния редактора из файла " alt="" coords="295,487,438,513"/>
+<area shape="rect" id="node6" href="$structPainter.html#a57debe85f2615d4c0145f379948e1b1d" title="Добавляет фигуру и отрисовывает на холсте " alt="" coords="523,132,663,159"/>
+<area shape="rect" id="node10" href="$structPainter.html#a5e5261753e1c3b478928f221590e784b" title="Удаляет фигуру с холста " alt="" coords="518,259,669,285"/>
+<area shape="rect" id="node12" href="$structPainter.html#aae45af326b85dba81f5e012c99781461" title="Изменеяет размер холста " alt="" coords="513,309,674,336"/>
+<area shape="rect" id="node14" href="$structFileManager.html#a8ff0ad09911b7a55de43bf3b696aee18" title="экспорт состояние художника в файл " alt="" coords="520,360,667,387"/>
+<area shape="rect" id="node16" href="$structFileManager.html#ad93bdf8b56e8b067bcd21e89be5c4373" title="сохранение состояние художника в файл " alt="" coords="524,411,663,437"/>
+<area shape="rect" id="node18" href="$structPainter.html#a0487f0c72fc81fa1060fcecca32d67e0" title="Отчистить состояние маляра " alt="" coords="759,487,865,513"/>
+<area shape="rect" id="node19" href="$structFileManager.html#a6bc53f1327a36e3ae3ba4ede001465fc" title="импортирует класс художника из файла " alt="" coords="519,563,667,589"/>
+<area shape="rect" id="node22" href="$structPainter.html#aef4efad9f23b53bf145f63f31f7d34ed" title="Получить размер текущего холста " alt="" coords="508,512,679,539"/>
+<area shape="rect" id="node20" href="$structPainter.html#a7b8dbc3d51e46c3de32284fd72e68ad4" title="Замена холста " alt="" coords="727,563,897,589"/>
+<area shape="rect" id="node21" href="$structPainter.html#af1b5dcfb2931a3fb146792cc0851d702" title="Отрисовывает все фигуры на холсте " alt="" coords="945,563,1113,589"/>
+</map>

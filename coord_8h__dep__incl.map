@@ -1,0 +1,16 @@
+<map id="shape/utility/coord.h" name="shape/utility/coord.h">
+<area shape="rect" id="node2" href="$ishape_8h.html" title="shape/ishape.h" alt="" coords="563,80,681,107"/>
+<area shape="rect" id="node3" href="$painter_8h.html" title="work_space/painter.h" alt="" coords="5,229,161,256"/>
+<area shape="rect" id="node6" href="$canvas_8h.html" title="work_space/canvas.h" alt="" coords="427,155,585,181"/>
+<area shape="rect" id="node7" href="$ifile_8h.html" title="file_system/files/ifile.h" alt="" coords="485,229,645,256"/>
+<area shape="rect" id="node13" href="$circle_8h.html" title="shape/circle.h" alt="" coords="691,393,801,420"/>
+<area shape="rect" id="node14" href="$rectangle_8h.html" title="shape/rectangle.h" alt="" coords="755,468,892,495"/>
+<area shape="rect" id="node15" href="$line_8h.html" title="shape/line.h" alt="" coords="881,155,979,181"/>
+<area shape="rect" id="node4" href="$application_8h.html" title="application/application.h" alt="" coords="629,543,805,569"/>
+<area shape="rect" id="node5" href="$otus__5_8cpp.html" title="otus_5.cpp" alt="" coords="671,617,763,644"/>
+<area shape="rect" id="node9" href="$file__manager_8h.html" title="file_system/file_manager.h" alt="" coords="427,468,619,495"/>
+<area shape="rect" id="node8" href="$all__files_8h.html" title="file_system/all_files.h" alt="" coords="445,393,601,420"/>
+<area shape="rect" id="node10" href="$file__jpg_8h.html" title="file_system/files/file\l_jpg.h" alt="" coords="220,304,365,345"/>
+<area shape="rect" id="node11" href="$file__bmp_8h.html" title="file_system/files/file\l_bmp.h" alt="" coords="389,304,535,345"/>
+<area shape="rect" id="node12" href="$file__vect_8h.html" title="file_system/files/file\l_vect.h" alt="" coords="559,304,704,345"/>
+</map>

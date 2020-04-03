@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Graphic Editor: Исходный файл file_system/files/file_jpg.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Graphic Editor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_4e6f6143140453f754a149b7bdc910fe.html">file_system</a></li><li class="navelem"><a class="el" href="dir_56be87eb1989ac7efac9d12100bec3d7.html">files</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">file_jpg.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="file__jpg_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ifile_8h.html">file_system/files/ifile.h</a>&quot;</span></div><div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="structFileJPG.html">    4</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structFileJPG.html">FileJPG</a> : <span class="keyword">public</span> <a class="code" href="structIFile.html">IFile</a> {</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <a class="code" href="structFileJPG.html#aea5619a44aca4a7bad7808b07222fb61">FileJPG</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    </div><div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structFileJPG.html#a9100acb1bb8be92d01324e0a8d6f9bb0">   12</a></span>&#160;    <a class="code" href="structFileJPG.html#a9100acb1bb8be92d01324e0a8d6f9bb0">FileJPG</a>(<span class="keyword">const</span> std::filesystem::path aPath) : <a class="code" href="structIFile.html">IFile</a>(aPath) {}</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structFileJPG.html#a159389c74dae68f8e64fc90cea503059">   18</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structFileJPG.html#a159389c74dae68f8e64fc90cea503059">Open</a>()<span class="keyword"> override </span>{</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structFileJPG.html#ae491f64cd7acbb90cfb4807a91a271c0">   26</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structFileJPG.html#ae491f64cd7acbb90cfb4807a91a271c0">Create</a>()<span class="keyword"> override </span>{</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structFileJPG.html#aa103bf3e1fe68049c8df3a02108f8729">   34</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structFileJPG.html#aa103bf3e1fe68049c8df3a02108f8729">Save</a>()<span class="keyword"> override </span>{</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structFileJPG.html#ae9a412f6308e6f7298cf37552ac31a66">   42</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structFileJPG.html#ae9a412f6308e6f7298cf37552ac31a66">Close</a>()<span class="keyword"> override </span>{</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structFileJPG.html#a9b89a00f7fc5b3f82e00ab9b101e761d">   50</a></span>&#160;    std::unique_ptr&lt;Canvas&gt; <a class="code" href="structFileJPG.html#a9b89a00f7fc5b3f82e00ab9b101e761d">GetCanvas</a>()<span class="keyword"> override </span>{</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structFileJPG.html#a3d7e0139d458b13ad2226a11eba8e353">   59</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structFileJPG.html#a3d7e0139d458b13ad2226a11eba8e353">GetShapes</a>(<a class="code" href="structPainter.html">Painter</a>&amp; aPainter)<span class="keyword"> override </span>{</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div><div class="ttc" id="structFileJPG_html_a9100acb1bb8be92d01324e0a8d6f9bb0"><div class="ttname"><a href="structFileJPG.html#a9100acb1bb8be92d01324e0a8d6f9bb0">FileJPG::FileJPG</a></div><div class="ttdeci">FileJPG(const std::filesystem::path aPath)</div><div class="ttdoc">Конструктор файла </div><div class="ttdef"><b>Definition:</b> file_jpg.h:12</div></div>
+<div class="ttc" id="my__error__code_8h_html_a59e56af19e754a6aa26a612ebf91d05f"><div class="ttname"><a href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a></div><div class="ttdeci">ErrorCode</div><div class="ttdoc">Коды возвращаемых ошибок </div><div class="ttdef"><b>Definition:</b> my_error_code.h:3</div></div>
+<div class="ttc" id="structFileJPG_html_a159389c74dae68f8e64fc90cea503059"><div class="ttname"><a href="structFileJPG.html#a159389c74dae68f8e64fc90cea503059">FileJPG::Open</a></div><div class="ttdeci">ErrorCode Open() override</div><div class="ttdoc">Открытие файла </div><div class="ttdef"><b>Definition:</b> file_jpg.h:18</div></div>
+<div class="ttc" id="structFileJPG_html_ae491f64cd7acbb90cfb4807a91a271c0"><div class="ttname"><a href="structFileJPG.html#ae491f64cd7acbb90cfb4807a91a271c0">FileJPG::Create</a></div><div class="ttdeci">ErrorCode Create() override</div><div class="ttdoc">Создание файла </div><div class="ttdef"><b>Definition:</b> file_jpg.h:26</div></div>
+<div class="ttc" id="structFileJPG_html_ae9a412f6308e6f7298cf37552ac31a66"><div class="ttname"><a href="structFileJPG.html#ae9a412f6308e6f7298cf37552ac31a66">FileJPG::Close</a></div><div class="ttdeci">ErrorCode Close() override</div><div class="ttdoc">Закрытие файла </div><div class="ttdef"><b>Definition:</b> file_jpg.h:42</div></div>
+<div class="ttc" id="ifile_8h_html"><div class="ttname"><a href="ifile_8h.html">ifile.h</a></div></div>
+<div class="ttc" id="structFileJPG_html_a9b89a00f7fc5b3f82e00ab9b101e761d"><div class="ttname"><a href="structFileJPG.html#a9b89a00f7fc5b3f82e00ab9b101e761d">FileJPG::GetCanvas</a></div><div class="ttdeci">std::unique_ptr&lt; Canvas &gt; GetCanvas() override</div><div class="ttdoc">Получить холст из файла </div><div class="ttdef"><b>Definition:</b> file_jpg.h:50</div></div>
+<div class="ttc" id="structFileJPG_html"><div class="ttname"><a href="structFileJPG.html">FileJPG</a></div><div class="ttdoc">Класс JPG-file. </div><div class="ttdef"><b>Definition:</b> file_jpg.h:4</div></div>
+<div class="ttc" id="structFileJPG_html_aea5619a44aca4a7bad7808b07222fb61"><div class="ttname"><a href="structFileJPG.html#aea5619a44aca4a7bad7808b07222fb61">FileJPG::FileJPG</a></div><div class="ttdeci">FileJPG()=default</div></div>
+<div class="ttc" id="structFileJPG_html_aa103bf3e1fe68049c8df3a02108f8729"><div class="ttname"><a href="structFileJPG.html#aa103bf3e1fe68049c8df3a02108f8729">FileJPG::Save</a></div><div class="ttdeci">ErrorCode Save() override</div><div class="ttdoc">Сохранение файла </div><div class="ttdef"><b>Definition:</b> file_jpg.h:34</div></div>
+<div class="ttc" id="structFileJPG_html_a3d7e0139d458b13ad2226a11eba8e353"><div class="ttname"><a href="structFileJPG.html#a3d7e0139d458b13ad2226a11eba8e353">FileJPG::GetShapes</a></div><div class="ttdeci">ErrorCode GetShapes(Painter &amp;aPainter) override</div><div class="ttdoc">Получить фигуры из файла </div><div class="ttdef"><b>Definition:</b> file_jpg.h:59</div></div>
+<div class="ttc" id="structIFile_html"><div class="ttname"><a href="structIFile.html">IFile</a></div><div class="ttdoc">интерфейс файла </div><div class="ttdef"><b>Definition:</b> ifile.h:14</div></div>
+<div class="ttc" id="structPainter_html"><div class="ttname"><a href="structPainter.html">Painter</a></div><div class="ttdoc">класс Painter (маляр) </div><div class="ttdef"><b>Definition:</b> painter.h:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

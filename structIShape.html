@@ -1,0 +1,607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Graphic Editor: Структура IShape</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Graphic Editor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="classes.html"><span>Алфавитный&#160;указатель&#160;классов</span></a></li>
+      <li><a href="inherits.html"><span>Иерархия&#160;классов</span></a></li>
+      <li><a href="functions.html"><span>Члены&#160;классов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pro-attribs">Защищенные данные</a> &#124;
+<a href="structIShape-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Структура IShape<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Интерфейс фигуры  
+ <a href="structIShape.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ishape_8h_source.html">ishape.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:IShape:</div>
+<div class="dyncontent">
+<div class="center"><img src="structIShape__inherit__graph.png" border="0" usemap="#IShape_inherit__map" alt="Inheritance graph"/></div>
+<map name="IShape_inherit__map" id="IShape_inherit__map">
+<area shape="rect" id="node2" href="structCircle.html" title="фигура круг, реализует интерфейс IShape. " alt="" coords="5,263,99,399"/>
+<area shape="rect" id="node3" href="structLine.html" title="фигура Линия, реализует интерфейс IShape. " alt="" coords="123,263,207,399"/>
+<area shape="rect" id="node4" href="structRectangle.html" title="фигура прямоугольник, реализует интерфейс IShape. " alt="" coords="232,263,352,399"/>
+</map>
+</div>
+<div class="dynheader">
+Граф связей класса IShape:</div>
+<div class="dyncontent">
+<div class="center"><img src="structIShape__coll__graph.png" border="0" usemap="#IShape_coll__map" alt="Collaboration graph"/></div>
+<map name="IShape_coll__map" id="IShape_coll__map">
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:a42fb7f888ad15b635a2512983a62a967"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#a42fb7f888ad15b635a2512983a62a967">thickens_t</a> = std::uint8_t</td></tr>
+<tr class="separator:a42fb7f888ad15b635a2512983a62a967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a7c6c1b825fb4ba796537c66625e27973"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#a7c6c1b825fb4ba796537c66625e27973">IShape</a> (std::shared_ptr&lt; <a class="el" href="structCanvas.html">Canvas</a> &gt; aCanvas, const <a class="el" href="structTCoord.html">TCoord</a> aCoordBegin, const <a class="el" href="structTCoord.html">TCoord</a> aCoordEnd, const std::uint8_t aThickness, const <a class="el" href="structTColor.html">TColor</a> aColor)</td></tr>
+<tr class="separator:a7c6c1b825fb4ba796537c66625e27973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91bda131b03ba43e699b1fab5c70feed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#a91bda131b03ba43e699b1fab5c70feed">SetState</a> (const <a class="el" href="structTCoord.html">TCoord</a> aCoordBegin, const <a class="el" href="structTCoord.html">TCoord</a> aCoordEnd, const <a class="el" href="structIShape.html#a42fb7f888ad15b635a2512983a62a967">thickens_t</a> aThickness, const <a class="el" href="structTColor.html">TColor</a> aColor)</td></tr>
+<tr class="memdesc:a91bda131b03ba43e699b1fab5c70feed"><td class="mdescLeft">&#160;</td><td class="mdescRight">смена состояния фигуры  <a href="#a91bda131b03ba43e699b1fab5c70feed">Подробнее...</a><br /></td></tr>
+<tr class="separator:a91bda131b03ba43e699b1fab5c70feed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace67ba3b56c2d51b2cd40a893925648d"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="structIShape.html">IShape</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#ace67ba3b56c2d51b2cd40a893925648d">Clone</a> (const <a class="el" href="structTCoord.html">TCoord</a> aCoordBegin, const <a class="el" href="structTCoord.html">TCoord</a> aCoordEnd)=0</td></tr>
+<tr class="memdesc:ace67ba3b56c2d51b2cd40a893925648d"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция создает копию фигуры  <a href="#ace67ba3b56c2d51b2cd40a893925648d">Подробнее...</a><br /></td></tr>
+<tr class="separator:ace67ba3b56c2d51b2cd40a893925648d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace6947229ec4cbb83cf44423ef9fab53"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#ace6947229ec4cbb83cf44423ef9fab53">Paint</a> ()=0</td></tr>
+<tr class="memdesc:ace6947229ec4cbb83cf44423ef9fab53"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция Отрисовывает фигуру на рабочей поверхности  <a href="#ace6947229ec4cbb83cf44423ef9fab53">Подробнее...</a><br /></td></tr>
+<tr class="separator:ace6947229ec4cbb83cf44423ef9fab53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abecc7b52521ee60efa01d65a855dd652"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#abecc7b52521ee60efa01d65a855dd652">~IShape</a> ()</td></tr>
+<tr class="memdesc:abecc7b52521ee60efa01d65a855dd652"><td class="mdescLeft">&#160;</td><td class="mdescRight">деструктор  <a href="#abecc7b52521ee60efa01d65a855dd652">Подробнее...</a><br /></td></tr>
+<tr class="separator:abecc7b52521ee60efa01d65a855dd652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a8d7d0ee286b62fc0f0db249fe4980c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structIShape.html#a42fb7f888ad15b635a2512983a62a967">thickens_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#a4a8d7d0ee286b62fc0f0db249fe4980c">GetThickness</a> () const </td></tr>
+<tr class="memdesc:a4a8d7d0ee286b62fc0f0db249fe4980c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получить ширину линии  <a href="#a4a8d7d0ee286b62fc0f0db249fe4980c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4a8d7d0ee286b62fc0f0db249fe4980c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02b699d6f53c657242427994577f969d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#a02b699d6f53c657242427994577f969d">ChangeThickness</a> (const std::uint8_t aThickness)</td></tr>
+<tr class="memdesc:a02b699d6f53c657242427994577f969d"><td class="mdescLeft">&#160;</td><td class="mdescRight">цвет ширину линии фигуры  <a href="#a02b699d6f53c657242427994577f969d">Подробнее...</a><br /></td></tr>
+<tr class="separator:a02b699d6f53c657242427994577f969d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa625ad831d6679344920728682cad483"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTColor.html">TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#aa625ad831d6679344920728682cad483">GetColor</a> () const </td></tr>
+<tr class="memdesc:aa625ad831d6679344920728682cad483"><td class="mdescLeft">&#160;</td><td class="mdescRight">получить цвет фигуры  <a href="#aa625ad831d6679344920728682cad483">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa625ad831d6679344920728682cad483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40c57a152c39fd4ecaeb0222b70ee7ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#a40c57a152c39fd4ecaeb0222b70ee7ef">ChangeColor</a> (<a class="el" href="structTColor.html">TColor</a> aColor)</td></tr>
+<tr class="memdesc:a40c57a152c39fd4ecaeb0222b70ee7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">изменить цвет фигуры  <a href="#a40c57a152c39fd4ecaeb0222b70ee7ef">Подробнее...</a><br /></td></tr>
+<tr class="separator:a40c57a152c39fd4ecaeb0222b70ee7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca0be265737269680c39a059f6fae94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#aaca0be265737269680c39a059f6fae94">ChangeCanvas</a> (std::shared_ptr&lt; <a class="el" href="structCanvas.html">Canvas</a> &gt; aCanvas)</td></tr>
+<tr class="memdesc:aaca0be265737269680c39a059f6fae94"><td class="mdescLeft">&#160;</td><td class="mdescRight">перенос фигуры на другой холст  <a href="#aaca0be265737269680c39a059f6fae94">Подробнее...</a><br /></td></tr>
+<tr class="separator:aaca0be265737269680c39a059f6fae94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Защищенные данные</h2></td></tr>
+<tr class="memitem:a2abab86669d4e8c76c4a06697db61eb1"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structCanvas.html">Canvas</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIShape.html#a2abab86669d4e8c76c4a06697db61eb1">m_Canvas</a></td></tr>
+<tr class="separator:a2abab86669d4e8c76c4a06697db61eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Интерфейс фигуры </p>
+</div><h2 class="groupheader">Определения типов</h2>
+<a class="anchor" id="a42fb7f888ad15b635a2512983a62a967"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a> =  std::uint8_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Конструктор(ы)</h2>
+<a class="anchor" id="a7c6c1b825fb4ba796537c66625e27973"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IShape::IShape </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structCanvas.html">Canvas</a> &gt;&#160;</td>
+          <td class="paramname"><em>aCanvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aCoordBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aCoordEnd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::uint8_t&#160;</td>
+          <td class="paramname"><em>aThickness</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abecc7b52521ee60efa01d65a855dd652"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual IShape::~IShape </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>деструктор </p>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a class="anchor" id="aaca0be265737269680c39a059f6fae94"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> IShape::ChangeCanvas </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structCanvas.html">Canvas</a> &gt;&#160;</td>
+          <td class="paramname"><em>aCanvas</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>перенос фигуры на другой холст </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aCanvas</td><td>- указатель на новый холст </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>ErrorCode код ошибки </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a40c57a152c39fd4ecaeb0222b70ee7ef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> IShape::ChangeColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>изменить цвет фигуры </p>
+
+</div>
+</div>
+<a class="anchor" id="a02b699d6f53c657242427994577f969d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> IShape::ChangeThickness </td>
+          <td>(</td>
+          <td class="paramtype">const std::uint8_t&#160;</td>
+          <td class="paramname"><em>aThickness</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>цвет ширину линии фигуры </p>
+
+</div>
+</div>
+<a class="anchor" id="ace67ba3b56c2d51b2cd40a893925648d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="structIShape.html">IShape</a>&gt; IShape::Clone </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aCoordBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aCoordEnd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>функция создает копию фигуры </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aCoordBegin</td><td>- координаты положения копии фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aCoordEnd</td><td>- координаты положения копии фигуры </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>std::unique_ptr&lt;IShape&gt; указатель на интерфейс <a class="el" href="structIShape.html" title="Интерфейс фигуры ">IShape</a> </dd></dl>
+
+<p>Замещается в <a class="el" href="structCircle.html#a1612befb940099d244cb1af6cc9d8bcc">Circle</a>, <a class="el" href="structLine.html#aa258701402237e9716975748816741bd">Line</a> и <a class="el" href="structRectangle.html#a98e31ed5bc6b98852d26a0718d170cd9">Rectangle</a>.</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="structIShape_ace67ba3b56c2d51b2cd40a893925648d_icgraph.png" border="0" usemap="#structIShape_ace67ba3b56c2d51b2cd40a893925648d_icgraph" alt=""/></div>
+<map name="structIShape_ace67ba3b56c2d51b2cd40a893925648d_icgraph" id="structIShape_ace67ba3b56c2d51b2cd40a893925648d_icgraph">
+<area shape="rect" id="node2" href="structIShape.html#a91bda131b03ba43e699b1fab5c70feed" title="смена состояния фигуры " alt="" coords="164,5,295,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa625ad831d6679344920728682cad483"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structTColor.html">TColor</a> IShape::GetColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>получить цвет фигуры </p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="structIShape_aa625ad831d6679344920728682cad483_icgraph.png" border="0" usemap="#structIShape_aa625ad831d6679344920728682cad483_icgraph" alt=""/></div>
+<map name="structIShape_aa625ad831d6679344920728682cad483_icgraph" id="structIShape_aa625ad831d6679344920728682cad483_icgraph">
+<area shape="rect" id="node2" href="structCircle.html#a1612befb940099d244cb1af6cc9d8bcc" title="функция создает копию фигуры " alt="" coords="197,5,299,32"/>
+<area shape="rect" id="node3" href="structLine.html#aa258701402237e9716975748816741bd" title="функция создает копию фигуры " alt="" coords="202,56,294,83"/>
+<area shape="rect" id="node4" href="structRectangle.html#a98e31ed5bc6b98852d26a0718d170cd9" title="функция создает копию фигуры " alt="" coords="184,107,312,133"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a8d7d0ee286b62fc0f0db249fe4980c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structIShape.html#a42fb7f888ad15b635a2512983a62a967">thickens_t</a> IShape::GetThickness </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Получить ширину линии </p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="structIShape_a4a8d7d0ee286b62fc0f0db249fe4980c_icgraph.png" border="0" usemap="#structIShape_a4a8d7d0ee286b62fc0f0db249fe4980c_icgraph" alt=""/></div>
+<map name="structIShape_a4a8d7d0ee286b62fc0f0db249fe4980c_icgraph" id="structIShape_a4a8d7d0ee286b62fc0f0db249fe4980c_icgraph">
+<area shape="rect" id="node2" href="structCircle.html#a1612befb940099d244cb1af6cc9d8bcc" title="функция создает копию фигуры " alt="" coords="225,5,327,32"/>
+<area shape="rect" id="node3" href="structLine.html#aa258701402237e9716975748816741bd" title="функция создает копию фигуры " alt="" coords="230,56,322,83"/>
+<area shape="rect" id="node4" href="structRectangle.html#a98e31ed5bc6b98852d26a0718d170cd9" title="функция создает копию фигуры " alt="" coords="212,107,340,133"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ace6947229ec4cbb83cf44423ef9fab53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> IShape::Paint </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>функция Отрисовывает фигуру на рабочей поверхности </p>
+<dl class="section return"><dt>Возвращает</dt><dd>ErrorCode Код возможной ошибки </dd></dl>
+
+<p>Замещается в <a class="el" href="structCircle.html#aed258b7e34f2644b8a683fee5aa42c59">Circle</a>, <a class="el" href="structLine.html#a8890dfe268c3f7575f42943c2a6aa6b0">Line</a> и <a class="el" href="structRectangle.html#a92a5d0241133a63ece41dd90ca41c9a1">Rectangle</a>.</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="structIShape_ace6947229ec4cbb83cf44423ef9fab53_icgraph.png" border="0" usemap="#structIShape_ace6947229ec4cbb83cf44423ef9fab53_icgraph" alt=""/></div>
+<map name="structIShape_ace6947229ec4cbb83cf44423ef9fab53_icgraph" id="structIShape_ace6947229ec4cbb83cf44423ef9fab53_icgraph">
+<area shape="rect" id="node2" href="structIShape.html#a91bda131b03ba43e699b1fab5c70feed" title="смена состояния фигуры " alt="" coords="159,5,289,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a91bda131b03ba43e699b1fab5c70feed"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> IShape::SetState </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aCoordBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aCoordEnd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structIShape.html#a42fb7f888ad15b635a2512983a62a967">thickens_t</a>&#160;</td>
+          <td class="paramname"><em>aThickness</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>смена состояния фигуры </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aCoordBegin</td><td>- координаты нового фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aCoordEnd</td><td>- координаты нового фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aThickness</td><td>- новая ширина фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aColor</td><td>- новый цвет фигуры </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>ErrorCode код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="structIShape_a91bda131b03ba43e699b1fab5c70feed_cgraph.png" border="0" usemap="#structIShape_a91bda131b03ba43e699b1fab5c70feed_cgraph" alt=""/></div>
+<map name="structIShape_a91bda131b03ba43e699b1fab5c70feed_cgraph" id="structIShape_a91bda131b03ba43e699b1fab5c70feed_cgraph">
+<area shape="rect" id="node2" href="structIShape.html#ace67ba3b56c2d51b2cd40a893925648d" title="функция создает копию фигуры " alt="" coords="184,5,295,32"/>
+<area shape="rect" id="node3" href="structIShape.html#ace6947229ec4cbb83cf44423ef9fab53" title="функция Отрисовывает фигуру на рабочей поверхности " alt="" coords="187,56,292,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a class="anchor" id="a2abab86669d4e8c76c4a06697db61eb1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="structCanvas.html">Canvas</a>&gt; IShape::m_Canvas</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li>shape/<a class="el" href="ishape_8h_source.html">ishape.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

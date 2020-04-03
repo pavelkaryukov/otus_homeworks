@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['wrongargument',['WrongArgument',['../namespaceMyIP.html#aff5b391691147a530d7e58f182aa1fb6a5a738160747f39c20e9f65416931c974',1,'MyIP']]]
+  ['rectangle',['Rectangle',['../structRectangle.html',1,'Rectangle'],['../structRectangle.html#ab74337363dcb42ccb4b030b0970085f8',1,'Rectangle::Rectangle()=default'],['../structRectangle.html#a9b36b4b4b03f016286762efad55c740d',1,'Rectangle::Rectangle(std::shared_ptr&lt; Canvas &gt; aCanvas, const TCoord aCoordBegin, const TCoord aCoordEnd, const std::uint8_t aThickness, const TColor aColor)']]],
+  ['rectangle_2eh',['rectangle.h',['../rectangle_8h.html',1,'']]],
+  ['red',['Red',['../structTColor.html#a6f42a03a7a98ba0351813f9bf95d42b9',1,'TColor']]],
+  ['resize',['Resize',['../structCanvas.html#a26705caa6d6310b78a95594b86f2ef52',1,'Canvas']]],
+  ['resizecanvas',['ResizeCanvas',['../structApplication.html#a4a7dc6e21bd7223ecfa3900318b1bba1',1,'Application::ResizeCanvas()'],['../structPainter.html#aae45af326b85dba81f5e012c99781461',1,'Painter::ResizeCanvas()']]]
 ];

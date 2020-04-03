@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../otus__4_8cpp.html#a81ce304348a420752ee080480d2b3095',1,'otus_4.cpp']]],
-  ['make_5findex_5fdispatcher',['make_index_dispatcher',['../namespacetuple__utils.html#ad6e44d60501d141fa2fdeb133ee58530',1,'tuple_utils::make_index_dispatcher(std::index_sequence&lt; Idx... &gt;)'],['../namespacetuple__utils.html#a11c16d193bdd5a3c62d1d51e1dd8b3e2',1,'tuple_utils::make_index_dispatcher()']]],
-  ['myip',['MyIP',['../namespaceMyIP.html',1,'']]],
-  ['private',['Private',['../namespaceMyIP_1_1Private.html',1,'MyIP']]]
+  ['jpg',['JPG',['../ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa92769fe7c40229f4301d6125e0a9e928',1,'ifile.h']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['printforotus',['PrintForOtus',['../otus__4_8cpp.html#ad9638c29865f3fb6152890a45f3962e1',1,'otus_4.cpp']]],
-  ['printipaddr',['PrintIpAddr',['../namespaceMyIP.html#ae206259f05e0da4704103b18bf5eb6c2',1,'MyIP']]]
+  ['noaccesstoelement',['NoAccessToElement',['../my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa09198e429d5beda40da8bdb48a24caa3',1,'my_error_code.h']]]
 ];

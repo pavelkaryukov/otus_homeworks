@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Graphic Editor: Исходный файл file_system/file_manager.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Graphic Editor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_4e6f6143140453f754a149b7bdc910fe.html">file_system</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">file_manager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="file__manager_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="all__files_8h.html">file_system/all_files.h</a>&quot;</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="canvas_8h.html">work_space/canvas.h</a>&quot;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//Засунуть лямбду вызова select file from application</span></div><div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="structFileManager.html">    5</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structFileManager.html">FileManager</a> {</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    </div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structFileManager.html#a6bc53f1327a36e3ae3ba4ede001465fc">   13</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structFileManager.html#a6bc53f1327a36e3ae3ba4ede001465fc">Import</a>(<a class="code" href="structPainter.html">Painter</a>&amp; aPainter) {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">auto</span> [res, filePtr] = SelectFile();</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (res != <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>)</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">return</span> res;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        m_File = std::move(filePtr);</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">auto</span> errorCode = aPainter.<a class="code" href="structPainter.html#a7b8dbc3d51e46c3de32284fd72e68ad4">ChangeCanvas</a>(m_File-&gt;GetCanvas());</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (errorCode != <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>)</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">return</span> errorCode;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        errorCode = m_File-&gt;GetShapes(aPainter);</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">if</span> (errorCode != <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>)</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> errorCode;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div><div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structFileManager.html#a8ff0ad09911b7a55de43bf3b696aee18">   32</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structFileManager.html#a8ff0ad09911b7a55de43bf3b696aee18">Export</a>(<span class="keyword">const</span> <a class="code" href="structPainter.html">Painter</a>&amp; aPainter) {</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">auto</span> [res, filePtr] = SelectFile();</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">if</span> (res != <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>)</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">return</span> res;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;FileManager:: ErrorCode Export(); FileName: &quot;</span> &lt;&lt; filePtr-&gt;GetFileName() &lt;&lt; std::endl;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structFileManager.html#ad93bdf8b56e8b067bcd21e89be5c4373">   45</a></span>&#160;    <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a> <a class="code" href="structFileManager.html#ad93bdf8b56e8b067bcd21e89be5c4373">Save</a>(<span class="keyword">const</span> <a class="code" href="structPainter.html">Painter</a>&amp; aPainter) {</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span> (m_File != <span class="keyword">nullptr</span>)</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">return</span> m_File-&gt;Save();</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">auto</span> [error, ptr] = CreateFile(<span class="stringliteral">&quot;test_file.vect&quot;</span>);</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span> (error != <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a> || ptr == <span class="keyword">nullptr</span>) {</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">return</span> error;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        m_File = std::move(ptr);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        m_File-&gt;Save();</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::unique_ptr&lt;IFile&gt; m_File;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//Путь к файлу</span></div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">using</span> OperationResult = std::pair&lt;ErrorCode, std::unique_ptr&lt;IFile&gt;&gt;;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    OperationResult CreateFile(<span class="keyword">const</span> std::filesystem::path aPath, <span class="keyword">const</span> <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2a">FileTypes</a> aFType = <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa96d7c7be8080a01a03707e6f361147bf">FileTypes::VECT</a>) {</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        OperationResult  res = { <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>, std::unique_ptr&lt;IFile&gt;() };</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">auto</span>&amp;[errorCode, ptr] = res;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;         <span class="keywordflow">switch</span> (aFType) {</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;             <span class="keywordflow">case</span> <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aaa5d5ca1447586e23dc011f8c0cc0a6db">FileTypes::BMP</a>:</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                 ptr = std::make_unique&lt;FileBMP&gt;(aPath);</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                 <span class="keywordflow">break</span>;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;             <span class="keywordflow">case</span> <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa92769fe7c40229f4301d6125e0a9e928">FileTypes::JPG</a>:</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                 ptr = std::make_unique&lt;FileJPG&gt;(aPath);</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                 <span class="keywordflow">break</span>;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;             <span class="keywordflow">case</span> <a class="code" href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa96d7c7be8080a01a03707e6f361147bf">FileTypes::VECT</a>:</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                 ptr = std::make_unique&lt;FileVect&gt;(aPath);</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                 <span class="keywordflow">break</span>;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;         }</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">if</span> (ptr == <span class="keyword">nullptr</span>) </div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            errorCode = <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa06a7b98e0aa41cc322a1f3c528e5a308">ErrorCode::SomeError</a>;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> res;</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    OperationResult SelectFile() {</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="comment">//Диалог выбора файла</span></div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">const</span> std::filesystem::path filePath = <span class="stringliteral">&quot;testfile.vect&quot;</span>;</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        OperationResult  res = { <a class="code" href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a>, std::unique_ptr&lt;IFile&gt;(<span class="keyword">new</span> <a class="code" href="structFileVect.html">FileVect</a>(filePath)) };</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">return</span> res;</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div><div class="ttc" id="structFileManager_html"><div class="ttname"><a href="structFileManager.html">FileManager</a></div><div class="ttdef"><b>Definition:</b> file_manager.h:5</div></div>
+<div class="ttc" id="my__error__code_8h_html_a59e56af19e754a6aa26a612ebf91d05f"><div class="ttname"><a href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05f">ErrorCode</a></div><div class="ttdeci">ErrorCode</div><div class="ttdoc">Коды возвращаемых ошибок </div><div class="ttdef"><b>Definition:</b> my_error_code.h:3</div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2aa92769fe7c40229f4301d6125e0a9e928"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa92769fe7c40229f4301d6125e0a9e928">FileTypes::JPG</a></div></div>
+<div class="ttc" id="canvas_8h_html"><div class="ttname"><a href="canvas_8h.html">canvas.h</a></div></div>
+<div class="ttc" id="structPainter_html_a7b8dbc3d51e46c3de32284fd72e68ad4"><div class="ttname"><a href="structPainter.html#a7b8dbc3d51e46c3de32284fd72e68ad4">Painter::ChangeCanvas</a></div><div class="ttdeci">ErrorCode ChangeCanvas(std::unique_ptr&lt; Canvas &gt; aCanvas)</div><div class="ttdoc">Замена холста </div><div class="ttdef"><b>Definition:</b> painter.h:136</div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2aaa5d5ca1447586e23dc011f8c0cc0a6db"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aaa5d5ca1447586e23dc011f8c0cc0a6db">FileTypes::BMP</a></div></div>
+<div class="ttc" id="my__error__code_8h_html_a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1"><div class="ttname"><a href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa9ee75d741ac35acc8046b27bd02f62c1">ErrorCode::Succes</a></div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2a"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2a">FileTypes</a></div><div class="ttdeci">FileTypes</div><div class="ttdef"><b>Definition:</b> ifile.h:7</div></div>
+<div class="ttc" id="my__error__code_8h_html_a59e56af19e754a6aa26a612ebf91d05fa06a7b98e0aa41cc322a1f3c528e5a308"><div class="ttname"><a href="my__error__code_8h.html#a59e56af19e754a6aa26a612ebf91d05fa06a7b98e0aa41cc322a1f3c528e5a308">ErrorCode::SomeError</a></div></div>
+<div class="ttc" id="structFileVect_html"><div class="ttname"><a href="structFileVect.html">FileVect</a></div><div class="ttdoc">Класс Vect-file. </div><div class="ttdef"><b>Definition:</b> file_vect.h:7</div></div>
+<div class="ttc" id="all__files_8h_html"><div class="ttname"><a href="all__files_8h.html">all_files.h</a></div></div>
+<div class="ttc" id="structFileManager_html_a8ff0ad09911b7a55de43bf3b696aee18"><div class="ttname"><a href="structFileManager.html#a8ff0ad09911b7a55de43bf3b696aee18">FileManager::Export</a></div><div class="ttdeci">ErrorCode Export(const Painter &amp;aPainter)</div><div class="ttdoc">экспорт состояние художника в файл </div><div class="ttdef"><b>Definition:</b> file_manager.h:32</div></div>
+<div class="ttc" id="structFileManager_html_a6bc53f1327a36e3ae3ba4ede001465fc"><div class="ttname"><a href="structFileManager.html#a6bc53f1327a36e3ae3ba4ede001465fc">FileManager::Import</a></div><div class="ttdeci">ErrorCode Import(Painter &amp;aPainter)</div><div class="ttdoc">импортирует класс художника из файла </div><div class="ttdef"><b>Definition:</b> file_manager.h:13</div></div>
+<div class="ttc" id="ifile_8h_html_a9f19b10fbbb0e568c31ed76e6e010d2aa96d7c7be8080a01a03707e6f361147bf"><div class="ttname"><a href="ifile_8h.html#a9f19b10fbbb0e568c31ed76e6e010d2aa96d7c7be8080a01a03707e6f361147bf">FileTypes::VECT</a></div></div>
+<div class="ttc" id="structPainter_html"><div class="ttname"><a href="structPainter.html">Painter</a></div><div class="ttdoc">класс Painter (маляр) </div><div class="ttdef"><b>Definition:</b> painter.h:10</div></div>
+<div class="ttc" id="structFileManager_html_ad93bdf8b56e8b067bcd21e89be5c4373"><div class="ttname"><a href="structFileManager.html#ad93bdf8b56e8b067bcd21e89be5c4373">FileManager::Save</a></div><div class="ttdeci">ErrorCode Save(const Painter &amp;aPainter)</div><div class="ttdoc">сохранение состояние художника в файл </div><div class="ttdef"><b>Definition:</b> file_manager.h:45</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

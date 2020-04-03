@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['tostr',['ToStr',['../namespaceMyIP.html#ac42bc9f57b2f5dbd3bee2f275ecefd49',1,'MyIP::ToStr(const T aBegin, const T aEnd, const ByteOrder aOrder)'],['../namespaceMyIP.html#a029753ff19f130cbfdf93e0f6160ab36',1,'MyIP::ToStr(const TContainer &amp;aObj, const ByteOrder aOrder=ByteOrder::BigEndian)'],['../namespaceMyIP.html#a3d34050ab5a0e544f099e31b1aa371cb',1,'MyIP::ToStr(const T &amp;aObj, const ByteOrder aOrder=ByteOrder::BigEndian)'],['../namespaceMyIP.html#acee326406c58a4846b87cf03101f9dac',1,'MyIP::ToStr(const std::string aStr, const ByteOrder)'],['../namespaceMyIP.html#a1f2b39dd301f5d75df2f4ce79ec37d8e',1,'MyIP::ToStr(const std::tuple&lt; Types... &gt; aTuple, const ByteOrder aOrder=ByteOrder::BigEndian)']]]
+  ['getcanvas',['GetCanvas',['../structFileBMP.html#a76e441aa8358281b952c8a0716c88f93',1,'FileBMP::GetCanvas()'],['../structFileJPG.html#a9b89a00f7fc5b3f82e00ab9b101e761d',1,'FileJPG::GetCanvas()'],['../structFileVect.html#abe666319876d987d933eb62f5d326ed0',1,'FileVect::GetCanvas()'],['../structIFile.html#a7b80fa39fd679dbfb575bc50283eb3ca',1,'IFile::GetCanvas()']]],
+  ['getcanvassize',['GetCanvasSize',['../structApplication.html#ab255a1c119ce75dbfb591fcc6cbbbc5c',1,'Application::GetCanvasSize()'],['../structPainter.html#aef4efad9f23b53bf145f63f31f7d34ed',1,'Painter::GetCanvasSize()']]],
+  ['getcolor',['GetColor',['../structIShape.html#aa625ad831d6679344920728682cad483',1,'IShape']]],
+  ['getfilename',['GetFileName',['../structIFile.html#a76500162bca75cb662439cb352762310',1,'IFile']]],
+  ['getshapes',['GetShapes',['../structFileBMP.html#a91630bc9905f4cce023ee14018b34688',1,'FileBMP::GetShapes()'],['../structFileJPG.html#a3d7e0139d458b13ad2226a11eba8e353',1,'FileJPG::GetShapes()'],['../structFileVect.html#ab44368e335913af2c57e24b2a443ea11',1,'FileVect::GetShapes()'],['../structIFile.html#a1f3ed9b82acfbbbe0fed1315444a37d0',1,'IFile::GetShapes()']]],
+  ['getsize',['GetSize',['../structCanvas.html#aa4eaa049b2c68206812db864b09cbdbe',1,'Canvas']]],
+  ['getthickness',['GetThickness',['../structIShape.html#a4a8d7d0ee286b62fc0f0db249fe4980c',1,'IShape']]]
 ];

@@ -1,0 +1,6 @@
+<map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
+<area shape="rect" id="node1" href="$structIFile.html" title="интерфейс файла " alt="" coords="5,56,51,83"/>
+<area shape="rect" id="node2" href="$structFileBMP.html" title="Класс BMP&#45;file. " alt="" coords="99,5,169,32"/>
+<area shape="rect" id="node3" href="$structFileJPG.html" title="Класс JPG&#45;file. " alt="" coords="103,56,165,83"/>
+<area shape="rect" id="node4" href="$structFileVect.html" title="Класс Vect&#45;file. " alt="" coords="99,107,169,133"/>
+</map>

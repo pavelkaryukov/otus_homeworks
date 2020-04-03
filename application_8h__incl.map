@@ -1,0 +1,17 @@
+<map id="application/application.h" name="application/application.h">
+<area shape="rect" id="node2" href="$painter_8h.html" title="work_space/painter.h" alt="" coords="1009,319,1165,345"/>
+<area shape="rect" id="node4" href="$my__error__code_8h.html" title="error_code/my_error\l_code.h" alt="" coords="1321,543,1475,584"/>
+<area shape="rect" id="node17" href="$circle_8h.html" title="shape/circle.h" alt="" coords="853,319,964,345"/>
+<area shape="rect" id="node18" href="$rectangle_8h.html" title="shape/rectangle.h" alt="" coords="568,319,705,345"/>
+<area shape="rect" id="node19" href="$line_8h.html" title="shape/line.h" alt="" coords="730,319,829,345"/>
+<area shape="rect" id="node20" href="$file__manager_8h.html" title="file_system/file_manager.h" alt="" coords="1119,80,1311,107"/>
+<area shape="rect" id="node3" href="$ishape_8h.html" title="shape/ishape.h" alt="" coords="720,393,839,420"/>
+<area shape="rect" id="node9" href="$canvas_8h.html" title="work_space/canvas.h" alt="" coords="1197,468,1354,495"/>
+<area shape="rect" id="node5" href="$coord_8h.html" title="shape/utility/coord.h" alt="" coords="703,468,853,495"/>
+<area shape="rect" id="node7" href="$color_8h.html" title="shape/utility/color.h" alt="" coords="533,468,679,495"/>
+<area shape="rect" id="node21" href="$all__files_8h.html" title="file_system/all_files.h" alt="" coords="1276,155,1432,181"/>
+<area shape="rect" id="node22" href="$ifile_8h.html" title="file_system/files/ifile.h" alt="" coords="1274,319,1434,345"/>
+<area shape="rect" id="node24" href="$file__jpg_8h.html" title="file_system/files/file\l_jpg.h" alt="" coords="1281,229,1427,271"/>
+<area shape="rect" id="node25" href="$file__bmp_8h.html" title="file_system/files/file\l_bmp.h" alt="" coords="1451,229,1596,271"/>
+<area shape="rect" id="node26" href="$file__vect_8h.html" title="file_system/files/file\l_vect.h" alt="" coords="1620,229,1765,271"/>
+</map>

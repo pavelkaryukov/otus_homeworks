@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../otus__4_8cpp.html#a81ce304348a420752ee080480d2b3095',1,'otus_4.cpp']]],
-  ['make_5findex_5fdispatcher',['make_index_dispatcher',['../namespacetuple__utils.html#ad6e44d60501d141fa2fdeb133ee58530',1,'tuple_utils::make_index_dispatcher(std::index_sequence&lt; Idx... &gt;)'],['../namespacetuple__utils.html#a11c16d193bdd5a3c62d1d51e1dd8b3e2',1,'tuple_utils::make_index_dispatcher()']]]
+  ['eraseshape',['EraseShape',['../structPainter.html#a5e5261753e1c3b478928f221590e784b',1,'Painter']]],
+  ['export',['Export',['../structApplication.html#a308ae9c493eca65f3c226dce59fa8b73',1,'Application::Export()'],['../structFileManager.html#a8ff0ad09911b7a55de43bf3b696aee18',1,'FileManager::Export()']]]
 ];

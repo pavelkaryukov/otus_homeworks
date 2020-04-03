@@ -1,0 +1,7 @@
+<map id="Application::Import" name="Application::Import">
+<area shape="rect" id="node2" href="$structPainter.html#a0487f0c72fc81fa1060fcecca32d67e0" title="Отчистить состояние маляра " alt="" coords="447,5,553,32"/>
+<area shape="rect" id="node3" href="$structFileManager.html#a6bc53f1327a36e3ae3ba4ede001465fc" title="импортирует класс художника из файла " alt="" coords="207,81,355,108"/>
+<area shape="rect" id="node6" href="$structPainter.html#aef4efad9f23b53bf145f63f31f7d34ed" title="Получить размер текущего холста " alt="" coords="196,31,367,57"/>
+<area shape="rect" id="node4" href="$structPainter.html#a7b8dbc3d51e46c3de32284fd72e68ad4" title="Замена холста " alt="" coords="415,81,585,108"/>
+<area shape="rect" id="node5" href="$structPainter.html#af1b5dcfb2931a3fb146792cc0851d702" title="Отрисовывает все фигуры на холсте " alt="" coords="633,81,801,108"/>
+</map>

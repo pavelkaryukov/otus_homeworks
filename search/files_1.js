@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['otus_5f4_2ecpp',['otus_4.cpp',['../otus__4_8cpp.html',1,'']]]
+  ['canvas_2eh',['canvas.h',['../canvas_8h.html',1,'']]],
+  ['circle_2eh',['circle.h',['../circle_8h.html',1,'']]],
+  ['color_2eh',['color.h',['../color_8h.html',1,'']]],
+  ['coord_2eh',['coord.h',['../coord_8h.html',1,'']]]
 ];
