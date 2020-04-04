@@ -16,6 +16,11 @@ int main(int, char *[])
     otus::CustomMyList   myListCustomAllocator;
     otus::FillMyList(myListStandartAllocator);
     otus::FillMyList(myListCustomAllocator);
+//    std::cout << "MyList with Standart  Allocator\r\n";
+//    for (auto& elem : myListStandartAllocator) {
+//        std::cout << elem << std::endl;
+//    }
+//    std::cout << "MyList with  MyAllocator\r\n";
     for (auto& elem : myListCustomAllocator) {
         std::cout << elem << std::endl;
     }

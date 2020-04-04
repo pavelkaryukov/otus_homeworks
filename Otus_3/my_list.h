@@ -40,13 +40,19 @@ template
 >
 struct MyList
 {
-    using Node   = TNode<T>;
-    using NodePtr = Node*;
     //-----------------------------------------------------------------------------
 private:
+    using node_alloc_t = typename std::allocator_traits<_Alloc>::
+        template rebind_alloc<TNode<T>>;
+
+    using Node = TNode<T>;
+    using NodePtr = Node * ;
+
+    // create an object of type node allocator
+    //node_alloc_t node_alloc;
     NodePtr m_FirstNode = nullptr;
     NodePtr m_LastNode = nullptr;
-    _Alloc  m_Allocator = _Alloc();
+    node_alloc_t  m_Allocator = node_alloc_t();
     std::size_t m_Size = 0;
     //-----------------------------------------------------------------------------
     void BindNodes(NodePtr aPrevious, NodePtr aNext)
@@ -137,7 +143,7 @@ public:
     //-----------------------------------------------------------------------------
     MyList() = default;
     //-----------------------------------------------------------------------------
-    MyList(const MyList<T, _Alloc>& aList)
+    MyList(const MyList<T, node_alloc_t>& aList)
     {
         m_FirstNode = aList.m_FirstNode;
         m_LastNode = aList.m_LastNode;
@@ -145,7 +151,7 @@ public:
         m_Size = aList.m_Size;
     }
     //-----------------------------------------------------------------------------
-    MyList& operator=(MyList<T, _Alloc> aList)
+    MyList& operator=(MyList<T, node_alloc_t> aList)
     {
         return MyList(aList);
     }

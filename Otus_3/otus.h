@@ -14,7 +14,7 @@ namespace otus
     using StandardMap = std::map<std::size_t, std::size_t>;
     using CustomMap = std::map<std::size_t, std::size_t, std::less<std::size_t>, MyAllocator<std::pair<const std::size_t, std::size_t>, 10>>;
     using StandardMyList = MyList<int>;
-    using CustomMyList = MyList<int, MyAllocator<TNode<int>>>;
+    using CustomMyList = MyList<int, MyAllocator<int>>;
     //-----------------------------------------------------------------------------
     void FillMap(StandardMap& aMap)
     {
