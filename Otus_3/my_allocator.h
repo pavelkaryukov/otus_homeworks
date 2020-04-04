@@ -37,9 +37,9 @@ struct MyAllocator
 
     T *allocate(std::size_t aNum)
     {
-         if (m_Data == nullptr) {
-             InitMemory();
-         }
+        if (m_Data == nullptr) {
+            InitMemory();
+        }
         std::size_t currentPos = m_Pos;
         m_Pos += aNum;
         if (currentPos > max_size())

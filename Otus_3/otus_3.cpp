@@ -3,6 +3,8 @@
 int main(int, char *[])
 {    
    
+    //std::list<int> test;
+
     otus::StandardMap mapStandartAllocator;
     otus::CustomMap mapCustomAllocator;
     otus::FillMap(mapStandartAllocator);

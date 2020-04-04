@@ -51,7 +51,7 @@ struct Canvas {
     * \brief ѕолучить размер
     * \return std::pair<std::size_t, std::size_t>  ширина и высота холста
     */
-    std::pair<std::size_t, std::size_t> GetSize() const{
+    std::pair<std::size_t, std::size_t> GetSize() const {
         return { m_X, m_Y };
     }
 
