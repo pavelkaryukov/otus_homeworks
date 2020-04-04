@@ -1,5 +1,5 @@
-#include <gtest/gtest.h> // googletest header file
 #include "otus.h"
+#include <gtest/gtest.h> // googletest header file
 
 TEST(gtest_test_otus3, TestFactorial)
 {

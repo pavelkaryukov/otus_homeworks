@@ -1,12 +1,12 @@
 #pragma once
+#include "my_allocator.h"
+#include "my_list.h"
+#include "factorial.h"
 #include <iostream>
 #include <vector>
 #include <map>
 #include <array>
 #include <list>
-#include "my_allocator.h"
-#include "factorial.h"
-#include "my_list.h"
 //-----------------------------------------------------------------------------
 namespace otus
 {

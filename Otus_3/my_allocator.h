@@ -40,7 +40,6 @@ struct MyAllocator
          if (m_Data == nullptr) {
              InitMemory();
          }
-        const std::size_t sizeObj = sizeof(T);
         std::size_t currentPos = m_Pos;
         m_Pos += aNum;
         if (currentPos > max_size())
@@ -65,9 +64,10 @@ struct MyAllocator
         new(p) U(std::forward<Args>(args)...);
     };
 
-    void destroy(T *p)
+    template<class U>
+    void destroy(U *p)
     {
-        p->~T();
+        p->~U();
     }
     
     std::size_t Reserved() const
@@ -84,7 +84,6 @@ private:
     pointer     m_Data      = nullptr;
     pointer     m_FreeData = nullptr;
 
-    std::size_t Allocated;
     std::size_t Constructed;
 
     std::size_t m_MaxSize = 2 * TNum;
