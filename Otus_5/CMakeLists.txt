@@ -27,4 +27,12 @@ set_target_properties (
 target_link_libraries(graphic_editor PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 target_include_directories(graphic_editor PRIVATE ${PROJECT_SOURCE_DIR}  ${Boost_INCLUDE_DIRS})
 
-
+install(TARGETS graphic_editor DESTINATION bin)
+set(CPACK_PACKAGE_NAME "OtusHomeworks")
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VENDOR "Karyukov")
+set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
+include (CPack)
