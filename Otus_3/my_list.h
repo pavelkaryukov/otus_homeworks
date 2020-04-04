@@ -174,7 +174,6 @@ public:
         if (m_FirstNode == nullptr) {
             m_FirstNode = (NodePtr)ptr;
             m_LastNode = m_FirstNode;
-            m_Allocator.deallocate(ptr, 1);
             return;
         }
         BindNodes(m_LastNode, (NodePtr)ptr);
