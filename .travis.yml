@@ -44,8 +44,8 @@ deploy:
   github_token: $GITHUB_TOKEN
   keep_history: true
   local-dir: doxygen
-  on:
-    all_branches: true
+  #on:
+  #  all_branches: true
 
 - provider: script
   skip_cleanup: true
