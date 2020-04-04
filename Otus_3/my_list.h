@@ -65,6 +65,7 @@ private:
     {
         --m_Size;
         m_Allocator.destroy(aNode);
+        m_Allocator.deallocate(aNode, 1);
     }
     //-----------------------------------------------------------------------------
     NodePtr GetFirstNode() const
