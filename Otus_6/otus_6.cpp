@@ -2,28 +2,17 @@
 #include <string>
 
 void TestMatrix() {
-    InternalMatrix<int, -1> matrix;
-    //auto test = myLine[5];
-   // std::cout << matrix[5u] << std::endl;
-    matrix[1] = 22;
-    matrix[2] = 13;
-    matrix[3] = 2;
-//     matrix[{5}] = -1;
-//     matrix[2] = -1;
-//     matrix[88] = -1;
-//     ++matrix[88];
-//     ++matrix[88];
-//     ++matrix[88];
-//     matrix[88]++;
-//     matrix[88]++;
-//     auto res = matrix[88].Get();
-//     (((matrix[11] = -1) = 2) = -1) = 116;
+    Matrix<int, -1> matrix;
+    matrix[1][3] = 22;
+    matrix[2][4] = 13;
+    matrix[3][5] = 2;
+    matrix[3][5] = 101;
 
-    auto size1 = matrix.Size();
-//     int test2 = matrix[1];
-//     int test3 = matrix[7];
-    //matrix[7] = -5;
-    int stop1 = 0;
+    (((matrix[1][0] = 101) = 0) = -1) =2;
+    matrix[1][0] = -1;
+    matrix[2][4] = -1;
+
+    auto size1 = matrix.size();
 }
 
 int main() {
