@@ -14,8 +14,13 @@ void TestMatrix() {
     matrix[5] = -1;
     matrix[2] = -1;
     matrix[88] = -1;
+    ++matrix[88];
+    ++matrix[88];
+    ++matrix[88];
+    matrix[88]++;
+    matrix[88]++;
 
-    (((matrix[88] = -1) = 2) = -1) = 3;
+    (((matrix[11] = -1) = 2) = -1) = 3;
 
     auto test1 = matrix[12];
 //     int test2 = matrix[1];

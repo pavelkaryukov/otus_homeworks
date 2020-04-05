@@ -18,17 +18,19 @@ class TLine {
         map_t*  m_Map   = nullptr;
         index_t m_Index; 
         TValue  m_Value;
+
     public:
+        TValue Get() const {
+            auto iter = m_Map->find(m_Index);
+            return iter != m_Map->end() ? iter->second : _DefaultValue;
+        }
+
 #pragma region Constructors
         Controller() = delete;
         
         Controller(const index_t aIndex, map_t* aMap) : m_Index(aIndex), m_Map(aMap), m_Value(_DefaultValue){};
       
-        Controller(const Controller& aController) {
-            auto controller = Controller(aController.m_Index, aController.m_Map);
-            controller.m_Value = aController.m_Value;
-            return controller;
-        }
+        Controller(const Controller& aRhs) : m_Value(aRhs.m_Value), m_Map(aRhs.m_Map), m_Index(aRhs.m_Index){};
 #pragma endregion
 
         Controller& operator=(const TValue aValue) {
@@ -45,30 +47,30 @@ class TLine {
 
 #pragma region CompareOperators
         bool operator==(const TValue aValue) const {
-            return m_Value == aValue;
+            return Get() == aValue;
         }
 
         bool operator==(const Controller aRhs) const {
-            return m_Value == aRhs.m_Value;
+            return Get() == aRhs.m_Value;
         }
 
         bool operator!=(const TValue aValue) const {
-            return m_Value != aValue;
+            return Get() != aValue;
         }
 
         bool operator!=(const Controller aRhs) const {
-            return m_Value != aRhs.m_Value;
-        }
-
-        Controller operator++(int) {
-            Controller controller = Controller(*this)
-            *this = m_Value + 1;
-            return controller;// сделать конструктор копирования
+            return Get() != aRhs.m_Value;
         }
 
         Controller& operator++() {
-            *this = m_Value + 1;
+            *this = Get() + 1;
             return *this;// сделать конструктор копирования
+        }
+
+        Controller operator++(int) {
+            Controller controller = Controller(*this);
+            *this = Get() + 1;
+            return controller;// сделать конструктор копирования
         }
     };
 #pragma endregion
@@ -77,6 +79,10 @@ class TLine {
     map_t m_MatrixMap;
 public:
     TLine() {}
+
+    std::size_t Size() const {
+        return m_MatrixMap.size();
+    }
 
     Controller  operator[](const index_t aIndex)  {
         return Controller(aIndex, &m_MatrixMap);
