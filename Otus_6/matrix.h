@@ -4,10 +4,9 @@
 #include <map>
 #include <boost/format.hpp>
 #include <stdexcept>
-//сделай переопределение оператора = , если значение в нем = default = erase элемент
-
-template<class TValue, TValue _DefaultValue = TValue(-1)>
-class Matrix {
+#include <type_traits>
+template<class TValue, TValue TDefaultValue, class = typename std::enable_if_t<std::is_integral_v<TValue>>>
+class Matrix{
     using index_t = std::uint64_t;
     using pair_t  = std::pair<std::uint64_t, std::uint64_t>;
     using map_t   = std::map<pair_t, TValue>;
@@ -25,13 +24,13 @@ class Matrix {
         public:
             TValue Get() const {
                 auto iter = m_CMap->find(m_CIndex);
-                return iter != m_CMap->end() ? iter->second : _DefaultValue;
+                return iter != m_CMap->end() ? iter->second : TDefaultValue;
             }
 
 #pragma region Constructors
             Controller() = delete;
 
-            Controller(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap), m_CValue(_DefaultValue) {};
+            Controller(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap), m_CValue(TDefaultValue) {};
 
             Controller(const Controller& aRhs) : m_CValue(aRhs.m_CValue), m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
 #pragma endregion
@@ -39,7 +38,7 @@ class Matrix {
             Controller& operator=(const TValue aValue) {
                 m_CValue = aValue;
                 auto iter = m_CMap->find(m_CIndex);
-                if (aValue == _DefaultValue) {
+                if (aValue == TDefaultValue) {
                     if (iter != m_CMap->end())
                         m_CMap->erase(iter);
                     return *this;
@@ -99,7 +98,6 @@ class Matrix {
 
     InternalMatrix m_Matrix;
 public:
-    
     InternalMatrix& operator[](const index_t aIndex){
         m_Matrix.SetIndex(aIndex);
         return  m_Matrix;
