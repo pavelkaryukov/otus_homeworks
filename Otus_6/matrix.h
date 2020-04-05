@@ -10,38 +10,39 @@ template<class TValue, TValue _DefaultValue = TValue(-1)>
 class InternalMatrix {
 #pragma region Usings
     using index_t = std::uint64_t;
-    using map_t = std::map<index_t, TValue>;
+    using pair_t  = std::pair<std::uint64_t, std::uint64_t>;
+    using map_t = std::map<pair_t, TValue>;
 #pragma endregion
 
 #pragma region Controller   
     class Controller {
-        map_t*  m_Map   = nullptr;
-        index_t m_Index; 
-        TValue  m_Value;
+        map_t*  m_CMap   = nullptr;
+        pair_t  m_CIndex;
+        TValue  m_CValue;
 
     public:
         TValue Get() const {
-            auto iter = m_Map->find(m_Index);
-            return iter != m_Map->end() ? iter->second : _DefaultValue;
+            auto iter = m_CMap->find(m_CIndex);
+            return iter != m_CMap->end() ? iter->second : _DefaultValue;
         }
 
 #pragma region Constructors
         Controller() = delete;
         
-        Controller(const index_t aIndex, map_t* aMap) : m_Index(aIndex), m_Map(aMap), m_Value(_DefaultValue){};
+        Controller(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap), m_CValue(_DefaultValue){};
       
-        Controller(const Controller& aRhs) : m_Value(aRhs.m_Value), m_Map(aRhs.m_Map), m_Index(aRhs.m_Index){};
+        Controller(const Controller& aRhs) : m_CValue(aRhs.m_CValue), m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex){};
 #pragma endregion
 
         Controller& operator=(const TValue aValue) {
-            m_Value = aValue;
-            auto iter = m_Map->find(m_Index);
+            m_CValue = aValue;
+            auto iter = m_CMap->find(m_CIndex);
             if (aValue == _DefaultValue) {
-                if (iter != m_Map->end())
-                    m_Map->erase(iter);
+                if (iter != m_CMap->end())
+                    m_CMap->erase(iter);
                 return *this;
             }
-            (*m_Map)[m_Index] = m_Value;
+            (*m_CMap)[m_CIndex] = m_CValue;
             return *this;
         }
 
@@ -51,7 +52,7 @@ class InternalMatrix {
         }
 
         bool operator==(const Controller aRhs) const {
-            return Get() == aRhs.m_Value;
+            return Get() == aRhs.m_CValue;
         }
 
         bool operator!=(const TValue aValue) const {
@@ -59,7 +60,7 @@ class InternalMatrix {
         }
 
         bool operator!=(const Controller aRhs) const {
-            return Get() != aRhs.m_Value;
+            return Get() != aRhs.m_CValue;
         }
 
         Controller& operator++() {
@@ -75,8 +76,8 @@ class InternalMatrix {
     };
 #pragma endregion
 #pragma endregion
-
     map_t m_MatrixMap;
+    index_t m_Index = 0;
 public:
     InternalMatrix() {}
 
@@ -85,6 +86,6 @@ public:
     }
 
     Controller  operator[](const index_t aIndex)  {
-        return Controller(aIndex, &m_MatrixMap);
+        return Controller({ m_Index, aIndex }, &m_MatrixMap);
     }
 };
