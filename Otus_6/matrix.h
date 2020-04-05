@@ -7,7 +7,7 @@
 //сделай переопределение оператора = , если значение в нем = default = erase элемент
 
 template<class TValue, TValue _DefaultValue = TValue(-1)>
-class TLine {
+class InternalMatrix {
 #pragma region Usings
     using index_t = std::uint64_t;
     using map_t = std::map<index_t, TValue>;
@@ -78,7 +78,7 @@ class TLine {
 
     map_t m_MatrixMap;
 public:
-    TLine() {}
+    InternalMatrix() {}
 
     std::size_t Size() const {
         return m_MatrixMap.size();
