@@ -12,12 +12,12 @@ void TestMatrixOld() {
     matrix[3][5] = 101;
 
     (((matrix[1][0] = 101) = 0) = -1) =2;
-    matrix[1][0] = 22;
-    matrix[2][4] = 22;
+    matrix[1][0] = 122;
+    matrix[2][4] = 2232;
 
-    for (auto a : matrix) {
-        int stop1 = 0;
-    }
+//     for (auto a : matrix) {
+//         int stop1 = 0;
+//     }
 
     matrix.IteratorTest();
     auto size1 = matrix.size();

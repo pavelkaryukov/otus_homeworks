@@ -10,7 +10,6 @@ class Matrix{
     using index_t = std::uint64_t;
     using pair_t  = std::pair<std::uint64_t, std::uint64_t>;
     using map_t   = std::map<pair_t, TValue>;
-
     #pragma region ClassInternalMatrix
     class InternalMatrix {
 
@@ -75,13 +74,17 @@ class Matrix{
 
         map_t m_MatrixMap;
         index_t m_Index = 0;
-        //-----------------------------------------------------------------------------
-        //Унаследоваться от map iterator - перееопределить пару метод и сказка
-//         struct internalIterator : public std::iterator<std::forward_iterator_tag, 
-//             std::tuple<index_t, index_t, TValue>, TValue, TValue*, TValue&> {
-//             
-//         };
 
+        //Унаследоваться от map iterator - перееопределить пару метод и сказка
+        struct InternalIterator : public map_t::iterator {
+            using tuple_t = std::tuple<index_t, index_t, TValue>;
+           
+            tuple_t operator*() const { // сделать хитрую инициализацию ?:)
+                map_t::const_iterator* iterPtr = (map_t::const_iterator*)this;
+                auto test = tuple_t((*iterPtr)->first.first, (*iterPtr)->first.second, (*iterPtr)->second);
+                return test;
+            }
+        };
     public:
         InternalMatrix() = default;
 
@@ -98,12 +101,25 @@ class Matrix{
         }
 
         auto begin() {
-            return m_MatrixMap.begin();
+            InternalIterator iter = { m_MatrixMap.begin() };
+            auto test = *iter;
+            ++iter;
+            //index_t x, y;
+            //TValue v;
+            //std::tie(x, y, v) = iter;
+            //auto [a,b,c] = iter;
+
+            return 0;//internalIterator(m_MatrixMap.begin());
+            //auto matr_iter = m_MatrixMap.begin();
+            //return m_MatrixMap.begin();
         }
 
 
         auto end() {
-            return m_MatrixMap.end();
+            InternalIterator iter = { m_MatrixMap.end() };
+            //auto iter = InternalIterator<map_t::iterator>(m_MatrixMap.end());
+            return 0;//internalIterator(m_MatrixMap.end());
+            //return m_MatrixMap.end();
         }
     };
 #pragma endregion
@@ -132,8 +148,11 @@ public:
     }
 
     void IteratorTest() {
-        for (auto a : m_Matrix) {
-            int stop1 = 0;
-        }
+        auto iter1  = m_Matrix.begin();
+        auto iter2  = m_Matrix.end();
+        int stop1 = 0;
+        //for (auto a : m_Matrix) {
+        //    int stop1 = 0;
+        //}
     }
 };
