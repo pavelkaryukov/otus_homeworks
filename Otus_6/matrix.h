@@ -11,11 +11,10 @@ class Matrix{
     using pair_t  = std::pair<std::uint64_t, std::uint64_t>;
     using map_t   = std::map<pair_t, TValue>;
 
-#pragma region ClassInternalMatrix
+    #pragma region ClassInternalMatrix
     class InternalMatrix {
 
-
-#pragma region Controller   
+    #pragma region Controller   
         class Controller {
             map_t*  m_CMap = nullptr;
             pair_t  m_CIndex;
@@ -27,13 +26,11 @@ class Matrix{
                 return iter != m_CMap->end() ? iter->second : TDefaultValue;
             }
 
-#pragma region Constructors
             Controller() = delete;
 
             Controller(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap), m_CValue(TDefaultValue) {};
 
             Controller(const Controller& aRhs) : m_CValue(aRhs.m_CValue), m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
-#pragma endregion
 
             Controller& operator=(const TValue aValue) {
                 m_CValue = aValue;
@@ -47,7 +44,6 @@ class Matrix{
                 return *this;
             }
 
-#pragma region CompareOperators
             bool operator==(const TValue aValue) const {
                 return Get() == aValue;
             }
@@ -76,9 +72,16 @@ class Matrix{
             }
         };
 #pragma endregion
-#pragma endregion
+
         map_t m_MatrixMap;
         index_t m_Index = 0;
+        //-----------------------------------------------------------------------------
+        //Унаследоваться от map iterator - перееопределить пару метод и сказка
+//         struct internalIterator : public std::iterator<std::forward_iterator_tag, 
+//             std::tuple<index_t, index_t, TValue>, TValue, TValue*, TValue&> {
+//             
+//         };
+
     public:
         InternalMatrix() = default;
 
@@ -93,6 +96,15 @@ class Matrix{
         Controller  operator[](const index_t aIndex) {
             return Controller({ m_Index, aIndex }, &m_MatrixMap);
         }
+
+        auto begin() {
+            return m_MatrixMap.begin();
+        }
+
+
+        auto end() {
+            return m_MatrixMap.end();
+        }
     };
 #pragma endregion
 
@@ -105,5 +117,23 @@ public:
 
     std::size_t size() const {
         return m_Matrix.Size();
+    }
+
+    bool empty() const {
+        return size() == 0;
+    }
+
+    auto begin() {
+        return m_Matrix.begin();
+    }
+
+    auto end() {
+        return m_Matrix.end();
+    }
+
+    void IteratorTest() {
+        for (auto a : m_Matrix) {
+            int stop1 = 0;
+        }
     }
 };
