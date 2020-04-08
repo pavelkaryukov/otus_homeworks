@@ -5,6 +5,18 @@
 #include <boost/format.hpp>
 #include <stdexcept>
 #include <type_traits>
+/*! \mainpage Otus_6 (Matrix)
+ *
+ * \r\n  Ѕесконечна€ дмумерна€ матрица
+ *
+ */
+ /*! Matrix class */
+/**
+* \brief  2-мерна€ разр€женна€ бесконечна€ матрица заполненна€ значени€ми по-умолчанию.
+* \details хран€тс€ только зан€тые элементы. ѕрисвоение €чейки в значение по-умолчанию освобождает €чейку.
+* \tparam TValue - тип значений в €чейках матрицы
+* \tparam TDefaultValue - значение €чейки по умолчанию
+*/
 template<class TValue, TValue TDefaultValue, class = typename std::enable_if_t<std::is_integral_v<TValue>>>
 class Matrix{
     using index_t = std::uint64_t;
@@ -175,27 +187,52 @@ class Matrix{
 
     InternalMatrix m_Matrix;
 public:
+    /**
+    * \brief  оператор [] возращает внутреннюю матрицу.
+    * \details повторный вызов оператора [] даст доступ к €чейке матрицы
+    * \param[in] aIndex - номер строки матрицы
+    * \return - ссылка на  внутреннюю матрицу
+    */
     InternalMatrix& operator[](const index_t aIndex){
         m_Matrix.SetIndex(aIndex);
         return  m_Matrix;
     }
 
+    /**
+    * \brief  размер матрицы.
+    * \details вернет количество €чеек с не дефолтным значением
+    * \return количество €чеек с не дефолтным значением
+    */
     std::size_t size() const {
         return m_Matrix.Size();
     }
 
+    /**
+    * \brief  матрица разр€жена.
+    * \return вернет true если все €чейки в матрицы имеют значение по-умолчанию
+    */
     bool empty() const {
         return size() == 0;
     }
 
+    /**
+    * \brief  итератор на начало.
+    */
     auto begin() {
         return m_Matrix.begin();
     }
 
+    /**
+    * \brief  итератор на конец.
+    */
     auto end() {
         return m_Matrix.end();
     }
 
+    /**
+    * \brief  сбросить сост€ние матрицы.
+    * \derails всем €чейкам будет присвоено значение по-умолчанию
+    */
     void clear() {
         return m_Matrix.clear();
     }
