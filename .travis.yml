@@ -37,6 +37,10 @@ script:
 - ./graphic_editor
 - doxygen
 - cd ..
+- cd Otus_6/
+- ./test_matrix  	   
+- doxygen
+- cd ..
 - cmake --build . --target package
 deploy:
 - provider: pages2
