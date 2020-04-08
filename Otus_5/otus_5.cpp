@@ -21,4 +21,5 @@ void TestApplication() {
 
 int main() {
     TestApplication();
+    return 0;
 }
