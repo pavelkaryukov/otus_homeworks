@@ -1,7 +1,0 @@
-<map id="Painter::Clear" name="Painter::Clear">
-<area shape="rect" id="node2" href="$structApplication.html#ae730fc011933c7643a17741a4a267718" title="Импорт состояния редактора из файла " alt="" coords="406,5,549,32"/>
-<area shape="rect" id="node5" href="$structPainter.html#aef4efad9f23b53bf145f63f31f7d34ed" title="Получить размер текущего холста " alt="" coords="160,56,331,83"/>
-<area shape="rect" id="node3" href="$otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="624,5,741,32"/>
-<area shape="rect" id="node4" href="$otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="789,5,844,32"/>
-<area shape="rect" id="node6" href="$structApplication.html#ab255a1c119ce75dbfb591fcc6cbbbc5c" title="Метод возвращает текущий размер холста " alt="" coords="379,56,576,83"/>
-</map>

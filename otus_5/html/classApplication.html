@@ -1,0 +1,1145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Graphic Editor: Класс Application</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Graphic Editor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="classes.html"><span>Алфавитный&#160;указатель&#160;классов</span></a></li>
+      <li><a href="inherits.html"><span>Иерархия&#160;классов</span></a></li>
+      <li><a href="functions.html"><span>Члены&#160;классов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classApplication-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Application<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Класс векторный редактор (предполагается что гуи будет использовать его методы)  
+ <a href="classApplication.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="application_8h_source.html">application.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф связей класса Application:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication__coll__graph.png" border="0" usemap="#Application_coll__map" alt="Collaboration graph"/></div>
+<map name="Application_coll__map" id="Application_coll__map">
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a03eb21681fbd7473ff2eb2c6009afa8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a03eb21681fbd7473ff2eb2c6009afa8e">Application</a> ()=default</td></tr>
+<tr class="memdesc:a03eb21681fbd7473ff2eb2c6009afa8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор по умолчанию - размер холста будет 800x600.  <a href="#a03eb21681fbd7473ff2eb2c6009afa8e">Подробнее...</a><br /></td></tr>
+<tr class="separator:a03eb21681fbd7473ff2eb2c6009afa8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a902cb4162adb87b4013517ee3143a06a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a902cb4162adb87b4013517ee3143a06a">Application</a> (const std::size_t aX, const std::size_t aY, const <a class="el" href="structTColor.html">TColor</a> aColor, const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a> aThickness)</td></tr>
+<tr class="memdesc:a902cb4162adb87b4013517ee3143a06a"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор  <a href="#a902cb4162adb87b4013517ee3143a06a">Подробнее...</a><br /></td></tr>
+<tr class="separator:a902cb4162adb87b4013517ee3143a06a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb4edd8d16b7f5ca13250ec027eab200"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#adb4edd8d16b7f5ca13250ec027eab200">AddCircle</a> (const <a class="el" href="structTCoord.html">TCoord</a> aBegin, const <a class="el" href="structTCoord.html">TCoord</a> aEnd, const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a> aThck, const <a class="el" href="structTColor.html">TColor</a> aColor)</td></tr>
+<tr class="memdesc:adb4edd8d16b7f5ca13250ec027eab200"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет окружность на холст  <a href="#adb4edd8d16b7f5ca13250ec027eab200">Подробнее...</a><br /></td></tr>
+<tr class="separator:adb4edd8d16b7f5ca13250ec027eab200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac4108b4df3ee969727b0318c6c1313"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a7ac4108b4df3ee969727b0318c6c1313">AddLine</a> (const <a class="el" href="structTCoord.html">TCoord</a> aBegin, const <a class="el" href="structTCoord.html">TCoord</a> aEnd, const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a> aThck, const <a class="el" href="structTColor.html">TColor</a> aColor)</td></tr>
+<tr class="memdesc:a7ac4108b4df3ee969727b0318c6c1313"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет линию на холст  <a href="#a7ac4108b4df3ee969727b0318c6c1313">Подробнее...</a><br /></td></tr>
+<tr class="separator:a7ac4108b4df3ee969727b0318c6c1313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96ccb3bf454d97fc52cc7d5233c20024"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a96ccb3bf454d97fc52cc7d5233c20024">AddRectangle</a> (const <a class="el" href="structTCoord.html">TCoord</a> aBegin, const <a class="el" href="structTCoord.html">TCoord</a> aEnd, const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a> aThck, const <a class="el" href="structTColor.html">TColor</a> aColor)</td></tr>
+<tr class="memdesc:a96ccb3bf454d97fc52cc7d5233c20024"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет прямоугольник на холст  <a href="#a96ccb3bf454d97fc52cc7d5233c20024">Подробнее...</a><br /></td></tr>
+<tr class="separator:a96ccb3bf454d97fc52cc7d5233c20024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3df9a13ea9c3f7c042dec27df8666728"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a3df9a13ea9c3f7c042dec27df8666728">AddCircle</a> (const <a class="el" href="structTCoord.html">TCoord</a> aBegin, const <a class="el" href="structTCoord.html">TCoord</a> aEnd)</td></tr>
+<tr class="memdesc:a3df9a13ea9c3f7c042dec27df8666728"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет окружность на холст  <a href="#a3df9a13ea9c3f7c042dec27df8666728">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3df9a13ea9c3f7c042dec27df8666728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbf1b6b8807904aad53c31bf1024b3ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#afbf1b6b8807904aad53c31bf1024b3ab">AddLine</a> (const <a class="el" href="structTCoord.html">TCoord</a> aBegin, const <a class="el" href="structTCoord.html">TCoord</a> aEnd)</td></tr>
+<tr class="memdesc:afbf1b6b8807904aad53c31bf1024b3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет линию на холст  <a href="#afbf1b6b8807904aad53c31bf1024b3ab">Подробнее...</a><br /></td></tr>
+<tr class="separator:afbf1b6b8807904aad53c31bf1024b3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8951ace99f9ae9d512c01bd91c49431"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#ad8951ace99f9ae9d512c01bd91c49431">AddRectangle</a> (const <a class="el" href="structTCoord.html">TCoord</a> aBegin, const <a class="el" href="structTCoord.html">TCoord</a> aEnd)</td></tr>
+<tr class="memdesc:ad8951ace99f9ae9d512c01bd91c49431"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет прямоугольник на холст  <a href="#ad8951ace99f9ae9d512c01bd91c49431">Подробнее...</a><br /></td></tr>
+<tr class="separator:ad8951ace99f9ae9d512c01bd91c49431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa17e3dcc4d0d63ac8f33117b2cba806"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#afa17e3dcc4d0d63ac8f33117b2cba806">SetThickness</a> (const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a> aThickness)</td></tr>
+<tr class="memdesc:afa17e3dcc4d0d63ac8f33117b2cba806"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод задает толщину рисуемых на холсте фигур  <a href="#afa17e3dcc4d0d63ac8f33117b2cba806">Подробнее...</a><br /></td></tr>
+<tr class="separator:afa17e3dcc4d0d63ac8f33117b2cba806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ef5e6c6d5cd7508e13df6391ec91451"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a0ef5e6c6d5cd7508e13df6391ec91451">SetColor</a> (const <a class="el" href="structTColor.html">TColor</a> aColor)</td></tr>
+<tr class="memdesc:a0ef5e6c6d5cd7508e13df6391ec91451"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод задает цвет рисуемых на холсте фигур  <a href="#a0ef5e6c6d5cd7508e13df6391ec91451">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0ef5e6c6d5cd7508e13df6391ec91451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67ffddf0d25b7e059ec1c1a5511d5851"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="classPainter.html#a4ca4938d17b0973496b8dd887f85be2d">Painter::shapeid_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a67ffddf0d25b7e059ec1c1a5511d5851">SelectShape</a> (const std::size_t aX, const std::size_t aY)</td></tr>
+<tr class="memdesc:a67ffddf0d25b7e059ec1c1a5511d5851"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод возвращает ID выделенной фигуры  <a href="#a67ffddf0d25b7e059ec1c1a5511d5851">Подробнее...</a><br /></td></tr>
+<tr class="separator:a67ffddf0d25b7e059ec1c1a5511d5851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149705766a5ba697ae021a99ac246784"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a149705766a5ba697ae021a99ac246784">DeleteShape</a> (const std::size_t aID)</td></tr>
+<tr class="memdesc:a149705766a5ba697ae021a99ac246784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод удаляет фигуру с холста  <a href="#a149705766a5ba697ae021a99ac246784">Подробнее...</a><br /></td></tr>
+<tr class="separator:a149705766a5ba697ae021a99ac246784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c86fb5a94abdca21dc9e8a93a32de4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a8c86fb5a94abdca21dc9e8a93a32de4f">ChangeCanvas</a> ()</td></tr>
+<tr class="memdesc:a8c86fb5a94abdca21dc9e8a93a32de4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод заменяет холст  <a href="#a8c86fb5a94abdca21dc9e8a93a32de4f">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8c86fb5a94abdca21dc9e8a93a32de4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55c3e25dedd956468077a7e4733c9b6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a55c3e25dedd956468077a7e4733c9b6a">ResizeCanvas</a> (const std::size_t aX, const std::size_t aY)</td></tr>
+<tr class="memdesc:a55c3e25dedd956468077a7e4733c9b6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод изменяет размер холста  <a href="#a55c3e25dedd956468077a7e4733c9b6a">Подробнее...</a><br /></td></tr>
+<tr class="separator:a55c3e25dedd956468077a7e4733c9b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23716aeda5254a54eb2da54396953209"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a23716aeda5254a54eb2da54396953209">ChangeCanvasColor</a> (const <a class="el" href="structTColor.html">TColor</a> aColor)</td></tr>
+<tr class="memdesc:a23716aeda5254a54eb2da54396953209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод изменяет цвет холста  <a href="#a23716aeda5254a54eb2da54396953209">Подробнее...</a><br /></td></tr>
+<tr class="separator:a23716aeda5254a54eb2da54396953209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab255a1c119ce75dbfb591fcc6cbbbc5c"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::size_t, std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#ab255a1c119ce75dbfb591fcc6cbbbc5c">GetCanvasSize</a> () const </td></tr>
+<tr class="memdesc:ab255a1c119ce75dbfb591fcc6cbbbc5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод возвращает текущий размер холста  <a href="#ab255a1c119ce75dbfb591fcc6cbbbc5c">Подробнее...</a><br /></td></tr>
+<tr class="separator:ab255a1c119ce75dbfb591fcc6cbbbc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16773a88a85367d43a13bb171bd10308"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a16773a88a85367d43a13bb171bd10308">Import</a> ()</td></tr>
+<tr class="memdesc:a16773a88a85367d43a13bb171bd10308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Импорт состояния редактора из файла  <a href="#a16773a88a85367d43a13bb171bd10308">Подробнее...</a><br /></td></tr>
+<tr class="separator:a16773a88a85367d43a13bb171bd10308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0b69253cc952ebc1bef5bd7b8475f2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#aa0b69253cc952ebc1bef5bd7b8475f2d">Export</a> ()</td></tr>
+<tr class="memdesc:aa0b69253cc952ebc1bef5bd7b8475f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Экспорт состояния редактора в файл  <a href="#aa0b69253cc952ebc1bef5bd7b8475f2d">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa0b69253cc952ebc1bef5bd7b8475f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a69a9a59d8245933ce1788d6fd3bddf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplication.html#a4a69a9a59d8245933ce1788d6fd3bddf">Save</a> ()</td></tr>
+<tr class="memdesc:a4a69a9a59d8245933ce1788d6fd3bddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сохранение текущего состояния редактора  <a href="#a4a69a9a59d8245933ce1788d6fd3bddf">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4a69a9a59d8245933ce1788d6fd3bddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Класс векторный редактор (предполагается что гуи будет использовать его методы) </p>
+<p><a class="el" href="classApplication.html" title="Класс векторный редактор (предполагается что гуи будет использовать его методы) ">Application</a> class</p>
+<p>содержит в себе файловый мэнеджер (class <a class="el" href="classFileManager.html">FileManager</a>) и класс художник(ClassPainter) </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a class="anchor" id="a03eb21681fbd7473ff2eb2c6009afa8e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Application::Application </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>конструктор по умолчанию - размер холста будет 800x600. </p>
+
+</div>
+</div>
+<a class="anchor" id="a902cb4162adb87b4013517ee3143a06a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Application::Application </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>aX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>aY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a>&#160;</td>
+          <td class="paramname"><em>aThickness</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>конструктор </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aX</td><td>Ширина холста </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aY</td><td>Высота холста </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="structTColor.html" title="цвет объекта на экране ">TColor</a></td><td>Цвет фона холста </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aThickness</td><td>Толщина линий, рисуемых фигур </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>объект класса <a class="el" href="classApplication.html" title="Класс векторный редактор (предполагается что гуи будет использовать его методы) ">Application</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a class="anchor" id="adb4edd8d16b7f5ca13250ec027eab200"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::AddCircle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aEnd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a>&#160;</td>
+          <td class="paramname"><em>aThck</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод добавляет окружность на холст </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aBegin</td><td>координата начала фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aEnd</td><td>координата конца фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aThickness</td><td>Толщина линий, рисуемых фигур </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="structTColor.html" title="цвет объекта на экране ">TColor</a></td><td>Цвет фона холста </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_adb4edd8d16b7f5ca13250ec027eab200_cgraph.png" border="0" usemap="#classApplication_adb4edd8d16b7f5ca13250ec027eab200_cgraph" alt=""/></div>
+<map name="classApplication_adb4edd8d16b7f5ca13250ec027eab200_cgraph" id="classApplication_adb4edd8d16b7f5ca13250ec027eab200_cgraph">
+<area shape="rect" id="node2" href="classPainter.html#ae643b167a1eb4c8418c395c1223a3196" title="Добавляет фигуру и отрисовывает на холсте " alt="" coords="213,5,353,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_adb4edd8d16b7f5ca13250ec027eab200_icgraph.png" border="0" usemap="#classApplication_adb4edd8d16b7f5ca13250ec027eab200_icgraph" alt=""/></div>
+<map name="classApplication_adb4edd8d16b7f5ca13250ec027eab200_icgraph" id="classApplication_adb4edd8d16b7f5ca13250ec027eab200_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#a3df9a13ea9c3f7c042dec27df8666728" title="метод добавляет окружность на холст " alt="" coords="213,5,373,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="235,56,352,83"/>
+<area shape="rect" id="node4" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="421,56,476,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3df9a13ea9c3f7c042dec27df8666728"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::AddCircle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aEnd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод добавляет окружность на холст </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aBegin</td><td>координата начала фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aEnd</td><td>координата конца фигуры</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Толщина линий и цвет будут выданы классом <a class="el" href="classApplication.html" title="Класс векторный редактор (предполагается что гуи будет использовать его методы) ">Application</a> </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a3df9a13ea9c3f7c042dec27df8666728_cgraph.png" border="0" usemap="#classApplication_a3df9a13ea9c3f7c042dec27df8666728_cgraph" alt=""/></div>
+<map name="classApplication_a3df9a13ea9c3f7c042dec27df8666728_cgraph" id="classApplication_a3df9a13ea9c3f7c042dec27df8666728_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#adb4edd8d16b7f5ca13250ec027eab200" title="метод добавляет окружность на холст " alt="" coords="213,5,373,32"/>
+<area shape="rect" id="node3" href="classPainter.html#ae643b167a1eb4c8418c395c1223a3196" title="Добавляет фигуру и отрисовывает на холсте " alt="" coords="421,5,561,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ac4108b4df3ee969727b0318c6c1313"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::AddLine </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aEnd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a>&#160;</td>
+          <td class="paramname"><em>aThck</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод добавляет линию на холст </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aBegin</td><td>координата начала фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aEnd</td><td>координата конца фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aThickness</td><td>Толщина линий, рисуемых фигур </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="structTColor.html" title="цвет объекта на экране ">TColor</a></td><td>Цвет фона холста </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a7ac4108b4df3ee969727b0318c6c1313_cgraph.png" border="0" usemap="#classApplication_a7ac4108b4df3ee969727b0318c6c1313_cgraph" alt=""/></div>
+<map name="classApplication_a7ac4108b4df3ee969727b0318c6c1313_cgraph" id="classApplication_a7ac4108b4df3ee969727b0318c6c1313_cgraph">
+<area shape="rect" id="node2" href="classPainter.html#ae643b167a1eb4c8418c395c1223a3196" title="Добавляет фигуру и отрисовывает на холсте " alt="" coords="204,5,344,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a7ac4108b4df3ee969727b0318c6c1313_icgraph.png" border="0" usemap="#classApplication_a7ac4108b4df3ee969727b0318c6c1313_icgraph" alt=""/></div>
+<map name="classApplication_a7ac4108b4df3ee969727b0318c6c1313_icgraph" id="classApplication_a7ac4108b4df3ee969727b0318c6c1313_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#afbf1b6b8807904aad53c31bf1024b3ab" title="метод добавляет линию на холст " alt="" coords="204,5,355,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="221,56,338,83"/>
+<area shape="rect" id="node4" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="403,56,457,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afbf1b6b8807904aad53c31bf1024b3ab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::AddLine </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aEnd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод добавляет линию на холст </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aBegin</td><td>координата начала фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aEnd</td><td>координата конца фигуры</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Толщина линий и цвет будут выданы классом <a class="el" href="classApplication.html" title="Класс векторный редактор (предполагается что гуи будет использовать его методы) ">Application</a> </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_afbf1b6b8807904aad53c31bf1024b3ab_cgraph.png" border="0" usemap="#classApplication_afbf1b6b8807904aad53c31bf1024b3ab_cgraph" alt=""/></div>
+<map name="classApplication_afbf1b6b8807904aad53c31bf1024b3ab_cgraph" id="classApplication_afbf1b6b8807904aad53c31bf1024b3ab_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#a7ac4108b4df3ee969727b0318c6c1313" title="метод добавляет линию на холст " alt="" coords="204,5,355,32"/>
+<area shape="rect" id="node3" href="classPainter.html#ae643b167a1eb4c8418c395c1223a3196" title="Добавляет фигуру и отрисовывает на холсте " alt="" coords="403,5,543,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a96ccb3bf454d97fc52cc7d5233c20024"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::AddRectangle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aEnd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a>&#160;</td>
+          <td class="paramname"><em>aThck</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод добавляет прямоугольник на холст </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aBegin</td><td>координата начала фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aEnd</td><td>координата конца фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aThickness</td><td>Толщина линий, рисуемых фигур </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="structTColor.html" title="цвет объекта на экране ">TColor</a></td><td>Цвет фона холста </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a96ccb3bf454d97fc52cc7d5233c20024_icgraph.png" border="0" usemap="#classApplication_a96ccb3bf454d97fc52cc7d5233c20024_icgraph" alt=""/></div>
+<map name="classApplication_a96ccb3bf454d97fc52cc7d5233c20024_icgraph" id="classApplication_a96ccb3bf454d97fc52cc7d5233c20024_icgraph">
+<area shape="rect" id="node2" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="240,5,357,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="405,5,460,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad8951ace99f9ae9d512c01bd91c49431"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::AddRectangle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTCoord.html">TCoord</a>&#160;</td>
+          <td class="paramname"><em>aEnd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод добавляет прямоугольник на холст </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aBegin</td><td>координата начала фигуры </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aEnd</td><td>координата конца фигуры</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Толщина линий и цвет будут выданы классом <a class="el" href="classApplication.html" title="Класс векторный редактор (предполагается что гуи будет использовать его методы) ">Application</a> </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ad8951ace99f9ae9d512c01bd91c49431_cgraph.png" border="0" usemap="#classApplication_ad8951ace99f9ae9d512c01bd91c49431_cgraph" alt=""/></div>
+<map name="classApplication_ad8951ace99f9ae9d512c01bd91c49431_cgraph" id="classApplication_ad8951ace99f9ae9d512c01bd91c49431_cgraph">
+<area shape="rect" id="node2" href="classPainter.html#ae643b167a1eb4c8418c395c1223a3196" title="Добавляет фигуру и отрисовывает на холсте " alt="" coords="240,5,380,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c86fb5a94abdca21dc9e8a93a32de4f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::ChangeCanvas </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод заменяет холст </p>
+<p>предполагается вызов диалога выбора холста и его замена </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a23716aeda5254a54eb2da54396953209"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::ChangeCanvasColor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод изменяет цвет холста </p>
+<p>все фигуры сохранятся на холсте </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a23716aeda5254a54eb2da54396953209_cgraph.png" border="0" usemap="#classApplication_a23716aeda5254a54eb2da54396953209_cgraph" alt=""/></div>
+<map name="classApplication_a23716aeda5254a54eb2da54396953209_cgraph" id="classApplication_a23716aeda5254a54eb2da54396953209_cgraph">
+<area shape="rect" id="node2" href="classPainter.html#a921e60268fbd852110d25e77bdf34496" title="Замена фона холста " alt="" coords="249,13,452,39"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a149705766a5ba697ae021a99ac246784"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::DeleteShape </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>aID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод удаляет фигуру с холста </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aID</td><td>айдишник удаляемой фигуры</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>предполагается использование вкупе с SelectShape </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a149705766a5ba697ae021a99ac246784_cgraph.png" border="0" usemap="#classApplication_a149705766a5ba697ae021a99ac246784_cgraph" alt=""/></div>
+<map name="classApplication_a149705766a5ba697ae021a99ac246784_cgraph" id="classApplication_a149705766a5ba697ae021a99ac246784_cgraph">
+<area shape="rect" id="node2" href="classPainter.html#ae5f6791608355d79f5e900b84c33ded6" title="Удаляет фигуру с холста " alt="" coords="236,5,387,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a149705766a5ba697ae021a99ac246784_icgraph.png" border="0" usemap="#classApplication_a149705766a5ba697ae021a99ac246784_icgraph" alt=""/></div>
+<map name="classApplication_a149705766a5ba697ae021a99ac246784_icgraph" id="classApplication_a149705766a5ba697ae021a99ac246784_icgraph">
+<area shape="rect" id="node2" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="236,5,353,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="401,5,456,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa0b69253cc952ebc1bef5bd7b8475f2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::Export </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Экспорт состояния редактора в файл </p>
+<p>Экспорт холста и фигур (фигуры будут экспортированны только если файл *.vect) в файла </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_aa0b69253cc952ebc1bef5bd7b8475f2d_cgraph.png" border="0" usemap="#classApplication_aa0b69253cc952ebc1bef5bd7b8475f2d_cgraph" alt=""/></div>
+<map name="classApplication_aa0b69253cc952ebc1bef5bd7b8475f2d_cgraph" id="classApplication_aa0b69253cc952ebc1bef5bd7b8475f2d_cgraph">
+<area shape="rect" id="node2" href="classFileManager.html#aa81c682ce71e4e6984a52baa635e044f" title="экспорт состояние художника в файл " alt="" coords="195,5,341,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_aa0b69253cc952ebc1bef5bd7b8475f2d_icgraph.png" border="0" usemap="#classApplication_aa0b69253cc952ebc1bef5bd7b8475f2d_icgraph" alt=""/></div>
+<map name="classApplication_aa0b69253cc952ebc1bef5bd7b8475f2d_icgraph" id="classApplication_aa0b69253cc952ebc1bef5bd7b8475f2d_icgraph">
+<area shape="rect" id="node2" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="195,5,312,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="360,5,415,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab255a1c119ce75dbfb591fcc6cbbbc5c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt;std::size_t, std::size_t&gt; Application::GetCanvasSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод возвращает текущий размер холста </p>
+<dl class="section return"><dt>Возвращает</dt><dd>std::pair&lt;std::size_t, std::size_t&gt; ширина + высота холста </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ab255a1c119ce75dbfb591fcc6cbbbc5c_cgraph.png" border="0" usemap="#classApplication_ab255a1c119ce75dbfb591fcc6cbbbc5c_cgraph" alt=""/></div>
+<map name="classApplication_ab255a1c119ce75dbfb591fcc6cbbbc5c_cgraph" id="classApplication_ab255a1c119ce75dbfb591fcc6cbbbc5c_cgraph">
+<area shape="rect" id="node2" href="classPainter.html#aef4efad9f23b53bf145f63f31f7d34ed" title="Получить размер текущего холста " alt="" coords="251,5,421,32"/>
+<area shape="rect" id="node3" href="classPainter.html#a0487f0c72fc81fa1060fcecca32d67e0" title="Отчистить состояние маляра " alt="" coords="469,5,576,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a16773a88a85367d43a13bb171bd10308"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::Import </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Импорт состояния редактора из файла </p>
+<p>Импорт холст и фигур (фигуры будут получены только если файл *.vect) из файла </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a16773a88a85367d43a13bb171bd10308_cgraph.png" border="0" usemap="#classApplication_a16773a88a85367d43a13bb171bd10308_cgraph" alt=""/></div>
+<map name="classApplication_a16773a88a85367d43a13bb171bd10308_cgraph" id="classApplication_a16773a88a85367d43a13bb171bd10308_cgraph">
+<area shape="rect" id="node2" href="classPainter.html#a0487f0c72fc81fa1060fcecca32d67e0" title="Отчистить состояние маляра " alt="" coords="447,5,553,32"/>
+<area shape="rect" id="node3" href="classFileManager.html#abbe5c6f741e1ee0c7149df5f65647a62" title="импортирует класс художника из файла " alt="" coords="207,81,355,108"/>
+<area shape="rect" id="node6" href="classPainter.html#aef4efad9f23b53bf145f63f31f7d34ed" title="Получить размер текущего холста " alt="" coords="196,31,367,57"/>
+<area shape="rect" id="node4" href="classPainter.html#a38b4d46f9694ed6943bc032a137b9cb5" title="Замена холста " alt="" coords="415,81,585,108"/>
+<area shape="rect" id="node5" href="classPainter.html#af1b5dcfb2931a3fb146792cc0851d702" title="Отрисовывает все фигуры на холсте " alt="" coords="633,81,801,108"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a16773a88a85367d43a13bb171bd10308_icgraph.png" border="0" usemap="#classApplication_a16773a88a85367d43a13bb171bd10308_icgraph" alt=""/></div>
+<map name="classApplication_a16773a88a85367d43a13bb171bd10308_icgraph" id="classApplication_a16773a88a85367d43a13bb171bd10308_icgraph">
+<area shape="rect" id="node2" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="196,5,313,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="361,5,416,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a55c3e25dedd956468077a7e4733c9b6a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::ResizeCanvas </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>aX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>aY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод изменяет размер холста </p>
+<p>все фигуры сохранятся на холсте </p><dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a55c3e25dedd956468077a7e4733c9b6a_cgraph.png" border="0" usemap="#classApplication_a55c3e25dedd956468077a7e4733c9b6a_cgraph" alt=""/></div>
+<map name="classApplication_a55c3e25dedd956468077a7e4733c9b6a_cgraph" id="classApplication_a55c3e25dedd956468077a7e4733c9b6a_cgraph">
+<area shape="rect" id="node2" href="classPainter.html#ad9f837cb4d9d0a5c2a0777f0f36c563b" title="Изменеяет размер холста " alt="" coords="240,5,401,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a55c3e25dedd956468077a7e4733c9b6a_icgraph.png" border="0" usemap="#classApplication_a55c3e25dedd956468077a7e4733c9b6a_icgraph" alt=""/></div>
+<map name="classApplication_a55c3e25dedd956468077a7e4733c9b6a_icgraph" id="classApplication_a55c3e25dedd956468077a7e4733c9b6a_icgraph">
+<area shape="rect" id="node2" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="240,5,357,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="405,5,460,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a69a9a59d8245933ce1788d6fd3bddf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="my__code__results_8h.html#a587fd024c3918bce7cbbfe46404aa470">CodeResults</a> Application::Save </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сохранение текущего состояния редактора </p>
+<dl class="section return"><dt>Возвращает</dt><dd>CodeResults код ошибки </dd></dl>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a4a69a9a59d8245933ce1788d6fd3bddf_cgraph.png" border="0" usemap="#classApplication_a4a69a9a59d8245933ce1788d6fd3bddf_cgraph" alt=""/></div>
+<map name="classApplication_a4a69a9a59d8245933ce1788d6fd3bddf_cgraph" id="classApplication_a4a69a9a59d8245933ce1788d6fd3bddf_cgraph">
+<area shape="rect" id="node2" href="classFileManager.html#ae1311d1c35cf04ce10db1205d3c67459" title="сохранение состояние художника в файл " alt="" coords="185,5,324,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a4a69a9a59d8245933ce1788d6fd3bddf_icgraph.png" border="0" usemap="#classApplication_a4a69a9a59d8245933ce1788d6fd3bddf_icgraph" alt=""/></div>
+<map name="classApplication_a4a69a9a59d8245933ce1788d6fd3bddf_icgraph" id="classApplication_a4a69a9a59d8245933ce1788d6fd3bddf_icgraph">
+<area shape="rect" id="node2" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="185,5,303,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="351,5,405,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a67ffddf0d25b7e059ec1c1a5511d5851"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;<a class="el" href="classPainter.html#a4ca4938d17b0973496b8dd887f85be2d">Painter::shapeid_t</a>&gt; Application::SelectShape </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>aX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>aY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод возвращает ID выделенной фигуры </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aX</td><td>положение мышки на холсте - ось абсцисс </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aY</td><td>положение мышки на холсте - ось ординат</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>положение мышки передаст GUI </p><dl class="section return"><dt>Возвращает</dt><dd>опциональное значение которого ID выделенной фигуры </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0ef5e6c6d5cd7508e13df6391ec91451"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Application::SetColor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTColor.html">TColor</a>&#160;</td>
+          <td class="paramname"><em>aColor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод задает цвет рисуемых на холсте фигур </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aColor</td><td>цвет и интенсивность (ARGB) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a0ef5e6c6d5cd7508e13df6391ec91451_icgraph.png" border="0" usemap="#classApplication_a0ef5e6c6d5cd7508e13df6391ec91451_icgraph" alt=""/></div>
+<map name="classApplication_a0ef5e6c6d5cd7508e13df6391ec91451_icgraph" id="classApplication_a0ef5e6c6d5cd7508e13df6391ec91451_icgraph">
+<area shape="rect" id="node2" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="208,5,325,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="373,5,428,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afa17e3dcc4d0d63ac8f33117b2cba806"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Application::SetThickness </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classIShape.html#a42fb7f888ad15b635a2512983a62a967">IShape::thickens_t</a>&#160;</td>
+          <td class="paramname"><em>aThickness</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод задает толщину рисуемых на холсте фигур </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aThickness</td><td>толщина от 0 до 255 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_afa17e3dcc4d0d63ac8f33117b2cba806_icgraph.png" border="0" usemap="#classApplication_afa17e3dcc4d0d63ac8f33117b2cba806_icgraph" alt=""/></div>
+<map name="classApplication_afa17e3dcc4d0d63ac8f33117b2cba806_icgraph" id="classApplication_afa17e3dcc4d0d63ac8f33117b2cba806_icgraph">
+<area shape="rect" id="node2" href="otus__5_8cpp.html#a7bdf3db1fb667f9244ee7730804820f5" title="TestApplication" alt="" coords="237,5,355,32"/>
+<area shape="rect" id="node3" href="otus__5_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="403,5,457,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>application/<a class="el" href="application_8h_source.html">application.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

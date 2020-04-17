@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['my_5ferror_5fcode_2eh',['my_error_code.h',['../my__error__code_8h.html',1,'']]]
+  ['my_5fcode_5fresults_2eh',['my_code_results.h',['../my__code__results_8h.html',1,'']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['canvas',['Canvas',['../structCanvas.html',1,'']]],
-  ['circle',['Circle',['../structCircle.html',1,'']]]
+  ['canvas',['Canvas',['../classCanvas.html',1,'']]],
+  ['circle',['Circle',['../classCircle.html',1,'']]]
 ];

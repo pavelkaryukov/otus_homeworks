@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['painter',['Painter',['../structPainter.html',1,'']]]
+  ['painter',['Painter',['../classPainter.html',1,'']]]
 ];

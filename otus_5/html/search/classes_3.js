@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ifile',['IFile',['../structIFile.html',1,'']]],
-  ['ishape',['IShape',['../structIShape.html',1,'']]]
+  ['ifile',['IFile',['../classIFile.html',1,'']]],
+  ['ishape',['IShape',['../classIShape.html',1,'']]]
 ];

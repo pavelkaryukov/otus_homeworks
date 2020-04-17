@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['line',['Line',['../structLine.html',1,'']]]
+  ['line',['Line',['../classLine.html',1,'']]]
 ];

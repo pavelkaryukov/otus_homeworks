@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['eraseshape',['EraseShape',['../structPainter.html#a5e5261753e1c3b478928f221590e784b',1,'Painter']]],
-  ['export',['Export',['../structApplication.html#a308ae9c493eca65f3c226dce59fa8b73',1,'Application::Export()'],['../structFileManager.html#a8ff0ad09911b7a55de43bf3b696aee18',1,'FileManager::Export()']]]
+  ['eraseshape',['EraseShape',['../classPainter.html#ae5f6791608355d79f5e900b84c33ded6',1,'Painter']]],
+  ['export',['Export',['../classApplication.html#aa0b69253cc952ebc1bef5bd7b8475f2d',1,'Application::Export()'],['../classFileManager.html#aa81c682ce71e4e6984a52baa635e044f',1,'FileManager::Export()']]]
 ];
