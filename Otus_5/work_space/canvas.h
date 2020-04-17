@@ -1,13 +1,14 @@
 #pragma once
 #include "shape/ishape.h"
-#include "error_code/my_error_code.h"
+#include "code_results/my_code_results.h"
 #include <map>
 
 /**
 * \brief класс Холст
 * \details рабочая зона для отрисовки фигур
 */
-struct Canvas {
+class Canvas final {
+public:
     Canvas() = default;
     
     /**
@@ -16,7 +17,7 @@ struct Canvas {
     * \param[in] aY  высота холста
     * \param[in] aColor  Цвет фона холста ARGB
     * \details после изменения размеров холста все фигуры будут заново отрисованы
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
     Canvas(const std::size_t aX, const std::size_t aY, const TColor aColor) : m_X(aX), m_Y(aY), m_Color(aColor) {}
 
@@ -24,27 +25,27 @@ struct Canvas {
     * \brief Изменеяет размер холста
     * \param[in] aX новая ширина холста
     * \param[in] aY новая высота холста
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode Resize(const std::size_t aX, const std::size_t aY) {
+    CodeResults Resize(const std::size_t aX, const std::size_t aY) {
         m_X = aX;
         m_Y = aY;
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
-    ErrorCode Clear() {
-        return ErrorCode::Succes;
+    CodeResults Clear() {
+        return CodeResults::Succes;
     }
 
     /**
     * \brief Замена фона
     * \param[in] aColor новый цвет ARGB
     * \details после изменения Цвета холста все фигуры будут заново отрисованы
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode ChangeColor(const TColor aColor) {
+    CodeResults ChangeColor(const TColor aColor) {
         m_Color = aColor;
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
     /**

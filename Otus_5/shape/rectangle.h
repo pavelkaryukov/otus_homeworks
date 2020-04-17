@@ -2,7 +2,8 @@
 #include "shape/ishape.h"
 #include <iostream>
 ///\brief фигура прямоугольник, реализует интерфейс IShape 
-struct Rectangle : public IShape {
+class Rectangle final : public IShape {
+public:
     Rectangle() = default;
     
     Rectangle(
@@ -17,10 +18,10 @@ struct Rectangle : public IShape {
         return std::make_unique<Rectangle>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint() override {
+    CodeResults Paint() override {
         std::cout << boost::format("\x20\x20\x20\Class Rectangle:: method Paint(); Canvas:%1%\r\n") % m_Canvas.get();
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
-    ~Rectangle() {};
+    ~Rectangle() = default;
 };

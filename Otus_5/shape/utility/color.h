@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 ///\brief цвет объекта на экране
-struct TColor {
+struct TColor final {
     ///\brief прозрачность пикселя
     std::uint8_t Alpha = 0;
     ///\brief красный цвет пикселя

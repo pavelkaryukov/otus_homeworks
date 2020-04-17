@@ -7,7 +7,7 @@ set(FILES_SRC   "file_system/file_manager.h" "file_system/all_files.h" "file_sys
 				"file_system/files/file_jpg.h" "file_system/files/file_bmp.h" "file_system/files/file_vect.h")
 
 set(SHAPES_SRC  "shape/ishape.h" "shape/circle.h" "shape/rectangle.h" "shape/line.h" "shape/utility/color.h" "shape/utility/coord.h")			
-set(ERRORS_SRC  "error_code/my_error_code.h")	
+set(ERRORS_SRC  "code_results/my_code_results.h")	
 set(WORK_SPACE_SRC    "work_space/canvas.h" "work_space/painter.h")
 
 add_executable(graphic_editor otus_5.cpp ${APP_SRC} ${FILES_SRC} ${SHAPES_SRC} ${ERRORS_SRC} ${WORK_SPACE_SRC}) 

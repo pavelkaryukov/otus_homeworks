@@ -1,7 +1,7 @@
 #pragma once
 #include <cstddef>
 ///\brief Координата объекта на экране
-struct TCoord {
+struct TCoord final {
     ///\brief Координата объекта на экране
     std::size_t X = 0;
     ///\brief Координата объекта на экране

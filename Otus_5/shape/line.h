@@ -2,7 +2,8 @@
 #include "shape/ishape.h"
 #include <iostream>
 ///\brief фигура Линия, реализует интерфейс IShape
-struct Line : public IShape {
+class Line final : public IShape {
+public:
     Line() = default;
     
     Line(
@@ -17,10 +18,10 @@ struct Line : public IShape {
         return std::make_unique<Line>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint() override {
+    CodeResults Paint() override {
         std::cout << boost::format("\x20\x20\x20\Class Line:: method Paint(); Canvas:%1%\r\n") % m_Canvas.get();
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
-    ~Line() {};
+    ~Line() = default;
 };

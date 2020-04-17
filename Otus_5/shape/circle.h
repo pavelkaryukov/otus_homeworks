@@ -2,7 +2,8 @@
 #include "shape/ishape.h"
 #include <iostream>
 ///\brief фигура круг, реализует интерфейс IShape 
-struct Circle : public IShape {
+class Circle final : public IShape {
+public:
     Circle() = default;
     Circle(
         std::shared_ptr<Canvas> aCanvas,
@@ -17,11 +18,10 @@ struct Circle : public IShape {
         return std::make_unique<Circle>(m_Canvas, aCoordBegin, aCoordEnd, GetThickness(), GetColor());
     }
 
-    ErrorCode Paint() override {
+    CodeResults Paint() override {
         std::cout << boost::format("\x20\x20\x20\Class Circle:: method Paint(); Canvas:%1%\r\n") % m_Canvas.get();
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
-    ~Circle() {
-    };
+    ~Circle() = default;
 };

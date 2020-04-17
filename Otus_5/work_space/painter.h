@@ -7,10 +7,10 @@
 * \brief класс Painter (маляр)
 * \details Класс Маляр, хранит в себе все фигуры и отрисовывает их на холств
 */
-struct Painter {
+class Painter final {
+public:
     using shapeid_t = std::size_t;
 #pragma region Constructors
-    Painter() = delete;
 
     /**
     * \brief Конструктор класса Painter
@@ -20,7 +20,6 @@ struct Painter {
     */
     Painter(Canvas&& aCanvas) {
         m_Canvas = std::make_shared<Canvas>(std::move(aCanvas));
-        //m_Canvas = std::shared_ptr<Canvas>(new Canvas(std::move(aCanvas)));
     }
 #pragma endregion
 
@@ -32,10 +31,10 @@ struct Painter {
     * \param[in] aThickness ширина линии фигуры
     * \param[in] aColor цвет фигуры - ARGB
     * \details Добавляет фигуру  в m_Shapes и отрисовывает на холсте
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
     template<class T>
-    ErrorCode AddShape(
+    CodeResults AddShape(
         const TCoord       aCoordBegin,
         const TCoord       aCoordEnd,
         const std::uint8_t aThickness,
@@ -44,10 +43,10 @@ struct Painter {
         static_assert(std::is_base_of<IShape, T>::value);
         auto[iter, res] = m_Shapes.insert({ m_Id.Generate(), std::make_unique<T>(m_Canvas, aCoordBegin, aCoordEnd, aThickness, aColor) });
         if (!res) {
-            return ErrorCode::SomeError;
+            return CodeResults::SomeError;
         }
         iter->second->Paint();
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
     /**
@@ -62,12 +61,12 @@ struct Painter {
     /**
     * \brief Отрисовка фигуры на холсте
     * \param[in] aID идентификатор фигуры
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode PaintShape(const shapeid_t aID) {
+    CodeResults PaintShape(const shapeid_t aID) {
         auto iter = m_Shapes.find(aID);
         if (iter == m_Shapes.end()) {
-            return ErrorCode::SomeError;
+            return CodeResults::SomeError;
         }
         return iter->second->Paint();
     }
@@ -75,15 +74,15 @@ struct Painter {
     /**
     * \brief Удаляет фигуру с холста
     * \param[in] aID идентификатор фигуры
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode EraseShape(const shapeid_t aID) {
+    CodeResults EraseShape(const shapeid_t aID) {
         auto iter = m_Shapes.find(aID);
         if (iter == m_Shapes.end()) {
-            return ErrorCode::SomeError;
+            return CodeResults::SomeError;
         }
         m_Shapes.erase(iter);
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 #pragma endregion
 
@@ -104,42 +103,42 @@ struct Painter {
     * \brief Изменеяет размер холста
     * \param[in] aX новая ширина холста
     * \param[in] aY новая высота холста
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode ResizeCanvas(const std::size_t aX, const std::size_t aY) {
+    CodeResults ResizeCanvas(const std::size_t aX, const std::size_t aY) {
         std::cout << "Painter: Resize Canvas\r\n";
         auto res = m_Canvas->Resize(aX, aY);
-        if (res != ErrorCode::Succes)
+        if (res != CodeResults::Succes)
             return res;
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
     /**
     * \brief Замена фона холста
     * \param[in] aColor новый цвет ARGB
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode ChangeCanvasColor(const TColor aColor) {
+    CodeResults ChangeCanvasColor(const TColor aColor) {
         std::cout << "Painter: Resize Canvas\r\n";//Фигуры перерисовывать не надо
         auto res = m_Canvas->ChangeColor(aColor);
-        if (res != ErrorCode::Succes)
+        if (res != CodeResults::Succes)
             return res;
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
     
     /**
     * \brief Замена холста
     * \param[in] aCanvas новый холст 
     * \details после изменения холста все фигуры получат новый холст и будут заново отрисованы
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode ChangeCanvas(std::unique_ptr<Canvas> aCanvas) {
+    CodeResults ChangeCanvas(std::unique_ptr<Canvas> aCanvas) {
         m_Canvas = std::move(aCanvas);
         for (auto&[id, shape] : m_Shapes) {
             shape->ChangeCanvas(m_Canvas);
         }
         PaintAllShapes();
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
     /**
@@ -152,6 +151,7 @@ struct Painter {
 #pragma endregion
 
 private:
+    Painter() = default;
     std::map<std::size_t, std::unique_ptr<IShape>> m_Shapes;
     std::shared_ptr<Canvas>                        m_Canvas;
 

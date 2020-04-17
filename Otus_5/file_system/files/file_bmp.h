@@ -1,50 +1,51 @@
 #pragma once
 #include "file_system/files/ifile.h"
 ///\brief Класс BMP-file
-struct FileBMP : public IFile {
+class FileBMP final : public IFile {
+public:
     FileBMP() = default;
     /**
     * \brief Конструктор BMP файла
     * \param[in] aPath - путь к файлу
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
     FileBMP(const std::filesystem::path aPath) : IFile(aPath) {}
     
     /**
     * \brief Открытие файла
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode Open() override {
+    CodeResults Open() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
     * \brief Создание файла
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode Create() override {
+    CodeResults Create() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
     * \brief Сохранение файла
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode Save() override {
+    CodeResults Save() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
     * \brief Закрытие файла
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode Close() override {
+    CodeResults Close() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
     * \brief Получить холст из файла
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
     std::unique_ptr<Canvas> GetCanvas() override {
         throw std::logic_error("The method or operation is not implemented.");
@@ -53,9 +54,9 @@ struct FileBMP : public IFile {
     /**
     * \brief Получить фигуры из файла
     * \param[out] aPainter- Маляр, в который будут добавлены фигуры
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode GetShapes(Painter& aPainter) override {
+    CodeResults GetShapes(Painter& aPainter) override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 };

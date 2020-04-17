@@ -2,69 +2,69 @@
 #include "file_system/all_files.h"
 #include "work_space/canvas.h"
 //Засунуть лямбду вызова select file from application
-struct FileManager {
-    
+class FileManager final {
+public:   
     /**
     * \brief импортирует класс художника из файла
     * \param[out] aPainter перенастраиваемый художник
     * \details Осуществляется замена холста и отрисованных фигур
-    * \return  ErrorCode  код ошибки
+    * \return  CodeResults  код ошибки
     */
-    ErrorCode Import(Painter& aPainter) {
+    CodeResults Import(Painter& aPainter) {
         auto [res, filePtr] = SelectFile();
-        if (res != ErrorCode::Succes)
+        if (res != CodeResults::Succes)
             return res;
         m_File = std::move(filePtr);
-        auto errorCode = aPainter.ChangeCanvas(m_File->GetCanvas());
-        if (errorCode != ErrorCode::Succes)
-            return errorCode;
-        errorCode = m_File->GetShapes(aPainter);
-        if (errorCode != ErrorCode::Succes)
-            return errorCode;
-        return ErrorCode::Succes;
+        auto resCode = aPainter.ChangeCanvas(m_File->GetCanvas());
+        if (resCode != CodeResults::Succes)
+            return resCode;
+        resCode = m_File->GetShapes(aPainter);
+        if (resCode != CodeResults::Succes)
+            return resCode;
+        return CodeResults::Succes;
     }
     
     /**
     * \brief экспорт состояние художника в файл
     * \param[in] aPainter объект класса художник
-    * \return  ErrorCode  код ошибки
+    * \return  CodeResults  код ошибки
     */
-    ErrorCode Export(const Painter& aPainter) {
+    CodeResults Export(const Painter& aPainter) {
         auto [res, filePtr] = SelectFile();
-        if (res != ErrorCode::Succes)
+        if (res != CodeResults::Succes)
             return res;
-        std::cout << "FileManager:: ErrorCode Export(); FileName: " << filePtr->GetFileName() << std::endl;
-        return ErrorCode::Succes;
+        std::cout << "FileManager:: CodeResults Export(); FileName: " << filePtr->GetFileName() << std::endl;
+        return CodeResults::Succes;
     }
 
     /**
     * \brief сохранение состояние художника в файл
     * \param[in] aPainter объект класса художник
-    * \return  ErrorCode  код ошибки
+    * \return  CodeResults  код ошибки
     */
-    ErrorCode Save(const Painter& aPainter) {
+    CodeResults Save(const Painter& aPainter) {
         if (m_File != nullptr)
             return m_File->Save();
 
         auto [error, ptr] = CreateFile("test_file.vect");
 
-        if (error != ErrorCode::Succes || ptr == nullptr) {
+        if (error != CodeResults::Succes || ptr == nullptr) {
             return error;
         }
         m_File = std::move(ptr);
         m_File->Save();
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
 private:
     std::unique_ptr<IFile> m_File;
 
     //Путь к файлу
-    using OperationResult = std::pair<ErrorCode, std::unique_ptr<IFile>>;
+    using OperationResult = std::pair<CodeResults, std::unique_ptr<IFile>>;
 
     OperationResult CreateFile(const std::filesystem::path aPath, const FileTypes aFType = FileTypes::VECT) {
-        OperationResult  res = { ErrorCode::Succes, std::unique_ptr<IFile>() };
-        auto&[errorCode, ptr] = res;
+        OperationResult  res = { CodeResults::Succes, std::unique_ptr<IFile>() };
+        auto&[resCode, ptr] = res;
 
          switch (aFType) {
              case FileTypes::BMP:
@@ -79,7 +79,7 @@ private:
          }
 
         if (ptr == nullptr) 
-            errorCode = ErrorCode::SomeError;
+            resCode = CodeResults::SomeError;
 
         return res;
     }
@@ -87,7 +87,7 @@ private:
     OperationResult SelectFile() {
         //Диалог выбора файла
         const std::filesystem::path filePath = "testfile.vect";
-        OperationResult  res = { ErrorCode::Succes, std::unique_ptr<IFile>(new FileVect(filePath)) };
+        OperationResult  res = { CodeResults::Succes, std::unique_ptr<IFile>(new FileVect(filePath)) };
         return res;
     }
 };

@@ -1,5 +1,5 @@
 #pragma once
-#include "error_code/my_error_code.h"
+#include "code_results/my_code_results.h"
 #include "shape/utility/coord.h"
 #include "shape/utility/color.h"
 #include "work_space/canvas.h"
@@ -11,7 +11,8 @@
 #include <iostream>
 #include <boost/format.hpp>
 ///\brief Интерфейс фигуры
-struct IShape { 
+class IShape { 
+public:
     using thickens_t = std::uint8_t;
 
     IShape(
@@ -34,14 +35,14 @@ struct IShape {
     * \param[in] aCoordEnd   - координаты нового  фигуры
     * \param[in] aThickness  - новая ширина фигуры
     * \param[in] aColor      - новый цвет фигуры
-    * \return ErrorCode код ошибки
+    * \return CodeResults код ошибки
     */
-    ErrorCode SetState( const TCoord aCoordBegin, const TCoord aCoordEnd, const thickens_t aThickness, const TColor aColor ) {
+    CodeResults SetState( const TCoord aCoordBegin, const TCoord aCoordEnd, const thickens_t aThickness, const TColor aColor ) {
         m_CoordBegin = aCoordBegin; 
         m_CoordEnd   = aCoordEnd  ; 
         m_Thickness  = aThickness ; 
         m_Color      = aColor     ;
-        return StateIsValid() ? ErrorCode::Succes : ErrorCode::SomeError;
+        return StateIsValid() ? CodeResults::Succes : CodeResults::SomeError;
     }
 
     /**
@@ -54,9 +55,9 @@ struct IShape {
 
     /**
     * \brief функция Отрисовывает фигуру на рабочей поверхности
-    * \return  ErrorCode  Код возможной ошибки
+    * \return  CodeResults  Код возможной ошибки
     */
-    virtual ErrorCode Paint() = 0;
+    virtual CodeResults Paint() = 0;
     ///\brief деструктор
     virtual ~IShape() {
         Erase();
@@ -67,9 +68,9 @@ struct IShape {
         return m_Thickness;
     }
     ///\brief цвет ширину линии фигуры
-    ErrorCode ChangeThickness(const std::uint8_t aThickness) {
+    CodeResults ChangeThickness(const std::uint8_t aThickness) {
         m_Thickness = aThickness; //Оператор сравнения
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
     ///\brief получить цвет фигуры
     TColor GetColor() const {
@@ -77,19 +78,19 @@ struct IShape {
     }
 
     ///\brief изменить цвет фигуры
-    ErrorCode ChangeColor(TColor aColor) {
+    CodeResults ChangeColor(TColor aColor) {
         m_Color = aColor;
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 
     /**
     * \brief перенос фигуры на другой холст
     * \param[in] aCanvas - указатель на новый холст
-    * \return  ErrorCode код ошибки
+    * \return  CodeResults код ошибки
     */
-    ErrorCode ChangeCanvas(std::shared_ptr<Canvas> aCanvas) {
+    CodeResults ChangeCanvas(std::shared_ptr<Canvas> aCanvas) {
         m_Canvas = aCanvas;
-        return ErrorCode::Succes;
+        return CodeResults::Succes;
     }
 protected:
     std::shared_ptr<Canvas> m_Canvas;
@@ -97,7 +98,7 @@ private:
     IShape() = default;
     /**
     * \brief функция Стирает фигуру с рабочей поверхности ()
-    * \return  ErrorCode  Код возможной ошибки
+    * \return  CodeResults  Код возможной ошибки
     */
     void Erase() {
         std::cout << "Erase figure from Canvas: " << m_Canvas.get() << std::endl;
