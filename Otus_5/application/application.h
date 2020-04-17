@@ -1,7 +1,7 @@
 #pragma once
 #include "work_space/painter.h"
-#include "
--
+#include "code_results/my_code_results.h"
+#include "shape/circle.h"
 #include "shape/rectangle.h"
 #include "shape/line.h"
 #include "file_system/file_manager.h"
@@ -232,6 +232,6 @@ public:
 private:
     TColor                   m_Color;
     IShape::thickens_t       m_Thickness;
-    Painter                  m_Painter = Painter(Canvas{ 800, 600, TColor{} });
+    Painter                  m_Painter = Painter(Canvas{ 800, 600, {} });
     FileManager              m_FileManager;
 };
