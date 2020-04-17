@@ -9,10 +9,10 @@ void PrintForOtus()
     auto test2 = short(0);
     auto test3 = int(2130706433);
     auto test4 = std::uint64_t(8875824491850138409);
-    MyIP::PrintIpAddr(MyIP::ToStr<decltype(test1)>(test1));
-    MyIP::PrintIpAddr(MyIP::ToStr<decltype(test2)>(test2));
-    MyIP::PrintIpAddr(MyIP::ToStr<decltype(test3)>(test3));
-    MyIP::PrintIpAddr(MyIP::ToStr<decltype(test4)>(test4));
+    MyIP::PrintIpAddr(MyIP::ToStr(test1));
+    MyIP::PrintIpAddr(MyIP::ToStr(test2));
+    MyIP::PrintIpAddr(MyIP::ToStr(test3));
+    MyIP::PrintIpAddr(MyIP::ToStr(test4));
 }
 //-----------------------------------------------------------------------------
 int main(int, char *[])
