@@ -17,10 +17,17 @@ namespace tuple_utils
     }
     //-----------------------------------------------------------------------------
     template <typename Tuple, typename Func>
-    void for_each(Tuple&& t, Func&& f)
+    void for_each(const Tuple& t, const Func& f)
     {
         constexpr auto n = std::tuple_size<std::decay_t<Tuple>>::value;
         auto dispatcher = make_index_dispatcher<n>();
-        dispatcher([&f, &t](auto idx) { f(std::get<idx>(std::forward<Tuple>(t))); });
+        dispatcher([&f, &t](auto idx) { f(std::get<idx>(t)); });
     }
+
+    /*template <typename Tuple, typename Func>
+    void for_each(Tuple&& t, Func&& f) {
+        constexpr auto n = std::tuple_size<std::decay_t<Tuple>>::value;
+        auto dispatcher = make_index_dispatcher<n>();
+        dispatcher([&f, &t](auto idx) { f(std::get<idx>(std::forward<Tuple>(t))); });
+    }*/
 } // tuple_utils

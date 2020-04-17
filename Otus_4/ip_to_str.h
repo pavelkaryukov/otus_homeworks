@@ -54,8 +54,7 @@ namespace MyIP
         Success
     };
     ///\brief Приватные функции и константы
-    namespace Private
-    {
+    namespace {
         /**
         * \brief При конвертации в строку среднестастическая длина элемента, нужно при резервирование памяти для строки
         */
@@ -82,7 +81,10 @@ namespace MyIP
         constexpr bool is_iterable_v = is_iterable<T>::value;
     }
     ///\brief возврашаемый результат функций ToStr, пара строка + код ошибки
-    using ConvertResult = std::pair<std::string, ErrorCode>;
+    struct[[nodiscard]] ConvertResult {
+        std::string Result;
+        ErrorCode   ErrorCode;
+    };
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
     * \param[in] aBegin указатель (итератор) на начало
@@ -100,7 +102,7 @@ namespace MyIP
 
         const auto size = std::distance(aBegin, aEnd);
         std::string res;
-        res.reserve(size * Private::kOneElementStrSize);
+        res.reserve(size * kOneElementStrSize);
         auto iter = aBegin;
         while (iter != aEnd) {
             auto insertedPos = [&res, &aOrder]()->std::size_t { return  (aOrder == ByteOrder::BigEndian) ? res.size() : 0; };
@@ -121,7 +123,7 @@ namespace MyIP
     * \return  ErrorCode  код ошибки
     */
     template <class TContainer>
-    typename std::enable_if<Private::is_iterable_v<TContainer>, ConvertResult>::type ToStr(const TContainer& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
+    typename std::enable_if<is_iterable_v<TContainer>, ConvertResult>::type ToStr(const TContainer& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
     {
         auto beginIter = std::begin(aObj);
         auto endIter = std::end(aObj);
@@ -167,7 +169,7 @@ namespace MyIP
     {
         const std::size_t size = std::tuple_size< std::tuple<Types...>>::value;
         std::string resStr;
-        resStr.reserve(size * Private::kOneElementStrSize);
+        resStr.reserve(size * kOneElementStrSize);
         auto errorCode = ErrorCode::Success;
         std::size_t index = 0;
 
@@ -177,10 +179,10 @@ namespace MyIP
             if (typeid(e) != typeid(std::get<0>(aTuple)))
                 errorCode = ErrorCode::DifferentTypesInTuple;
 
-            resStr.insert(Private::InsertedPos(resStr, aOrder), std::to_string(static_cast<std::uint8_t>(e)));
+            resStr.insert(InsertedPos(resStr, aOrder), std::to_string(static_cast<std::uint8_t>(e)));
             ++index;
             if (index < size)
-                resStr.insert(Private::InsertedPos(resStr, aOrder), ".");
+                resStr.insert(InsertedPos(resStr, aOrder), ".");
         }
         );
         
@@ -195,18 +197,17 @@ namespace MyIP
     */
     std::string ErrorCodeToStr(const ErrorCode aCode)
     {
-        //English from Hell
         switch (aCode) {
         default:
-            return "Unknown error code\r\n";
+            return "Unknown error code";
         case ErrorCode::NotEnoughData:
-            return "Not enough data (container/type size < 4 elements/bytes)\r\n";
+            return "Not enough data (container/type size < 4 elements/bytes)";
         case ErrorCode::Success:
-            return "Convert to str was corrected\r\n";
+            return "Convert to str was corrected";
         case ErrorCode::WrongArgument:
-            return "Wrong argument\r\n";
+            return "Wrong argument";
         case ErrorCode::DifferentTypesInTuple:
-            return "Different Types In Tuple > 0xFF\r\n";
+            return "Different Types In Tuple > 0xFF";
         }
     }
     /**
@@ -215,8 +216,12 @@ namespace MyIP
     */
     void PrintIpAddr(const ConvertResult& aRes)
     {
-        if (aRes.second == ErrorCode::Success)
-            std::cout << aRes.first << std::endl;
+        if (aRes.ErrorCode == ErrorCode::Success) {
+            std::cout << aRes.Result << std::endl;
+        }
+        else {
+            throw std::logic_error(ErrorCodeToStr(aRes.ErrorCode));
+        }
     }
 }
 

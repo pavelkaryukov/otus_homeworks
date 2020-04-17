@@ -13,6 +13,16 @@ void PrintForOtus()
     MyIP::PrintIpAddr(MyIP::ToStr(test2));
     MyIP::PrintIpAddr(MyIP::ToStr(test3));
     MyIP::PrintIpAddr(MyIP::ToStr(test4));
+
+    std::array <int, 4> array1 = { 1, 12, 25, 67 };
+    std::vector<int>    vect1 = { 1, 12, 25, 67 };
+    std::list  <int>    list1 = { 1, 12, 25, 67 };
+    MyIP::PrintIpAddr(MyIP::ToStr(array1));
+    MyIP::PrintIpAddr(MyIP::ToStr(array1));
+    MyIP::PrintIpAddr(MyIP::ToStr(vect1));
+
+    std::tuple<int, int, int> tuple1 = { 1, 12, 25 };
+    MyIP::PrintIpAddr(MyIP::ToStr(tuple1));
 }
 //-----------------------------------------------------------------------------
 int main(int, char *[])

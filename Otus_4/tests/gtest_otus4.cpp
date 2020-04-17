@@ -4,7 +4,7 @@
 #include <list>
 #include <vector>
 //-----------------------------------------------------------------------------
-TEST(gtest_print_ip,  PrintTuple)
+TEST(gtest_print_ip,  PrintTuple)//TODO::Переделать тест
 {
     std::tuple<int, int, int, int>   tuple1 = { 1, 12, 25, 67 };
     std::tuple<int, short, std::uint64_t> tuple2 = { 1, 12, 25};
@@ -14,17 +14,17 @@ TEST(gtest_print_ip,  PrintTuple)
     auto res21 = MyIP::ToStr<int, short, std::uint64_t >(tuple2);
     auto res22 = MyIP::ToStr<int, short, std::uint64_t >(tuple2);
 
-    ASSERT_EQ(res11.second, MyIP::ErrorCode::Success);
-    ASSERT_EQ(res12.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res11.ErrorCode, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res12.ErrorCode, MyIP::ErrorCode::Success);
 
-    ASSERT_NE(res21.second, MyIP::ErrorCode::Success); 
-    ASSERT_NE(res22.second, MyIP::ErrorCode::Success); 
+    ASSERT_NE(res21.ErrorCode, MyIP::ErrorCode::Success);
+    ASSERT_NE(res22.ErrorCode, MyIP::ErrorCode::Success);
 
-    ASSERT_EQ(res11.first, "1.12.25.67");
-    ASSERT_EQ(res12.first, "67.25.12.1");
+    ASSERT_EQ(res11.Result, "1.12.25.67");
+    ASSERT_EQ(res12.Result, "67.25.12.1");
 
-    ASSERT_TRUE(res21.first.empty());
-    ASSERT_TRUE(res22.first.empty());
+    ASSERT_TRUE(res21.Result.empty());
+    ASSERT_TRUE(res22.Result.empty());
 }
 //-----------------------------------------------------------------------------
 TEST(gtest_print_ip, PrintContainer)
@@ -42,23 +42,23 @@ TEST(gtest_print_ip, PrintContainer)
 
 
     
-    ASSERT_EQ(resArray11.second, MyIP::ErrorCode::Success);
-    ASSERT_EQ(resArray12.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resArray11.ErrorCode, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resArray12.ErrorCode, MyIP::ErrorCode::Success);
 
-    ASSERT_EQ(resVect11 .second, MyIP::ErrorCode::Success);
-    ASSERT_EQ(resVect12 .second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resVect11 .ErrorCode, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resVect12 .ErrorCode, MyIP::ErrorCode::Success);
 
-    ASSERT_EQ(resList11 .second, MyIP::ErrorCode::Success);
-    ASSERT_EQ(resList12 .second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resList11 .ErrorCode, MyIP::ErrorCode::Success);
+    ASSERT_EQ(resList12 .ErrorCode, MyIP::ErrorCode::Success);
 
-    ASSERT_EQ(resArray11.first, "1.12.25.67");
-    ASSERT_EQ(resArray12.first, "67.25.12.1");
+    ASSERT_EQ(resArray11.Result, "1.12.25.67");
+    ASSERT_EQ(resArray12.Result, "67.25.12.1");
 
-    ASSERT_EQ(resVect11.first, "1.12.25.67");
-    ASSERT_EQ(resVect12.first, "67.25.12.1");
+    ASSERT_EQ(resVect11.Result, "1.12.25.67");
+    ASSERT_EQ(resVect12.Result, "67.25.12.1");
 
-    ASSERT_EQ(resList11.first, "1.12.25.67");
-    ASSERT_EQ(resList12.first, "67.25.12.1");
+    ASSERT_EQ(resList11.Result, "1.12.25.67");
+    ASSERT_EQ(resList12.Result, "67.25.12.1");
 }
 //-----------------------------------------------------------------------------
 TEST(gtest_print_ip, PrintIntegral)
@@ -73,15 +73,15 @@ TEST(gtest_print_ip, PrintIntegral)
     auto res3 = MyIP::ToStr<decltype(test3)>(test3);
     auto res4 = MyIP::ToStr<decltype(test4)>(test4);
 
-    ASSERT_EQ(res1.second, MyIP::ErrorCode::Success);
-    ASSERT_EQ(res2.second, MyIP::ErrorCode::Success);
-    ASSERT_EQ(res3.second, MyIP::ErrorCode::Success);
-    ASSERT_EQ(res4.second, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res1.ErrorCode, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res2.ErrorCode, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res3.ErrorCode, MyIP::ErrorCode::Success);
+    ASSERT_EQ(res4.ErrorCode, MyIP::ErrorCode::Success);
     
-    ASSERT_EQ(res1.first, "255"                        );
-    ASSERT_EQ(res2.first, "0.0"                        );
-    ASSERT_EQ(res3.first, "127.0.0.1"                  );
-    ASSERT_EQ(res4.first, "123.45.67.89.101.112.131.41");
+    ASSERT_EQ(res1.Result, "255"                        );
+    ASSERT_EQ(res2.Result, "0.0"                        );
+    ASSERT_EQ(res3.Result, "127.0.0.1"                  );
+    ASSERT_EQ(res4.Result, "123.45.67.89.101.112.131.41");
 }
 //-----------------------------------------------------------------------------
 int main(int argc, char** argv)
