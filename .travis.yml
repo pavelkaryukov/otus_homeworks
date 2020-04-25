@@ -33,12 +33,16 @@ script:
 - ./gtest_print_ip  
 - doxygen
 - cd ..
-- cd Otus_5/
+- cd Otus_5
 - ./graphic_editor
 - doxygen
 - cd ..
 - cd Otus_6/
 - ./test_matrix  	   
+- doxygen
+- cd ..
+- cd Otus_7
+- ./test_bulk  	   
 - doxygen
 - cd ..
 - cmake --build . --target package
