@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['notenoughdata',['NotEnoughData',['../namespaceMyIP.html#aff5b391691147a530d7e58f182aa1fb6ab6e495eeaee7cdf1bac313472e4681ac',1,'MyIP']]]
+  ['otus_5f4_20_28print_5fip_29',['Otus_4 (Print_IP)',['../index.html',1,'']]],
+  ['otus_5f4_2ecpp',['otus_4.cpp',['../otus__4_8cpp.html',1,'']]]
 ];

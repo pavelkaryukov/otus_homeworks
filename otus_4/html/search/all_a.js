@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['otus_5f4_20_28print_5fip_29',['Otus_4 (Print_IP)',['../index.html',1,'']]],
-  ['otus_5f4_2ecpp',['otus_4.cpp',['../otus__4_8cpp.html',1,'']]]
+  ['printforotus',['PrintForOtus',['../otus__4_8cpp.html#ad9638c29865f3fb6152890a45f3962e1',1,'otus_4.cpp']]],
+  ['printipaddr',['PrintIpAddr',['../namespaceMyIP.html#ae206259f05e0da4704103b18bf5eb6c2',1,'MyIP']]]
 ];

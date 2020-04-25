@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['convertresult',['ConvertResult',['../namespaceMyIP.html#a849201f01be33511a2b8549c4095224a',1,'MyIP']]]
+  ['code',['Code',['../structMyIP_1_1ConvertResult.html#ac2749515a2ab395b7592621fb147306f',1,'MyIP::ConvertResult']]],
+  ['convertresult',['ConvertResult',['../structMyIP_1_1ConvertResult.html',1,'MyIP']]]
 ];

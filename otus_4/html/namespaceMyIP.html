@@ -82,8 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Пространства имен</a> &#124;
-<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#nested-classes">Классы</a> &#124;
 <a href="#enum-members">Перечисления</a> &#124;
 <a href="#func-members">Функции</a>  </div>
   <div class="headertitle">
@@ -94,17 +93,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <p>Функции печати IPv4 Style.  
 <a href="#details">Подробнее...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Пространства имен</h2></td></tr>
-<tr class="memitem:namespaceMyIP_1_1Private"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMyIP_1_1Private.html">Private</a></td></tr>
-<tr class="memdesc:namespaceMyIP_1_1Private"><td class="mdescLeft">&#160;</td><td class="mdescRight">Приватные функции и константы <br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">возврашаемый результат функций ToStr, пара строка + код ошибки  <a href="structMyIP_1_1ConvertResult.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Определения типов</h2></td></tr>
-<tr class="memitem:a849201f01be33511a2b8549c4095224a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a> = std::pair&lt; std::string, <a class="el" href="namespaceMyIP.html#aff5b391691147a530d7e58f182aa1fb6">ErrorCode</a> &gt;</td></tr>
-<tr class="memdesc:a849201f01be33511a2b8549c4095224a"><td class="mdescLeft">&#160;</td><td class="mdescRight">возврашаемый результат функций ToStr, пара строка + код ошибки  <a href="#a849201f01be33511a2b8549c4095224a">Подробнее...</a><br /></td></tr>
-<tr class="separator:a849201f01be33511a2b8549c4095224a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Перечисления</h2></td></tr>
@@ -124,49 +117,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:ac42bc9f57b2f5dbd3bee2f275ecefd49"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:ac42bc9f57b2f5dbd3bee2f275ecefd49"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#ac42bc9f57b2f5dbd3bee2f275ecefd49">ToStr</a> (const T aBegin, const T aEnd, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder)</td></tr>
+<tr class="memitem:ac42bc9f57b2f5dbd3bee2f275ecefd49"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#ac42bc9f57b2f5dbd3bee2f275ecefd49">ToStr</a> (const T aBegin, const T aEnd, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder)</td></tr>
 <tr class="memdesc:ac42bc9f57b2f5dbd3bee2f275ecefd49"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#ac42bc9f57b2f5dbd3bee2f275ecefd49">Подробнее...</a><br /></td></tr>
 <tr class="separator:ac42bc9f57b2f5dbd3bee2f275ecefd49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a029753ff19f130cbfdf93e0f6160ab36"><td class="memTemplParams" colspan="2">template&lt;class TContainer &gt; </td></tr>
-<tr class="memitem:a029753ff19f130cbfdf93e0f6160ab36"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="namespaceMyIP_1_1Private.html#abb4d6c694717093514a8e0e539f2ce85">Private::is_iterable_v</a>&lt; TContainer &gt;, <a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a029753ff19f130cbfdf93e0f6160ab36">ToStr</a> (const TContainer &amp;aObj, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder=<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>)</td></tr>
-<tr class="memdesc:a029753ff19f130cbfdf93e0f6160ab36"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#a029753ff19f130cbfdf93e0f6160ab36">Подробнее...</a><br /></td></tr>
-<tr class="separator:a029753ff19f130cbfdf93e0f6160ab36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7312453a6c664f8bec8e482ef764d22f"><td class="memTemplParams" colspan="2">template&lt;class TContainer &gt; </td></tr>
+<tr class="memitem:a7312453a6c664f8bec8e482ef764d22f"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; is_iterable_v&lt; TContainer &gt;, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a7312453a6c664f8bec8e482ef764d22f">ToStr</a> (const TContainer &amp;aObj, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder=<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>)</td></tr>
+<tr class="memdesc:a7312453a6c664f8bec8e482ef764d22f"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#a7312453a6c664f8bec8e482ef764d22f">Подробнее...</a><br /></td></tr>
+<tr class="separator:a7312453a6c664f8bec8e482ef764d22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d34050ab5a0e544f099e31b1aa371cb"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a3d34050ab5a0e544f099e31b1aa371cb"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_integral_v&lt; T &gt;, <a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a3d34050ab5a0e544f099e31b1aa371cb">ToStr</a> (const T &amp;aObj, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder=<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>)</td></tr>
+<tr class="memitem:a3d34050ab5a0e544f099e31b1aa371cb"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_integral_v&lt; T &gt;, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a3d34050ab5a0e544f099e31b1aa371cb">ToStr</a> (const T &amp;aObj, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder=<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>)</td></tr>
 <tr class="memdesc:a3d34050ab5a0e544f099e31b1aa371cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#a3d34050ab5a0e544f099e31b1aa371cb">Подробнее...</a><br /></td></tr>
 <tr class="separator:a3d34050ab5a0e544f099e31b1aa371cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acee326406c58a4846b87cf03101f9dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#acee326406c58a4846b87cf03101f9dac">ToStr</a> (const std::string aStr, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a>)</td></tr>
+<tr class="memitem:acee326406c58a4846b87cf03101f9dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#acee326406c58a4846b87cf03101f9dac">ToStr</a> (const std::string aStr, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a>)</td></tr>
 <tr class="memdesc:acee326406c58a4846b87cf03101f9dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#acee326406c58a4846b87cf03101f9dac">Подробнее...</a><br /></td></tr>
 <tr class="separator:acee326406c58a4846b87cf03101f9dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f2b39dd301f5d75df2f4ce79ec37d8e"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
-<tr class="memitem:a1f2b39dd301f5d75df2f4ce79ec37d8e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a1f2b39dd301f5d75df2f4ce79ec37d8e">ToStr</a> (const std::tuple&lt; Types... &gt; aTuple, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder=<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>)</td></tr>
+<tr class="memitem:a1f2b39dd301f5d75df2f4ce79ec37d8e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a1f2b39dd301f5d75df2f4ce79ec37d8e">ToStr</a> (const std::tuple&lt; Types... &gt; aTuple, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder=<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>)</td></tr>
 <tr class="memdesc:a1f2b39dd301f5d75df2f4ce79ec37d8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#a1f2b39dd301f5d75df2f4ce79ec37d8e">Подробнее...</a><br /></td></tr>
 <tr class="separator:a1f2b39dd301f5d75df2f4ce79ec37d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaba850b9eed4a23289c4423be1fa10c2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#aaba850b9eed4a23289c4423be1fa10c2">ErrorCodeToStr</a> (const <a class="el" href="namespaceMyIP.html#aff5b391691147a530d7e58f182aa1fb6">ErrorCode</a> aCode)</td></tr>
 <tr class="memdesc:aaba850b9eed4a23289c4423be1fa10c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция вывода на экран текста кода ошибки  <a href="#aaba850b9eed4a23289c4423be1fa10c2">Подробнее...</a><br /></td></tr>
 <tr class="separator:aaba850b9eed4a23289c4423be1fa10c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae206259f05e0da4704103b18bf5eb6c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#ae206259f05e0da4704103b18bf5eb6c2">PrintIpAddr</a> (const <a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a> &amp;aRes)</td></tr>
+<tr class="memitem:ae206259f05e0da4704103b18bf5eb6c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#ae206259f05e0da4704103b18bf5eb6c2">PrintIpAddr</a> (const <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> &amp;aRes)</td></tr>
 <tr class="memdesc:ae206259f05e0da4704103b18bf5eb6c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция вывода на экран ip адреса, полученно в результате работы функции ToStr.  <a href="#ae206259f05e0da4704103b18bf5eb6c2">Подробнее...</a><br /></td></tr>
 <tr class="separator:ae206259f05e0da4704103b18bf5eb6c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Функции печати IPv4 Style. </p>
-</div><h2 class="groupheader">Типы</h2>
-<a class="anchor" id="a849201f01be33511a2b8549c4095224a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">MyIP::ConvertResult</a> = typedef std::pair&lt;std::string, <a class="el" href="namespaceMyIP.html#aff5b391691147a530d7e58f182aa1fb6">ErrorCode</a>&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>возврашаемый результат функций ToStr, пара строка + код ошибки </p>
-
-</div>
-</div>
-<h2 class="groupheader">Перечисления</h2>
+</div><h2 class="groupheader">Перечисления</h2>
 <a class="anchor" id="a70fa16ed6a8e627f00d6d0e9e2a0e505"></a>
 <div class="memitem">
 <div class="memproto">
@@ -265,7 +243,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
         <tr>
           <td class="memname">void MyIP::PrintIpAddr </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> &amp;&#160;</td>
           <td class="paramname"><em>aRes</em></td><td>)</td>
           <td></td>
         </tr>
@@ -289,7 +267,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a> MyIP::ToStr </td>
+          <td class="memname"><a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> MyIP::ToStr </td>
           <td>(</td>
           <td class="paramtype">const T&#160;</td>
           <td class="paramname"><em>aBegin</em>, </td>
@@ -323,7 +301,7 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>ConvertResult = std::pair&lt;std::string, ErrorCode&gt; где </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="structMyIP_1_1ConvertResult.html" title="возврашаемый результат функций ToStr, пара строка + код ошибки ">ConvertResult</a> = std::pair&lt;std::string, ErrorCode&gt; где </dd>
 <dd>
 std::string строковое представление ip адреса </dd>
 <dd>
@@ -331,14 +309,14 @@ ErrorCode код ошибки </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a029753ff19f130cbfdf93e0f6160ab36"></a>
+<a class="anchor" id="a7312453a6c664f8bec8e482ef764d22f"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class TContainer &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;<a class="el" href="namespaceMyIP_1_1Private.html#abb4d6c694717093514a8e0e539f2ce85">Private::is_iterable_v</a>&lt;TContainer&gt;, <a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a>&gt;::type MyIP::ToStr </td>
+          <td class="memname">std::enable_if&lt;is_iterable_v&lt;TContainer&gt;, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a>&gt;::type MyIP::ToStr </td>
           <td>(</td>
           <td class="paramtype">const TContainer &amp;&#160;</td>
           <td class="paramname"><em>aObj</em>, </td>
@@ -365,7 +343,7 @@ template&lt;class TContainer &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>ConvertResult = std::pair&lt;std::string, ErrorCode&gt; где </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="structMyIP_1_1ConvertResult.html" title="возврашаемый результат функций ToStr, пара строка + код ошибки ">ConvertResult</a> = std::pair&lt;std::string, ErrorCode&gt; где </dd>
 <dd>
 std::string строковое представление ip адреса </dd>
 <dd>
@@ -380,7 +358,7 @@ ErrorCode код ошибки </dd></dl>
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;std::is_integral_v&lt;T&gt;, <a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a>&gt;::type MyIP::ToStr </td>
+          <td class="memname">std::enable_if&lt;std::is_integral_v&lt;T&gt;, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a>&gt;::type MyIP::ToStr </td>
           <td>(</td>
           <td class="paramtype">const T &amp;&#160;</td>
           <td class="paramname"><em>aObj</em>, </td>
@@ -407,7 +385,7 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>ConvertResult = std::pair&lt;std::string, ErrorCode&gt; где </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="structMyIP_1_1ConvertResult.html" title="возврашаемый результат функций ToStr, пара строка + код ошибки ">ConvertResult</a> = std::pair&lt;std::string, ErrorCode&gt; где </dd>
 <dd>
 std::string строковое представление ip адреса </dd>
 <dd>
@@ -420,7 +398,7 @@ ErrorCode код ошибки </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a> MyIP::ToStr </td>
+          <td class="memname"><a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> MyIP::ToStr </td>
           <td>(</td>
           <td class="paramtype">const std::string&#160;</td>
           <td class="paramname"><em>aStr</em>, </td>
@@ -446,7 +424,7 @@ ErrorCode код ошибки </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>ConvertResult = std::pair&lt;std::string, ErrorCode&gt; где </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="structMyIP_1_1ConvertResult.html" title="возврашаемый результат функций ToStr, пара строка + код ошибки ">ConvertResult</a> = std::pair&lt;std::string, ErrorCode&gt; где </dd>
 <dd>
 std::string строковое представление ip адреса </dd>
 <dd>
@@ -461,7 +439,7 @@ ErrorCode код ошибки </dd></dl>
 template&lt;typename... Types&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMyIP.html#a849201f01be33511a2b8549c4095224a">ConvertResult</a> MyIP::ToStr </td>
+          <td class="memname"><a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> MyIP::ToStr </td>
           <td>(</td>
           <td class="paramtype">const std::tuple&lt; Types... &gt;&#160;</td>
           <td class="paramname"><em>aTuple</em>, </td>
@@ -488,7 +466,7 @@ template&lt;typename... Types&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>ConvertResult = std::pair&lt;std::string, ErrorCode&gt; где </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="structMyIP_1_1ConvertResult.html" title="возврашаемый результат функций ToStr, пара строка + код ошибки ">ConvertResult</a> = std::pair&lt;std::string, ErrorCode&gt; где </dd>
 <dd>
 std::string строковое представление ip адреса </dd>
 <dd>
