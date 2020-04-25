@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     dispatcher.ProcessCmdLine("cmd28");
     dispatcher.ProcessCmdLine("cmd29");
     dispatcher.ProcessCmdLine("cmd20");
-    return;
+    return 0;
     std::size_t N = 0;
     if (argc == 1) {
         std::cout << "Commands number in one bulk did not set, default value was set = 3" << std::endl;
