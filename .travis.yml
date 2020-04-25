@@ -42,6 +42,7 @@ script:
 - doxygen
 - cd ..
 - cd Otus_7
+- ls
 - ./bulk  	   
 - doxygen
 - cd ..
