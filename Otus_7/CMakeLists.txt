@@ -18,6 +18,7 @@ if(NOT Boost_FOUND)
 	return()
 endif()
 
+target_link_libraries(bulk PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 target_include_directories(
 	bulk
 	PRIVATE
@@ -42,9 +43,7 @@ set_target_properties (
 	CXX_STANDARD_REQUIRED ON	
 )
 
-target_link_libraries(test_bulk
-	${GTEST_BOTH_LIBRARIES} 	
-)
+target_link_libraries(test_bulk ${GTEST_BOTH_LIBRARIES} $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 
 Find_package(Threads)
 if (Threads_FOUND)

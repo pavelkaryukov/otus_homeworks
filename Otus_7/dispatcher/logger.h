@@ -4,7 +4,7 @@
 #include <boost/format.hpp>
 #include <fstream>
 #include <time.h> 
-//#include <filesystem>
+#include <filesystem>
 
 class CmdLogger final {
 public:
@@ -44,8 +44,8 @@ private:
         auto bulkTime = createTime;
         for (; bulkTime <= createTime + 100; ++bulkTime){
             std::string filename = "bulk_" + std::to_string(bulkTime) + ".txt";
-//             if (std::filesystem::exists(filename))
-//                 continue;
+            if (std::filesystem::exists(filename))
+                continue;
 
             m_File.open(filename);
             if (m_File.is_open())
