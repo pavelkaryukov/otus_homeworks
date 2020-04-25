@@ -4,10 +4,22 @@
 //Подруби буст fmt
 
 int TestDispatcher() {
-    CommandDispatcher dispatcher{0};
-    dispatcher.AddCommand("cmd1");
-    dispatcher.AddCommand("cmd2");
-    dispatcher.AddCommand("cmd3");
+    CommandDispatcher dispatcher{3};
+    dispatcher.ProcessCmdLine("cmd1");
+    dispatcher.ProcessCmdLine("}");
+    dispatcher.ProcessCmdLine("}");
+    dispatcher.ProcessCmdLine("cmd2");
+    dispatcher.ProcessCmdLine("cmd3");
+    dispatcher.ProcessCmdLine("cmd33");
+    dispatcher.ProcessCmdLine("{");
+    dispatcher.ProcessCmdLine("cmd4");
+    dispatcher.ProcessCmdLine("cmd5");
+    dispatcher.ProcessCmdLine("{");
+    dispatcher.ProcessCmdLine("cmd6");
+    dispatcher.ProcessCmdLine("cmd7");
+    dispatcher.ProcessCmdLine("cmd8");
+    dispatcher.ProcessCmdLine("}");
+    dispatcher.ProcessCmdLine("}");
 
 
     //dispatcher.ExecuteAll();

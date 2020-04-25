@@ -14,8 +14,7 @@ public:
         if (!m_Logger)
             throw std::logic_error("SimpleCmd:: m_Logger does not exist!!!");
 
-        m_Logger->PrintOnTheScreen(m_Name);
-        m_Logger->SaveInLog(m_Name);
+        m_Logger->WriteCmd(m_Name);
     }
 private:
     SimpleCmd() = default;
