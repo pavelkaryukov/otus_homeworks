@@ -31,30 +31,30 @@ script:
 - Otus_3/./gtest_test_otus3
 - cd Otus_4
 - ./gtest_print_ip  
-- doxygen
+#- doxygen
 - cd ..
 - cd Otus_5
 - ./graphic_editor
-- doxygen
+#- doxygen
 - cd ..
 - cd Otus_6/
 - ./test_matrix  	   
-- doxygen
+#- doxygen
 - cd ..
 - cd Otus_7
 - ls
 - ./bulk  	   
-- doxygen
+#- doxygen
 - cd ..
 - cmake --build . --target package
 deploy:
-- provider: pages2
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  local-dir: doxygen
-  #on:
-  #  all_branches: true
+#- provider: pages2
+#  skip_cleanup: true
+#  github_token: $GITHUB_TOKEN
+#  keep_history: true
+#  local-dir: doxygen
+#  #on:
+#  #  all_branches: true
 
 - provider: script
   skip_cleanup: true

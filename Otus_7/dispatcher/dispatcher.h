@@ -88,7 +88,7 @@ private:
     std::size_t m_StartBraceCounter = 0;
 
     void AddCommand(std::unique_ptr<IMyCommand> aCommand) {
-        m_Commands.emplace_back(std::move(aCommand));
+        m_Commands.push_back(std::move(aCommand));
     }
 
     void ExecuteCommands(const bool aFlush) {
