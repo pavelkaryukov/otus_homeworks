@@ -1,6 +1,8 @@
 #pragma once
+#include <string> 
 
 class IMyCommand {
 public:
-    virtual void Execute() = 0;
+    using log_text_t = std::string;
+    virtual std::string Execute() = 0;
 };

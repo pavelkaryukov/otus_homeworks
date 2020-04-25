@@ -2,8 +2,11 @@
 #include <string> 
 #include <iostream>
 #include <boost/format.hpp>
+#include <fstream>
+#include <time.h> 
+#include <filesystem>
 //Logger Command -> команды должны иметь к нему доступ
-class Logger {
+class CmdLogger {
 public:
     void WriteCmd(const std::string& aStr) {
         SaveInFile(aStr);
@@ -11,10 +14,9 @@ public:
     }
 
     void StartBulk() {
-        CloseLogFile();
         CreateLogFile();
-        SaveInFile(" bulk:");
-        PrintOnTheScreen(" bulk:");
+        SaveInFile("bulk:");
+        PrintOnTheScreen("bulk:");
     }
     
     void FinishBulk() {
@@ -23,14 +25,35 @@ public:
         CloseLogFile();
     }
 private:
+    std::ofstream m_File;
+    
     void SaveInFile(const std::string& aStr) {
-        int stop1 = 0;
+        if (!m_File.is_open())
+            return;
+        m_File << aStr;
     };
 
+    void CloseLogFile() {
+        if (m_File.is_open())
+            m_File.close();
+    }
 
-    void CloseLogFile() {}
+    void CreateLogFile() {
+        CloseLogFile();
+        auto createTime = time(nullptr);
+        auto bulkTime = createTime;
+        for (; bulkTime <= createTime + 100; ++bulkTime){
+            std::string filename = "bulk_" + std::to_string(bulkTime) + ".txt";
+            if (std::filesystem::exists(filename))
+                continue;
 
-    void CreateLogFile() {}
+            m_File.open(filename);
+            if (m_File.is_open())
+                return;
+        }
+        
+        throw std::logic_error(boost::str(boost::format("Can't create bulk log file, time from %1% for %2%") % createTime % bulkTime));
+    }
 
     void PrintOnTheScreen(const std::string& aStr) {
         std::cout << boost::format("%1%") % aStr;

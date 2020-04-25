@@ -40,7 +40,7 @@ public:
             }
         }
         else {
-            ProcessCmdLine(std::make_unique<SimpleCmd>(std::string(aStr), m_CommandsLogger));
+            AddCommand(std::make_unique<SimpleCmd>(aStr));
             if (m_Status == ExecutorStatus::Static)
                 ExecuteCommands(false);
         }
@@ -50,10 +50,10 @@ private:
     ExecutorStatus m_Status = ExecutorStatus::Static;
     std::deque<std::unique_ptr<IMyCommand>> m_Commands;
     const std::size_t m_BulkSize = 1;// ≈сли bulk size == 0 -> только ручное выполнение команд ?
-    Logger m_CommandsLogger;
+    CmdLogger m_Logger;
     std::size_t m_StartBraceCounter = 0;
 
-    void ProcessCmdLine(std::unique_ptr<IMyCommand> aCommand) {
+    void AddCommand(std::unique_ptr<IMyCommand> aCommand) {
         m_Commands.emplace_back(std::move(aCommand));
     }
 
@@ -64,35 +64,24 @@ private:
         if (m_Status == ExecutorStatus::Static && !aFlush && m_Commands.size() < m_BulkSize)
             return;
 
-        m_CommandsLogger.StartBulk();
-
-        switch (m_Status) {
-            case ExecutorStatus::Dynamic:
-                ExecuteDynamic();
-                break;
-            case ExecutorStatus::Static:
-                ExecuteStatic();
-                break;
-        }
-
-        m_CommandsLogger.FinishBulk();
+        m_Logger.StartBulk();
+        const std::size_t executedNumber = (m_Status == ExecutorStatus::Static) ? m_BulkSize : m_Commands.size();
+        ExecuteCommands(executedNumber);
+        m_Logger.FinishBulk();
     }
 
-    void ExecuteStatic() {
+    void ExecuteCommands(const std::size_t aNum) {
         if (m_Commands.empty())
             return;
-        const auto count = std::min(m_BulkSize, m_Commands.size());
 
+        const auto count = std::min(aNum, m_Commands.size());
         for (int i = 0; i < count; ++i) {
-            m_Commands.front()->Execute();
+            std::string log = " ";
+            log += m_Commands.front()->Execute();
             m_Commands.pop_front();
+            if (i + 1 < count)
+                log += ",";
+            m_Logger.WriteCmd(log);
         }
-    }
-
-    void ExecuteDynamic() {
-        for (auto& cmd : m_Commands) {
-            cmd->Execute();
-        }
-        m_Commands.clear();
     }
 };

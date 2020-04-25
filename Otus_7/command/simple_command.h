@@ -1,25 +1,19 @@
 #pragma once
 #include "command/icommand.h"
 #include "dispatcher/logger.h"
-#include <string> 
 #include <iostream> 
 //Передача логгера сделана для того что бы сохранить в лог все методы, что вызванны в процесе Execute
 class SimpleCmd final : public IMyCommand {
 public:
-    SimpleCmd(std::string&& aName, Logger& aLogger) : m_Name(aName){
-        m_Logger = std::make_shared<Logger>(aLogger);
-    }
+    SimpleCmd(const std::string&& aName) : m_Name(aName){}
+    SimpleCmd(const std::string aName  ) : m_Name(aName) {}
 
-    void Execute() override {
-        if (!m_Logger)
-            throw std::logic_error("SimpleCmd:: m_Logger does not exist!!!");
-
-        m_Logger->WriteCmd(m_Name);
+    log_text_t Execute() override {
+        return m_Name;
     }
 private:
     SimpleCmd() = default;
 
-    std::string m_Name = "DefaultName";
-    std::shared_ptr<Logger> m_Logger;
+    const std::string m_Name = "DefaultName";
 };
 
