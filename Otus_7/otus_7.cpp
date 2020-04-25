@@ -1,6 +1,28 @@
 #include "dispatcher/dispatcher.h"
 
 int main(int argc, char** argv) {
+    CommandDispatcher dispatcher{ 3 };
+    dispatcher.ProcessCmdLine("cmd1");
+    dispatcher.ProcessCmdLine("}");
+    dispatcher.ProcessCmdLine("}");
+    dispatcher.ProcessCmdLine("cmd2");
+    dispatcher.ProcessCmdLine("cmd3");
+    dispatcher.ProcessCmdLine("cmd33");
+    dispatcher.ProcessCmdLine("{");
+    dispatcher.ProcessCmdLine("cmd4");
+    dispatcher.ProcessCmdLine("cmd5");
+    dispatcher.ProcessCmdLine("{");
+    dispatcher.ProcessCmdLine("cmd6");
+    dispatcher.ProcessCmdLine("cmd7");
+    dispatcher.ProcessCmdLine("cmd8");
+    dispatcher.ProcessCmdLine("}");
+    dispatcher.ProcessCmdLine("}");
+    dispatcher.ProcessCmdLine("cmd26");
+    dispatcher.ProcessCmdLine("cmd27");
+    dispatcher.ProcessCmdLine("cmd28");
+    dispatcher.ProcessCmdLine("cmd29");
+    dispatcher.ProcessCmdLine("cmd20");
+    return;
     std::size_t N = 0;
     if (argc == 1) {
         std::cout << "Commands number in one bulk did not set, default value was set = 3" << std::endl;
