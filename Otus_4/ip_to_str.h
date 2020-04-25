@@ -82,9 +82,9 @@ namespace MyIP
     }   
 
     ///\brief возврашаемый результат функций ToStr, пара строка + код ошибки
-    struct/*[[nodiscard]]*/ ConvertResult {
+    struct [[nodiscard]] ConvertResult {
         std::string Result;
-        ErrorCode   ErrorCode;
+        ErrorCode   Code;
     };
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
@@ -217,11 +217,11 @@ namespace MyIP
     */
     void PrintIpAddr(const ConvertResult& aRes)
     {
-        if (aRes.ErrorCode == ErrorCode::Success) {
+        if (aRes.Code == ErrorCode::Success) {
             std::cout << aRes.Result << std::endl;
         }
         else {
-            throw std::logic_error(ErrorCodeToStr(aRes.ErrorCode));
+            throw std::logic_error(ErrorCodeToStr(aRes.Code));
         }
     }
 }
