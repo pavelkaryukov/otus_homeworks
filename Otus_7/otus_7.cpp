@@ -18,10 +18,16 @@ int TestDispatcher() {
     dispatcher.ProcessCmdLine("cmd8");
     dispatcher.ProcessCmdLine("}");
     dispatcher.ProcessCmdLine("}");
+    dispatcher.ProcessCmdLine("cmd26");
+    dispatcher.ProcessCmdLine("cmd27");
+    dispatcher.ProcessCmdLine("cmd28");
+    dispatcher.ProcessCmdLine("cmd29");
+    dispatcher.ProcessCmdLine("cmd20");
     return 0;
 }
 
 int main(int argc, char** argv) {
+    return 1;
     std::size_t N = 0;
     if (argc == 1) {
         std::cout << "Commands number in one bulk did not set, default value was set = 3" << std::endl;
@@ -37,7 +43,7 @@ int main(int argc, char** argv) {
         try {
             dispatcher.ProcessCmdLine(str);
         }
-        catch (std::exception& e {
+        catch (std::exception& e) {
             std::cout << "Exception:" << std::endl;
             std::cout << e.what() << std::endl;
             std::cout << "Program \"bulk\" Terminate" << std::endl;
@@ -46,19 +52,3 @@ int main(int argc, char** argv) {
     }
     return 0;
 }
-
-
-// int main(int argc, char** argv) {
-//     char* commands[] = { "c:\\Programs\\bulk.exe", "3" };
-//     main_test(2, commands);
-//     return 0;
-// }
-
-//---/*
-//testing::internal::CaptureStdout();
-//std::cout << "My test";
-//std::cout << "My test";
-//std::string output = testing::internal::GetCapturedStdout();*/
-
-
-

@@ -5,8 +5,8 @@
 #include <fstream>
 #include <time.h> 
 #include <filesystem>
-//Logger Command -> команды должны иметь к нему доступ
-class CmdLogger {
+
+class CmdLogger final {
 public:
     void WriteCmd(const std::string& aStr) {
         SaveInFile(aStr);

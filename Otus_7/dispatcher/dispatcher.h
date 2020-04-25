@@ -7,12 +7,7 @@
 #include <deque> 
 #include <boost/format.hpp>
 
-enum class ExecutorStatus {
-    Static,
-    Dynamic
-};
-
-class CommandDispatcher {
+class CommandDispatcher final {
 public:
     CommandDispatcher() = default;
 
@@ -22,15 +17,20 @@ public:
         }
     }
 
-    void ProcessCmdLine(const std::string& aStr) {// Разбить на методы ?
-        if (aStr == "{") {
+    void ProcessCmdLine(const std::string& aStr) {
+        switch (GetCmdType(aStr))
+        {
+        case CmdType::OpenBrace:
+        {
             if (m_Status == ExecutorStatus::Static) {
                 ExecuteCommands(true);
                 m_Status = ExecutorStatus::Dynamic;
-            } 
+            }
             ++m_StartBraceCounter;
         }
-        else if (aStr == "}") {
+        break;
+        case CmdType::CloseBrace:
+        {
             if (m_StartBraceCounter == 0)
                 return;//Игнорируем некорректный ввод
             --m_StartBraceCounter;
@@ -39,17 +39,25 @@ public:
                 m_Status = ExecutorStatus::Static;
             }
         }
-        else {
-            AddCommand(std::make_unique<SimpleCmd>(aStr));
+        break;
+        case CmdType::Cmd:
+        default:
+        {
+            AddCommand(std::make_unique<SimpleCommand>(aStr));
             if (m_Status == ExecutorStatus::Static)
                 ExecuteCommands(false);
         }
+        break;
+        }
     }
-
 private:
+    enum class ExecutorStatus {
+        Static,
+        Dynamic
+    };
     ExecutorStatus m_Status = ExecutorStatus::Static;
     std::deque<std::unique_ptr<IMyCommand>> m_Commands;
-    const std::size_t m_BulkSize = 1;// Если bulk size == 0 -> только ручное выполнение команд ?
+    const std::size_t m_BulkSize = 1;
     CmdLogger m_Logger;
     std::size_t m_StartBraceCounter = 0;
 
@@ -83,5 +91,20 @@ private:
                 log += ",";
             m_Logger.WriteCmd(log);
         }
+    }
+
+    enum class CmdType {
+        OpenBrace,
+        CloseBrace,
+        Cmd
+    };
+
+    CmdType GetCmdType(const std::string aStr) {
+        if (aStr == "{")
+            return CmdType::OpenBrace;
+        else if (aStr == "}")
+            return CmdType::CloseBrace;
+        else
+            return CmdType::Cmd;
     }
 };
