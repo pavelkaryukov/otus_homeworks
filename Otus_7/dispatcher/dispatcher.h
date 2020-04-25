@@ -6,17 +6,43 @@
 #include <iostream> 
 #include <deque> 
 #include <boost/format.hpp>
-
+/*! \mainpage Otus_7 (Bulk)
+ *
+ * \r\n  Диспетчер задач
+ *
+ */
+/*! CommandDispatcher */
+/**
+* \brief  Аккумулятор  и исполнитель очереди задач
+* \details задачи выполняются в статической очереди (по X штук за раз) или в динамической (блоки отделенные скобками {})
+*/
 class CommandDispatcher final {
 public:
+    /**
+    * \brief  конструктор по умолчанию.
+    * \details размер статической очереди - 1 команда
+    */
     CommandDispatcher() = default;
 
+    /**
+    * \brief  конструктор по умолчанию
+    * \details при передачи не валидного размера статической очереди - будет установлено значение по умолчанию = 1
+    * \param[in] aBulkSize - размер статической очереди
+    */
     CommandDispatcher(const std::size_t aBulkSize) : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1) {
         if (aBulkSize == 0) {
             std::cout << boost::format("BulkSize == {%1%} - incorrect value, BulkSize was changed on {%2%}") % aBulkSize % 1 << std::endl;
         }
     }
 
+    /**
+    * \brief  метод добавляет новую команду.
+    * \details 
+    * \param[in] aStr - командная строка
+    * - { - открыть блок
+    * - } - закрыть блок
+    * - команда
+    */
     void ProcessCmdLine(const std::string& aStr) {
         switch (GetCmdType(aStr))
         {

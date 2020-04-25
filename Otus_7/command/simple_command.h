@@ -2,7 +2,7 @@
 #include "command/icommand.h"
 #include "dispatcher/logger.h"
 #include <iostream> 
-//Передача логгера сделана для того что бы сохранить в лог все методы, что вызванны в процесе Execute
+
 class SimpleCommand final : public IMyCommand {
 public:
     SimpleCommand(const std::string&& aName) : m_Name(aName){}
