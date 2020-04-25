@@ -79,7 +79,8 @@ namespace MyIP
         // Here is a helper:
         template <typename T>
         constexpr bool is_iterable_v = is_iterable<T>::value;
-    }
+    }   
+
     ///\brief возврашаемый результат функций ToStr, пара строка + код ошибки
     struct/*[[nodiscard]]*/ ConvertResult {
         std::string Result;
