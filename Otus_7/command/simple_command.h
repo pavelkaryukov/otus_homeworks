@@ -11,6 +11,8 @@ public:
     log_text_t Execute() override {
         return m_Name;
     }
+
+    virtual ~SimpleCommand() = default;
 private:
     SimpleCommand() = default;
 
