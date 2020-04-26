@@ -76,6 +76,15 @@ public:
         break;
         }
     }
+
+    /*
+    * \brief  метод выполняет все скопленные команды.
+    * \details Bulck size должен быть статическим
+    */
+    void Flush() {
+        //Не выношу в деструктор, так как при уничтожение диспетчера и нет смысла выполнять команды
+        ExecuteCommands(true);
+    }
 private:
     enum class ExecutorStatus {
         Static,
@@ -100,11 +109,11 @@ private:
 
         m_Logger.StartBulk();
         const std::size_t executedNumber = (m_Status == ExecutorStatus::Static) ? m_BulkSize : m_Commands.size();
-        ExecuteCommands(executedNumber);
+        ExecuteNumberOfCommands(executedNumber);
         m_Logger.FinishBulk();
     }
 
-    void ExecuteCommands(const std::size_t aNum) {
+    void ExecuteNumberOfCommands(const std::size_t aNum) {
         if (m_Commands.empty())
             return;
 

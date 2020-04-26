@@ -12,6 +12,7 @@ TEST(test_bulk, test_bulk_1) {
     expectedStr += "bulk: cmd33";
     expectedStr += "bulk: cmd4, cmd5, cmd6, cmd7, cmd8";
     expectedStr += "bulk: cmd26, cmd27, cmd28";
+    expectedStr += "bulk: cmd29, cmd20";
 
 
     testing::internal::CaptureStdout();
@@ -36,6 +37,7 @@ TEST(test_bulk, test_bulk_1) {
     dispatcher.ProcessCmdLine("cmd28");
     dispatcher.ProcessCmdLine("cmd29");
     dispatcher.ProcessCmdLine("cmd20");
+    dispatcher.Flush();
     std::string outputStr = testing::internal::GetCapturedStdout();
     boost::erase_all(outputStr, "\r");
     boost::erase_all(outputStr, "\n");
