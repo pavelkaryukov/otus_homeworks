@@ -1,4 +1,3 @@
-#include <list>
 #include <functional>
 #include <cctype>
 #include <map>

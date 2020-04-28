@@ -1,11 +1,8 @@
-#include <list>
-#include <functional>
 #include <cctype>
 #include <map>
 #include <set>
 #include <string>
 #include <iostream>
-#include <fstream>
 
 namespace mystr {
     bool IsCorrectNumber(const char* aStr) {
