@@ -6,9 +6,7 @@
 #include <vector>
 #include <functional>
 #include <algorithm>
-namespace {
-    const std::string kIsenbaev = "Isenbaev";
-}
+
 namespace mystr {
     bool IsCorrectNumber(const char* aStr) {
         const auto len = strlen(aStr);
@@ -52,6 +50,7 @@ namespace mystr {
 namespace {
     using team_t = std::set<std::string>;
     using players_t = std::map<std::string, std::size_t>;
+    const std::string kIsenbaev = "Isenbaev";
 }
 
 struct TeamWeight {
@@ -60,7 +59,6 @@ struct TeamWeight {
     std::size_t Weight = Undefined;
 };
 
-//заюзать shared_ptr?
 team_t GetTeam(const std::string& aTeamStr, players_t& aPlayers) {
     team_t team;
     auto players = mystr::GetTokens(aTeamStr, " ");
@@ -75,9 +73,7 @@ team_t GetTeam(const std::string& aTeamStr, players_t& aPlayers) {
     return team;
 }
 
-
-//Расчет веса команды походу можно сделать за O(3*n)
-void SetWeight(std::vector<TeamWeight>& aTeams, const std::string& aPlayer, const std::size_t aWeight, players_t& aAllPlayers) {
+void CalcWeight(std::vector<TeamWeight>& aTeams, const std::string& aPlayer, const std::size_t aWeight, players_t& aAllPlayers) {
     aAllPlayers[aPlayer] = std::min(aAllPlayers[aPlayer], aWeight);
     for (auto& team : aTeams) {
         if (team.Team.find(aPlayer) != team.Team.end()) {
@@ -87,14 +83,13 @@ void SetWeight(std::vector<TeamWeight>& aTeams, const std::string& aPlayer, cons
             for (const auto& teamMate : team.Team) {
                 if (teamMate == aPlayer)
                     continue;
-                SetWeight(aTeams, teamMate, aWeight + 1, aAllPlayers);
+                CalcWeight(aTeams, teamMate, aWeight + 1, aAllPlayers);
             }
         }
     }
 }
 
-//TODO:: Make rename
-players_t CalcWeights(const std::vector<std::string>& aTeamList) {
+players_t GetPlayersWeight(const std::vector<std::string>& aTeamList) {
     if (aTeamList.empty() || aTeamList.size() > 100)
         return {};
     std::vector<TeamWeight> teams;
@@ -108,7 +103,7 @@ players_t CalcWeights(const std::vector<std::string>& aTeamList) {
 
     if (allPlayers.find(kIsenbaev) == allPlayers.end())
         return allPlayers;
-    SetWeight(teams, kIsenbaev, 0, allPlayers);
+    CalcWeight(teams, kIsenbaev, 0, allPlayers);
     return allPlayers;
 }
 
@@ -136,7 +131,7 @@ int main() {
         teams.push_back(str);
     }
 
-    auto players = CalcWeights(teams);
+    auto players = GetPlayersWeight(teams);
 
     for (const auto& player : players) {
         const auto& surname = player.first;
@@ -147,8 +142,7 @@ int main() {
     return 0;
 }
 
-
-int mainOld() {
+int Test() {
     std::size_t teamsNum = 7;
     std::vector<std::string> teams = {
         "Isenbaev Oparin Toropov",
@@ -164,6 +158,6 @@ int mainOld() {
         return 0;
     }
 
-    CalcWeights(teams);
+    GetPlayersWeight(teams);
     return 0;
 }
