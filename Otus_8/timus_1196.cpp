@@ -3,6 +3,8 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <cstring>
+
 enum class ResCode {
     Full,
     NeadMoreData,

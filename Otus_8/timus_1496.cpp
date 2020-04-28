@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <cstring>
 
 namespace mystr {
     bool IsCorrectNumber(const char* aStr) {

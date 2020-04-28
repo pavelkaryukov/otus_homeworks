@@ -6,6 +6,7 @@
 #include <vector>
 #include <functional>
 #include <algorithm>
+#include <cstring>
 
 namespace mystr {
     bool IsCorrectNumber(const char* aStr) {
