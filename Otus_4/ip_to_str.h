@@ -153,9 +153,14 @@ namespace MyIP
     * \return  std::string  строковое представление ip адреса
     * \return  ErrorCode  код ошибки
     */
-    ConvertResult ToStr(const std::string aStr, const ByteOrder)
+    ConvertResult ToStr(const std::string& aStr, const ByteOrder aOrder = ByteOrder::BigEndian)
     {
-        return { aStr, ErrorCode::Success };
+        if (aOrder == ByteOrder::LittleEndian) {
+            return { { aStr.crbegin(), aStr.crend() }, ErrorCode::Success };
+        }
+        else {
+            return { aStr, ErrorCode::Success };
+        }
     }
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
