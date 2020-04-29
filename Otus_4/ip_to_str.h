@@ -146,21 +146,44 @@ namespace MyIP
          auto order = (aOrder == ByteOrder::BigEndian) ? ByteOrder::LittleEndian : ByteOrder::BigEndian;
          return ToStr<std::uint8_t*>(ptr, ptr + len, order);
      }
+
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
     * \param[in] aStr строка, которая будет возвращена
+    * \tparam TOrder - enum ByteOrder - порядок байт при выводе
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
+    * \return  std::string  строковое представление ip адреса
+    * \return  ErrorCode  код ошибки
+    */
+    template<ByteOrder TOrder>
+    typename std::enable_if<TOrder == ByteOrder::BigEndian, ConvertResult>::type ToStr(const std::string& aStr) {
+        return { aStr, ErrorCode::Success };
+    }
+
+    /**
+    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
+    * \param[in] aStr строка, которая будет возвращена
+    * \tparam TOrder - enum ByteOrder - порядок байт при выводе
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
+    * \return  std::string  строковое представление ip адреса
+    * \return  ErrorCode  код ошибки
+    */
+    template<ByteOrder TOrder>
+    typename std::enable_if<TOrder == ByteOrder::LittleEndian, ConvertResult>::type ToStr(const std::string& aStr) {
+        return { { aStr.crbegin(), aStr.crend() }, ErrorCode::Success };
+    }
+
+    /**
+    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
+    * \param[in] aStr строка, которая будет возвращена
+    * \param[in] aOrder enum ByteOrder - порядок байт при выводе
     * \return  ConvertResult = std::pair<std::string, ErrorCode> где
     * \return  std::string  строковое представление ip адреса
     * \return  ErrorCode  код ошибки
     */
     ConvertResult ToStr(const std::string& aStr, const ByteOrder aOrder = ByteOrder::BigEndian)
     {
-        if (aOrder == ByteOrder::LittleEndian) {
-            return { { aStr.crbegin(), aStr.crend() }, ErrorCode::Success };
-        }
-        else {
-            return { aStr, ErrorCode::Success };
-        }
+        return (aOrder == ByteOrder::BigEndian) ? ToStr<ByteOrder::BigEndian>(aStr) : ToStr<ByteOrder::LittleEndian>(aStr);
     }
     /**
     * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять

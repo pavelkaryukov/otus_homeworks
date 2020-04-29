@@ -24,7 +24,11 @@ void PrintForOtus()
     std::tuple<int, int, int> tuple1 = { 1, 12, 25 };
     MyIP::PrintIpAddr(MyIP::ToStr(tuple1));
     auto str = std::string("pish pish ololo");
+    MyIP::PrintIpAddr(MyIP::ToStr(str, MyIP::ByteOrder::BigEndian));
     MyIP::PrintIpAddr(MyIP::ToStr(str, MyIP::ByteOrder::LittleEndian));
+
+    MyIP::PrintIpAddr(MyIP::ToStr<MyIP::ByteOrder::BigEndian>(str));
+    MyIP::PrintIpAddr(MyIP::ToStr<MyIP::ByteOrder::LittleEndian>(str));
     int stop1 = 0;
 }
 //-----------------------------------------------------------------------------
