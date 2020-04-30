@@ -128,6 +128,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <tr class="memitem:a3d34050ab5a0e544f099e31b1aa371cb"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_integral_v&lt; T &gt;, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a3d34050ab5a0e544f099e31b1aa371cb">ToStr</a> (const T &amp;aObj, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder=<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>)</td></tr>
 <tr class="memdesc:a3d34050ab5a0e544f099e31b1aa371cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#a3d34050ab5a0e544f099e31b1aa371cb">Подробнее...</a><br /></td></tr>
 <tr class="separator:a3d34050ab5a0e544f099e31b1aa371cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada7f8aa372fc4308a11a649aacbfe498"><td class="memTemplParams" colspan="2">template&lt;ByteOrder TOrder&gt; </td></tr>
+<tr class="memitem:ada7f8aa372fc4308a11a649aacbfe498"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; TOrder==<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#ada7f8aa372fc4308a11a649aacbfe498">ToStr</a> (const std::string &amp;aStr)</td></tr>
+<tr class="memdesc:ada7f8aa372fc4308a11a649aacbfe498"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#ada7f8aa372fc4308a11a649aacbfe498">Подробнее...</a><br /></td></tr>
+<tr class="separator:ada7f8aa372fc4308a11a649aacbfe498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f88eeab03e558456d2f3743b0b0ed8c"><td class="memTemplParams" colspan="2">template&lt;ByteOrder TOrder&gt; </td></tr>
+<tr class="memitem:a3f88eeab03e558456d2f3743b0b0ed8c"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; TOrder==<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a3c0ba6b22b526d7fd50c3026435a8c02">ByteOrder::LittleEndian</a>, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#a3f88eeab03e558456d2f3743b0b0ed8c">ToStr</a> (const std::string &amp;aStr)</td></tr>
+<tr class="memdesc:a3f88eeab03e558456d2f3743b0b0ed8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#a3f88eeab03e558456d2f3743b0b0ed8c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3f88eeab03e558456d2f3743b0b0ed8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeefbe6de787c284769bba951cb513c3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMyIP.html#aeefbe6de787c284769bba951cb513c3f">ToStr</a> (const std::string &amp;aStr, const <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505">ByteOrder</a> aOrder=<a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>)</td></tr>
 <tr class="memdesc:aeefbe6de787c284769bba951cb513c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять  <a href="#aeefbe6de787c284769bba951cb513c3f">Подробнее...</a><br /></td></tr>
 <tr class="separator:aeefbe6de787c284769bba951cb513c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -393,6 +401,80 @@ ErrorCode код ошибки </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="ada7f8aa372fc4308a11a649aacbfe498"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;ByteOrder TOrder&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;TOrder == <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a2ce7a92ae43763828ac4acb4560c2a5b">ByteOrder::BigEndian</a>, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a>&gt;::type MyIP::ToStr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>aStr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aStr</td><td>строка, которая будет возвращена </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Параметры шаблона</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TOrder</td><td>- enum ByteOrder - порядок байт при выводе </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="structMyIP_1_1ConvertResult.html" title="возврашаемый результат функций ToStr, пара строка + код ошибки ">ConvertResult</a> = std::pair&lt;std::string, ErrorCode&gt; где </dd>
+<dd>
+std::string строковое представление ip адреса </dd>
+<dd>
+ErrorCode код ошибки </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3f88eeab03e558456d2f3743b0b0ed8c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;ByteOrder TOrder&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;TOrder == <a class="el" href="namespaceMyIP.html#a70fa16ed6a8e627f00d6d0e9e2a0e505a3c0ba6b22b526d7fd50c3026435a8c02">ByteOrder::LittleEndian</a>, <a class="el" href="structMyIP_1_1ConvertResult.html">ConvertResult</a>&gt;::type MyIP::ToStr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>aStr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">aStr</td><td>строка, которая будет возвращена </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Параметры шаблона</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TOrder</td><td>- enum ByteOrder - порядок байт при выводе </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="structMyIP_1_1ConvertResult.html" title="возврашаемый результат функций ToStr, пара строка + код ошибки ">ConvertResult</a> = std::pair&lt;std::string, ErrorCode&gt; где </dd>
+<dd>
+std::string строковое представление ip адреса </dd>
+<dd>
+ErrorCode код ошибки </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="aeefbe6de787c284769bba951cb513c3f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -421,6 +503,7 @@ ErrorCode код ошибки </dd></dl>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">aStr</td><td>строка, которая будет возвращена </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aOrder</td><td>enum ByteOrder - порядок байт при выводе </td></tr>
   </table>
   </dd>
 </dl>
