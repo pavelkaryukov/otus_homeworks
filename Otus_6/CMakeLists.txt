@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("Otus_6" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
-add_executable(matrix otus_6.cpp matrix.h) 
+add_executable(matrix otus_6.cpp matrix.h big_number.h) 
 
 
 set_target_properties (

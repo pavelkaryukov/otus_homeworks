@@ -1,10 +1,14 @@
 #pragma once
+#include "big_number.h"
+#include <boost/format.hpp>
 #include <cstddef>
 #include <iostream>  
 #include <map>
-#include <boost/format.hpp>
 #include <stdexcept>
+#include <string>
 #include <type_traits>
+#include <vector>
+
 /*! \mainpage Otus_6 (Matrix)
  *
  * \r\n  Бесконечная дмумерная матрица
@@ -19,8 +23,8 @@
 */
 template<class TValue, TValue TDefaultValue, class = typename std::enable_if_t<std::is_integral_v<TValue>>>
 class Matrix{
-    using index_t = std::uint64_t;
-    using pair_t  = std::pair<std::uint64_t, std::uint64_t>;
+    using index_t = BigNumber;
+    using pair_t  = std::pair<index_t, index_t>;
     using map_t   = std::map<pair_t, TValue>;
 
     #pragma region ClassInternalMatrix
@@ -44,7 +48,7 @@ class Matrix{
 
             Controller(const Controller& aRhs) : m_CValue(aRhs.m_CValue), m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
 
-            Controller& operator=(const TValue aValue) {
+            Controller& operator=(const TValue& aValue) {
                 m_CValue = aValue;
                 auto iter = m_CMap->find(m_CIndex);
                 if (aValue == TDefaultValue) {
@@ -94,7 +98,7 @@ class Matrix{
         index_t m_Index = 0;
 
         using iter_t =  class map_t::const_iterator;
-        struct InternalIterator: public std::iterator<std::forward_iterator_tag, iter_t> {
+        struct InternalIterator : public std::iterator<std::forward_iterator_tag, iter_t> {
             using tuple_t = std::tuple<index_t, index_t, TValue>;
             
             InternalIterator() {};

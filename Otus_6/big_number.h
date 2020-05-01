@@ -1,6 +1,8 @@
 #pragma once
 #include <boost/format.hpp>
+#include <iomanip>
 #include <cstddef>
+#include <iostream> 
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -8,21 +10,25 @@ class BigNumber {
     using byte_t = std::uint8_t;
 public:
     BigNumber() = default;
+    
+    BigNumber(const std::vector<byte_t>& aVect) {
+        _Number.clear();
+        _Number.insert(_Number.begin(), aVect.crbegin(), aVect.crend());
+    }
 
-    template<class TNumber, class = typename std::enable_if_t<std::is_unsigned_v<TNumber>>>
+    template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
     BigNumber(const TNumber aNumber) {
+        if (aNumber < 0)
+            throw std::logic_error("class BigNumber: constructor BigNumber<TNumber >(const TNumber aNumber): aNumber < 0");
         *this = aNumber;
     }
 
-    BigNumber(const std::vector<byte_t>& aVect) {
-        _Number = aVect;
-    }
-
-    template<class TNumber, class = typename std::enable_if_t<std::is_unsigned_v<TNumber>>>
+    template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
     BigNumber& operator=(const TNumber aNumber) {
-        auto len = sizeof(TNumber);
-        auto ptr = (byte_t*)(&aNumber);
-        Convert(ptr, len);
+        if (aNumber < 0)
+            throw std::logic_error("class BigNumber: operator BigNumber& operator=(const TNumber aNumber): aNumber < 0");
+        _Number.clear();
+        AddNumber(aNumber);
         return *this;
     }
 
@@ -114,9 +120,11 @@ public:
         else if (RealSize() > aRhs.RealSize()) {
             return true;
         }
+
         if (aRhs.RealSize() == 0)
             return false;//  в таком случае они равны
-        for (int index = aRhs.RealSize() - 1; index == 0; --index) {
+
+        for (int index = aRhs.RealSize() - 1; index >= 0; --index) {
             if (_Number[index] > aRhs._Number[index])
                 return true;
             else if (_Number[index] < aRhs._Number[index])
@@ -139,8 +147,14 @@ public:
 private:
     std::vector<byte_t> _Number = { {0} };
 
-    void Convert(const byte_t* aPtr, std::size_t aLen) {
-        _Number.clear();
+    template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
+    void AddNumber(const TNumber aNumber) {
+        auto len = sizeof(TNumber);
+        auto ptr = (byte_t*)(&aNumber);
+        AddArray(ptr, len);
+    }
+
+    void AddArray(const byte_t* aPtr, std::size_t aLen) {
         for (auto index = 0; index < aLen; ++index) {
             _Number.push_back(aPtr[index]);
         }
@@ -182,5 +196,25 @@ private:
         if (newSize > _Number.size())
             _Number.resize(newSize);
         _Number[aPos] = aElement;
+    }
+    
+    friend std::ostream& operator<<(std::ostream& aStream, const BigNumber& aBn) {
+        if (aBn.RealSize() > sizeof(std::uint64_t)) {
+            aStream << "0x";
+            auto iter = aBn._Number.crbegin();
+            for (; iter != aBn._Number.crend(); ++iter) {
+                aStream << boost::str(boost::format("%02X") % ((int)(*iter)));
+                if (iter + 1 != aBn._Number.crend())
+                    aStream << "\'";
+            }
+        } 
+        else {
+            std::uint64_t res = 0;
+            for (int i = 0; i < aBn.RealSize(); ++i) {
+                res |= static_cast<std::uint64_t>(aBn._Number[i]) << (8 * i);
+            }
+            aStream << res;
+        }
+        return aStream;
     }
 };
