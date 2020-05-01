@@ -37,6 +37,7 @@ void Test() {
 int main() {
     //Test();
     Matrix <int, 0> matrix;
+    //int a = matrix[100][100];
     const std::size_t startPos = 0;
     const std::size_t endPos = 9;
     for (auto i = startPos; i <= endPos; ++i) {
@@ -62,8 +63,13 @@ int main() {
     }
     ((matrix[100][100] = 314) = 0) = 217;
     assert(matrix[100][100] == 217);
+    assert(217 == matrix[100][100] );
+    assert(matrix[100][100] != 218);
+    assert(218 != matrix[100][100]);
     return 0;
 }
+//Вопросы
+//пункт 6 бинарные операторы
 //Исправил пункты
 //1
 //2

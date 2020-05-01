@@ -27,67 +27,77 @@ class Matrix{
     using pair_t  = std::pair<index_t, index_t>;
     using map_t   = std::map<pair_t, TValue>;
 
-    #pragma region ClassInternalMatrix
-    class InternalMatrix {
+    #pragma region RowClass
+    class Row {
 
-    #pragma region Controller   
-        class Controller {
+    #pragma region CellClass   
+        class Cell {
             map_t*  m_CMap = nullptr;
             pair_t  m_CIndex;
-            TValue  m_CValue;
-
         public:
             TValue Get() const {
                 auto iter = m_CMap->find(m_CIndex);
                 return iter != m_CMap->end() ? iter->second : TDefaultValue;
             }
 
-            Controller() = delete;
+            Cell() = delete;
 
-            Controller(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap), m_CValue(TDefaultValue) {};
+            Cell(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap) {};
 
-            Controller(const Controller& aRhs) : m_CValue(aRhs.m_CValue), m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
+            Cell(const Cell& aRhs) : m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
 
-            Controller& operator=(const TValue& aValue) {
-                m_CValue = aValue;
-                auto iter = m_CMap->find(m_CIndex);
+            Cell& operator=(const TValue& aValue) {
                 if (aValue == TDefaultValue) {
+                    auto iter = m_CMap->find(m_CIndex);
                     if (iter != m_CMap->end())
                         m_CMap->erase(iter);
                     return *this;
                 }
-                (*m_CMap)[m_CIndex] = m_CValue;
+                (*m_CMap)[m_CIndex] = aValue;
                 return *this;
             }
 
-            bool operator==(const TValue aValue) const {
-                return Get() == aValue;
+            bool operator==(const Cell& aRhs) {
+                return Get() == aRhs.Get();
             }
 
-            bool operator==(const Controller aRhs) const {
-                return Get() == aRhs.m_CValue;
+            bool operator!=(const Cell aRhs) const {
+                return !(*this == aRhs);
             }
 
-            bool operator!=(const TValue aValue) const {
-                return Get() != aValue;
+
+
+
+            friend bool operator==(const Cell& aCell , const TValue aValue) {
+                return aCell.Get() == aValue;
+            }
+            
+            friend bool operator==(const TValue aValue, const Cell& aCell) {
+                return aCell == aValue;
             }
 
-            bool operator!=(const Controller aRhs) const {
-                return Get() != aRhs.m_CValue;
+            friend bool operator!=(const Cell& aCell, const TValue aValue){
+                return !(aCell == aValue);
             }
 
-            Controller& operator++() {
+            friend bool operator!=(const TValue aValue, const Cell& aCell) {
+                return aCell != aValue;
+            }
+            
+            Cell& operator++() {
                 *this = Get() + 1;
                 return *this;// сделать конструктор копирования
             }
 
-            Controller operator++(int) {
-                Controller controller = Controller(*this);
+            Cell operator++(int) {
+                Cell controller = Cell(*this);
                 *this = Get() + 1;
                 return controller;// сделать конструктор копирования
             }
 
-            friend std::ostream& operator<<(std::ostream& aStream, const Controller& aController) {
+            //operator TDefaultValue() const;
+
+            friend std::ostream& operator<<(std::ostream& aStream, const Cell& aController) {
                 aStream << aController.Get();
                 return aStream;
             }
@@ -160,7 +170,7 @@ class Matrix{
             iter_t m_MapIter;
         };
     public:
-        InternalMatrix() = default;
+        Row() = default;
 
         std::size_t Size() const {
             return m_MatrixMap.size();
@@ -170,8 +180,8 @@ class Matrix{
             m_Index = aIndex;
         }
 
-        Controller  operator[](const index_t aIndex) {
-            return Controller({ m_Index, aIndex }, &m_MatrixMap);
+        Cell  operator[](const index_t aIndex) {
+            return Cell({ m_Index, aIndex }, &m_MatrixMap);
         }
 
         InternalIterator begin() {
@@ -189,7 +199,7 @@ class Matrix{
     };
 #pragma endregion
 
-    InternalMatrix m_Matrix;
+    Row m_Matrix;
 public:
     /**
     * \brief  оператор [] возращает внутреннюю матрицу.
@@ -197,7 +207,7 @@ public:
     * \param[in] aIndex - номер строки матрицы
     * \return - ссылка на  внутреннюю матрицу
     */
-    InternalMatrix& operator[](const index_t aIndex){
+    Row& operator[](const index_t aIndex){
         m_Matrix.SetIndex(aIndex);
         return  m_Matrix;
     }
