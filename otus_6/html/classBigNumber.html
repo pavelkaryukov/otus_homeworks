@@ -1,0 +1,732 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Otus 6: Класс BigNumber</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Otus 6
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="classes.html"><span>Алфавитный&#160;указатель&#160;классов</span></a></li>
+      <li><a href="functions.html"><span>Члены&#160;классов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#friends">Друзья</a> &#124;
+<a href="classBigNumber-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс BigNumber</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="big__number_8h_source.html">big_number.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:aa3d98c56de14f603fa1e5afbffa9bd5e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#aa3d98c56de14f603fa1e5afbffa9bd5e">BigNumber</a> ()=default</td></tr>
+<tr class="separator:aa3d98c56de14f603fa1e5afbffa9bd5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d616bd745dad58dd76132c0dc680db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a36d616bd745dad58dd76132c0dc680db">BigNumber</a> (const std::vector&lt; byte_t &gt; &amp;aVect)</td></tr>
+<tr class="separator:a36d616bd745dad58dd76132c0dc680db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2367799c475229df1943e47362cd9e14"><td class="memTemplParams" colspan="2">template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a2367799c475229df1943e47362cd9e14"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a2367799c475229df1943e47362cd9e14">BigNumber</a> (const TNumber aNumber)</td></tr>
+<tr class="separator:a2367799c475229df1943e47362cd9e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfaa4206ea310137c343e8c950ce9c81"><td class="memTemplParams" colspan="2">template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </td></tr>
+<tr class="memitem:abfaa4206ea310137c343e8c950ce9c81"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBigNumber.html#abfaa4206ea310137c343e8c950ce9c81">operator=</a> (const TNumber aNumber)</td></tr>
+<tr class="separator:abfaa4206ea310137c343e8c950ce9c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98028816b8cee76bebce87ed36b9a718"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a98028816b8cee76bebce87ed36b9a718">Decrement</a> (const std::size_t aPos)</td></tr>
+<tr class="separator:a98028816b8cee76bebce87ed36b9a718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a2219a2a7c80aa048c6e17f0947d69d"><td class="memTemplParams" colspan="2">template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a3a2219a2a7c80aa048c6e17f0947d69d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a3a2219a2a7c80aa048c6e17f0947d69d">operator TNumber</a> ()</td></tr>
+<tr class="separator:a3a2219a2a7c80aa048c6e17f0947d69d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c172736925aca8f434900240c1bcb4"><td class="memTemplParams" colspan="2">template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </td></tr>
+<tr class="memitem:af3c172736925aca8f434900240c1bcb4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBigNumber.html#af3c172736925aca8f434900240c1bcb4">operator*=</a> (const TNumber aNumber)</td></tr>
+<tr class="separator:af3c172736925aca8f434900240c1bcb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0796a408a7c067b8a6b7d9dfff6803a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a0796a408a7c067b8a6b7d9dfff6803a7">operator-=</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs)</td></tr>
+<tr class="separator:a0796a408a7c067b8a6b7d9dfff6803a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a837b564e32da573d414d5aa82e6eccc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a837b564e32da573d414d5aa82e6eccc5">operator-</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs)</td></tr>
+<tr class="separator:a837b564e32da573d414d5aa82e6eccc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17da799fad6afe5efbe2305c6aef3357"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a17da799fad6afe5efbe2305c6aef3357">operator+=</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs)</td></tr>
+<tr class="separator:a17da799fad6afe5efbe2305c6aef3357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5fbcbd04a22de7f35f3f8eef8cff83f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#ac5fbcbd04a22de7f35f3f8eef8cff83f">operator+</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs)</td></tr>
+<tr class="separator:ac5fbcbd04a22de7f35f3f8eef8cff83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9cb773215ae0e97b87682707aa73749"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#ad9cb773215ae0e97b87682707aa73749">operator++</a> ()</td></tr>
+<tr class="separator:ad9cb773215ae0e97b87682707aa73749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e49d179bcaff946e7a72759716131f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a1e49d179bcaff946e7a72759716131f9">operator++</a> (int)</td></tr>
+<tr class="separator:a1e49d179bcaff946e7a72759716131f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4d8b839dca73987c832ca73bcc34843"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#ab4d8b839dca73987c832ca73bcc34843">operator==</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs) const </td></tr>
+<tr class="separator:ab4d8b839dca73987c832ca73bcc34843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad21f29e4b6c6f76a048e418f42b9d5ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#ad21f29e4b6c6f76a048e418f42b9d5ef">operator!=</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs) const </td></tr>
+<tr class="separator:ad21f29e4b6c6f76a048e418f42b9d5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98df4bf2375f371c3ac3e6c8f14844d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a98df4bf2375f371c3ac3e6c8f14844d7">operator&gt;</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs) const </td></tr>
+<tr class="separator:a98df4bf2375f371c3ac3e6c8f14844d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c76c09a20d8551da2b058ceca7fcbda"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a2c76c09a20d8551da2b058ceca7fcbda">operator&lt;</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs) const </td></tr>
+<tr class="separator:a2c76c09a20d8551da2b058ceca7fcbda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98c6d55671a119dfa5da133a2eff8044"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a98c6d55671a119dfa5da133a2eff8044">operator&gt;=</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs) const </td></tr>
+<tr class="separator:a98c6d55671a119dfa5da133a2eff8044"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad2839955150e173c42c0a3da84e1dab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#aad2839955150e173c42c0a3da84e1dab">operator&lt;=</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aRhs) const </td></tr>
+<tr class="separator:aad2839955150e173c42c0a3da84e1dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Друзья</h2></td></tr>
+<tr class="memitem:ac987c4ef35e8ce4cf797304e50368e9a"><td class="memTemplParams" colspan="2">template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </td></tr>
+<tr class="memitem:ac987c4ef35e8ce4cf797304e50368e9a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBigNumber.html#ac987c4ef35e8ce4cf797304e50368e9a">operator*</a> (const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aBn, const TNumber aNumber)</td></tr>
+<tr class="separator:ac987c4ef35e8ce4cf797304e50368e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78986d4adac6592c11e4133f85b8f33a"><td class="memTemplParams" colspan="2">template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a78986d4adac6592c11e4133f85b8f33a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classBigNumber.html">BigNumber</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a78986d4adac6592c11e4133f85b8f33a">operator*</a> (const TNumber aNumber, const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aBn)</td></tr>
+<tr class="separator:a78986d4adac6592c11e4133f85b8f33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e68eac52df8877684c0ad71aaea6115"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBigNumber.html#a3e68eac52df8877684c0ad71aaea6115">operator&lt;&lt;</a> (std::ostream &amp;aStream, const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;aBn)</td></tr>
+<tr class="separator:a3e68eac52df8877684c0ad71aaea6115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Конструктор(ы)</h2>
+<a class="anchor" id="aa3d98c56de14f603fa1e5afbffa9bd5e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BigNumber::BigNumber </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a36d616bd745dad58dd76132c0dc680db"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BigNumber::BigNumber </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; byte_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>aVect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2367799c475229df1943e47362cd9e14"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BigNumber::BigNumber </td>
+          <td>(</td>
+          <td class="paramtype">const TNumber&#160;</td>
+          <td class="paramname"><em>aNumber</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a class="anchor" id="a98028816b8cee76bebce87ed36b9a718"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BigNumber::Decrement </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>aPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3a2219a2a7c80aa048c6e17f0947d69d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BigNumber::operator TNumber </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad21f29e4b6c6f76a048e418f42b9d5ef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BigNumber::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af3c172736925aca8f434900240c1bcb4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a>&amp; BigNumber::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">const TNumber&#160;</td>
+          <td class="paramname"><em>aNumber</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac5fbcbd04a22de7f35f3f8eef8cff83f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a> BigNumber::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad9cb773215ae0e97b87682707aa73749"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a>&amp; BigNumber::operator++ </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1e49d179bcaff946e7a72759716131f9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a>&amp; BigNumber::operator++ </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a17da799fad6afe5efbe2305c6aef3357"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a>&amp; BigNumber::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a837b564e32da573d414d5aa82e6eccc5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a> BigNumber::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0796a408a7c067b8a6b7d9dfff6803a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a>&amp; BigNumber::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2c76c09a20d8551da2b058ceca7fcbda"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BigNumber::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aad2839955150e173c42c0a3da84e1dab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BigNumber::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abfaa4206ea310137c343e8c950ce9c81"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a>&amp; BigNumber::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const TNumber&#160;</td>
+          <td class="paramname"><em>aNumber</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab4d8b839dca73987c832ca73bcc34843"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BigNumber::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a98df4bf2375f371c3ac3e6c8f14844d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BigNumber::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a98c6d55671a119dfa5da133a2eff8044"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BigNumber::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aRhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Документация по друзьям класса и функциям, относящимся к классу</h2>
+<a class="anchor" id="ac987c4ef35e8ce4cf797304e50368e9a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a> operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aBn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TNumber&#160;</td>
+          <td class="paramname"><em>aNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a78986d4adac6592c11e4133f85b8f33a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TNumber , class  = typename std::enable_if_t&lt;std::is_integral_v&lt;TNumber&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBigNumber.html">BigNumber</a> operator* </td>
+          <td>(</td>
+          <td class="paramtype">const TNumber&#160;</td>
+          <td class="paramname"><em>aNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aBn</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3e68eac52df8877684c0ad71aaea6115"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>aStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classBigNumber.html">BigNumber</a> &amp;&#160;</td>
+          <td class="paramname"><em>aBn</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li><a class="el" href="big__number_8h_source.html">big_number.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

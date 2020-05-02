@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../otus__6_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'otus_6.cpp']]],
-  ['matrix',['Matrix',['../classMatrix.html',1,'']]],
-  ['matrix_2eh',['matrix.h',['../matrix_8h.html',1,'']]]
+  ['empty',['empty',['../classMatrix.html#a4da7f3f73376407d1109d2ed1483d5a2',1,'Matrix']]],
+  ['end',['end',['../classMatrix.html#affc4c6cba1b82496884e891d1860ffdf',1,'Matrix::end()'],['../classMatrix.html#aaf24ced83ac24a8433fe876dc5e015be',1,'Matrix::end() const ']]]
 ];

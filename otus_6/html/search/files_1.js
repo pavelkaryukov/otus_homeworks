@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['otus_5f6_2ecpp',['otus_6.cpp',['../otus__6_8cpp.html',1,'']]]
+  ['matrix_2eh',['matrix.h',['../matrix_8h.html',1,'']]]
 ];

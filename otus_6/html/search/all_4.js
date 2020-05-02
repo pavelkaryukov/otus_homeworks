@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['otus_5f6_20_28matrix_29',['Otus_6 (Matrix)',['../index.html',1,'']]],
-  ['operator_5b_5d',['operator[]',['../classMatrix.html#a9482f91c364ff2c2ef20d748387bcb59',1,'Matrix']]],
-  ['otus_5f6_2ecpp',['otus_6.cpp',['../otus__6_8cpp.html',1,'']]]
+  ['main',['main',['../otus__6_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'otus_6.cpp']]],
+  ['matrix',['Matrix',['../classMatrix.html',1,'Matrix&lt; TValue, TDefaultValue, class &gt;'],['../classMatrix.html#ad62eff2470e569261946b4c5a7999260',1,'Matrix::Matrix()']]],
+  ['matrix_2eh',['matrix.h',['../matrix_8h.html',1,'']]]
 ];
