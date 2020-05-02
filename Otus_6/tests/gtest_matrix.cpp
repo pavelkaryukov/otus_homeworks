@@ -8,6 +8,22 @@ void FillMatrixTest(Matrix<int, -1>& aMatrix) {
     aMatrix[1][4] = 42;
 }
 
+TEST(test_matrix, Operators) {
+    Matrix <int, 0> matrix;
+    ++matrix[100][100];
+    ++matrix[100][100];
+    int a1 = matrix[100][100];
+    ASSERT_EQ(matrix.size(), 1);
+    ASSERT_EQ(a1, 2);
+
+    --matrix[100][100];
+    --matrix[100][100];
+    int a2= matrix[100][100];
+    ASSERT_EQ(matrix.size(), 0);
+    ASSERT_EQ(a1, 0);
+    //TODO:: Написать тест проверяющий работоспособность всех операторов
+}
+
 TEST(test_matrix, AddElement) {
     Matrix<int, -1> matrix;
     FillMatrixTest(matrix);

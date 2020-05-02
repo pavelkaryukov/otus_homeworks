@@ -45,7 +45,6 @@ public:
 
     template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
     operator TNumber() {
-        int stop1 = 0;
         const auto len = std::min(sizeof(TNumber), RealSize());
         TNumber res = 0;
         for (int i = 0; i < len; ++i) {
@@ -127,7 +126,8 @@ public:
     }
 
     BigNumber& operator++() {
-        return (*this + 1U);
+        *this += 1;
+        return *this;
     }
 
     BigNumber& operator++(int) {
@@ -194,13 +194,6 @@ private:
         for (auto index = 0; index < aLen; ++index) {
             _Number.push_back(aPtr[index]);
         }
-    }
-
-    byte_t& Get(const std::size_t aIndex) {
-        if (aIndex >= _Number.size()) {
-            int stop1 = 0;
-        }
-        return _Number[aIndex];
     }
 
     std::size_t RealSize() const {

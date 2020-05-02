@@ -26,10 +26,10 @@ class Matrix{
     using index_t = BigNumber;
     using pair_t  = std::pair<index_t, index_t>;
     using map_t   = std::map<pair_t, TValue>;
-
+    std::shared_ptr<map_t> m_MatrixMap;
     #pragma region RowClass
     class Row {
-
+        Row() {}
     #pragma region CellClass   
         class Cell {
             friend class Row;
@@ -53,11 +53,11 @@ class Matrix{
                 return *this;
             }
 
-            bool operator==(const Cell& aRhs) {
+            bool operator==(const Cell& aRhs) const {
                 return Get() == aRhs.Get();
             }
 
-            bool operator!=(const Cell aRhs) const {
+            bool operator!=(const Cell& aRhs) const {
                 return !(*this == aRhs);
             }
 
@@ -82,12 +82,12 @@ class Matrix{
             }
 
             Cell& operator+=(const TValue aNum) {
-                *this = Get() + aNum;
+                Get() += aNum;
                 return *this;
             }
 
             Cell& operator-=(const TValue aNum) {
-                *this = Get() - aNum;
+                Get() -= aNum;
                 return *this;
             }
 
@@ -96,7 +96,7 @@ class Matrix{
             }
 
             friend TValue operator+(const TValue aNum, const Cell& aCell) {
-                return Get() + aNum;
+                return aCell.Get() + aNum;
             }
 
             friend TValue operator+(const Cell& aCell1, const Cell& aCell2) {
@@ -108,7 +108,7 @@ class Matrix{
             }
 
             friend TValue operator-(const TValue aNum, const Cell& aCell) {
-                return Get() - aNum;
+                return aCell.Get() - aNum;
             }
 
             friend TValue operator-(const Cell& aCell1, const Cell& aCell2) {
@@ -116,24 +116,24 @@ class Matrix{
             }
 
             Cell& operator++() {
-                *this = Get() + 1;
+                Get() += 1;
                 return *this;
             }
 
             TValue operator++(int) {
-                auto res = *this->Get();
-                *this = Get() + 1;
+                auto res = Get();
+                ++*this;
                 return res;
             }
 
             Cell& operator--() {
-                *this = Get() - 1;
+                Get() -= 1;
                 return *this;
             }
 
             TValue operator--(int) {
-                auto res = *this->Get();
-                *this = Get() - 1;
+                auto res = Get();
+                --*this;
                 return res;
             }
 
@@ -144,13 +144,24 @@ class Matrix{
             private:
                 Cell() = default;
 
-                Cell(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap) {};
+                Cell(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap) {
+                    int stop1 = 0;
+                };
 
                 Cell(const Cell& aRhs) : m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
+
+                TValue& Get() {
+                    auto iter = m_CMap->find(m_CIndex);
+                    if (iter == m_CMap->end()) {
+                        auto[insIter, insRes] = m_CMap->insert({ m_CIndex, TDefaultValue });
+                        if (!insRes)
+                            throw std::logic_error("TValue& Get(), can\'t insert element in  m_CMap");
+                        iter = insIter;
+                    }
+                    return iter->second;
+                }
         };
 #pragma endregion
-
-        map_t m_MatrixMap;
         index_t m_Index = 0;
 
         using iter_t =  class map_t::const_iterator;
@@ -194,11 +205,11 @@ class Matrix{
 
             }
 
-            bool operator==(const InternalIterator& aRhs) {
+            bool operator==(const InternalIterator& aRhs) const {
                 return m_MapIter == aRhs.m_MapIter;
             }
 
-            bool operator!=(const InternalIterator& aRhs) {
+            bool operator!=(const InternalIterator& aRhs) const {
                 return m_MapIter != aRhs.m_MapIter;
             }
             
@@ -215,27 +226,39 @@ class Matrix{
         private:
             iter_t m_MapIter;
         };
+
+        std::shared_ptr<map_t> m_MapPtr = std::make_shared<map_t>();
     public:
-        Row() = default;
+        Row(std::shared_ptr<map_t> aMap){
+            m_MapPtr = aMap;
+        }
 
         std::size_t Size() const {
-            return m_MatrixMap.size();
+            return m_MapPtr->size();
         }
 
         void SetIndex(const index_t aIndex) {
             m_Index = aIndex;
         }
 
-        Cell  operator[](const index_t aIndex) {
-            return Cell({ m_Index, aIndex }, &m_MatrixMap);
+        Cell operator[](const index_t aIndex) {
+            return Cell({ m_Index, aIndex }, &(*m_MapPtr));
         }
 
         InternalIterator begin() {
-            return InternalIterator(m_MatrixMap.begin());
+            return InternalIterator(m_MapPtr->begin());
         }
 
         InternalIterator end() {
-            return InternalIterator(m_MatrixMap.end());
+            return InternalIterator(m_MapPtr->end());
+        }
+
+        InternalIterator begin() const {
+            return InternalIterator(m_MapPtr->cbegin());
+        }
+
+        InternalIterator end() const {
+            return InternalIterator(m_MapPtr->cend());
         }
 
         void clear() {
@@ -245,17 +268,22 @@ class Matrix{
     };
 #pragma endregion
 
-    Row m_Matrix;
+    Row m_Row = {nullptr};
 public:
+
+    Matrix() {
+        m_MatrixMap = std::make_shared<map_t>();
+        m_Row = { m_MatrixMap };
+    }
     /**
     * \brief  оператор [] возращает внутреннюю матрицу.
     * \details повторный вызов оператора [] даст доступ к €чейке матрицы
     * \param[in] aIndex - номер строки матрицы
     * \return - ссылка на  внутреннюю матрицу
     */
-    Row& operator[](const index_t aIndex){
-        m_Matrix.SetIndex(aIndex);
-        return  m_Matrix;
+    Row operator[](const index_t aIndex){
+        m_Row.SetIndex(aIndex);
+        return  m_Row;
     }
 
     /**
@@ -264,7 +292,7 @@ public:
     * \return количество €чеек с не дефолтным значением
     */
     std::size_t size() const {
-        return m_Matrix.Size();
+        return m_Row.Size();
     }
 
     /**
@@ -279,14 +307,28 @@ public:
     * \brief  итератор на начало.
     */
     auto begin() {
-        return m_Matrix.begin();
+        return m_Row.begin();
     }
 
     /**
     * \brief  итератор на конец.
     */
     auto end() {
-        return m_Matrix.end();
+        return m_Row.end();
+    }
+
+    /**
+    * \brief  итератор на начало.
+    */
+    auto begin() const {
+        return m_Row.begin();
+    }
+
+    /**
+    * \brief  итератор на конец.
+    */
+    auto end() const {
+        return m_Row.end();
     }
 
     /**
@@ -294,6 +336,6 @@ public:
     * \derails всем €чейкам будет присвоено значение по-умолчанию
     */
     void clear() {
-        return m_Matrix.clear();
+        return m_Row.clear();
     }
 };
