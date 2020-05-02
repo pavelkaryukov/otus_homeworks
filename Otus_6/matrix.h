@@ -32,6 +32,7 @@ class Matrix{
 
     #pragma region CellClass   
         class Cell {
+            friend class Row;
             map_t*  m_CMap = nullptr;
             pair_t  m_CIndex;
         public:
@@ -39,12 +40,6 @@ class Matrix{
                 auto iter = m_CMap->find(m_CIndex);
                 return iter != m_CMap->end() ? iter->second : TDefaultValue;
             }
-
-            Cell() = delete;
-
-            Cell(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap) {};
-
-            Cell(const Cell& aRhs) : m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
 
             Cell& operator=(const TValue& aValue) {
                 if (aValue == TDefaultValue) {
@@ -65,9 +60,6 @@ class Matrix{
                 return !(*this == aRhs);
             }
 
-
-
-
             friend bool operator==(const Cell& aCell , const TValue aValue) {
                 return aCell.Get() == aValue;
             }
@@ -83,24 +75,77 @@ class Matrix{
             friend bool operator!=(const TValue aValue, const Cell& aCell) {
                 return aCell != aValue;
             }
-            
+
+            operator TValue() const {
+                return Get();
+            }
+
+            Cell& operator+=(const TValue aNum) {
+                *this = Get() + aNum;
+                return *this;
+            }
+
+            Cell& operator-=(const TValue aNum) {
+                *this = Get() - aNum;
+                return *this;
+            }
+
+            friend TValue operator+(const Cell& aCell, const TValue aNum) {
+                return aCell.Get() + aNum;
+            }
+
+            friend TValue operator+(const TValue aNum, const Cell& aCell) {
+                return Get() + aNum;
+            }
+
+            friend TValue operator+(const Cell& aCell1, const Cell& aCell2) {
+                return aCell1.Get() + aCell2.Get();
+            }
+
+            friend TValue operator-(const Cell& aCell, const TValue aNum) {
+                return aCell.Get() - aNum;
+            }
+
+            friend TValue operator-(const TValue aNum, const Cell& aCell) {
+                return Get() - aNum;
+            }
+
+            friend TValue operator-(const Cell& aCell1, const Cell& aCell2) {
+                return aCell1.Get() - aCell2.Get();
+            }
+
             Cell& operator++() {
                 *this = Get() + 1;
-                return *this;// сделать конструктор копирования
+                return *this;
             }
 
-            Cell operator++(int) {
-                Cell controller = Cell(*this);
+            TValue operator++(int) {
+                auto res = *this->Get();
                 *this = Get() + 1;
-                return controller;// сделать конструктор копирования
+                return res;
             }
 
-            //operator TDefaultValue() const;
+            Cell& operator--() {
+                *this = Get() - 1;
+                return *this;
+            }
+
+            TValue operator--(int) {
+                auto res = *this->Get();
+                *this = Get() - 1;
+                return res;
+            }
 
             friend std::ostream& operator<<(std::ostream& aStream, const Cell& aController) {
                 aStream << aController.Get();
                 return aStream;
             }
+            private:
+                Cell() = default;
+
+                Cell(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap) {};
+
+                Cell(const Cell& aRhs) : m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
         };
 #pragma endregion
 
@@ -207,7 +252,7 @@ public:
     * \param[in] aIndex - номер строки матрицы
     * \return - ссылка на  внутреннюю матрицу
     */
-    Row& operator[](const index_t aIndex){
+    Row operator[](const index_t aIndex){
         m_Matrix.SetIndex(aIndex);
         return  m_Matrix;
     }
