@@ -43,6 +43,42 @@ public:
         _Number[aPos] -= 1;
     }
 
+    template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
+    operator TNumber() {
+        int stop1 = 0;
+        const auto len = std::min(sizeof(TNumber), RealSize());
+        TNumber res = 0;
+        for (int i = 0; i < len; ++i) {
+            res |= static_cast<TNumber>(_Number[i]) << (8 * i);
+        }
+        return res;
+    }
+
+    template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
+    BigNumber& operator*=(const TNumber aNumber) {
+        if (aNumber < 0)
+            throw std::logic_error("BigNumber: operator*=: negative number");
+        const auto tmp = *this;
+        for (int i = 1; i < aNumber; ++i) {
+            *this += tmp;
+        }
+        return *this;
+    }
+
+    template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
+    friend BigNumber operator*(const BigNumber& aBn, const TNumber aNumber) {
+        BigNumber bn = aBn;
+        bn *= aNumber;
+        return bn;
+    }
+
+    template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
+    friend BigNumber operator*(const TNumber aNumber, const BigNumber& aBn) {
+        BigNumber bn = aBn;
+        bn *= aNumber;
+        return bn;
+    }
+
     BigNumber& operator-=(const BigNumber& aRhs) {
         if (*this < aRhs)
             throw std::logic_error("BigNumber: operator-=: negative number");

@@ -49,6 +49,7 @@ class Matrix{
                     return *this;
                 }
                 (*m_CMap)[m_CIndex] = aValue;
+                auto& test = (*m_CMap)[m_CIndex];
                 return *this;
             }
 
@@ -252,7 +253,7 @@ public:
     * \param[in] aIndex - номер строки матрицы
     * \return - ссылка на  внутреннюю матрицу
     */
-    Row operator[](const index_t aIndex){
+    Row& operator[](const index_t aIndex){
         m_Matrix.SetIndex(aIndex);
         return  m_Matrix;
     }
