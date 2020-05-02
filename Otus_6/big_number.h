@@ -131,7 +131,7 @@ public:
     }
 
     BigNumber& operator++(int) {
-        auto tmp = *this;
+        BigNumber tmp = *this;
         ++(*this);
         return tmp;
     }

@@ -20,7 +20,7 @@ TEST(test_matrix, Operators) {
     --matrix[100][100];
     int a2= matrix[100][100];
     ASSERT_EQ(matrix.size(), 0);
-    ASSERT_EQ(a1, 0);
+    ASSERT_EQ(a2, 0);
     //TODO:: Написать тест проверяющий работоспособность всех операторов
 }
 

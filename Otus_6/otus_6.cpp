@@ -1,11 +1,6 @@
 #include "matrix.h"
 int main() {
     Matrix<int, 0> matrix;
-    ++matrix[100][100];
-    ++matrix[100][100];
-    --matrix[100][100];
-    --matrix[100][100];
-
     const int startPos = 0;
     const int endPos = 9;
     for (int i = startPos; i <= endPos; ++i) {
