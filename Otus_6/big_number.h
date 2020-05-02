@@ -12,8 +12,8 @@ public:
     BigNumber() = default;
     
     BigNumber(const std::vector<byte_t>& aVect) {
-        _Number.clear();
-        _Number.insert(_Number.begin(), aVect.crbegin(), aVect.crend());
+        _Data.clear();
+        _Data.insert(_Data.begin(), aVect.crbegin(), aVect.crend());
     }
 
     template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
@@ -27,7 +27,7 @@ public:
     BigNumber& operator=(const TNumber aNumber) {
         if (aNumber < 0)
             throw std::logic_error("class BigNumber: operator BigNumber& operator=(const TNumber aNumber): aNumber < 0");
-        _Number.clear();
+        _Data.clear();
         AddNumber(aNumber);
         return *this;
     }
@@ -35,12 +35,12 @@ public:
     void Decrement(const std::size_t aPos) {
         if (aPos >= RealSize())
             throw std::logic_error("BigNumber: method Decrement: negative number");
-        if (_Number[aPos] == 0) {
-            _Number[aPos] = std::numeric_limits<byte_t>::max();
+        if (_Data[aPos] == 0) {
+            _Data[aPos] = std::numeric_limits<byte_t>::max();
             Decrement(aPos + 1);
             return;
         }
-        _Number[aPos] -= 1;
+        _Data[aPos] -= 1;
     }
 
     template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
@@ -48,7 +48,7 @@ public:
         const auto len = std::min(sizeof(TNumber), RealSize());
         TNumber res = 0;
         for (int i = 0; i < len; ++i) {
-            res |= static_cast<TNumber>(_Number[i]) << (8 * i);
+            res |= static_cast<TNumber>(_Data[i]) << (8 * i);
         }
         return res;
     }
@@ -84,15 +84,15 @@ public:
 
         std::size_t len = std::min(RealSize(), aRhs.RealSize());
         for (int i = 0; i < len; ++i) {
-            if (_Number[i] < aRhs._Number[i]) {
-                auto tmp = aRhs._Number[i] - _Number[i];
-                _Number[i] = 0;
+            if (_Data[i] < aRhs._Data[i]) {
+                auto tmp = aRhs._Data[i] - _Data[i];
+                _Data[i] = 0;
                 Decrement(i);
-                _Number[i] -= tmp;
-                ++_Number[i];
+                _Data[i] -= tmp;
+                ++_Data[i];
                 continue;
             }
-            _Number[i] -= aRhs._Number[i];
+            _Data[i] -= aRhs._Data[i];
         }
         return *this;
     }
@@ -105,12 +105,12 @@ public:
 
     BigNumber& operator+=(const BigNumber& aRhs) {
         if (aRhs.RealSize() > RealSize())
-            _Number.resize(aRhs.RealSize());
+            _Data.resize(aRhs.RealSize());
 
         byte_t tail = 0;
         for (int i = 0; i < aRhs.RealSize(); ++i) {
-            std::uint16_t tmp = tail + static_cast<std::uint16_t>(aRhs._Number[i]) + static_cast<std::uint16_t>(_Number[i]);
-            _Number[i] = tmp & 0xff;
+            std::uint16_t tmp = tail + static_cast<std::uint16_t>(aRhs._Data[i]) + static_cast<std::uint16_t>(_Data[i]);
+            _Data[i] = tmp & 0xff;
             tail = (tmp & 0xff00) >> 8;
         }
         if (tail > 0) {
@@ -138,7 +138,7 @@ public:
 
     bool operator==(const BigNumber& aRhs) const {
         auto minLen = std::min(RealSize(), aRhs.RealSize());
-        bool res = std::equal(_Number.begin(), _Number.begin() + minLen, aRhs._Number.begin(), aRhs._Number.begin() + minLen);
+        bool res = std::equal(_Data.begin(), _Data.begin() + minLen, aRhs._Data.begin(), aRhs._Data.begin() + minLen);
         if (res && (RealSize() != aRhs.RealSize())) {
             return false;
         }
@@ -161,9 +161,9 @@ public:
             return false;//  в таком случае они равны
 
         for (int index = aRhs.RealSize() - 1; index >= 0; --index) {
-            if (_Number[index] > aRhs._Number[index])
+            if (_Data[index] > aRhs._Data[index])
                 return true;
-            else if (_Number[index] < aRhs._Number[index])
+            else if (_Data[index] < aRhs._Data[index])
                 return false;
         }
         return false;
@@ -181,7 +181,7 @@ public:
         return *this < aRhs || *this == aRhs;
     }
 private:
-    std::vector<byte_t> _Number = { {0} };
+    std::vector<byte_t> _Data = { {0} };
 
     template<class TNumber, class = typename std::enable_if_t<std::is_integral_v<TNumber>>>
     void AddNumber(const TNumber aNumber) {
@@ -192,19 +192,19 @@ private:
 
     void AddArray(const byte_t* aPtr, std::size_t aLen) {
         for (auto index = 0; index < aLen; ++index) {
-            _Number.push_back(aPtr[index]);
+            _Data.push_back(aPtr[index]);
         }
     }
 
     std::size_t RealSize() const {
-        auto iter = _Number.crbegin();
-        for (; iter != _Number.crend(); ++iter) {
+        auto iter = _Data.crbegin();
+        for (; iter != _Data.crend(); ++iter) {
             if (*iter != 0)
                 break;
         }
 
         std::size_t counter = 0;
-        for (; iter != _Number.crend(); ++iter) {
+        for (; iter != _Data.crend(); ++iter) {
             ++counter;
         }
         return counter;
@@ -212,8 +212,8 @@ private:
 
     bool IsZeroTail(const std::size_t aStartPos) const {
         bool res = true;
-        if (aStartPos < _Number.size()) {
-            std::for_each(_Number.begin() + aStartPos, _Number.end(), [&res](auto& num) {
+        if (aStartPos < _Data.size()) {
+            std::for_each(_Data.begin() + aStartPos, _Data.end(), [&res](auto& num) {
                 res &= (num == 0);
             });
         }
@@ -222,25 +222,25 @@ private:
 
     void AddElementInPos(const std::size_t aPos, const byte_t aElement) {
         const std::size_t newSize = aPos + 1;
-        if (newSize > _Number.size())
-            _Number.resize(newSize);
-        _Number[aPos] = aElement;
+        if (newSize > _Data.size())
+            _Data.resize(newSize);
+        _Data[aPos] = aElement;
     }
     
     friend std::ostream& operator<<(std::ostream& aStream, const BigNumber& aBn) {
         if (aBn.RealSize() > sizeof(std::uint64_t)) {
             aStream << "0x";
-            auto iter = aBn._Number.crbegin();
-            for (; iter != aBn._Number.crend(); ++iter) {
+            auto iter = aBn._Data.crbegin();
+            for (; iter != aBn._Data.crend(); ++iter) {
                 aStream << boost::str(boost::format("%02X") % ((int)(*iter)));
-                if (iter + 1 != aBn._Number.crend())
+                if (iter + 1 != aBn._Data.crend())
                     aStream << "\'";
             }
         } 
         else {
             std::uint64_t res = 0;
             for (int i = 0; i < aBn.RealSize(); ++i) {
-                res |= static_cast<std::uint64_t>(aBn._Number[i]) << (8 * i);
+                res |= static_cast<std::uint64_t>(aBn._Data[i]) << (8 * i);
             }
             aStream << res;
         }
