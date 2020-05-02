@@ -116,7 +116,7 @@ class Matrix{
             }
 
             Cell& operator++() {
-                Get() += 1;
+                *this = Get() + 1;
                 return *this;
             }
 
@@ -127,7 +127,7 @@ class Matrix{
             }
 
             Cell& operator--() {
-                Get() -= 1;
+                *this = Get() - 1;
                 return *this;
             }
 
@@ -150,7 +150,8 @@ class Matrix{
 
                 Cell(const Cell& aRhs) : m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};
 
-                TValue& Get() {
+                //Реализация через этот метод не позволяет контролировать переход сквозь TDefaultValue у операторов ++ --
+                /*TValue& Get() {
                     auto iter = m_CMap->find(m_CIndex);
                     if (iter == m_CMap->end()) {
                         auto[insIter, insRes] = m_CMap->insert({ m_CIndex, TDefaultValue });
@@ -159,7 +160,7 @@ class Matrix{
                         iter = insIter;
                     }
                     return iter->second;
-                }
+                }*/
         };
 #pragma endregion
         index_t m_Index = 0;
