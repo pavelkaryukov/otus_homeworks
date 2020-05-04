@@ -47,9 +47,17 @@ void TestFileController() {
     std::size_t lvl = 1;
     std::size_t minSize = 30'000;
     std::string mask = "*";
-    FileController controller_3{ {dirs, dropped, 0}, {500, mask} };
-    FileController controller_1{ {dirs, dropped, 0}, {1024, mask} };
-    FileController controller_0{ {dirs, dropped, 0}, {0, mask} };
+
+    //Приводи маску к нижнему регистру, приводим имя файла к нижнем регистру
+    //перед точкой стави "\" перед звездочкой ставим точку
+    FileController controller_1{ {dirs, {}, 0}, {0, "Base.*\.bin"} };
+    FileController controller_2{ {dirs, {}, 0}, {0, "base.*\.bin"} };
+    FileController controller_3{ {dirs, dropped, 0}, {0, ".*\.ini"} }; //перед точкой ".*\.ini"
+    FileController controller_0{ {dirs, dropped, 0}, {0, ".*\.dll"} };
+
+    //FileController controller_3{ {dirs, dropped, 0}, {0, "somefiles.*\.txt"} };
+    //FileController controller_1{ {dirs, dropped, 0}, {0, "somefiles.*\.cab"} };
+    //FileController controller_0{ {dirs, dropped, 0}, {0, "somefiles.*\.ini"} };
 
     int stop1 = 0;
 }

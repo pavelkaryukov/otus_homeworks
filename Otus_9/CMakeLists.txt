@@ -12,7 +12,7 @@ set_target_properties (
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON	
 )
-find_package(Boost COMPONENTS program_options filesystem REQUIRED)
+find_package(Boost COMPONENTS program_options filesystem regex REQUIRED)
 if(NOT Boost_FOUND)
 	message(SEND_ERROR "Failed to find boost")
 	return()

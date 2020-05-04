@@ -1,6 +1,7 @@
 #pragma once
 #include <boost/filesystem.hpp>     
 #include <boost/format.hpp> 
+#include <boost/regex.hpp>
 #include <vector>//TODO:: переделать hash set
 #include <set>//TODO:: переделать hash set
 
@@ -9,24 +10,30 @@ namespace {
     //TODO:: загнать их в класс FileController ???
     class FileFilter {
     public:
-        const std::size_t MinSize = 0;
-        const std::string Mask = "*";
+        //const std::string Mask = "*";
 
-        FileFilter(const std::size_t aMinSize, const std::string&  aMask) : MinSize(aMinSize), Mask(aMask) {
+        FileFilter(const std::size_t aMinSize, const std::string&  aMask) : _MinSize(aMinSize), _Filter(aMask) {
             
         }
 
 
         bool IsPermittedSize(const boost::filesystem::directory_entry& aObj) const {
-            return  (MinSize == 0) || (boost::filesystem::file_size(aObj) >= MinSize);
+            return  (_MinSize == 0) || (boost::filesystem::file_size(aObj) >= _MinSize);
         }
 
-        bool IsPermittedMask(const boost::filesystem::directory_entry& aObj) const {
-            return true;
+        bool IsPermittedMask(const boost::filesystem::directory_entry& aObj) const {            
+            if (_Filter.str() == "*" || _Filter.str() == "")
+                return true;
+            boost::smatch what;
+            std::string filename = aObj.path().filename().string();
+            std::transform(filename.begin(), filename.end(), filename.begin(), [](unsigned char c) { return std::tolower(c); });
+            return boost::regex_match(filename, what, _Filter);
         }
 
     private:
         FileFilter() = default;
+        const std::size_t  _MinSize = 0;
+        const boost::regex _Filter { "" };
     };
 
     struct Directorys {
@@ -91,7 +98,11 @@ private:
                     continue;
                 }
                 if (!_Filter.IsPermittedMask(obj)) {
+                    auto ext = boost::filesystem::extension(obj);
                     continue;
+                }
+                else {
+                    int stop1 = 0;
                 }
                 aFiles.push_back(obj);
             }
