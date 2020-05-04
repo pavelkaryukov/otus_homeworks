@@ -2,7 +2,7 @@
 #include "hash/ihash.h"
 #include <boost/uuid/detail/md5.hpp>
 #include <boost/format.hpp>
-class HashMD5 : public IHash {
+class HashMD5 final : public IHash {
 public:
     void ProcessBuffer(const void* aData, const std::size_t aLen) override {
         _hash.process_bytes(aData, aLen);

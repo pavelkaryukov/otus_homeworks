@@ -3,15 +3,16 @@ cmake_minimum_required (VERSION 3.8)
 project ("Otus_9" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
 set(HASH_SRC "hash/ihash.h" "hash/hash_crc32.h" "hash/hash_md5.h")
+set(FILECONTROL_SRC "file/file_controller.h")
 
-add_executable(bayan otus_9.cpp "cmd_args.h" ${HASH_SRC}) 
+add_executable(bayan otus_9.cpp "cmd_args.h" ${HASH_SRC} ${FILECONTROL_SRC}) 
 
 set_target_properties (
 	bayan PROPERTIES 
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON	
 )
-find_package(Boost COMPONENTS program_options REQUIRED)
+find_package(Boost COMPONENTS program_options filesystem REQUIRED)
 if(NOT Boost_FOUND)
 	message(SEND_ERROR "Failed to find boost")
 	return()
