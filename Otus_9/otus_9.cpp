@@ -50,10 +50,11 @@ void TestFileController() {
 
     //Приводи маску к нижнему регистру, приводим имя файла к нижнем регистру
     //перед точкой стави "\" перед звездочкой ставим точку
-    FileController controller_1{ {dirs, {}, 0}, {0, "Base.*\.bin"} };
-    FileController controller_2{ {dirs, {}, 0}, {0, "base.*\.bin"} };
-    FileController controller_3{ {dirs, dropped, 0}, {0, ".*\.ini"} }; //перед точкой ".*\.ini"
-    FileController controller_0{ {dirs, dropped, 0}, {0, ".*\.dll"} };
+    FileController controller_1{ {dirs, {}, 0}, {0, "Base*.bin"} };
+    FileController controller_2{ {dirs, {}, 0}, {0, "base*.bin"} };
+    FileController controller_3{ {dirs, dropped, 0}, {0, "*.ini"} }; //перед точкой ".*\.ini"
+    FileController controller_0{ {dirs, dropped, 0}, {0, "*.dll"} };
+    FileController controller_4{ {dirs, dropped, 0}, {0, "*ase*"} };
 
     //FileController controller_3{ {dirs, dropped, 0}, {0, "somefiles.*\.txt"} };
     //FileController controller_1{ {dirs, dropped, 0}, {0, "somefiles.*\.cab"} };

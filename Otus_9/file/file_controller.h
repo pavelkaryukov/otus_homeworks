@@ -2,6 +2,7 @@
 #include <boost/filesystem.hpp>     
 #include <boost/format.hpp> 
 #include <boost/regex.hpp>
+#include <boost/algorithm/string/replace.hpp>
 #include <vector>//TODO:: переделать hash set
 #include <set>//TODO:: переделать hash set
 
@@ -12,7 +13,7 @@ namespace {
     public:
         //const std::string Mask = "*";
 
-        FileFilter(const std::size_t aMinSize, const std::string&  aMask) : _MinSize(aMinSize), _Filter(aMask) {
+        FileFilter(const std::size_t aMinSize, const std::string&  aMask) : _MinSize(aMinSize), _Filter(MaskToRegex(aMask)) {
             
         }
 
@@ -34,6 +35,13 @@ namespace {
         FileFilter() = default;
         const std::size_t  _MinSize = 0;
         const boost::regex _Filter { "" };
+
+        std::string MaskToRegex(std::string aStr) {
+            std::transform(aStr.begin(), aStr.end(), aStr.begin(), [](unsigned char c) { return std::tolower(c); });            
+            boost::replace_all(aStr, ".", "\.");
+            boost::replace_all(aStr, "*", ".*");
+            return aStr;
+        }
     };
 
     struct Directorys {
