@@ -1,26 +1,47 @@
 #pragma once
 #include <boost/filesystem.hpp>     
 #include <boost/format.hpp> 
+#include <vector>//TODO:: переделать hash set
+#include <set>//TODO:: переделать hash set
+
+//TODO::Ќе забыть покрыть все try_cath
 namespace {
     //TODO:: загнать их в класс FileController ???
-    struct FileFilter {
-        const std::size_t MinSize;
-        const std::string Mask;
+    class FileFilter {
+    public:
+        const std::size_t MinSize = 0;
+        const std::string Mask = "*";
+
+        FileFilter(const std::size_t aMinSize, const std::string&  aMask) : MinSize(aMinSize), Mask(aMask) {
+            
+        }
+
+
+        bool IsPermittedSize(const boost::filesystem::directory_entry& aObj) const {
+            return  (MinSize == 0) || (boost::filesystem::file_size(aObj) >= MinSize);
+        }
+
+        bool IsPermittedMask(const boost::filesystem::directory_entry& aObj) const {
+            return true;
+        }
+
+    private:
+        FileFilter() = default;
     };
 
     struct Directorys {
-        const std::vector<boost::filesystem::path> Dirs;
-        const std::vector<boost::filesystem::path> Dropped;
-        const std::size_t Lvl;
+        const std::set<boost::filesystem::path> Dirs;
+        const std::set<boost::filesystem::path> Dropped;
+        const std::size_t Lvl = 0;
         Directorys(const std::vector<std::string>& aDirs, const std::vector<std::string>& aDropped, const std::size_t aLvl)
             : Lvl(aLvl), Dirs(std::move(ConvertToBoostObj(aDirs))), Dropped(std::move(ConvertToBoostObj(aDropped))) {}
     private:
         Directorys();
 
-        std::vector<boost::filesystem::path> ConvertToBoostObj(const std::vector<std::string>& aIn) {
-            std::vector<boost::filesystem::path> res;
+        std::set<boost::filesystem::path> ConvertToBoostObj(const std::vector<std::string>& aIn) {
+            std::set<boost::filesystem::path> res;
             for (const auto& elem : aIn) {
-                res.emplace_back(boost::filesystem::path{ elem });
+                res.insert(boost::filesystem::path{ elem });
             }
             return res;
         }
@@ -29,13 +50,53 @@ namespace {
 
 // ласс обеспечивает удобный дл€ наших задач доступ к файловой   системе
 class FileController final {
+    using files_t = std::vector<boost::filesystem::path>;
 public:
-    FileController(const Directorys&& aDirs, const FileFilter&& aFilter) : _Filter(std::move(aFilter)), _Dirs(aDirs) {}
+    FileController(const Directorys&& aDirs, const FileFilter&& aFilter) : _Filter(std::move(aFilter)), _Dirs(aDirs) {
+        FillFiles();
+    }
 
 private:
     Directorys _Dirs;
     FileFilter _Filter;
     FileController() = default;
+    files_t _Files;
+
+    void FillFiles() {
+        files_t allFiles;
+        for (const auto& dir : _Dirs.Dirs) {
+            FillFiles(dir, 0, allFiles);//Ќачинаем с 1, т.к. 0
+        }
+        _Files = std::move(allFiles);
+    }
+
+    void FillFiles(const boost::filesystem::path& aDir, const std::size_t aLvl, files_t& aFiles) {
+        if (_Dirs.Lvl != 0 && aLvl >= _Dirs.Lvl)
+            return;
+        if (_Dirs.Dropped.find(aDir) != _Dirs.Dropped.end())
+            return;
+
+        if (!boost::filesystem::exists(aDir) || !boost::filesystem::is_directory(aDir)) {
+            std::cout << boost::format(" аталог [%1%] не существует") % aDir << std::endl;
+            return;
+        }
+
+        for (auto& obj : boost::filesystem::directory_iterator(aDir)) {
+            if (boost::filesystem::is_directory(obj)) {
+                FillFiles(obj, aLvl + 1, aFiles);
+                continue;
+            }
+            if (boost::filesystem::is_regular_file(obj)) {
+                if (!_Filter.IsPermittedSize(obj)) {
+                    continue;
+                }
+                if (!_Filter.IsPermittedMask(obj)) {
+                    continue;
+                }
+                aFiles.push_back(obj);
+            }
+        }
+    }
 };
 //--dir, D - директори€ сканировани€ (может быть несколько)
 //--except, E - директори€ исключенна€ из сканировани€ (может быть несколько)

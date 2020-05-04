@@ -1,4 +1,5 @@
 #include "cmd_args.h"
+#include "file/file_controller.h"
 //#include <boost/crc.hpp>
 //#include <boost/uuid/detail/md5.hpp>
 #include "hash/hash_crc32.h"
@@ -7,7 +8,7 @@
 #include <boost/filesystem.hpp>     
 #include <boost/format.hpp>
 
-
+//"c:\Games\XCOM Chimera Squad\Engine\Stats" 
 void TestFileSystem() {
     std::string strPath = "c:\\Games\\XCOM Chimera Squad";
     boost::filesystem::path dirPath{ strPath };
@@ -33,9 +34,30 @@ void TestFileSystem() {
     }
 }
 
+void TestFileController() {
+    std::vector<std::string> dirs = {
+     "c:\\Games\\XCOM Chimera Squad\\_CommonRedist",
+     "c:\\Games\\XCOM Chimera Squad\\Binaries" ,
+     "c:\\Games\\XCOM Chimera Squad\\Engine",
+     "c:\\Games\\XCOM Chimera Squad\\Launcher",
+     "c:\\Games\\XCOM Chimera Squad\\XComGame"
+    };
+
+    std::vector<std::string> dropped = { "c:\\Games\\XCOM Chimera Squad\\Engine\\Stats" };
+    std::size_t lvl = 1;
+    std::size_t minSize = 30'000;
+    std::string mask = "*";
+    FileController controller_3{ {dirs, dropped, 0}, {500, mask} };
+    FileController controller_1{ {dirs, dropped, 0}, {1024, mask} };
+    FileController controller_0{ {dirs, dropped, 0}, {0, mask} };
+
+    int stop1 = 0;
+}
+
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "Russian");
-
+    TestFileController();
+    return 1;
     TestFileSystem();
     try {
         auto args = GetArgs(argc, argv);
