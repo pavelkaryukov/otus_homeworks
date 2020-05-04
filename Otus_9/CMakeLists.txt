@@ -2,7 +2,9 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("Otus_9" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
-add_executable(bayan otus_9.cpp "cmd_args.h") 
+set(HASH_SRC "hash/ihash.h" "hash/hash_crc32.h" "hash/hash_md5.h")
+
+add_executable(bayan otus_9.cpp "cmd_args.h" ${HASH_SRC}) 
 
 set_target_properties (
 	bayan PROPERTIES 

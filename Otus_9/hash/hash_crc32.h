@@ -2,17 +2,17 @@
 #include "hash/ihash.h"
 #include <boost/crc.hpp>
 #include <boost/format.hpp>
-class HashMD5 : public iHash {
+class HashCRC32 : public IHash {
 public:
     void ProcessBuffer(const void* aData, const std::size_t aLen) override {        
-        _result.process_bytes(aData, aLen);
+        _crc32.process_bytes(aData, aLen);
     }
 
     const std::string Result() override {
-        return std::to_string(_result.checksum())
+        return boost::str(boost::format("[%02X]") % _crc32.checksum());
     }
 private:
-    boost::crc_32_type  _result;
+    boost::crc_32_type  _crc32;
 };
 
 
