@@ -1,5 +1,6 @@
 #include "cmd_args.h"
-#include "file/file_controller.h"
+#include "file/file_filter.h"   
+#include "duplicate/duplicate_finder.h"
 //#include <boost/crc.hpp>
 //#include <boost/uuid/detail/md5.hpp>
 #include "hash/hash_crc32.h"
@@ -7,6 +8,8 @@
 #include "hash/ihash.h"
 #include <boost/filesystem.hpp>     
 #include <boost/format.hpp>
+#include <boost/function.hpp>
+#include <boost/functional/factory.hpp>
 
 //"c:\Games\XCOM Chimera Squad\Engine\Stats" 
 void TestFileSystem() {
@@ -47,6 +50,25 @@ void TestFileController() {
     std::size_t lvl = 1;
     std::size_t minSize = 30'000;
     std::string mask = "*";
+
+    boost::function<std::unique_ptr<IHash>()> factory1 = boost::factory<std::unique_ptr<HashCRC32>>();
+    boost::function<std::unique_ptr<IHash>()> factory2 = boost::factory<std::unique_ptr<HashMD5>>();
+    auto a1 = factory1();
+    auto a2 = factory2();
+    a1->ProcessBuffer(dirs[0].data(), dirs[0].size());
+    a2->ProcessBuffer(dirs[0].data(), dirs[0].size());
+    std::string res1 = a1->Result();
+    std::string res2 = a2->Result();
+
+    DuplicateFinder finder1{ boost::factory<std::unique_ptr<HashCRC32>>() };
+    auto ressss11 = finder1.TestHash();
+    auto ressss12 = finder1.TestHash();
+
+    DuplicateFinder finder2{ boost::factory<std::unique_ptr<HashMD5>>() };
+    auto ressss21 = finder2.TestHash();
+    auto ressss22 = finder2.TestHash();
+
+    return;
 
     //Приводи маску к нижнему регистру, приводим имя файла к нижнем регистру
     //перед точкой стави "\" перед звездочкой ставим точку
