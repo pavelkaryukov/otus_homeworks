@@ -60,11 +60,11 @@ void TestFileController() {
     std::string res1 = a1->Result();
     std::string res2 = a2->Result();
 
-    DuplicateFinder finder1{ boost::factory<std::unique_ptr<HashCRC32>>() };
+    DuplicateFinder finder1{ boost::factory<std::unique_ptr<HashCRC32>>(), 512};
     auto ressss11 = finder1.TestHash();
     auto ressss12 = finder1.TestHash();
 
-    DuplicateFinder finder2{ boost::factory<std::unique_ptr<HashMD5>>() };
+    DuplicateFinder finder2{ boost::factory<std::unique_ptr<HashMD5>>(), 512 };
     auto ressss21 = finder2.TestHash();
     auto ressss22 = finder2.TestHash();
 
@@ -74,8 +74,11 @@ void TestFileController() {
     int stop1 = 0;
     auto files1 = fileFilter.GetFiles();
     auto files2 = fileFilter.GetFiles();
+    finder1.GetDuplicated(files1);
+    finder2.GetDuplicated(files2);
 
 
+  
     for (auto&[size, file] : fileFilter.GetFiles()) {
         if (size >= 4'000'000'000) {
             int stop1 = 0;

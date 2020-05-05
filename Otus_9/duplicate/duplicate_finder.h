@@ -20,11 +20,25 @@ struct FileDescr {
 
 class DuplicateFinder{
     using duplicates_t = std::map<FileDescr, std::set<boost::filesystem::path>>;
-    using files_t = std::unordered_map<std::uint64_t, std::set<FileHasher>>;
+    using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
-    DuplicateFinder(boost::function<std::unique_ptr<IHash>()>&& aHashFactory) : _HashFactory(std::move(aHashFactory)) {}
+    DuplicateFinder(boost::function<std::unique_ptr<IHash>()>&& aHashFactory, const std::size_t aBuffSize) : _HashFactory(std::move(aHashFactory)) {
+        _Buffer.resize(aBuffSize);
+    }
 
-    duplicates_t GetDuplicated(files_t& aFiles) {
+    duplicates_t GetDuplicated(const files_t& aFiles) {
+        std::vector<FileHasher> vect;
+        for (auto&[size, hasherSet] : aFiles) {
+            for (auto&[size, files] : aFiles) {
+                if (files.size() <= 2)
+                    continue;
+                for (auto& file : files) {
+                    vect.push_back({ file });
+                }
+                DuplicateCalc(vect);
+                vect.clear();
+            }
+        }
         return {};
     }
 
@@ -35,6 +49,21 @@ public:
     }
 private:
     const std::string _testStr = "my test string, ahahhahahahsrasr";
+    std::vector<std::uint8_t> _Buffer;
     boost::function<std::unique_ptr<IHash>()> _HashFactory;
     DuplicateFinder() = default;
+
+    void DuplicateCalc(std::vector<FileHasher>& aFiles) {
+        if (aFiles.empty())
+            return;
+        for (auto& file : aFiles) {
+            if (!file.Hash) {
+                file.Hash = (_HashFactory());
+            }
+            if (!file.File.is_open()) {
+                file.File.open(file.Path.string(), std::fstream::binary);
+            }
+        }
+        int stop1 = 0;
+    }
 };

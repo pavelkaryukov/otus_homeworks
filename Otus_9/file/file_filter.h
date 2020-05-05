@@ -59,7 +59,7 @@ namespace Border {
 }
 //Класс обеспечивает удобный для наших задач доступ к файловой   системе
 class FilesFilter {
-    using files_t = std::unordered_map<std::uint64_t, std::set<FileHasher>>;
+    using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
     FilesFilter(const Border::Directorys&& aDirs, const Border::FileBorder&& aFilter) : _Filter(std::move(aFilter)), _Dirs(aDirs) {
         for (const auto& dir : _Dirs.Dirs) {
