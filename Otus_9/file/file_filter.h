@@ -1,5 +1,5 @@
 #pragma once
-#include "file/file_controller.h"
+#include "file/file_hash.h"
 #include <boost/filesystem.hpp>     
 #include <boost/format.hpp> 
 #include <boost/regex.hpp>

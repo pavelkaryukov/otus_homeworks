@@ -43,7 +43,7 @@ struct CmdArgs {
         }
     }
 
-    std::string Print() {
+    std::string ToStr() {
         std::string res;    
         res += boost::str(boost::format("Dirs:\r\n"));
         for (const auto& dir : Dirs) {

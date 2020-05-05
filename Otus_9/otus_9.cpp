@@ -1,5 +1,6 @@
 #include "cmd_args.h"
-#include "file/file_filter.h"   
+#include "file/file_filter.h" 
+
 #include "duplicate/duplicate_finder.h"
 //#include <boost/crc.hpp>
 //#include <boost/uuid/detail/md5.hpp>
@@ -39,14 +40,13 @@ void TestFileSystem() {
 
 void TestFileController() {
     std::vector<std::string> dirs = {
-     "c:\\Games\\XCOM Chimera Squad\\_CommonRedist",
-     "c:\\Games\\XCOM Chimera Squad\\Binaries" ,
-     "c:\\Games\\XCOM Chimera Squad\\Engine",
-     "c:\\Games\\XCOM Chimera Squad\\Launcher",
-     "c:\\Games\\XCOM Chimera Squad\\XComGame"
+     "c:\\otus_test\\test_directory1",
+     "c:\\otus_test\\test_directory2" ,
+     "c:\\otus_test\\test_directory1",
+     "c:\\otus_test\\test_directory2" 
     };
 
-    std::vector<std::string> dropped = { "c:\\Games\\XCOM Chimera Squad\\Engine\\Stats" };
+    std::vector<std::string> dropped = { "c:\\otus_test\\test_directory1\\dont_touch", "c:\\otus_test\\test_directory2\\dont_touch" };
     std::size_t lvl = 1;
     std::size_t minSize = 30'000;
     std::string mask = "*";
@@ -68,12 +68,14 @@ void TestFileController() {
     auto ressss21 = finder2.TestHash();
     auto ressss22 = finder2.TestHash();
 
-    return;
-
     //ѕриводи маску к нижнему регистру, приводим им€ файла к нижнем регистру
     //перед точкой стави "\" перед звездочкой ставим точку
     FilesFilter fileFilter{ {dirs, dropped, 0}, {minSize, "*"} };
     int stop1 = 0;
+    auto files1 = fileFilter.GetFiles();
+    auto files2 = fileFilter.GetFiles();
+
+
     for (auto&[size, file] : fileFilter.GetFiles()) {
         if (size >= 4'000'000'000) {
             int stop1 = 0;
@@ -90,7 +92,7 @@ int main(int argc, char** argv) {
     try {
         auto args = GetArgs(argc, argv);
         std::cout << "Status:" << std::endl;
-        std::cout << args.Print() << std::endl;
+        std::cout << args.ToStr() << std::endl;
         if (!args.StartProcess)
             return 0;
         //Ќачать обработку
