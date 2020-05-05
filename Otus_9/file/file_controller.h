@@ -3,20 +3,15 @@
 #include <boost/format.hpp> 
 #include <boost/regex.hpp>
 #include <boost/algorithm/string/replace.hpp>
-#include <vector>//TODO:: переделать hash set
+#include <vector>
+#include <unordered_map> 
 #include <set>//TODO:: переделать hash set
-
-//TODO::Ќе забыть покрыть все try_cath
-namespace {
-    //TODO:: загнать их в класс FileController ???
-    class FileFilter {
+namespace Border {
+    class FileBorder {
     public:
-        //const std::string Mask = "*";
-
-        FileFilter(const std::size_t aMinSize, const std::string&  aMask) : _MinSize(aMinSize), _Filter(MaskToRegex(aMask)) {
+        FileBorder(const std::size_t aMinSize, const std::string&  aMask) : _MinSize(aMinSize), _Filter(MaskToRegex(aMask)) {
             
         }
-
 
         bool IsPermittedSize(const boost::filesystem::directory_entry& aObj) const {
             return  (_MinSize == 0) || (boost::filesystem::file_size(aObj) >= _MinSize);
@@ -25,17 +20,16 @@ namespace {
         bool IsPermittedMask(const boost::filesystem::directory_entry& aObj) const {            
             if (_Filter.str() == "*" || _Filter.str() == "")
                 return true;
-            boost::smatch what;
             std::string filename = aObj.path().filename().string();
             std::transform(filename.begin(), filename.end(), filename.begin(), [](unsigned char c) { return std::tolower(c); });
+            boost::smatch what;
             return boost::regex_match(filename, what, _Filter);
         }
-
     private:
-        FileFilter() = default;
+        FileBorder() = default;
         const std::size_t  _MinSize = 0;
         const boost::regex _Filter { "" };
-
+       
         std::string MaskToRegex(std::string aStr) {
             std::transform(aStr.begin(), aStr.end(), aStr.begin(), [](unsigned char c) { return std::tolower(c); });            
             boost::replace_all(aStr, ".", "\.");
@@ -51,7 +45,7 @@ namespace {
         Directorys(const std::vector<std::string>& aDirs, const std::vector<std::string>& aDropped, const std::size_t aLvl)
             : Lvl(aLvl), Dirs(std::move(ConvertToBoostObj(aDirs))), Dropped(std::move(ConvertToBoostObj(aDropped))) {}
     private:
-        Directorys();
+        Directorys() = default;
 
         std::set<boost::filesystem::path> ConvertToBoostObj(const std::vector<std::string>& aIn) {
             std::set<boost::filesystem::path> res;
@@ -62,32 +56,29 @@ namespace {
         }
     };
 }
-
 // ласс обеспечивает удобный дл€ наших задач доступ к файловой   системе
-class FileController final {
-    using files_t = std::vector<boost::filesystem::path>;
+class FilesFilter {
+    using files_t = std::unordered_map<std::uint64_t, std::vector<boost::filesystem::path>>;
 public:
-    FileController(const Directorys&& aDirs, const FileFilter&& aFilter) : _Filter(std::move(aFilter)), _Dirs(aDirs) {
-        FillFiles();
-    }
-
-private:
-    Directorys _Dirs;
-    FileFilter _Filter;
-    FileController() = default;
-    files_t _Files;
-
-    void FillFiles() {
-        files_t allFiles;
+    FilesFilter(const Border::Directorys&& aDirs, const Border::FileBorder&& aFilter) : _Filter(std::move(aFilter)), _Dirs(aDirs) {
         for (const auto& dir : _Dirs.Dirs) {
-            FillFiles(dir, 0, allFiles);//Ќачинаем с 1, т.к. 0
+            FillFiles(dir, 0, _Files);
         }
-        _Files = std::move(allFiles);
     }
+
+    files_t& GetFiles() {
+        return _Files;
+    }
+private:
+    Border::Directorys _Dirs;
+    Border::FileBorder _Filter;
+    FilesFilter() = default;
+    files_t _Files;
 
     void FillFiles(const boost::filesystem::path& aDir, const std::size_t aLvl, files_t& aFiles) {
         if (_Dirs.Lvl != 0 && aLvl >= _Dirs.Lvl)
             return;
+
         if (_Dirs.Dropped.find(aDir) != _Dirs.Dropped.end())
             return;
 
@@ -102,17 +93,11 @@ private:
                 continue;
             }
             if (boost::filesystem::is_regular_file(obj)) {
-                if (!_Filter.IsPermittedSize(obj)) {
+                if (!_Filter.IsPermittedSize(obj) || !_Filter.IsPermittedMask(obj)) {
                     continue;
                 }
-                if (!_Filter.IsPermittedMask(obj)) {
-                    auto ext = boost::filesystem::extension(obj);
-                    continue;
-                }
-                else {
-                    int stop1 = 0;
-                }
-                aFiles.push_back(obj);
+                std::uint64_t size = boost::filesystem::file_size(obj);
+                aFiles[size].push_back(obj.path());
             }
         }
     }

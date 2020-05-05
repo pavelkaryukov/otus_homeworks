@@ -4,8 +4,8 @@ project ("Otus_9" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 set(HASH_SRC "hash/ihash.h" "hash/hash_crc32.h" "hash/hash_md5.h")
 set(FILECONTROL_SRC "file/file_controller.h")
-
-add_executable(bayan otus_9.cpp "cmd_args.h" ${HASH_SRC} ${FILECONTROL_SRC}) 
+set(FINDER_SRC "duplicate/duplicate_finder.h")
+add_executable(bayan otus_9.cpp "cmd_args.h" ${HASH_SRC} ${FILECONTROL_SRC} ${FINDER_SRC}) 
 
 set_target_properties (
 	bayan PROPERTIES 
