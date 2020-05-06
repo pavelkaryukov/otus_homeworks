@@ -61,13 +61,7 @@ void TestFileController() {
     std::string res2 = a2->Result();
 
     DuplicateFinder finder1{ boost::factory<std::unique_ptr<HashCRC32>>(), 512};
-    auto ressss11 = finder1.TestHash();
-    auto ressss12 = finder1.TestHash();
-
     DuplicateFinder finder2{ boost::factory<std::unique_ptr<HashMD5>>(), 512 };
-    auto ressss21 = finder2.TestHash();
-    auto ressss22 = finder2.TestHash();
-
     //Приводи маску к нижнему регистру, приводим имя файла к нижнем регистру
     //перед точкой стави "\" перед звездочкой ставим точку
     FilesFilter fileFilter{ {dirs, dropped, 0}, {minSize, "*"} };
