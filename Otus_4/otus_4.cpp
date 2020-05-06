@@ -29,7 +29,6 @@ void PrintForOtus()
 
     MyIP::PrintIpAddr(MyIP::ToStr<MyIP::ByteOrder::BigEndian>(str));
     MyIP::PrintIpAddr(MyIP::ToStr<MyIP::ByteOrder::LittleEndian>(str));
-    int stop1 = 0;
 }
 //-----------------------------------------------------------------------------
 int main(int, char *[])

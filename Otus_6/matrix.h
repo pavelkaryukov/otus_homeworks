@@ -145,7 +145,6 @@ class Matrix{
                 Cell() = default;
 
                 Cell(const pair_t aIndex, map_t* aMap) : m_CIndex(aIndex), m_CMap(aMap) {
-                    int stop1 = 0;
                 };
 
                 Cell(const Cell& aRhs) : m_CMap(aRhs.m_CMap), m_CIndex(aRhs.m_CIndex) {};

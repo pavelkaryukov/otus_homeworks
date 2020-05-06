@@ -3,10 +3,10 @@
 #include "file/file_hash.h"
 #include <boost/function.hpp>
 #include <boost/functional/factory.hpp>
-#include <cctype>
-#include <string>             
+#include <cctype>          
 #include <map>      
-#include <set>      
+#include <set>   
+#include <string>   
 #include <unordered_map>                                                                          
 #include <unordered_set>
 struct FileDescr {
@@ -21,11 +21,10 @@ struct FileDescr {
 class DuplicateFinder{
     using hash_sum_t = std::string;
     using hashs_t = std::unordered_map<hash_sum_t, std::size_t>;
-    using duplicates_t = std::map<FileDescr, std::set<boost::filesystem::path>>;
     using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
     DuplicateFinder(boost::function<std::unique_ptr<IHash>()>&& aHashFactory, const std::size_t aBuffSize) : 
-        _hasherFactory(std::move(aHashFactory)), _blockSize(aBuffSize) {
+        _hasherFactory(std::move(aHashFactory)), _blockSize(aBuffSize != 0 ? aBuffSize : 1024) {
         _buffer.resize(aBuffSize);
     }
 
@@ -72,9 +71,6 @@ private:
             }
             _buffer.clear();
             _buffer.resize(_blockSize);
-            if (aProcessed + _blockSize > boost::filesystem::file_size(iter->Path)) {
-                int stop1 = 0;
-            }
             iter->File.read(_buffer.data(), _buffer.size());
             iter->Hasher->ProcessBuffer(_buffer.data(), _buffer.size());
             iter->Hash = iter->Hasher->Result();

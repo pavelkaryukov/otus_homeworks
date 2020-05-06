@@ -1,7 +1,7 @@
 #pragma once
-#include "hash/ihash.h"
-#include <boost/uuid/detail/md5.hpp>
+#include "hash/ihash.h"             
 #include <boost/format.hpp>
+#include <boost/uuid/detail/md5.hpp>
 //Подать фабрику на контсруктор
 class HashMD5 final : public IHash {
 public:

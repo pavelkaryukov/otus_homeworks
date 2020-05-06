@@ -86,12 +86,14 @@ CmdArgs GetArgs(int argc, char** argv) {
         ("lvl,L", boost::program_options::value<std::size_t>(&procArgs.Lvl), "уровень сканирования (0 - только текущий каталог)")
         ("min,M", boost::program_options::value<std::size_t>(&procArgs.MinFileSize), "минимальный размер рассматриваемых файлов (0 - без ограничения)")
         ("mask,N", boost::program_options::value<std::vector<std::string>>(&procArgs.Masks), "маски имени файлов, не регистрозависимые (может быть несколько)")
+        ("block,B", boost::program_options::value<std::size_t>(&procArgs.BlockSize), "размер вычитываемого блока")
         ("hash,H", boost::program_options::value<std::string>(&hash), "алгоритм хэширования (реализуем crc32, md5, что нибудь ещё)");
 
     boost::program_options::command_line_parser parser{ argc, argv };
     parser.options(desc).allow_unregistered().style(
         boost::program_options::command_line_style::default_style |
-        boost::program_options::command_line_style::allow_slash_for_short);
+        boost::program_options::command_line_style::allow_slash_for_short
+    );
     boost::program_options::parsed_options parsed_options = parser.run();
 
     boost::program_options::variables_map vm;
@@ -102,7 +104,6 @@ CmdArgs GetArgs(int argc, char** argv) {
         std::cout << desc << '\n';
     else {
         procArgs.SetHashAlg(hash);
-        std::cout << "Lets get the party start" << std::endl;
         procArgs.StartProcess = true;
     }
     return procArgs;
