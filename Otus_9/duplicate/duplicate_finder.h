@@ -38,15 +38,15 @@ public:
                 for (auto& file : files) {
                     vect.push_back({ file });
                 }
-                DuplicateCalc(vect);
-                vect.clear();
             }
+            DuplicateCalc(vect);
+            vect.clear();
         }
         return {};
     }
 
 private:
-    std::vector<std::uint8_t> _buffer;
+    std::vector<char> _buffer;
     const std::size_t _blockSize = 1024;
     boost::function<std::unique_ptr<IHash>()> _hasherFactory;
     DuplicateFinder() = default;
@@ -62,11 +62,13 @@ private:
         }
 
         if (!aFiles.empty()) {
+            int stop1 = 0;
             //TODO::вывод
         }
     }
 
     hashs_t MakeHashIteration(std::vector<FileHasher>& aFiles, std::size_t& aProcessed) {
+        hashs_t hashSums;
         for (auto iter = aFiles.begin(); iter != aFiles.end();) {
             if (!iter->Hasher || !iter->File.is_open()) {
                 iter = aFiles.erase(iter);
@@ -74,9 +76,17 @@ private:
             }
             _buffer.clear();
             _buffer.resize(_blockSize);
-
+            if (aProcessed + _blockSize > boost::filesystem::file_size(iter->Path)) {
+                int stop1 = 0;
+            }
+            iter->File.read(_buffer.data(), _buffer.size());
+            iter->Hasher->ProcessBuffer(_buffer.data(), _buffer.size());
+            iter->Hash = iter->Hasher->Result();
+            hashSums[iter->Hash] += 1;
+            ++iter;
         }
-        return {};
+        aProcessed += _blockSize;
+        return hashSums;
     }
 
     void EraseUniaqueFiles(std::vector<FileHasher>& aFiles, const hashs_t& aHashs) {
