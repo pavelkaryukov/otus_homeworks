@@ -2,6 +2,7 @@
 #include "hash/ihash.h"
 #include <boost/crc.hpp>
 #include <boost/format.hpp>
+
 class HashCRC32 final : public IHash {
 public:
     void ProcessBuffer(const void* aData, const std::size_t aLen) override {        

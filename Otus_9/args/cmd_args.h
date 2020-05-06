@@ -29,6 +29,7 @@ struct CmdArgs {
     std::size_t BlockSize = 0;
     HashAlg Algorithm = HashAlg::crc32;
     bool StartProcess = false;
+    
     void SetHashAlg(std::string aStr) {
         //передача по значению так.как  строка будет преобразована к нижнему регистру
         std::transform(aStr.begin(), aStr.end(), aStr.begin(), [](unsigned char c) { return std::tolower(c); });
@@ -39,7 +40,7 @@ struct CmdArgs {
             Algorithm = HashAlg::md5;
         }
         else {
-            std::cout << boost::format("Ќеизвестный has-алгорит=\"%1%\", установлено значение по умолчанию = crc32") % aStr << std::endl;
+            std::cout << boost::format("Ќеизвестный hash-алгорит=\"%1%\", установлено значение по умолчанию = crc32") % aStr << std::endl;
         }
     }
 

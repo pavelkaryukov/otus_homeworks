@@ -7,7 +7,8 @@
 #include <set>
 #include <unordered_map> 
 #include <vector>
-namespace Border {
+
+namespace Borders {
     class FileBorder {
     public:
         FileBorder(const std::size_t aMinSize, const std::vector<std::string>&  aMasks) : _minSize(aMinSize), _filter(MaskToRegexVect(aMasks)) {
@@ -76,7 +77,7 @@ namespace Border {
 class FilesFilter {
     using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
-    FilesFilter(const Border::Directorys&& aDirs, const Border::FileBorder&& aFilter) : _filter(std::move(aFilter)), _dirs(aDirs) {
+    FilesFilter(const Borders::Directorys&& aDirs, const Borders::FileBorder&& aFilter) : _filter(std::move(aFilter)), _dirs(aDirs) {
         for (const auto& dir : _dirs.Dirs) {
             FillFiles(dir, 0, _files);
         }
@@ -86,8 +87,8 @@ public:
         return _files;
     }
 private:
-    Border::Directorys _dirs;
-    Border::FileBorder _filter;
+    Borders::Directorys _dirs;
+    Borders::FileBorder _filter;
     FilesFilter() = default;
     files_t _files;
 
@@ -118,10 +119,3 @@ private:
         }
     }
 };
-//--dir, D - директория сканирования (может быть несколько)
-//--except, E - директория исключенная из сканирования (может быть несколько)
-//--lvl, L - уровень сканирования (0 - только текущий каталог)
-//--min, M - минимальный размер рассматриваемых файлов
-//--mask,N - маски имени файлов, не регистрозависимые
-//--block,S - размер блока
-//--hash, H --алгоритм хэширования (реализуем crc32, md5, что нибудь ещё)
