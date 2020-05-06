@@ -68,8 +68,9 @@ void TestFileController() {
     int stop1 = 0;
     auto files1 = fileFilter.GetFiles();
     auto files2 = fileFilter.GetFiles();
-    finder1.GetDuplicated(files1);
-    finder2.GetDuplicated(files2);
+    finder1.OutputDuplicated(files1, true);
+    std::cout << "output short with md5" << std::endl;
+    finder2.OutputDuplicated(files2, false);
 
 
   

@@ -29,20 +29,17 @@ public:
         _buffer.resize(aBuffSize);
     }
 
-    duplicates_t GetDuplicated(const files_t& aFiles) {
+    void OutputDuplicated(const files_t& aFiles, const bool aFullPaths) {
         std::vector<FileHasher> vect;
         for (auto&[size, hasherSet] : aFiles) {
-            for (auto&[size, files] : aFiles) {
-                if (files.size() <= 2)
-                    continue;
-                for (auto& file : files) {
-                    vect.push_back({ file });
-                }
+            if (hasherSet.size() <= 1)
+                continue;
+            for (auto& filename : hasherSet){ 
+                vect.push_back({ filename });
             }
-            DuplicateCalc(vect);
-            vect.clear();
         }
-        return {};
+        DuplicateCalc(vect, aFullPaths);
+        vect.clear();
     }
 
 private:
@@ -51,10 +48,10 @@ private:
     boost::function<std::unique_ptr<IHash>()> _hasherFactory;
     DuplicateFinder() = default;
 
-    void DuplicateCalc(std::vector<FileHasher>& aFiles) {
+    void DuplicateCalc(std::vector<FileHasher>& aFiles, const bool aFullPaths) {
         InitFilesHasher(aFiles);
-        const std::size_t kFileSize = boost::filesystem::file_size(aFiles[0].Path);
-        std::size_t processed = 0;
+        const std::uintmax_t kFileSize = boost::filesystem::file_size(aFiles[0].Path);
+        std::uintmax_t processed = 0;
         hashs_t hashs;
         while (processed < kFileSize && aFiles.size() >= 1) {
             hashs = MakeHashIteration(aFiles, processed);// переделать на unordered map ???
@@ -62,12 +59,11 @@ private:
         }
 
         if (!aFiles.empty()) {
-            int stop1 = 0;
-            //TODO::вывод
+            OtputDuplicateFileNames(hashs, aFiles, aFullPaths);
         }
     }
 
-    hashs_t MakeHashIteration(std::vector<FileHasher>& aFiles, std::size_t& aProcessed) {
+    hashs_t MakeHashIteration(std::vector<FileHasher>& aFiles, std::uintmax_t& aProcessed) {
         hashs_t hashSums;
         for (auto iter = aFiles.begin(); iter != aFiles.end();) {
             if (!iter->Hasher || !iter->File.is_open()) {
@@ -125,4 +121,20 @@ private:
         }
     }
 
+    void OtputDuplicateFileNames(const hashs_t&  aHashs, const std::vector<FileHasher>& aFiles, const bool aFullPaths) {
+        for (auto&[hash, number] : aHashs) {
+            if (number <= 1)
+                continue;
+            for (auto& fileHasher : aFiles) {
+                if (hash != fileHasher.Hash) 
+                    continue;
+
+                if (aFullPaths) 
+                    std::cout << fileHasher.Path << std::endl;
+                else 
+                    std::cout << fileHasher.Path.filename() << std::endl;
+            }
+            std::cout << std::endl;
+        }
+    }
 };
