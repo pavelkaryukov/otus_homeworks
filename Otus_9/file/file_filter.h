@@ -61,8 +61,8 @@ namespace Border {
 class FilesFilter {
     using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
-    FilesFilter(const Border::Directorys&& aDirs, const Border::FileBorder&& aFilter) : _Filter(std::move(aFilter)), _Dirs(aDirs) {
-        for (const auto& dir : _Dirs.Dirs) {
+    FilesFilter(const Border::Directorys&& aDirs, const Border::FileBorder&& aFilter) : _filter(std::move(aFilter)), _dirs(aDirs) {
+        for (const auto& dir : _dirs.Dirs) {
             FillFiles(dir, 0, _Files);
         }
     }
@@ -71,16 +71,16 @@ public:
         return _Files;
     }
 private:
-    Border::Directorys _Dirs;
-    Border::FileBorder _Filter;
+    Border::Directorys _dirs;
+    Border::FileBorder _filter;
     FilesFilter() = default;
     files_t _Files;
 
     void FillFiles(const boost::filesystem::path& aDir, const std::size_t aLvl, files_t& aFiles) {
-        if (_Dirs.Lvl != 0 && aLvl >= _Dirs.Lvl)
+        if (_dirs.Lvl != 0 && aLvl >= _dirs.Lvl)
             return;
 
-        if (_Dirs.Dropped.find(aDir) != _Dirs.Dropped.end())
+        if (_dirs.Dropped.find(aDir) != _dirs.Dropped.end())
             return;
 
         if (!boost::filesystem::exists(aDir) || !boost::filesystem::is_directory(aDir)) {
@@ -94,7 +94,7 @@ private:
                 continue;
             }
             if (boost::filesystem::is_regular_file(obj)) {
-                if (!_Filter.IsPermittedSize(obj) || !_Filter.IsPermittedMask(obj)) {
+                if (!_filter.IsPermittedSize(obj) || !_filter.IsPermittedMask(obj)) {
                     continue;
                 }
                 std::uint64_t size = boost::filesystem::file_size(obj);

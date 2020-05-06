@@ -19,12 +19,14 @@ struct FileDescr {
 };
 
 class DuplicateFinder{
-    using hashs_t = std::unordered_map<std::string, std::size_t>;
+    using hash_sum_t = std::string;
+    using hashs_t = std::unordered_map<hash_sum_t, std::size_t>;
     using duplicates_t = std::map<FileDescr, std::set<boost::filesystem::path>>;
     using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
-    DuplicateFinder(boost::function<std::unique_ptr<IHash>()>&& aHashFactory, const std::size_t aBuffSize) : _HashFactory(std::move(aHashFactory)) {
-        _Buffer.resize(aBuffSize);
+    DuplicateFinder(boost::function<std::unique_ptr<IHash>()>&& aHashFactory, const std::size_t aBuffSize) : 
+        _hasherFactory(std::move(aHashFactory)), _blockSize(aBuffSize) {
+        _buffer.resize(aBuffSize);
     }
 
     duplicates_t GetDuplicated(const files_t& aFiles) {
@@ -44,8 +46,9 @@ public:
     }
 
 private:
-    std::vector<std::uint8_t> _Buffer;
-    boost::function<std::unique_ptr<IHash>()> _HashFactory;
+    std::vector<std::uint8_t> _buffer;
+    const std::size_t _blockSize = 1024;
+    boost::function<std::unique_ptr<IHash>()> _hasherFactory;
     DuplicateFinder() = default;
 
     void DuplicateCalc(std::vector<FileHasher>& aFiles) {
@@ -64,7 +67,15 @@ private:
     }
 
     hashs_t MakeHashIteration(std::vector<FileHasher>& aFiles, std::size_t& aProcessed) {
+        for (auto iter = aFiles.begin(); iter != aFiles.end();) {
+            if (!iter->Hasher || !iter->File.is_open()) {
+                iter = aFiles.erase(iter);
+                continue;
+            }
+            _buffer.clear();
+            _buffer.resize(_blockSize);
 
+        }
         return {};
     }
 
@@ -90,7 +101,7 @@ private:
             return;
         for (auto iter = aFiles.begin(); iter != aFiles.end();) {
             if (!iter->Hasher) {
-                iter->Hasher = _HashFactory();
+                iter->Hasher = _hasherFactory();
 
                 if (!iter->File.is_open()) {
                     iter->File.open(iter->Path.string(), std::fstream::binary);
