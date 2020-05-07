@@ -94,7 +94,7 @@ private:
     files_t _files;
 
     void FillFiles(const boost::filesystem::path& aDir, const std::size_t aLvl, files_t& aFiles) {
-        if (_dirs.Lvl != 0 && aLvl >= _dirs.Lvl)
+        if (aLvl > _dirs.Lvl)
             return;
 
         if (_dirs.Dropped.find(aDir) != _dirs.Dropped.end())
