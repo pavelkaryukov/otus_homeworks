@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['decrement',['Decrement',['../classBigNumber.html#a98028816b8cee76bebce87ed36b9a718',1,'BigNumber']]]
+  ['otus_5f9_2ecpp',['otus_9.cpp',['../otus__9_8cpp.html',1,'']]]
 ];

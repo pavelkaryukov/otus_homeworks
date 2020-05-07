@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['begin',['begin',['../classMatrix.html#a97e6f5d4ba1376d3ae8810dd01902387',1,'Matrix::begin()'],['../classMatrix.html#ac39fbcd0314fd682220d5a7c93a978bb',1,'Matrix::begin() const ']]],
-  ['bignumber',['BigNumber',['../classBigNumber.html#aa3d98c56de14f603fa1e5afbffa9bd5e',1,'BigNumber::BigNumber()=default'],['../classBigNumber.html#a36d616bd745dad58dd76132c0dc680db',1,'BigNumber::BigNumber(const std::vector&lt; byte_t &gt; &amp;aVect)'],['../classBigNumber.html#a2367799c475229df1943e47362cd9e14',1,'BigNumber::BigNumber(const TNumber aNumber)']]]
+  ['gethashcalculator',['GetHashCalculator',['../otus__9_8cpp.html#a9bdd0071bfdac68cbd22d67d85c5b52b',1,'otus_9.cpp']]]
 ];

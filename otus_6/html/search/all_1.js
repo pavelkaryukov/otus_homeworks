@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clear',['clear',['../classMatrix.html#a5f85da6cc21c08ffc5969d1bc6d026d4',1,'Matrix']]]
+  ['main',['main',['../otus__9_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'otus_9.cpp']]]
 ];
