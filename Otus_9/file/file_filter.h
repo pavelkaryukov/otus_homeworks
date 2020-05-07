@@ -11,8 +11,8 @@
 namespace Borders {
     class FileBorder {
     public:
-        FileBorder(const std::size_t aMinSize, const std::vector<std::string>&  aMasks) : _minSize(aMinSize), _filter(MaskToRegexVect(aMasks)) {
-            
+        FileBorder(const std::size_t aMinSize, const std::vector<std::string>&  aMasks) : 
+            _minSize(aMinSize != 0 ? aMinSize : 1), _filter(MaskToRegexVect(aMasks)) {
         }
 
         bool IsPermittedSize(const boost::filesystem::directory_entry& aObj) const {
@@ -55,14 +55,14 @@ namespace Borders {
         }
     };
 
-    struct Directorys {
+    struct Directories {
         const std::set<boost::filesystem::path> Dirs;
         const std::set<boost::filesystem::path> Dropped;
         const std::size_t Lvl = 0;
-        Directorys(const std::vector<std::string>& aDirs, const std::vector<std::string>& aDropped, const std::size_t aLvl)
+        Directories(const std::vector<std::string>& aDirs, const std::vector<std::string>& aDropped, const std::size_t aLvl)
             : Lvl(aLvl), Dirs(std::move(ConvertToBoostObj(aDirs))), Dropped(std::move(ConvertToBoostObj(aDropped))) {}
     private:
-        Directorys() = default;
+        Directories() = default;
 
         std::set<boost::filesystem::path> ConvertToBoostObj(const std::vector<std::string>& aIn) {
             std::set<boost::filesystem::path> res;
@@ -73,11 +73,12 @@ namespace Borders {
         }
     };
 }
+
 //Класс обеспечивает удобный для наших задач доступ к файловой   системе
 class FilesFilter {
     using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
-    FilesFilter(const Borders::Directorys&& aDirs, const Borders::FileBorder&& aFilter) : _filter(std::move(aFilter)), _dirs(aDirs) {
+    FilesFilter(const Borders::Directories&& aDirs, const Borders::FileBorder&& aFilter) : _filter(std::move(aFilter)), _dirs(aDirs) {
         for (const auto& dir : _dirs.Dirs) {
             FillFiles(dir, 0, _files);
         }
@@ -87,7 +88,7 @@ public:
         return _files;
     }
 private:
-    Borders::Directorys _dirs;
+    Borders::Directories _dirs;
     Borders::FileBorder _filter;
     FilesFilter() = default;
     files_t _files;

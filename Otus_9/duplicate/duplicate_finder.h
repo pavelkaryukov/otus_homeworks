@@ -48,6 +48,8 @@ private:
     DuplicateFinder() = default;
 
     void DuplicateCalc(std::vector<FileHasher>& aFiles, const bool aFullPaths) {
+        if (aFiles.empty())
+            return;
         InitFilesHasher(aFiles);
         const std::uintmax_t kFileSize = boost::filesystem::file_size(aFiles[0].Path);
         std::uintmax_t processed = 0;

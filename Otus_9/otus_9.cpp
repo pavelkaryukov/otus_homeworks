@@ -4,21 +4,17 @@
 #include "hash/hash_crc32.h"
 #include "hash/hash_md5.h"
 #include "hash/ihash.h"
-#include <boost/filesystem.hpp>     
-#include <boost/format.hpp>
-#include <boost/function.hpp>
-#include <boost/functional/factory.hpp>
 
-boost::function<std::unique_ptr<IHash>()> GetHashCalculator(const CmdArgs::HashAlg& aAlg) {
+boost::function<std::unique_ptr<IHash>()> GetHashCalculator(const CmdArgs::HashAlg aAlg) {
     switch (aAlg) {
         default:
             throw std::logic_error("Unknown hash algorithm");
         break;
         case CmdArgs::HashAlg::crc32:
-        return  boost::factory<std::unique_ptr<HashCRC32>>();
+            return  boost::factory<std::unique_ptr<HashCRC32>>();
         break;
         case CmdArgs::HashAlg::md5:
-        return boost::factory<std::unique_ptr<HashMD5>>();
+            return boost::factory<std::unique_ptr<HashMD5>>();
         break;
     }
 }
