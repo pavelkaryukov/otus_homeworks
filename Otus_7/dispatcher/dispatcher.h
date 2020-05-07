@@ -118,7 +118,7 @@ private:
             return;
 
         const auto count = std::min(aNum, m_Commands.size());
-        for (int i = 0; i < count; ++i) {
+        for (std::size_t i = 0; i < count; ++i) {
             std::string log = " ";
             log += m_Commands.front()->Execute();
             m_Commands.pop_front();

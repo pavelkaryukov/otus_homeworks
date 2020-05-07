@@ -83,7 +83,7 @@ public:
             throw std::logic_error("BigNumber: operator-=: negative number");
 
         std::size_t len = std::min(RealSize(), aRhs.RealSize());
-        for (int i = 0; i < len; ++i) {
+        for (auto i = 0U; i < len; ++i) {
             if (_Data[i] < aRhs._Data[i]) {
                 auto tmp = aRhs._Data[i] - _Data[i];
                 _Data[i] = 0;
@@ -108,7 +108,7 @@ public:
             _Data.resize(aRhs.RealSize());
 
         byte_t tail = 0;
-        for (int i = 0; i < aRhs.RealSize(); ++i) {
+        for (auto i = 0U; i < aRhs.RealSize(); ++i) {
             std::uint16_t tmp = tail + static_cast<std::uint16_t>(aRhs._Data[i]) + static_cast<std::uint16_t>(_Data[i]);
             _Data[i] = tmp & 0xff;
             tail = (tmp & 0xff00) >> 8;
@@ -191,7 +191,7 @@ private:
     }
 
     void AddArray(const byte_t* aPtr, std::size_t aLen) {
-        for (auto index = 0; index < aLen; ++index) {
+        for (auto index = 0U; index < aLen; ++index) {
             _Data.push_back(aPtr[index]);
         }
     }
@@ -239,7 +239,7 @@ private:
         } 
         else {
             std::uint64_t res = 0;
-            for (int i = 0; i < aBn.RealSize(); ++i) {
+            for (auto i = 0U; i < aBn.RealSize(); ++i) {
                 res |= static_cast<std::uint64_t>(aBn._Data[i]) << (8 * i);
             }
             aStream << res;

@@ -75,8 +75,7 @@ private:
             _buffer.resize(_blockSize);
             iter->File.read(_buffer.data(), _buffer.size());
             iter->Hasher->ProcessBuffer(_buffer.data(), _buffer.size());
-            iter->Hash = iter->Hasher->Result();
-            hashSums[iter->Hash] += 1;
+            hashSums[iter->Hasher->Result()] += 1;
             ++iter;
         }
         aProcessed += _blockSize;
@@ -85,7 +84,7 @@ private:
 
     void EraseUniaqueFiles(std::vector<FileHasher>& aFiles, const hashs_t& aHashs) {
         for (auto iter = aFiles.begin(); iter != aFiles.end();) {            
-            auto hashIter = aHashs.find(iter->Hash);
+            auto hashIter = aHashs.find(iter->Hasher->Result());
             if (hashIter == aHashs.end()) {
                 ++iter;
                 continue;
@@ -124,7 +123,7 @@ private:
             if (number <= 1)
                 continue;
             for (auto& fileHasher : aFiles) {
-                if (hash != fileHasher.Hash) 
+                if (hash != fileHasher.Hasher->Result())
                     continue;
 
                 if (aFullPaths) 

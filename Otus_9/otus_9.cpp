@@ -4,7 +4,18 @@
 #include "hash/hash_crc32.h"
 #include "hash/hash_md5.h"
 #include "hash/ihash.h"
+/*! \mainpage Otus_9 (Bayan)
+ *
+ * \r\n  Поиск файлов дубликатов в папке
+ *
+ */
 
+ /**
+ * \brief  Возвращает указатель на фабрику классов расчета хэш функций
+ * \details возвращенная фабрика создает объекты реализующие алгоритм iHash.
+ * \param[in] aAlg - алгоритм хэширования
+ * \return TDefaultValue - фабрика классов реализующих интерфейс IHash
+ */
 boost::function<std::unique_ptr<IHash>()> GetHashCalculator(const CmdArgs::HashAlg aAlg) {
     switch (aAlg) {
         default:

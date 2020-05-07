@@ -32,7 +32,7 @@ TEST(gtest_test_otus3, TestMyContainer)
     auto standardIter = myListStandartAllocator.begin();
     auto customIter   = myListCustomAllocator.begin();
 
-    for (auto i = 0; i < listSize; ++i) {
+    for (auto i = 0U; i < listSize; ++i) {
         ASSERT_EQ(*standardIter, i);
         ASSERT_EQ(*customIter, i);
         ++standardIter;

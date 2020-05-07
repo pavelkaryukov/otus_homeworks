@@ -32,7 +32,7 @@ std::string mystr::Fmt(const char *fmt, ...)
 bool mystr::IsCorrectNumber(const char* aStr) 
 {
     const auto len = strlen(aStr);
-    for (int i = 0; i < len; i++) {
+    for (auto i = 0U; i < len; i++) {
         if (!std::isdigit(aStr[i]))
             return false;
     }

@@ -11,7 +11,7 @@
 namespace mystr {
     bool IsCorrectNumber(const char* aStr) {
         const auto len = strlen(aStr);
-        for (int i = 0; i < len; i++) {
+        for (auto i = 0U; i < len; i++) {
             if (!std::isdigit(aStr[i]))
                 return false;
         }
@@ -28,7 +28,7 @@ namespace mystr {
         if (!std::isupper(aStr[0]))
             return false;
 
-        for (int i = 1; i < aStr.size(); i++) {
+        for (auto i = 1U; i < aStr.size(); i++) {
             if (!std::islower(aStr[i]))
                 return false;
         }
