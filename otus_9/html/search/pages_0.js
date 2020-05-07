@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['Задание_20номер_209_2e',['Задание номер 9.',['../md_README.html',1,'']]]
+  ['otus_5f9_20_28bayan_29',['Otus_9 (Bayan)',['../index.html',1,'']]]
 ];

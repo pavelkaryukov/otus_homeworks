@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "gmorÐ",
   1: "or",
   2: "gm",
-  3: "Ð"
+  3: "oÐ"
 };
 
 var indexSectionNames =
