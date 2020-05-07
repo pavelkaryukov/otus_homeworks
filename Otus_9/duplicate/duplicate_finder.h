@@ -9,25 +9,28 @@
 #include <string>   
 #include <unordered_map>                                                                          
 #include <unordered_set>
-struct FileDescr {
-    std::string Hash;
-    std::size_t Size;
-
-    bool operator<(const FileDescr& aRhs) const {
-        return std::tie(Hash, Size) < std::tie(aRhs.Hash, aRhs.Size);
-    }
-};
-
+///\brief  класс поиска дубликатов файлов
 class DuplicateFinder{
     using hash_sum_t = std::string;
     using hashs_t = std::unordered_map<hash_sum_t, std::size_t>;
     using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
+    /**
+    * \brief  конструктор
+    * \param[in] aHashFactory - фабрика функций хэширования
+    * \param[in] aBuffSize - размер блока, подающегося на функцию хэширования
+    * \return - объект класса  DuplicateFinder
+    */
     DuplicateFinder(boost::function<std::unique_ptr<IHash>()>&& aHashFactory, const std::size_t aBuffSize) : 
         _hasherFactory(std::move(aHashFactory)), _blockSize(aBuffSize != 0 ? aBuffSize : 1024) {
         _buffer.resize(aBuffSize);
     }
 
+    /**
+    * \brief  вывод на экран файлов дубликатов (если они есть)
+    * \param[in] aFiles - список файлов
+    * \param[in] aFullPaths - полный путь к файлу
+    */
     void OutputDuplicated(const files_t& aFiles, const bool aFullPaths) {
         std::vector<FileHasher> vect;
         for (auto&[size, hasherSet] : aFiles) {

@@ -16,6 +16,11 @@ public:
         }
     }
 
+    /**
+    * \brief  Получить файлы, среди которых можно искать дубликаты
+    * \details будут отсеяны файлы из запрещенных каталого, не соответвующие маски имени или размера
+    * \return  мапа где ключ - размер файлов, а значение список имен файлов (boost::filesystem::path)
+    */
     files_t& GetFiles() {
         return _files;
     }
@@ -43,7 +48,7 @@ private:
                 continue;
             }
             if (boost::filesystem::is_regular_file(obj)) {
-                if (!_filter.IsPermittedSize(obj) || !_filter.IsPermittedMask(obj)) {
+                if (!_filter.IsPermittedFile(obj)) {
                     continue;
                 }
                 std::uint64_t size = boost::filesystem::file_size(obj);
