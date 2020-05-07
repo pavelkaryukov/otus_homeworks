@@ -43,7 +43,6 @@ if(NOT GTEST_FOUND )
 	return()
 endif()
 
-#
 set(TESTS_SRC "test")
 add_executable(test_bayan ${TESTS_SRC}/gtest_bayan.cpp  ${HASH_SRC} ${FILECONTROL_SRC} ${FINDER_SRC})
 set_target_properties (

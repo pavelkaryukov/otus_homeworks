@@ -100,6 +100,10 @@ CmdArgs GetArgs(int argc, char** argv) {
     boost::program_options::variables_map vm;
     boost::program_options::store(parsed_options, vm);
     boost::program_options::notify(vm);
+    if (procArgs.Dirs.empty()) {
+        std::cout << "Т.к. параметр --dir не был установлен,  поиск дубликатов будет осуществлен в текущем каталоге" << std::endl;
+        procArgs.Dirs = { "." };
+    }
 
     if (vm.count("help"))
         std::cout << desc << '\n';
