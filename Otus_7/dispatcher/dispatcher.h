@@ -47,14 +47,14 @@ public:
         switch (GetCmdType(aStr))
         {
         case CmdType::OpenBrace:
-            ExecuteOpenBrace();
+            ProcessOpenBrace();
             break;
         case CmdType::CloseBrace:
-            ExecuteCloseBrace();
+            ProcessCloseBrace();
             break;
         case CmdType::Cmd:
         default:
-            ExecuteCmd(aStr);
+            ProcessCmd(aStr);
             break;
         }
     }
@@ -125,7 +125,7 @@ private:
             return CmdType::Cmd;
     }
 
-    void ExecuteOpenBrace() {
+    void ProcessOpenBrace() {
         if (m_Status == ExecutorStatus::Static) {
             ExecuteCommands(true);
             m_Status = ExecutorStatus::Dynamic;
@@ -133,7 +133,7 @@ private:
         ++m_StartBraceCounter;
     }
 
-    void ExecuteCloseBrace() {
+    void ProcessCloseBrace() {
         if (m_StartBraceCounter == 0)
             return;//Игнорируем некорректный ввод
         --m_StartBraceCounter;
@@ -143,7 +143,7 @@ private:
         }
     }
 
-    void ExecuteCmd(const std::string& aStr) {
+    void ProcessCmd(const std::string& aStr) {
         AddCommand(std::make_unique<SimpleCommand>(aStr));
         if (m_Status == ExecutorStatus::Static)
             ExecuteCommands(false);
