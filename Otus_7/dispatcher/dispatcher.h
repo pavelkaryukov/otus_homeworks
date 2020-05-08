@@ -47,33 +47,15 @@ public:
         switch (GetCmdType(aStr))
         {
         case CmdType::OpenBrace:
-        {
-            if (m_Status == ExecutorStatus::Static) {
-                ExecuteCommands(true);
-                m_Status = ExecutorStatus::Dynamic;
-            }
-            ++m_StartBraceCounter;
-        }
-        break;
+            ExecuteOpenBrace();
+            break;
         case CmdType::CloseBrace:
-        {
-            if (m_StartBraceCounter == 0)
-                return;//Игнорируем некорректный ввод
-            --m_StartBraceCounter;
-            if (m_StartBraceCounter == 0) {
-                ExecuteCommands(true);
-                m_Status = ExecutorStatus::Static;
-            }
-        }
-        break;
+            ExecuteCloseBrace();
+            break;
         case CmdType::Cmd:
         default:
-        {
-            AddCommand(std::make_unique<SimpleCommand>(aStr));
-            if (m_Status == ExecutorStatus::Static)
-                ExecuteCommands(false);
-        }
-        break;
+            ExecuteCmd(aStr);
+            break;
         }
     }
 
@@ -141,5 +123,29 @@ private:
             return CmdType::CloseBrace;
         else
             return CmdType::Cmd;
+    }
+
+    void ExecuteOpenBrace() {
+        if (m_Status == ExecutorStatus::Static) {
+            ExecuteCommands(true);
+            m_Status = ExecutorStatus::Dynamic;
+        }
+        ++m_StartBraceCounter;
+    }
+
+    void ExecuteCloseBrace() {
+        if (m_StartBraceCounter == 0)
+            return;//Игнорируем некорректный ввод
+        --m_StartBraceCounter;
+        if (m_StartBraceCounter == 0) {
+            ExecuteCommands(true);
+            m_Status = ExecutorStatus::Static;
+        }
+    }
+
+    void ExecuteCmd(const std::string& aStr) {
+        AddCommand(std::make_unique<SimpleCommand>(aStr));
+        if (m_Status == ExecutorStatus::Static)
+            ExecuteCommands(false);
     }
 };
