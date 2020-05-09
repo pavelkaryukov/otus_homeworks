@@ -2,7 +2,7 @@
 #include <cctype> 
 
 bool IsValidArg(const char* aStr) {
-    auto len = std::strlen(aStr);
+    auto len = strlen(aStr);
     const std::size_t kMaxLen = 8;
     if (len > kMaxLen)
         return false;
