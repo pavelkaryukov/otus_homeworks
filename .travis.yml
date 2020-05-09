@@ -1,0 +1,67 @@
+language: cpp
+before_script:
+- sudo apt-get install cmake # install cmake
+- sudo apt-get install libgtest-dev
+- cd /usr/src/gtest
+- sudo cmake CMakeLists.txt
+- sudo make
+- sudo cp *.a /usr/lib # copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
+- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+- sudo apt-get update -qq
+- sudo add-apt-repository ppa:mhier/libboost-latest --yes
+- sudo apt-get update -qq
+- sudo apt-get install libboost1.70-dev
+#- sudo apt install build-essential
+#- sudo apt-get install manpages-dev
+- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+- sudo apt-get update -qq
+- sudo apt-get install gcc-8 g++-8
+- sudo apt-get install doxygen
+- sudo apt-get install doxygen graphviz
+script:
+- gcc --version
+- cd /home/travis/build/pavelkaryukov/otus_homeworks
+- pwd
+- cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_CC_COMPILER=gcc-8 .
+- cmake --build .
+- Otus_1/./boost_test_version
+- Otus_1/./gtest_test_version
+- cd Otus_2
+- ./boost_test
+- ./gtest_test
+- cd ..
+- Otus_3/./gtest_test_otus3
+- cd Otus_4
+- ./gtest_print_ip  
+- doxygen
+- cd ..
+- cd Otus_5
+- ./graphic_editor
+- doxygen
+- cd ..
+- cd Otus_6/
+- ./test_matrix  	   
+- doxygen
+- cd ..
+- cd Otus_7
+- ./test_bulk  	   
+- doxygen
+- cd ..
+- cd Otus_9/
+- ./test_bayan  	   
+- doxygen
+- cd ..
+- cmake --build . --target package
+deploy:
+- provider: pages2
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local-dir: doxygen
+  #on:
+  #  all_branches: true
+
+- provider: script
+  skip_cleanup: true
+  script:
+  - curl -T OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ukaryukov1991:$BINTRAY_API_KEY "https://api.bintray.com/content/karyukov1991/otus_homeworks/homeworks/$TRAVIS_BUILD_NUMBER/OtusHomeworks-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
