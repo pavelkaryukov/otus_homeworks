@@ -1,6 +1,6 @@
 <map id="test/gtest_bulk.cpp" name="test/gtest_bulk.cpp">
-<area shape="rect" id="node2" href="$dispatcher_8h.html" title="dispatcher/dispatcher.h" alt="" coords="250,80,421,107"/>
-<area shape="rect" id="node3" href="$icommand_8h.html" title="command/icommand.h" alt="" coords="26,229,197,256"/>
-<area shape="rect" id="node5" href="$simple__command_8h.html" title="command/simple_command.h" alt="" coords="80,155,298,181"/>
-<area shape="rect" id="node6" href="$logger_8h.html" title="dispatcher/logger.h" alt="" coords="332,229,476,256"/>
+<area shape="rect" id="node3" href="$dispatcher_8h.html" title="dispatcher/dispatcher.h" alt="" coords="250,80,421,107"/>
+<area shape="rect" id="node4" href="$icommand_8h.html" title="command/icommand.h" alt="" coords="26,229,197,256"/>
+<area shape="rect" id="node6" href="$simple__command_8h.html" title="command/simple_command.h" alt="" coords="80,155,298,181"/>
+<area shape="rect" id="node7" href="$logger_8h.html" title="dispatcher/logger.h" alt="" coords="332,229,476,256"/>
 </map>
