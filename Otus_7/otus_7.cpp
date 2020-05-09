@@ -1,5 +1,6 @@
 #include "dispatcher/dispatcher.h"
 #include <cctype> 
+#include <cstring>
 
 bool IsValidArg(const char* aStr) {
     auto len = strlen(aStr);
