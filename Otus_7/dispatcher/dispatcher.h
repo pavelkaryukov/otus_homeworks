@@ -16,7 +16,7 @@
 * \brief  Аккумулятор  и исполнитель очереди задач
 * \details задачи выполняются в статической очереди (по X штук за раз) или в динамической (блоки отделенные скобками {})
 */
-class CommandDispatcher final {
+class CommandDispatcher {
 public:
     /**
     * \brief  конструктор по умолчанию.
@@ -29,7 +29,7 @@ public:
     * \details при передачи не валидного размера статической очереди - будет установлено значение по умолчанию = 1
     * \param[in] aBulkSize - размер статической очереди
     */
-    CommandDispatcher(const std::size_t aBulkSize) : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1) {
+    CommandDispatcher(const std::size_t aBulkSize, std::ostream& aStream = std::cout) : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1), m_Logger({ aStream }) {
         if (aBulkSize == 0) {
             std::cout << boost::format("BulkSize == {%1%} - incorrect value, BulkSize was changed on {%2%}") % aBulkSize % 1 << std::endl;
         }
