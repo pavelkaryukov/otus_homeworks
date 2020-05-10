@@ -1,4 +1,5 @@
 #pragma once
+#include "logger/ilogger.h"
 #include "concurrent/concurrent_deque.h" 
 #include <cstring>
 #include <condition_variable>  
@@ -10,20 +11,14 @@
 #include <thread>
 #include <functional>
 
-class LoggerScreen {
+class LoggerScreen final : public ILogger {
 public:
     LoggerScreen(std::ostream& aStream, std::mutex& aMutex) : _stream(aStream), _mutexPrint(std::shared_ptr<std::mutex>(&aMutex)) {
         if (_mutexPrint)
             CreateThread(); 
     }
 
-    void Output(std::string aStr) {
-        _deque.push_back(aStr);
-        std::unique_lock<std::mutex> locker(_mutexThread);
-        _condition.notify_all();
-    }
-
-    void Exit() {
+    void Exit() override {
         _execute.store(false);
         {
             std::unique_lock<std::mutex> locker(_mutexThread);
@@ -79,5 +74,12 @@ private:
 
     void CreateThread() {
         _thread = std::thread( [&]() { PrintFunc();});
+    }
+
+
+    void SaveLog(std::string aStr) override {
+        _deque.push_back(aStr);
+        std::unique_lock<std::mutex> locker(_mutexThread);
+        _condition.notify_all();
     }
 };

@@ -1,23 +1,18 @@
 #pragma once
+#include "logger/ilogger.h"
 #include <string> 
 #include <boost/format.hpp>
 #include <fstream>
 #include <time.h> 
 #include <filesystem>
 
-class LoggerFile {
+class LoggerFile final : public ILogger {
 public:
     LoggerFile() {
         CreateThread();
     }
 
-    void Output(std::string aStr) {
-        _deque.push_back(aStr);
-        std::unique_lock<std::mutex> locker(_mutexThread);
-        _condition.notify_all();
-    }
-
-    void Exit() {
+    void Exit() override {
         _execute.store(false);
         {
             std::unique_lock<std::mutex> locker(_mutexThread);
@@ -30,6 +25,7 @@ public:
     ~LoggerFile() {
         _thread.detach();
     }
+
 private:
     std::condition_variable _condition;
     std::mutex _mutexThread;
@@ -71,6 +67,12 @@ private:
                 return;
             }
         }
+    }
+
+    void SaveLog(std::string aStr) override {
+        _deque.push_back(aStr);
+        std::unique_lock<std::mutex> locker(_mutexThread);
+        _condition.notify_all();
     }
 };
 

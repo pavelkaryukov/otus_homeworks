@@ -7,69 +7,6 @@
 #include <atomic>
 #include <boost/format.hpp>
 
-
-
-std::condition_variable g_condvar;
-std::mutex g_mutexThread;
-std::mutex g_mutexPrint;
-std::atomic<bool> g_execute = true;
-
-template<class T>
-class DequeMT {
-public:
-
-    bool empty() const {
-        std::lock_guard<std::mutex> guard(_mutex);
-            return _deque.empty();
-    }
-
-    void push_back(T obj) {
-        std::lock_guard<std::mutex> guard(_mutex);
-        _deque.push_back(obj);
-    }
-
-    T front() {
-        std::lock_guard<std::mutex> guard(_mutex);
-        return _deque.front();
-    }
-
-    void pop_front() {
-        std::lock_guard<std::mutex> guard(_mutex);
-        _deque.pop_front();
-    }
-
-private:
-    std::deque<T> _deque;
-    mutable std::mutex    _mutex;
-};
-
-
-DequeMT<std::string> g_testDeque;
-
-void TestMegaFunc() {
-    
-    while (g_execute) {
-        std::unique_lock<std::mutex> locker(g_mutexThread);
-        if (g_testDeque.empty())
-            g_condvar.wait(locker);
-        
-        if (g_testDeque.empty())
-            continue;
-
-        auto arbuz = g_testDeque.front();
-        g_testDeque.pop_front();
-        {
-            std::lock_guard<std::mutex> lockPrint(g_mutexPrint);
-            std::cout << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % arbuz << std::endl;
-        }
-    }
-    {
-        std::lock_guard<std::mutex> lockPrint(g_mutexPrint);
-        std::cout << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
-    }
-}
-
-
 bool IsValidArg(const char* aStr) {
     auto len = strlen(aStr);
     const std::size_t kMaxLen = 8;
@@ -104,24 +41,10 @@ int main(int argc, char** argv) {
 
     CommandDispatcher dispatcher{ kBulkSize};
     std::string str;
-    //std::thread t1(TestMegaFunc);
-    //t1.detach();
-
     std::cout << boost::format("Main Thread ID =[%1%]") % std::this_thread::get_id() << std::endl;
-    //t1.join();
     while (std::getline(std::cin, str)) {
         try {
             dispatcher.ProcessCmdLine(str);
-            /*{
-                std::lock_guard<std::mutex> lockPrint(g_mutexPrint);
-                std::cout << boost::format("Main Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % str << std::endl;
-            }
-            if (str == "off") {
-                g_execute = false;
-            }
-            g_testDeque.push_back(str);
-            std::unique_lock<std::mutex> locker(g_mutexThread);
-            g_condvar.notify_all();*/
         }
         catch (std::exception& e) {
             std::cout << "Exception:" << std::endl;

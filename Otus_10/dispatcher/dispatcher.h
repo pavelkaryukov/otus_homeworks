@@ -44,6 +44,7 @@ public:
     * - команда
     */
     void ProcessCmdLine(const std::string& aStr) {
+        ++_lines;
         switch (GetCmdType(aStr))
         {
         case CmdType::OpenBrace:
@@ -70,6 +71,7 @@ public:
 
     ~CommandDispatcher() {
         m_Logger.Exit();
+        PrintStat();
     }
 private:
     enum class ExecutorStatus {
@@ -81,6 +83,11 @@ private:
     const std::size_t m_BulkSize = 1;
     std::size_t m_StartBraceCounter = 0;
     CmdLogger m_Logger;
+
+    std::size_t _lines    = 0;
+    std::size_t _bulks    = 0;
+    std::size_t _commands = 0;
+
 
     void AddCommand(std::unique_ptr<IMyCommand> aCommand) {
         m_Commands.emplace_back(std::move(aCommand));
@@ -102,14 +109,16 @@ private:
             return;
 
         const auto count = std::min(aNum, m_Commands.size());
+        ++_bulks;
         std::string logStr = "bulk: ";
         for (std::size_t i = 0; i < count; ++i) {
+            ++_commands;
             logStr += m_Commands.front()->Execute();
             m_Commands.pop_front();
             if (i + 1 < count)
                 logStr += ", ";
         }
-        m_Logger.Save(logStr);
+        m_Logger.Save(logStr, count);
     }
 
     enum class CmdType {
@@ -149,5 +158,9 @@ private:
         AddCommand(std::make_unique<SimpleCommand>(aStr));
         if (m_Status == ExecutorStatus::Static)
             ExecuteCommands(false);
+    }
+
+    void PrintStat() {
+        m_Logger.PrintStat(_lines, _bulks, _commands);
     }
 };
