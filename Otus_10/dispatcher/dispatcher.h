@@ -67,6 +67,10 @@ public:
         //Ќе выношу в деструктор, так как при уничтожение диспетчера и нет смысла выполн€ть команды
         ExecuteCommands(true);
     }
+
+    ~CommandDispatcher() {
+        m_Logger.Exit();
+    }
 private:
     enum class ExecutorStatus {
         Static,

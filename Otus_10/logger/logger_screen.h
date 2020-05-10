@@ -22,6 +22,20 @@ public:
         std::unique_lock<std::mutex> locker(_mutexThread);
         _condition.notify_all();
     }
+
+    void Exit() {
+        _execute.store(false);
+        {
+            std::unique_lock<std::mutex> locker(_mutexThread);
+            _condition.notify_all();
+        }
+        if (_thread.joinable())
+            _thread.join();
+    };
+
+    ~LoggerScreen() {
+        _thread.detach();
+    }
 private:   
     LoggerScreen() {};
 
@@ -30,17 +44,16 @@ private:
     std::mutex _mutexThread;
     std::shared_ptr<std::mutex> _mutexPrint;
     ConcurentDeque<std::string> _deque;
-    std::atomic<bool> _execute = true;
+    std::atomic<bool> _execute{ true };
     std::thread _thread;
 
 
     void PrintFunc() {
         while (_execute) {
-            std::unique_lock<std::mutex> locker(_mutexThread);
-            if (_deque.empty())
+            if (_deque.empty()) {
+                std::unique_lock<std::mutex> locker(_mutexThread);
                 _condition.wait(locker);
-            if (!_execute)
-                return;
+            }
 
             if (_deque.empty())
                 continue;
@@ -52,7 +65,7 @@ private:
                     return;
                 }
                 std::lock_guard<std::mutex> lockPrint(*_mutexPrint);
-                std::cout << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % head << std::endl;
+                _stream << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % head << std::endl;
             }
         }
         {
@@ -60,12 +73,11 @@ private:
                 return;
             }
             std::lock_guard<std::mutex> lockPrint(*_mutexPrint);
-            std::cout << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
+            _stream << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
         }
     }
 
     void CreateThread() {
         _thread = std::thread( [&]() { PrintFunc();});
-        _thread.detach();
     }
 };
