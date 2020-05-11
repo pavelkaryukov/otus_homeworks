@@ -1,11 +1,24 @@
 #include "dispatcher/dispatcher.h"
-
+#include <sstream>
 void MakeTest() {
-
+    std::stringstream ss;
+    {
+        CommandDispatcher dispatcher{ 3, ss, 10 };
+        for (auto i = 0; i < 1000; ++i) {
+            std::string str = boost::str(boost::format("cmd_%1%")%i);
+            dispatcher.ProcessCmdLine(str);
+        }
+        dispatcher.Flush();
+    }
+    std::string myStr = ss.str();
+    int stop1 = 0;
 }
 
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "Russian");
+    MakeTest();
+    return 0;
+
     std::size_t N = 0;
     if (argc == 1) {
         std::cout << " оличество команд в одной куче (bulk) не было установлено. ”становлено  значение по умолчанию = 3" << std::endl;

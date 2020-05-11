@@ -35,7 +35,7 @@ private:
     std::thread m_Thread;
    
     void PrintFunc() {
-        while (m_Execute) {
+        while (m_Execute || !m_Deque.empty()) {
             if (m_Deque.empty()) {
                 std::unique_lock<std::mutex> locker(m_MutexThread);
                 m_Condition.wait(locker);
@@ -53,8 +53,9 @@ private:
     void SaveLogInFile(std::string aStr) {
         auto createTime = time(nullptr);
         auto bulkTime = createTime;
-        for (int i= 0; i <= 100; ++i) {
-            std::string filename = boost::str(boost::format("bulk_%1%_%2%.txt")%createTime%i);
+        auto id = std::this_thread::get_id();
+        for (int i= 0; i <= 1000; ++i) {
+            std::string filename = boost::str(boost::format("bulk_%1%_id[%2%]_%3%.txt")%createTime%id%i);
             if (std::filesystem::exists(filename))
                 continue;
             std::ofstream file(filename);

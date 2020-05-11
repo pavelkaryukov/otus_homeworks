@@ -40,7 +40,7 @@ private:
     std::atomic<bool> m_Execute{ true };
 
     void PrintFunc() {
-        while (m_Execute) {
+        while (m_Execute || !m_Deque.empty()) {
             if (m_Deque.empty()) {
                 std::unique_lock<std::mutex> locker(m_MutexThread);
                 m_Condition.wait(locker);
