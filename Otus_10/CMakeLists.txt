@@ -20,13 +20,14 @@ if(NOT Boost_FOUND)
 	return()
 endif()
 
+target_link_libraries(bulkmt PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+
 Find_package(Threads)
 if (Threads_FOUND)
 	target_link_libraries(bulkmt ${CMAKE_THREAD_LIBS_INIT})	
 endif()
 
 
-target_link_libraries(bulkmt PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 target_include_directories(
 	bulkmt
 	PRIVATE
