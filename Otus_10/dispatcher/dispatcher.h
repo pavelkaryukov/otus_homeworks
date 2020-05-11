@@ -17,10 +17,8 @@
 */
 class CommandDispatcher {
 public:
-    /**
-    * \brief  конструктор по умолчанию.
-    * \details размер статической очереди - 1 команда
-    */
+
+
     CommandDispatcher() = default;
 
     /**
@@ -28,7 +26,8 @@ public:
     * \details при передачи не валидного размера статической очереди - будет установлено значение по умолчанию = 1
     * \param[in] aBulkSize - размер статической очереди
     */
-    CommandDispatcher(const std::size_t aBulkSize, std::ostream& aStream = std::cout) : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1), m_Logger({ aStream }) {
+    CommandDispatcher(const std::size_t aBulkSize, std::ostream& aStream, const std::size_t aFileLoggerrsNumber) 
+        : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1), m_Logger(CmdLogger{ aStream, aFileLoggerrsNumber }) {
         if (aBulkSize == 0) {
             std::cout << boost::format("BulkSize == {%1%} - incorrect value, BulkSize was changed on {%2%}") % aBulkSize % 1 << std::endl;
         }
@@ -77,6 +76,7 @@ public:
         PrintStat();
     }
 private:
+
     enum class ExecutorStatus {
         Static,
         Dynamic
@@ -85,7 +85,7 @@ private:
     std::deque<std::unique_ptr<IMyCommand>> m_Commands;
     const std::size_t m_BulkSize = 1;
     std::size_t m_StartBraceCounter = 0;
-    CmdLogger m_Logger;
+    CmdLogger m_Logger = {std::cout, 2};
 
     std::size_t m_LinesNum    = 0;
     std::size_t m_BulksNum    = 0;

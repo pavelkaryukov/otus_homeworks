@@ -4,11 +4,12 @@
 #include <string> 
 
 class CmdLogger {
+    using logger_t = std::unique_ptr<ILogger>;
 public:
-    CmdLogger(std::ostream& aStream) : m_Stream(aStream) {
+    CmdLogger(std::ostream& aStream, const std::size_t aFileLoggersNumber) : m_Stream(aStream) {
         m_LoggerScreen = std::make_unique<LoggerScreen>(aStream, m_ScreenMutex);
-        m_LoggerFile1 = std::make_unique<LoggerFile>();
-        m_LoggerFile2 = std::make_unique<LoggerFile>();
+        for (auto i = 0U; i < aFileLoggersNumber; ++i)
+            m_FileLoggers.emplace_back(std::make_unique<LoggerFile>());
     }
 
     void Save(const std::string aStr, const std::size_t aCommandsNum) {
@@ -17,24 +18,20 @@ public:
         if (m_LoggerScreen)
             m_LoggerScreen->Output(aStr, aCommandsNum);
 
-        SaveInFile((m_CounterBulk % 2 == 1) ? m_LoggerFile1 : m_LoggerFile2, aStr, aCommandsNum);
+        if (!m_FileLoggers.empty()) {
+            const std::size_t id = m_CounterBulk % m_FileLoggers.size();
+            SaveInFile(m_FileLoggers[id], aStr, aCommandsNum);
+        }
     }
 
     void Exit() {
         if (m_LoggerScreen)
             m_LoggerScreen->Exit();
         
-        if (m_LoggerFile1)
-            m_LoggerFile1->Exit();
-
-        if (m_LoggerFile2)
-            m_LoggerFile2->Exit();
-    }
-
-    ~CmdLogger() {
-        m_LoggerScreen.reset();
-        m_LoggerFile1.reset();
-        m_LoggerFile2.reset();
+        for (auto& logger : m_FileLoggers) {
+            if (logger)
+                logger->Exit();
+        }
     }
 
     void PrintStat(const std::size_t aLines, const std::size_t aBulks, const std::size_t aCommands) {
@@ -45,15 +42,18 @@ public:
             m_Stream << boost::format("main stream: %1% lines, %2% blocks, %3% commands") % aLines % aBulks % aCommands << std::endl;
         }
         PrintStat("log thread", m_LoggerScreen);
-        PrintStat("file1 thread", m_LoggerFile1);
-        PrintStat("file2 thread", m_LoggerFile2);
+
+        std::size_t counter = 1;
+        for (auto& logger : m_FileLoggers) {
+            PrintStat(boost::str(boost::format("file_%1% thread")%counter), logger);
+            ++counter;
+        }
     }
 private:
     CmdLogger() = default;
     std::shared_ptr<std::mutex> m_ScreenMutex = std::make_shared<std::mutex>();
-    std::unique_ptr<ILogger>   m_LoggerScreen;
-    std::unique_ptr<ILogger>   m_LoggerFile1;
-    std::unique_ptr<ILogger>   m_LoggerFile2;
+    logger_t   m_LoggerScreen;
+    std::vector<logger_t> m_FileLoggers;
     std::size_t m_CounterBulk = 0;
     std::size_t m_CounterCommands = 0;
     std::ostream& m_Stream;
