@@ -17,6 +17,7 @@ public:
         SaveLog(aStr);
     }
 
+    //по окончанию использования выйти
     virtual void Exit() = 0;
 
     virtual ~ILogger() {}
@@ -24,10 +25,8 @@ public:
     const Stat GetStat() {
         return m_Statistic;
     }
-
-    virtual std::thread CreateThread() = 0;
-
 private:
+    //после подсчета статистики сохранение лога выполняет этот метод
     virtual void SaveLog(std::string aStr) = 0;
     Stat m_Statistic = {};
 };

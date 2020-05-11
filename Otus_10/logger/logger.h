@@ -9,10 +9,6 @@ public:
         m_LoggerScreen = std::make_unique<LoggerScreen>(aStream, m_ScreenMutex);
         m_LoggerFile1 = std::make_unique<LoggerFile>();
         m_LoggerFile2 = std::make_unique<LoggerFile>();
-
-        thread1 = std::move(m_LoggerScreen->CreateThread());
-        thread2 = std::move(m_LoggerFile1 ->CreateThread());
-        thread3 = std::move(m_LoggerFile2 ->CreateThread());
     }
 
     void Save(const std::string aStr, const std::size_t aCommandsNum) {
@@ -33,22 +29,12 @@ public:
 
         if (m_LoggerFile2)
             m_LoggerFile2->Exit();
-        
-        if (thread1.joinable())
-            thread1.join();
-        
-        if (thread2.joinable())
-            thread2.join();
-        
-        if (thread3.joinable())
-            thread3.join();
     }
 
     ~CmdLogger() {
         m_LoggerScreen.reset();
         m_LoggerFile1.reset();
         m_LoggerFile2.reset();
-        int stop1 = 0;
     }
 
     void PrintStat(const std::size_t aLines, const std::size_t aBulks, const std::size_t aCommands) {
@@ -68,9 +54,6 @@ private:
     std::unique_ptr<ILogger>   m_LoggerScreen;
     std::unique_ptr<ILogger>   m_LoggerFile1;
     std::unique_ptr<ILogger>   m_LoggerFile2;
-    std::thread thread1;
-    std::thread thread2;
-    std::thread thread3;
     std::size_t m_CounterBulk = 0;
     std::size_t m_CounterCommands = 0;
     std::ostream& m_Stream;

@@ -11,7 +11,9 @@
 
 class LoggerScreen final : public ILogger {
 public:
-    LoggerScreen(std::ostream& aStream, std::shared_ptr<std::mutex> aMutex) : m_Stream(aStream), m_MutexPrint(aMutex) {}
+    LoggerScreen(std::ostream& aStream, std::shared_ptr<std::mutex> aMutex) : m_Stream(aStream), m_MutexPrint(aMutex) {
+        m_Thread = CreateThread();
+    }
 
     void Exit() override {
         m_Execute.store(false);
@@ -19,12 +21,13 @@ public:
             std::unique_lock<std::mutex> locker(m_MutexThread);
             m_Condition.notify_all();
         }
+
+        if (m_Thread.joinable())
+            m_Thread.join();
+
         m_MutexPrint.reset();
     };
 
-    std::thread CreateThread() override {
-        return std::thread([&]() { PrintFunc(); });
-    }
 private:   
     LoggerScreen() {};
 
@@ -33,6 +36,7 @@ private:
     std::mutex m_MutexThread;
     std::shared_ptr<std::mutex> m_MutexPrint;
     ConcurentDeque<std::string> m_Deque;
+    std::thread m_Thread;
     std::atomic<bool> m_Execute{ true };
 
     void PrintFunc() {
@@ -67,5 +71,9 @@ private:
         m_Deque.push_back(aStr);
         std::unique_lock<std::mutex> locker(m_MutexThread);
         m_Condition.notify_all();
+    }
+
+    std::thread CreateThread() {
+        return std::thread([&]() { PrintFunc(); });
     }
 };

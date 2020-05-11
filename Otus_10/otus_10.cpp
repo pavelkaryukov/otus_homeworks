@@ -1,12 +1,4 @@
 #include "dispatcher/dispatcher.h"
-#include <cctype> 
-#include <cstring>
-#include <condition_variable>  
-#include <mutex>
-#include <thread>
-#include <atomic>
-#include <boost/format.hpp>
-#include <sstream>
 
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "Russian");
@@ -25,9 +17,8 @@ int main(int argc, char** argv) {
 
     const std::size_t kBulkSize = N > 0 ? N : 1; // кол-во команда в одной булке
 
-    std::stringstream ss;
     {
-        CommandDispatcher dispatcher{ kBulkSize, ss };
+        CommandDispatcher dispatcher{ kBulkSize, std::cout};
         std::string str;
         std::cout << boost::format("Main Thread ID =[%1%]") % std::this_thread::get_id() << std::endl;
         while (std::getline(std::cin, str)) {
@@ -45,6 +36,5 @@ int main(int argc, char** argv) {
         }
         dispatcher.Flush(); //ѕодумать, что можно сделать, что бы программа не взрывалась
     }
-    std::string mystr = ss.str();
     return 0;
 }

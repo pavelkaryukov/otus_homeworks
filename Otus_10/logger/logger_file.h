@@ -12,7 +12,9 @@
 
 class LoggerFile final : public ILogger {
 public:
-    LoggerFile() = default;
+    LoggerFile() {
+        m_Thread = CreateThread();
+    }
 
     void Exit() override {
         m_Execute.store(false);
@@ -20,16 +22,17 @@ public:
             std::unique_lock<std::mutex> locker(m_MutexThread);
             m_Condition.notify_all();
         }
+
+        if (m_Thread.joinable())
+            m_Thread.join();
     };
 
-    std::thread CreateThread() override {
-        return std::thread([&]() { PrintFunc(); });
-    }
 private:
     std::condition_variable m_Condition;
     std::mutex m_MutexThread;
     ConcurentDeque<std::string> m_Deque;
     std::atomic<bool> m_Execute{ true };
+    std::thread m_Thread;
    
     void PrintFunc() {
         while (m_Execute) {
@@ -67,6 +70,10 @@ private:
         m_Deque.push_back(aStr);
         std::unique_lock<std::mutex> locker(m_MutexThread);
         m_Condition.notify_all();
+    }
+
+    std::thread CreateThread() {
+        return std::thread([&]() { PrintFunc(); });
     }
 };
 
