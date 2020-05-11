@@ -28,6 +28,8 @@ int main(int argc, char** argv) {
     std::string str;
     std::cout << boost::format("Main Thread ID =[%1%]") % std::this_thread::get_id() << std::endl;
     while (std::getline(std::cin, str)) {
+        if (str == "off")
+            break;
         try {
             dispatcher.ProcessCmdLine(str);
         }
