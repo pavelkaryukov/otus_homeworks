@@ -13,7 +13,7 @@
 class LoggerFile final : public ILogger {
 public:
     LoggerFile() {
-        CreateThread();
+        //CreateThread();
     }
 
     void Exit() override {
@@ -22,22 +22,22 @@ public:
             std::unique_lock<std::mutex> locker(m_MutexThread);
             m_Condition.notify_all();
         }
-        if (m_Thread.joinable())
-            m_Thread.join();
     };
 
     ~LoggerFile() {
-        m_Thread.detach();
+        //m_Thread->detach();
+        //m_Thread.reset();
     }
 
+    std::thread CreateThread() override {
+        return std::thread([&]() { PrintFunc(); });
+    }
 private:
     std::condition_variable m_Condition;
     std::mutex m_MutexThread;
     ConcurentDeque<std::string> m_Deque;
     std::atomic<bool> m_Execute{ true };
-    std::thread m_Thread;
-
-
+   
     void PrintFunc() {
         while (m_Execute) {
             if (m_Deque.empty()) {
@@ -54,10 +54,6 @@ private:
         }
     }
 
-    void CreateThread() {
-        m_Thread = std::thread([&]() { PrintFunc(); });
-    }
-
     void SaveLogInFile(std::string aStr) {
         auto createTime = time(nullptr);
         auto bulkTime = createTime;
@@ -67,6 +63,7 @@ private:
                 continue;
             std::ofstream file(filename);
             if (file.is_open()) {
+                file << boost::format("thread_id=[%1%]") % std::this_thread::get_id() << std::endl;
                 file << aStr;
                 return;
             }

@@ -24,6 +24,9 @@ public:
     const Stat GetStat() {
         return m_Statistic;
     }
+
+    virtual std::thread CreateThread() = 0;
+
 private:
     virtual void SaveLog(std::string aStr) = 0;
     Stat m_Statistic = {};
