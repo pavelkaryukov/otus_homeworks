@@ -11,9 +11,7 @@
 
 class LoggerScreen final : public ILogger {
 public:
-    LoggerScreen(std::ostream& aStream, std::mutex& aMutex) :/* m_Stream(aStream), */m_MutexPrint(std::shared_ptr<std::mutex>(&aMutex)) {
-//         if (m_MutexPrint)
-//             CreateThread(); 
+    LoggerScreen(std::ostream& aStream, std::shared_ptr<std::mutex> aMutex) : m_MutexPrint(aMutex) {
     }
 
     void Exit() override {
@@ -22,6 +20,7 @@ public:
             std::unique_lock<std::mutex> locker(m_MutexThread);
             m_Condition.notify_all();
         }
+        m_MutexPrint.reset();
     };
 
     ~LoggerScreen() {
@@ -53,17 +52,15 @@ private:
             auto head = m_Deque.front();
             m_Deque.pop_front();
             {
-                if (!m_MutexPrint) {
+                if (!m_MutexPrint)
                     return;
-                }
                 std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
                 std::cout << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % head << std::endl;
             }
         }
         {
-            if (!m_MutexPrint) {
+            if (!m_MutexPrint)
                 return;
-            }
             std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
             std::cout << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
         }
