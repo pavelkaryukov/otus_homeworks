@@ -6,6 +6,7 @@
 #include <thread>
 #include <atomic>
 #include <boost/format.hpp>
+#include <sstream>
 
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "Russian");
@@ -24,22 +25,26 @@ int main(int argc, char** argv) {
 
     const std::size_t kBulkSize = N > 0 ? N : 1; // кол-во команда в одной булке
 
-    CommandDispatcher dispatcher{ kBulkSize};
-    std::string str;
-    std::cout << boost::format("Main Thread ID =[%1%]") % std::this_thread::get_id() << std::endl;
-    while (std::getline(std::cin, str)) {
-        if (str == "off")
-            break;
-        try {
-            dispatcher.ProcessCmdLine(str);
+    std::stringstream ss;
+    {
+        CommandDispatcher dispatcher{ kBulkSize, ss };
+        std::string str;
+        std::cout << boost::format("Main Thread ID =[%1%]") % std::this_thread::get_id() << std::endl;
+        while (std::getline(std::cin, str)) {
+            if (str == "off")
+                break;
+            try {
+                dispatcher.ProcessCmdLine(str);
+            }
+            catch (std::exception& e) {
+                std::cout << "Exception:" << std::endl;
+                std::cout << e.what() << std::endl;
+                std::cout << "Program \"bulk\" Terminate" << std::endl;
+                return 0;
+            }
         }
-        catch (std::exception& e) {
-            std::cout << "Exception:" << std::endl;
-            std::cout << e.what() << std::endl;
-            std::cout << "Program \"bulk\" Terminate" << std::endl;
-            return 0;
-        }
+        dispatcher.Flush(); //ѕодумать, что можно сделать, что бы программа не взрывалась
     }
-    dispatcher.Flush(); //ѕодумать, что можно сделать, что бы программа не взрывалась
+    std::string mystr = ss.str();
     return 0;
 }

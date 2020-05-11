@@ -12,9 +12,7 @@
 
 class LoggerFile final : public ILogger {
 public:
-    LoggerFile() {
-        //CreateThread();
-    }
+    LoggerFile() = default;
 
     void Exit() override {
         m_Execute.store(false);
@@ -23,11 +21,6 @@ public:
             m_Condition.notify_all();
         }
     };
-
-    ~LoggerFile() {
-        //m_Thread->detach();
-        //m_Thread.reset();
-    }
 
     std::thread CreateThread() override {
         return std::thread([&]() { PrintFunc(); });

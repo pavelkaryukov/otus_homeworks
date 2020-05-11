@@ -5,7 +5,7 @@
 
 class CmdLogger {
 public:
-    CmdLogger(std::ostream& aStream) {
+    CmdLogger(std::ostream& aStream) : m_Stream(aStream) {
         m_LoggerScreen = std::make_unique<LoggerScreen>(aStream, m_ScreenMutex);
         m_LoggerFile1 = std::make_unique<LoggerFile>();
         m_LoggerFile2 = std::make_unique<LoggerFile>();
@@ -56,11 +56,11 @@ public:
             if (!m_ScreenMutex)
                 return;
             std::lock_guard<std::mutex> lockPrint(*m_ScreenMutex);
-            std::cout << boost::format("main поток: %1% строк, %2% блоков, %3% команд") % aLines % aBulks % aCommands << std::endl;
+            m_Stream << boost::format("main stream: %1% lines, %2% blocks, %3% commands") % aLines % aBulks % aCommands << std::endl;
         }
-        PrintStat("log поток", m_LoggerScreen);
-        PrintStat("file1 поток", m_LoggerFile1);
-        PrintStat("file2 поток", m_LoggerFile2);
+        PrintStat("log thread", m_LoggerScreen);
+        PrintStat("file1 thread", m_LoggerFile1);
+        PrintStat("file2 thread", m_LoggerFile2);
     }
 private:
     CmdLogger() = default;
@@ -73,6 +73,7 @@ private:
     std::thread thread3;
     std::size_t m_CounterBulk = 0;
     std::size_t m_CounterCommands = 0;
+    std::ostream& m_Stream;
 
     void SaveInFile(std::unique_ptr<ILogger>& aFileLogger, const std::string& aStr, const std::size_t aCommandsNum) {
         if (aFileLogger)
@@ -87,6 +88,6 @@ private:
         if (!m_ScreenMutex)
             return;
         std::lock_guard<std::mutex> lockPrint(*m_ScreenMutex);
-        std::cout << boost::format("%1%: %2% - blocks, %3% - commands") % aThrName % stat.Bulks % stat.Commands << std::endl;
+        m_Stream << boost::format("%1%: %2% - blocks, %3% - commands") % aThrName % stat.Bulks % stat.Commands << std::endl;
     }
 };

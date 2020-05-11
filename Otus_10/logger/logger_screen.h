@@ -11,8 +11,7 @@
 
 class LoggerScreen final : public ILogger {
 public:
-    LoggerScreen(std::ostream& aStream, std::shared_ptr<std::mutex> aMutex) : m_MutexPrint(aMutex) {
-    }
+    LoggerScreen(std::ostream& aStream, std::shared_ptr<std::mutex> aMutex) : m_Stream(aStream), m_MutexPrint(aMutex) {}
 
     void Exit() override {
         m_Execute.store(false);
@@ -23,16 +22,13 @@ public:
         m_MutexPrint.reset();
     };
 
-    ~LoggerScreen() {
-    }
-
     std::thread CreateThread() override {
         return std::thread([&]() { PrintFunc(); });
     }
 private:   
     LoggerScreen() {};
 
-    //std::ostream& m_Stream = std::cout;
+    std::ostream& m_Stream = std::cout;
     std::condition_variable m_Condition;
     std::mutex m_MutexThread;
     std::shared_ptr<std::mutex> m_MutexPrint;
@@ -55,14 +51,14 @@ private:
                 if (!m_MutexPrint)
                     return;
                 std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
-                std::cout << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % head << std::endl;
+                m_Stream << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % head << std::endl;
             }
         }
         {
             if (!m_MutexPrint)
                 return;
             std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
-            std::cout << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
+            m_Stream << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
         }
     }
 
