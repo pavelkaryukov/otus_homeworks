@@ -6,50 +6,50 @@
 class CmdLogger {
 public:
     CmdLogger(std::ostream& aStream) {
-        _loggerScreen = std::make_unique<LoggerScreen>(aStream, _screenMutex);
-        _loggerFile1 = std::make_unique<LoggerFile>();
-        _loggerFile2 = std::make_unique<LoggerFile>();
+        m_LoggerScreen = std::make_unique<LoggerScreen>(aStream, m_ScreenMutex);
+        m_LoggerFile1 = std::make_unique<LoggerFile>();
+        m_LoggerFile2 = std::make_unique<LoggerFile>();
     }
 
     void Save(const std::string aStr, const std::size_t aCommandsNum) {
-        ++_counterBulk;
-        _сounterCommands += aCommandsNum;
-        if (_loggerScreen)
-            _loggerScreen->Output(aStr, aCommandsNum);
+        ++m_CounterBulk;
+        m_CounterCommands += aCommandsNum;
+        if (m_LoggerScreen)
+            m_LoggerScreen->Output(aStr, aCommandsNum);
 
-        SaveInFile((_counterBulk % 2 == 1) ? _loggerFile1 : _loggerFile2, aStr, aCommandsNum);
+        SaveInFile((m_CounterBulk % 2 == 1) ? m_LoggerFile1 : m_LoggerFile2, aStr, aCommandsNum);
     }
 
     void Exit() {
-        if (_loggerScreen)
-            _loggerScreen->Exit();
+        if (m_LoggerScreen)
+            m_LoggerScreen->Exit();
         
-        if (_loggerFile1)
-            _loggerFile1->Exit();
+        if (m_LoggerFile1)
+            m_LoggerFile1->Exit();
 
-        if (_loggerFile2)
-            _loggerFile2->Exit();
+        if (m_LoggerFile2)
+            m_LoggerFile2->Exit();
     }
 
     ~CmdLogger() {}
 
     void PrintStat(const std::size_t aLines, const std::size_t aBulks, const std::size_t aCommands) {
         {
-            std::lock_guard<std::mutex> lockPrint(_screenMutex);
+            std::lock_guard<std::mutex> lockPrint(m_ScreenMutex);
             std::cout << boost::format("main поток: %1% строк, %2% блоков, %3% команд") % aLines % aBulks % aCommands << std::endl;
         }
-        PrintStat("log поток", _loggerScreen);
-        PrintStat("file1 поток", _loggerFile1);
-        PrintStat("file2 поток", _loggerFile2);
+        PrintStat("log поток", m_LoggerScreen);
+        PrintStat("file1 поток", m_LoggerFile1);
+        PrintStat("file2 поток", m_LoggerFile2);
     }
 private:
     CmdLogger() = default;
-    std::mutex _screenMutex;
-    std::unique_ptr<ILogger> _loggerScreen;
-    std::unique_ptr<ILogger>   _loggerFile1;
-    std::unique_ptr<ILogger>   _loggerFile2;
-    std::size_t _counterBulk = 0;
-    std::size_t _сounterCommands = 0;
+    std::mutex m_ScreenMutex;
+    std::unique_ptr<ILogger>   m_LoggerScreen;
+    std::unique_ptr<ILogger>   m_LoggerFile1;
+    std::unique_ptr<ILogger>   m_LoggerFile2;
+    std::size_t m_CounterBulk = 0;
+    std::size_t m_CounterCommands = 0;
 
     void SaveInFile(std::unique_ptr<ILogger>& aFileLogger, const std::string& aStr, const std::size_t aCommandsNum) {
         if (aFileLogger)
@@ -61,7 +61,7 @@ private:
             return;
 
         const auto stat = aLogger->GetStat();
-        std::lock_guard<std::mutex> lockPrint(_screenMutex);
+        std::lock_guard<std::mutex> lockPrint(m_ScreenMutex);
         std::cout << boost::format("%1%: %2% - блоков, %3% - команд") % aThrName % stat.Bulks % stat.Commands << std::endl;
     }
 };

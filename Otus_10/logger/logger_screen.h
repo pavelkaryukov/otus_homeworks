@@ -1,85 +1,83 @@
 #pragma once
-#include "logger/ilogger.h"
 #include "concurrent/concurrent_deque.h" 
-#include <cstring>
-#include <condition_variable>  
+#include "logger/ilogger.h"
+#include <atomic>
 #include <boost/format.hpp> 
+#include <condition_variable>  
+#include <cstring> 
+#include <iostream>
 #include <mutex>
 #include <thread>
-#include <atomic>
-#include <iostream>
-#include <thread>
-#include <functional>
 
 class LoggerScreen final : public ILogger {
 public:
-    LoggerScreen(std::ostream& aStream, std::mutex& aMutex) : _stream(aStream), _mutexPrint(std::shared_ptr<std::mutex>(&aMutex)) {
-        if (_mutexPrint)
+    LoggerScreen(std::ostream& aStream, std::mutex& aMutex) : m_Stream(aStream), m_MutexPrint(std::shared_ptr<std::mutex>(&aMutex)) {
+        if (m_MutexPrint)
             CreateThread(); 
     }
 
     void Exit() override {
-        _execute.store(false);
+        m_Execute.store(false);
         {
-            std::unique_lock<std::mutex> locker(_mutexThread);
-            _condition.notify_all();
+            std::unique_lock<std::mutex> locker(m_MutexThread);
+            m_Condition.notify_all();
         }
-        if (_thread.joinable())
-            _thread.join();
+        if (m_Thread.joinable())
+            m_Thread.join();
     };
 
     ~LoggerScreen() {
-        _thread.detach();
+        m_Thread.detach();
     }
 private:   
     LoggerScreen() {};
 
-    std::ostream& _stream = std::cout;
-    std::condition_variable _condition;
-    std::mutex _mutexThread;
-    std::shared_ptr<std::mutex> _mutexPrint;
-    ConcurentDeque<std::string> _deque;
-    std::atomic<bool> _execute{ true };
-    std::thread _thread;
+    std::ostream& m_Stream = std::cout;
+    std::condition_variable m_Condition;
+    std::mutex m_MutexThread;
+    std::shared_ptr<std::mutex> m_MutexPrint;
+    ConcurentDeque<std::string> m_Deque;
+    std::atomic<bool> m_Execute{ true };
+    std::thread m_Thread;
 
 
     void PrintFunc() {
-        while (_execute) {
-            if (_deque.empty()) {
-                std::unique_lock<std::mutex> locker(_mutexThread);
-                _condition.wait(locker);
+        while (m_Execute) {
+            if (m_Deque.empty()) {
+                std::unique_lock<std::mutex> locker(m_MutexThread);
+                m_Condition.wait(locker);
             }
 
-            if (_deque.empty())
+            if (m_Deque.empty())
                 continue;
 
-            auto head = _deque.front();
-            _deque.pop_front();
+            auto head = m_Deque.front();
+            m_Deque.pop_front();
             {
-                if (!_mutexPrint) {
+                if (!m_MutexPrint) {
                     return;
                 }
-                std::lock_guard<std::mutex> lockPrint(*_mutexPrint);
-                _stream << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % head << std::endl;
+                std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
+                m_Stream << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % head << std::endl;
             }
         }
         {
-            if (!_mutexPrint) {
+            if (!m_MutexPrint) {
                 return;
             }
-            std::lock_guard<std::mutex> lockPrint(*_mutexPrint);
-            _stream << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
+            std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
+            m_Stream << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
         }
     }
 
     void CreateThread() {
-        _thread = std::thread( [&]() { PrintFunc();});
+        m_Thread = std::thread( [&]() { PrintFunc();});
     }
 
 
     void SaveLog(std::string aStr) override {
-        _deque.push_back(aStr);
-        std::unique_lock<std::mutex> locker(_mutexThread);
-        _condition.notify_all();
+        m_Deque.push_back(aStr);
+        std::unique_lock<std::mutex> locker(m_MutexThread);
+        m_Condition.notify_all();
     }
 };

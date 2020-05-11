@@ -1,10 +1,14 @@
 #pragma once
 #include "logger/ilogger.h"
-#include <string> 
-#include <boost/format.hpp>
-#include <fstream>
-#include <time.h> 
+#include <atomic>
+#include <boost/format.hpp> 
+#include <condition_variable>  
+#include <cstring> 
 #include <filesystem>
+#include <fstream>
+#include <string> 
+#include <time.h>
+#include <thread>
 
 class LoggerFile final : public ILogger {
 public:
@@ -13,45 +17,45 @@ public:
     }
 
     void Exit() override {
-        _execute.store(false);
+        m_Execute.store(false);
         {
-            std::unique_lock<std::mutex> locker(_mutexThread);
-            _condition.notify_all();
+            std::unique_lock<std::mutex> locker(m_MutexThread);
+            m_Condition.notify_all();
         }
-        if (_thread.joinable())
-            _thread.join();
+        if (m_Thread.joinable())
+            m_Thread.join();
     };
 
     ~LoggerFile() {
-        _thread.detach();
+        m_Thread.detach();
     }
 
 private:
-    std::condition_variable _condition;
-    std::mutex _mutexThread;
-    ConcurentDeque<std::string> _deque;
-    std::atomic<bool> _execute{ true };
-    std::thread _thread;
+    std::condition_variable m_Condition;
+    std::mutex m_MutexThread;
+    ConcurentDeque<std::string> m_Deque;
+    std::atomic<bool> m_Execute{ true };
+    std::thread m_Thread;
 
 
     void PrintFunc() {
-        while (_execute) {
-            if (_deque.empty()) {
-                std::unique_lock<std::mutex> locker(_mutexThread);
-                _condition.wait(locker);
+        while (m_Execute) {
+            if (m_Deque.empty()) {
+                std::unique_lock<std::mutex> locker(m_MutexThread);
+                m_Condition.wait(locker);
             }
 
-            if (_deque.empty())
+            if (m_Deque.empty())
                 continue;
 
-            auto head = _deque.front();
+            auto head = m_Deque.front();
             SaveLogInFile(head);
-            _deque.pop_front();
+            m_Deque.pop_front();
         }
     }
 
     void CreateThread() {
-        _thread = std::thread([&]() { PrintFunc(); });
+        m_Thread = std::thread([&]() { PrintFunc(); });
     }
 
     void SaveLogInFile(std::string aStr) {
@@ -70,9 +74,9 @@ private:
     }
 
     void SaveLog(std::string aStr) override {
-        _deque.push_back(aStr);
-        std::unique_lock<std::mutex> locker(_mutexThread);
-        _condition.notify_all();
+        m_Deque.push_back(aStr);
+        std::unique_lock<std::mutex> locker(m_MutexThread);
+        m_Condition.notify_all();
     }
 };
 

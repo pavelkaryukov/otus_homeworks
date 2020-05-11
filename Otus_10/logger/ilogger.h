@@ -1,4 +1,5 @@
 #pragma once
+#include <cctype>
 
 class ILogger {
     struct Stat {
@@ -12,7 +13,7 @@ class ILogger {
     };
 public:
     void Output(std::string aStr, const std::size_t aCommands) {
-        _stat.Add(aCommands);
+        m_Statistic.Add(aCommands);
         SaveLog(aStr);
     }
 
@@ -21,10 +22,10 @@ public:
     virtual ~ILogger() {}
 
     const Stat GetStat() {
-        return _stat;
+        return m_Statistic;
     }
 private:
     virtual void SaveLog(std::string aStr) = 0;
-    Stat _stat = {};
+    Stat m_Statistic = {};
 };
 

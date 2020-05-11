@@ -7,19 +7,6 @@
 #include <atomic>
 #include <boost/format.hpp>
 
-bool IsValidArg(const char* aStr) {
-    auto len = strlen(aStr);
-    const std::size_t kMaxLen = 8;
-    if (len > kMaxLen)
-        return false;
-
-    for (auto i=0U; i<kMaxLen; ++i){
-        if (std::isdigit(aStr[i]) == 0)
-            return false;
-    }
-    return true;
-}
-
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "Russian");
     std::size_t N = 0;
@@ -28,11 +15,9 @@ int main(int argc, char** argv) {
         N = 3;
     }
     else {
-        if (IsValidArg(argv[1])) {
-            N = std::atoi(argv[1]);
-        }
-        else {
-            std::cout << " оличество команд в одной куче (bulk) имеет не валидное значение ["<<argv[1]<<"]. ”становлено  значение по умолчанию = 3" << std::endl;
+        N = std::atoi(argv[1]);
+        if (N <= 0) {
+            std::cout << " оличество команд в одной куче (bulk) имеет не валидное значение [" << argv[1] << "]. ”становлено  значение по умолчанию = 3" << std::endl;
             N = 3;
         }
     }

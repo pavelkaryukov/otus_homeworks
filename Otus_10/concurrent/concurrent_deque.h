@@ -7,35 +7,35 @@ class ConcurentDeque {
 public:
 
     bool empty() const {
-        std::lock_guard<std::mutex> guard(_mutex);
-        return _deque.empty();
+        std::lock_guard<std::mutex> guard(m_Mutex);
+        return m_Deque.empty();
     }
 
     void push_back(const T obj) {
-        std::lock_guard<std::mutex> guard(_mutex);
-        _deque.push_back(obj);
+        std::lock_guard<std::mutex> guard(m_Mutex);
+        m_Deque.push_back(obj);
     }
 
     T front() {
-        std::lock_guard<std::mutex> guard(_mutex);
-        return _deque.front();
+        std::lock_guard<std::mutex> guard(m_Mutex);
+        return m_Deque.front();
     }
 
     void pop_front() {
-        std::lock_guard<std::mutex> guard(_mutex);
-        _deque.pop_front();
+        std::lock_guard<std::mutex> guard(m_Mutex);
+        m_Deque.pop_front();
     }
 
     std::size_t size() const {
-        std::lock_guard<std::mutex> guard(_mutex);
-        return _deque.size();
+        std::lock_guard<std::mutex> guard(m_Mutex);
+        return m_Deque.size();
     }
 
     void clear() {
-        std::lock_guard<std::mutex> guard(_mutex);
-        return _deque.clear();
+        std::lock_guard<std::mutex> guard(m_Mutex);
+        return m_Deque.clear();
     }
 private:
-    std::deque<T> _deque;
-    mutable std::mutex    _mutex;
+    std::deque<T>      m_Deque;
+    mutable std::mutex m_Mutex;
 };

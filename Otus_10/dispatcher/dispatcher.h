@@ -1,12 +1,11 @@
 #pragma once
-#include "command/icommand.h" 
 #include "command/simple_command.h"
 #include "logger/logger.h"
-#include <string> 
+#include <boost/format.hpp> 
+#include <deque>  
 #include <iostream> 
-#include <deque> 
-#include <boost/format.hpp>
-/*! \mainpage Otus_7 (Bulk)
+#include <string> 
+/*! \mainpage Otus_10 (Bulk)
  *
  * \r\n  Диспетчер задач
  *
@@ -44,7 +43,7 @@ public:
     * - команда
     */
     void ProcessCmdLine(const std::string& aStr) {
-        ++_lines;
+        ++m_LinesNum;
         switch (GetCmdType(aStr))
         {
         case CmdType::OpenBrace:
@@ -69,6 +68,10 @@ public:
         ExecuteCommands(true);
     }
 
+    /**
+    * \brief  деструктор.
+    * \details Logger отцепит все свои потоки, а статистика ниток будет выведена
+    */
     ~CommandDispatcher() {
         m_Logger.Exit();
         PrintStat();
@@ -84,9 +87,9 @@ private:
     std::size_t m_StartBraceCounter = 0;
     CmdLogger m_Logger;
 
-    std::size_t _lines    = 0;
-    std::size_t _bulks    = 0;
-    std::size_t _commands = 0;
+    std::size_t m_LinesNum    = 0;
+    std::size_t m_BulksNum    = 0;
+    std::size_t m_CommandsNum = 0;
 
 
     void AddCommand(std::unique_ptr<IMyCommand> aCommand) {
@@ -109,10 +112,10 @@ private:
             return;
 
         const auto count = std::min(aNum, m_Commands.size());
-        ++_bulks;
+        ++m_BulksNum;
         std::string logStr = "bulk: ";
         for (std::size_t i = 0; i < count; ++i) {
-            ++_commands;
+            ++m_CommandsNum;
             logStr += m_Commands.front()->Execute();
             m_Commands.pop_front();
             if (i + 1 < count)
@@ -161,6 +164,6 @@ private:
     }
 
     void PrintStat() {
-        m_Logger.PrintStat(_lines, _bulks, _commands);
+        m_Logger.PrintStat(m_LinesNum, m_BulksNum, m_CommandsNum);
     }
 };
