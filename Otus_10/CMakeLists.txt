@@ -26,7 +26,7 @@ if (Threads_FOUND)
 	#target_link_libraries(bulkmt ${CMAKE_THREAD_LIBS_INIT})	
 endif()
 
-target_link_libraries(bulkmt  ${CMAKE_THREAD_LIBS_INIT} PRIVATE $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+target_link_libraries(bulkmt  ${CMAKE_THREAD_LIBS_INIT}  $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 
 
 target_include_directories(
