@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['otus_5f10_20_28bulkmt_29',['Otus_10 (BulkMT)',['../index.html',1,'']]]
+  ['otus_5f7_20_28bulk_29',['Otus_7 (Bulk)',['../index.html',1,'']]]
 ];

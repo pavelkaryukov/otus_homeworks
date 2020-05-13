@@ -1,0 +1,8 @@
+<map id="dispatcher" name="dispatcher">
+<area shape="rect" id="node1" href="dir_a0121669fbe1dba9b856e8d7ddd14e7c.html" title="dispatcher" alt="" coords="44,5,133,53"/>
+<area shape="rect" id="node2" href="dir_689a8946103f9323d050afa7f32bd943.html" title="command" alt="" coords="5,101,92,149"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000002_000000.html" title="1" alt="" coords="69,81,78,95"/>
+<area shape="rect" id="node3" href="dir_e546037d539dab48998ac54ab76cb525.html" title="logger" alt="" coords="53,197,125,245"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000002_000003.html" title="1" alt="" coords="103,174,112,189"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000000_000003.html" title="1" alt="" coords="75,170,84,185"/>
+</map>

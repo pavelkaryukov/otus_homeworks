@@ -1,9 +1,5 @@
 <map id="dispatcher/dispatcher.h" name="dispatcher/dispatcher.h">
-<area shape="rect" id="node2" href="$simple__command_8h.html" title="command/simple_command.h" alt="" coords="982,80,1199,107"/>
-<area shape="rect" id="node5" href="$logger_8h.html" title="logger/logger.h" alt="" coords="805,155,923,181"/>
-<area shape="rect" id="node3" href="$icommand_8h.html" title="command/icommand.h" alt="" coords="471,155,641,181"/>
-<area shape="rect" id="node6" href="$logger__screen_8h.html" title="logger/logger_screen.h" alt="" coords="780,229,948,256"/>
-<area shape="rect" id="node18" href="$logger__file_8h.html" title="logger/logger_file.h" alt="" coords="433,229,575,256"/>
-<area shape="rect" id="node7" href="$concurrent__deque_8h.html" title="concurrent/concurrent\l_deque.h" alt="" coords="1009,304,1173,345"/>
-<area shape="rect" id="node10" href="$ilogger_8h.html" title="logger/ilogger.h" alt="" coords="651,311,771,338"/>
+<area shape="rect" id="node2" href="$icommand_8h.html" title="command/icommand.h" alt="" coords="26,155,197,181"/>
+<area shape="rect" id="node4" href="$simple__command_8h.html" title="command/simple_command.h" alt="" coords="80,80,298,107"/>
+<area shape="rect" id="node5" href="$logger_8h.html" title="dispatcher/logger.h" alt="" coords="332,155,476,181"/>
 </map>

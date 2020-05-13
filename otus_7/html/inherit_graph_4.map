@@ -1,5 +1,4 @@
 <map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
-<area shape="rect" id="node1" href="$classILogger.html" title="Интерфейс классов логгеров " alt="" coords="5,31,75,57"/>
-<area shape="rect" id="node2" href="$classLoggerFile.html" title="LoggerFile" alt="" coords="135,5,221,32"/>
-<area shape="rect" id="node3" href="$classLoggerScreen.html" title="LoggerScreen" alt="" coords="123,56,233,83"/>
+<area shape="rect" id="node1" href="$classIMyCommand.html" title="IMyCommand" alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node2" href="$classSimpleCommand.html" title="SimpleCommand" alt="" coords="164,5,297,32"/>
 </map>

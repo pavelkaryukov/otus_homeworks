@@ -106,19 +106,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
 <tr class="memitem:a49b7eb314c66f2e10e1c0fd5316305ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#a49b7eb314c66f2e10e1c0fd5316305ee">CommandDispatcher</a> ()=default</td></tr>
+<tr class="memdesc:a49b7eb314c66f2e10e1c0fd5316305ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор по умолчанию.  <a href="#a49b7eb314c66f2e10e1c0fd5316305ee">Подробнее...</a><br /></td></tr>
 <tr class="separator:a49b7eb314c66f2e10e1c0fd5316305ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf4a7fe7a302fc5f8196e2fdb7d769ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#abf4a7fe7a302fc5f8196e2fdb7d769ed">CommandDispatcher</a> (const std::size_t aBulkSize, std::ostream &amp;aStream, const std::size_t aFileLoggerrsNumber)</td></tr>
-<tr class="memdesc:abf4a7fe7a302fc5f8196e2fdb7d769ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор по умолчанию  <a href="#abf4a7fe7a302fc5f8196e2fdb7d769ed">Подробнее...</a><br /></td></tr>
-<tr class="separator:abf4a7fe7a302fc5f8196e2fdb7d769ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca1e594b57199e72564ddf63ad7cb46f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#aca1e594b57199e72564ddf63ad7cb46f">CommandDispatcher</a> (const std::size_t aBulkSize, std::ostream &amp;aStream=std::cout)</td></tr>
+<tr class="memdesc:aca1e594b57199e72564ddf63ad7cb46f"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор по умолчанию  <a href="#aca1e594b57199e72564ddf63ad7cb46f">Подробнее...</a><br /></td></tr>
+<tr class="separator:aca1e594b57199e72564ddf63ad7cb46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e21c91f77b81575213ebf8580ce2fa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#a9e21c91f77b81575213ebf8580ce2fa5">ProcessCmdLine</a> (const std::string &amp;aStr)</td></tr>
 <tr class="memdesc:a9e21c91f77b81575213ebf8580ce2fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет новую команду.  <a href="#a9e21c91f77b81575213ebf8580ce2fa5">Подробнее...</a><br /></td></tr>
 <tr class="separator:a9e21c91f77b81575213ebf8580ce2fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a1028235909f4466d63c92649ff4727"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#a0a1028235909f4466d63c92649ff4727">Flush</a> ()</td></tr>
 <tr class="memdesc:a0a1028235909f4466d63c92649ff4727"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод выполняет все скопленные команды.  <a href="#a0a1028235909f4466d63c92649ff4727">Подробнее...</a><br /></td></tr>
 <tr class="separator:a0a1028235909f4466d63c92649ff4727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4570d446935d1a7a430e72a463fa1952"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#a4570d446935d1a7a430e72a463fa1952">~CommandDispatcher</a> ()</td></tr>
-<tr class="memdesc:a4570d446935d1a7a430e72a463fa1952"><td class="mdescLeft">&#160;</td><td class="mdescRight">деструктор.  <a href="#a4570d446935d1a7a430e72a463fa1952">Подробнее...</a><br /></td></tr>
-<tr class="separator:a4570d446935d1a7a430e72a463fa1952"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Аккумулятор и исполнитель очереди задач </p>
@@ -146,9 +144,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 </table>
 </div><div class="memdoc">
 
+<p>конструктор по умолчанию. </p>
+<p>размер статической очереди - 1 команда </p>
+
 </div>
 </div>
-<a class="anchor" id="abf4a7fe7a302fc5f8196e2fdb7d769ed"></a>
+<a class="anchor" id="aca1e594b57199e72564ddf63ad7cb46f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -165,13 +166,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>aStream</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::size_t&#160;</td>
-          <td class="paramname"><em>aFileLoggerrsNumber</em>&#160;</td>
+          <td class="paramname"><em>aStream</em> = <code>std::cout</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -190,49 +185,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <p>при передачи не валидного размера статической очереди - будет установлено значение по умолчанию = 1 </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">aBulkSize</td><td>- размер статической очереди </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">aStream</td><td>- поток вывода </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">aFileLoggerrsNumber</td><td>- количество потоков вывода на экран </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a class="anchor" id="a4570d446935d1a7a430e72a463fa1952"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">CommandDispatcher::~CommandDispatcher </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>деструктор. </p>
-<p>Logger выполнит и отцепит все свои потоки, а статистика ниток будет выведена </p>
-
-<p><div class="dynheader">
-Граф вызовов:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCommandDispatcher_a4570d446935d1a7a430e72a463fa1952_cgraph.png" border="0" usemap="#classCommandDispatcher_a4570d446935d1a7a430e72a463fa1952_cgraph" alt=""/></div>
-<map name="classCommandDispatcher_a4570d446935d1a7a430e72a463fa1952_cgraph" id="classCommandDispatcher_a4570d446935d1a7a430e72a463fa1952_cgraph">
-<area shape="rect" id="node2" href="classCmdLogger.html#a01f38acef3cdbc9ff346430cd987d12b" title="CmdLogger::Exit" alt="" coords="239,5,366,32"/>
-<area shape="rect" id="node3" href="classCmdLogger.html#a855449e1f6d1ada92fe357cacdaf069b" title="CmdLogger::Save" alt="" coords="235,56,371,83"/>
-<area shape="rect" id="node4" href="classCmdLogger.html#a8776de3161b28bb5126672e2a8000dba" title="CmdLogger::PrintStat" alt="" coords="223,107,383,133"/>
-</map>
-</div>
-</p>
 
 </div>
 </div>
@@ -260,6 +215,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 
 <p>метод выполняет все скопленные команды. </p>
 <p>Bulk size должен быть статическим </p>
+
+<p><div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCommandDispatcher_a0a1028235909f4466d63c92649ff4727_cgraph.png" border="0" usemap="#classCommandDispatcher_a0a1028235909f4466d63c92649ff4727_cgraph" alt=""/></div>
+<map name="classCommandDispatcher_a0a1028235909f4466d63c92649ff4727_cgraph" id="classCommandDispatcher_a0a1028235909f4466d63c92649ff4727_cgraph">
+<area shape="rect" id="node2" href="classCmdLogger.html#aa0efa3706fa02ede9a8eb31ec2c8ab23" title="CmdLogger::StartBulk" alt="" coords="222,5,385,32"/>
+<area shape="rect" id="node3" href="classCmdLogger.html#acff56eee388cd3440450d8434ddfc818" title="CmdLogger::FinishBulk" alt="" coords="220,56,387,83"/>
+<area shape="rect" id="node4" href="classCmdLogger.html#a69942fdfae06e48af8ca24a37ed2d083" title="CmdLogger::WriteCmd" alt="" coords="221,107,386,133"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>
@@ -303,8 +270,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <div class="dyncontent">
 <div class="center"><img src="classCommandDispatcher_a9e21c91f77b81575213ebf8580ce2fa5_icgraph.png" border="0" usemap="#classCommandDispatcher_a9e21c91f77b81575213ebf8580ce2fa5_icgraph" alt=""/></div>
 <map name="classCommandDispatcher_a9e21c91f77b81575213ebf8580ce2fa5_icgraph" id="classCommandDispatcher_a9e21c91f77b81575213ebf8580ce2fa5_icgraph">
-<area shape="rect" id="node2" href="otus__10_01__time__test_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="220,5,275,32"/>
-<area shape="rect" id="node3" href="gtest__bulkmt_8cpp.html#afa8c96c1a013f92e92574cde11dcf5a8" title="TEST" alt="" coords="221,56,274,83"/>
+<area shape="rect" id="node2" href="otus__7_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="220,5,275,32"/>
+<area shape="rect" id="node3" href="gtest__bulk_8cpp.html#a1fa5c4cab96e893139d137e38d101f82" title="TEST" alt="" coords="221,56,274,83"/>
 </map>
 </div>
 </p>
