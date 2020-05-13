@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['test',['TEST',['../gtest__bulk_8cpp.html#a1fa5c4cab96e893139d137e38d101f82',1,'TEST(test_bulk, test_bulk_invalid_data):&#160;gtest_bulk.cpp'],['../gtest__bulk_8cpp.html#a6e36ded70147d4d4246a3549e302593c',1,'TEST(test_bulk, test_bulk_valid_data):&#160;gtest_bulk.cpp']]]
+  ['save',['Save',['../classILogger.html#a21d700955c5c4b80cdf57c732abdd0f0',1,'ILogger::Save()'],['../classCmdLogger.html#a855449e1f6d1ada92fe357cacdaf069b',1,'CmdLogger::Save()']]],
+  ['simplecommand',['SimpleCommand',['../classSimpleCommand.html#a2e8dab9a9f239902e26e8e4ceb8f9db9',1,'SimpleCommand::SimpleCommand(const log_text_t &amp;&amp;aName)'],['../classSimpleCommand.html#ab51be932650e4738399013d8f9283851',1,'SimpleCommand::SimpleCommand(const log_text_t aName)']]],
+  ['size',['size',['../classConcurentDeque.html#ad0cf99490908591d0863c12a96359afb',1,'ConcurentDeque']]]
 ];

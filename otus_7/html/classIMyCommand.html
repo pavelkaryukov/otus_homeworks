@@ -84,13 +84,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Открытые типы</a> &#124;
 <a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pro-types">Защищенные типы</a> &#124;
 <a href="classIMyCommand-members.html">Полный список членов класса</a>  </div>
   <div class="headertitle">
 <div class="title">Класс IMyCommand<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Интерфейс команды  
+ <a href="classIMyCommand.html#details">Подробнее...</a></p>
 
 <p><code>#include &lt;<a class="el" href="icommand_8h_source.html">icommand.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -98,38 +101,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <div class="dyncontent">
 <div class="center"><img src="classIMyCommand__inherit__graph.png" border="0" usemap="#IMyCommand_inherit__map" alt="Inheritance graph"/></div>
 <map name="IMyCommand_inherit__map" id="IMyCommand_inherit__map">
-<area shape="rect" id="node2" href="classSimpleCommand.html" title="{SimpleCommand\n||+ SimpleCommand()\l+ SimpleCommand()\l+ Execute()\l+ ~SimpleCommand()\l}" alt="" coords="5,145,175,267"/>
+<area shape="rect" id="node2" href="classSimpleCommand.html" title="простейшая имплементация интерфейса IMyCommand. " alt="" coords="5,145,175,267"/>
 </map>
 </div>
 <div class="dynheader">
 Граф связей класса IMyCommand:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIMyCommand__coll__graph.png" border="0" usemap="#IMyCommand_coll__map" alt="Collaboration graph"/></div>
-<map name="IMyCommand_coll__map" id="IMyCommand_coll__map">
-</map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Открытые типы</h2></td></tr>
-<tr class="memitem:a45a14c23dd372162a7fd869840c2e5fd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMyCommand.html#a45a14c23dd372162a7fd869840c2e5fd">log_text_t</a> = std::string</td></tr>
-<tr class="separator:a45a14c23dd372162a7fd869840c2e5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
 <tr class="memitem:a376dda108eea6c81a619b52f6af86077"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classIMyCommand.html#a45a14c23dd372162a7fd869840c2e5fd">log_text_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMyCommand.html#a376dda108eea6c81a619b52f6af86077">Execute</a> ()=0</td></tr>
+<tr class="memdesc:a376dda108eea6c81a619b52f6af86077"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполнить команду  <a href="#a376dda108eea6c81a619b52f6af86077">Подробнее...</a><br /></td></tr>
 <tr class="separator:a376dda108eea6c81a619b52f6af86077"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20457a4b82bf847bf024dad8eaa057f2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMyCommand.html#a20457a4b82bf847bf024dad8eaa057f2">~IMyCommand</a> ()=default</td></tr>
 <tr class="separator:a20457a4b82bf847bf024dad8eaa057f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
+Защищенные типы</h2></td></tr>
+<tr class="memitem:a45a14c23dd372162a7fd869840c2e5fd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMyCommand.html#a45a14c23dd372162a7fd869840c2e5fd">log_text_t</a> = std::string</td></tr>
+<tr class="separator:a45a14c23dd372162a7fd869840c2e5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Определения типов</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Интерфейс команды </p>
+</div><h2 class="groupheader">Определения типов</h2>
 <a class="anchor" id="a45a14c23dd372162a7fd869840c2e5fd"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classIMyCommand.html#a45a14c23dd372162a7fd869840c2e5fd">IMyCommand::log_text_t</a> =  std::string</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -179,6 +191,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Выполнить команду </p>
+<dl class="section return"><dt>Возвращает</dt><dd>log_text_t - лог результатов выполнения команды </dd></dl>
 
 <p>Замещается в <a class="el" href="classSimpleCommand.html#a42b5e1a483df6eeaa7ac4a10299d256a">SimpleCommand</a>.</p>
 

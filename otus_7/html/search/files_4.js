@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['otus_5f7_2ecpp',['otus_7.cpp',['../otus__7_8cpp.html',1,'']]]
+  ['logger_2eh',['logger.h',['../logger_8h.html',1,'']]],
+  ['logger_5ffile_2eh',['logger_file.h',['../logger__file_8h.html',1,'']]],
+  ['logger_5fscreen_2eh',['logger_screen.h',['../logger__screen_8h.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../otus__7_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;otus_7.cpp'],['../gtest__bulk_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;gtest_bulk.cpp']]]
+  ['loggerfile',['LoggerFile',['../classLoggerFile.html#a2f8cb4cffcd87e3d86a49c0b1e8111d9',1,'LoggerFile']]],
+  ['loggerscreen',['LoggerScreen',['../classLoggerScreen.html#a24d3cb7ac30d5e3a93b5dd4900643ada',1,'LoggerScreen']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['simplecommand',['SimpleCommand',['../classSimpleCommand.html',1,'']]]
+  ['loggerfile',['LoggerFile',['../classLoggerFile.html',1,'']]],
+  ['loggerscreen',['LoggerScreen',['../classLoggerScreen.html',1,'']]]
 ];
