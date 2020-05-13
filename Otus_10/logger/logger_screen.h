@@ -28,6 +28,9 @@ public:
         m_MutexPrint.reset();
     };
 
+    std::string GetType() const override {
+        return "screen";
+    }
 private:   
     LoggerScreen() {};
 
@@ -55,14 +58,13 @@ private:
                 if (!m_MutexPrint)
                     return;
                 std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
-                m_Stream << boost::format("Thread [%1%] Value=[%2%]") % std::this_thread::get_id() % head << std::endl;
+                m_Stream << boost::format("%2%") % std::this_thread::get_id() % head << std::endl;
             }
         }
         {
             if (!m_MutexPrint)
                 return;
             std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
-            m_Stream << boost::format("Thread [%1%] Must be terminated") % std::this_thread::get_id() << std::endl;
         }
     }
 

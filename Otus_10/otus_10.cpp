@@ -1,43 +1,43 @@
 #include "dispatcher/dispatcher.h"
-#include <sstream>
-void MakeTest() {
-    std::stringstream ss;
-    {
-        CommandDispatcher dispatcher{ 3, ss, 10 };
-        for (auto i = 0; i < 1000; ++i) {
-            std::string str = boost::str(boost::format("cmd_%1%")%i);
-            dispatcher.ProcessCmdLine(str);
-        }
-        dispatcher.Flush();
+
+std::pair<std::size_t, std::size_t> GetArgs(int argc, char** argv) {
+    const std::size_t kDefaultBulkSize  = 3;
+    const std::size_t kDefaultThreadNum = 2;
+
+    if (argc <= 1) {
+        std::cout << " оличество команд в одной куче (bulk) не было установлено. ”становлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
+        std::cout << " оличество команд в потоков записи файла не было установлено. ”становлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
+        return { kDefaultBulkSize , kDefaultThreadNum };
     }
-    std::string myStr = ss.str();
-    int stop1 = 0;
+
+    const std::size_t bulkSize = std::atoi(argv[1]);
+    if (bulkSize <= 0) {
+        std::cout << " оличество команд в одной куче (bulk) не было установлено. ”становлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
+        std::cout << " оличество команд в потоков записи файла не было установлено. ”становлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
+        return { kDefaultBulkSize , kDefaultThreadNum };
+    }
+
+    if (argc < 3) {
+        std::cout << " оличество команд в потоков записи файла не было установлено. ”становлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
+        return { bulkSize , kDefaultThreadNum };
+    }
+
+    const std::size_t threadsNum = std::atoi(argv[2]);
+    if (threadsNum <= 0) {
+        std::cout << " оличество команд в потоков записи файла не было установлено. ”становлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
+        return { bulkSize , kDefaultThreadNum };
+    }
+
+    return { bulkSize , threadsNum };
 }
 
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "Russian");
-    MakeTest();
-    return 0;
-
-    std::size_t N = 0;
-    if (argc == 1) {
-        std::cout << " оличество команд в одной куче (bulk) не было установлено. ”становлено  значение по умолчанию = 3" << std::endl;
-        N = 3;
-    }
-    else {
-        N = std::atoi(argv[1]);
-        if (N <= 0) {
-            std::cout << " оличество команд в одной куче (bulk) имеет не валидное значение [" << argv[1] << "]. ”становлено  значение по умолчанию = 3" << std::endl;
-            N = 3;
-        }
-    }
-
-    const std::size_t kBulkSize = N > 0 ? N : 1; // кол-во команда в одной булке
+    const auto[bulkSize, threadsNum] = GetArgs(argc, argv);
 
     {
-        CommandDispatcher dispatcher{ kBulkSize, std::cout, 2};
+        CommandDispatcher dispatcher{ bulkSize, std::cout, threadsNum };
         std::string str;
-        std::cout << boost::format("Main Thread ID =[%1%]") % std::this_thread::get_id() << std::endl;
         while (std::getline(std::cin, str)) {
             if (str == "off")
                 break;
