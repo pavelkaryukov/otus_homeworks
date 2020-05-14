@@ -5,9 +5,9 @@
 #include <deque>  
 #include <iostream> 
 #include <string> 
-/*! \mainpage Otus_10 (Bulk)
+/*! \mainpage Otus_10 (BulkMT)
  *
- * \r\n  Диспетчер задач
+ * \r\n  Диспетчер задач (многопоточный)
  *
  */
 /*! CommandDispatcher */
@@ -18,13 +18,14 @@
 class CommandDispatcher {
 public:
 
-
     CommandDispatcher() = default;
 
     /**
     * \brief  конструктор по умолчанию
     * \details при передачи не валидного размера статической очереди - будет установлено значение по умолчанию = 1
     * \param[in] aBulkSize - размер статической очереди
+    * \param[in] aStream - поток вывода
+    * \param[in] aFileLoggerrsNumber - количество потоков вывода на экран
     */
     CommandDispatcher(const std::size_t aBulkSize, std::ostream& aStream, const std::size_t aFileLoggerrsNumber) 
         : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1), m_Logger(CmdLogger{ aStream, aFileLoggerrsNumber }) {
@@ -63,13 +64,12 @@ public:
     * \details Bulk size должен быть статическим
     */
     void Flush() {
-        //Не выношу в деструктор, так как при уничтожение диспетчера и нет смысла выполнять команды
         ExecuteCommands(true);
     }
 
     /**
     * \brief  деструктор.
-    * \details Logger отцепит все свои потоки, а статистика ниток будет выведена
+    * \details Logger выполнит и отцепит все свои потоки, а статистика ниток будет выведена
     */
     ~CommandDispatcher() {
         m_Logger.Exit();
@@ -81,6 +81,7 @@ private:
         Static,
         Dynamic
     };
+
     ExecutorStatus m_Status = ExecutorStatus::Static;
     std::deque<std::unique_ptr<IMyCommand>> m_Commands;
     const std::size_t m_BulkSize = 1;

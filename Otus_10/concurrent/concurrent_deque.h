@@ -1,7 +1,10 @@
 #pragma once
 #include <deque>
 #include <mutex>
-
+/**
+* \brief  Потокобезопасная очередь
+* \details  Минимальный необходимы функционал для работы многопоточных логгеров
+*/
 template<class T>
 class ConcurentDeque {
 public:

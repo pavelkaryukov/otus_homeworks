@@ -2,10 +2,18 @@
 #include "logger/logger_screen.h"
 #include "logger/logger_file.h"
 #include <string> 
-
+/**
+* \brief  класс агрегатор для логгеров
+* \details Screen logger яв-ся обязательным 
+*/
 class CmdLogger {
     using logger_t = std::unique_ptr<ILogger>;
 public:
+    /**
+    * \brief  конструктор класса агрегатора для логгеров
+    * \details ScreenLogger - обязательный, кол-во FileLogger - опционально
+    * \param[in] aBulkSize - размер статической очереди
+    */
     CmdLogger(std::ostream& aStream, const std::size_t aFileLoggersNumber) : m_Stream(aStream) {
         m_LoggerScreen = std::make_unique<LoggerScreen>(aStream, m_ScreenMutex);
         for (auto i = 0U; i < aFileLoggersNumber; ++i)
@@ -16,7 +24,7 @@ public:
         ++m_CounterBulk;
         m_CounterCommands += aCommandsNum;
         if (m_LoggerScreen)
-            m_LoggerScreen->Output(aStr, aCommandsNum);
+            m_LoggerScreen->Save(aStr, aCommandsNum);
 
         if (!m_FileLoggers.empty()) {
             const std::size_t id = m_CounterBulk % m_FileLoggers.size();
@@ -45,7 +53,7 @@ public:
 
         std::size_t counter = 1;
         for (auto& logger : m_FileLoggers) {
-            PrintStat(boost::str(boost::format("file_%1% thread")%counter), logger);
+            PrintStat(boost::str(boost::format("%1%_%2% thread")% logger->GetType() % counter), logger);
             ++counter;
         }
     }
@@ -60,7 +68,7 @@ private:
 
     void SaveInFile(std::unique_ptr<ILogger>& aFileLogger, const std::string& aStr, const std::size_t aCommandsNum) {
         if (aFileLogger)
-            aFileLogger->Output(aStr, aCommandsNum);
+            aFileLogger->Save(aStr, aCommandsNum);
     }
 
     void PrintStat(const std::string aThrName, std::unique_ptr<ILogger>& aLogger) {

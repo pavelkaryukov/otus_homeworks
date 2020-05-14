@@ -27,6 +27,9 @@ public:
             m_Thread.join();
     };
 
+    std::string GetType() const override {
+        return "file";
+    }
 private:
     std::condition_variable m_Condition;
     std::mutex m_MutexThread;
@@ -60,7 +63,6 @@ private:
                 continue;
             std::ofstream file(filename);
             if (file.is_open()) {
-                file << boost::format("thread_id=[%1%]") % std::this_thread::get_id() << std::endl;
                 file << aStr;
                 return;
             }
