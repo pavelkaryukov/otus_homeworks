@@ -1,0 +1,5 @@
+<map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
+<area shape="rect" id="node1" href="$classIHash.html" title="интерфейс классов расчета хэш функций " alt="" coords="5,31,64,57"/>
+<area shape="rect" id="node2" href="$classHashCRC32.html" title="класс расчета хэш сумм по алгоритму CRC32. " alt="" coords="112,5,208,32"/>
+<area shape="rect" id="node3" href="$classHashMD5.html" title="класс расчета хэш сумм по алгоритму MD5. " alt="" coords="118,56,202,83"/>
+</map>

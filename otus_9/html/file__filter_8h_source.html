@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Otus 9: Исходный файл file/file_filter.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Otus 9
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="pages.html"><span>Описания</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_fb6598a949f0f53f82ac9a1a956124c7.html">file</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">file_filter.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="file__filter_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dir__border_8h.html">file/dir_border.h</a>&quot;</span> </div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="file__border_8h.html">file/file_border.h</a>&quot;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="file__hash_8h.html">file/file_hash.h</a>&quot;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;boost/format.hpp&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span> </div><div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classFilesFilter.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classFilesFilter.html">FilesFilter</a> {</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">using</span> files_t = std::unordered_map&lt;std::uint64_t, std::set&lt;boost::filesystem::path&gt;&gt;;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classFilesFilter.html#ab69ef032928f6ef453f7a8923cf64b69">   13</a></span>&#160;    <a class="code" href="classFilesFilter.html#ab69ef032928f6ef453f7a8923cf64b69">FilesFilter</a>(<span class="keyword">const</span> <a class="code" href="structDirBorder.html">DirBorder</a>&amp;&amp; aDirs, <span class="keyword">const</span> <a class="code" href="classFileBorder.html">FileBorder</a>&amp;&amp; aFilter) : _filter(std::move(aFilter)), _dirs(aDirs) {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; dir : _dirs.<a class="code" href="structDirBorder.html#af5717891e07538c327433752cb63d7e6">Dirs</a>) {</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            FillFiles(dir, 0, _files);</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        }</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classFilesFilter.html#ad17100be3f7451493fd1431f5602561e">   24</a></span>&#160;    files_t&amp; <a class="code" href="classFilesFilter.html#ad17100be3f7451493fd1431f5602561e">GetFiles</a>() {</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">return</span> _files;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="structDirBorder.html">DirBorder</a> _dirs;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="classFileBorder.html">FileBorder</a> _filter;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classFilesFilter.html">FilesFilter</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    files_t _files;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> FillFiles(<span class="keyword">const</span> boost::filesystem::path&amp; aDir, <span class="keyword">const</span> std::size_t aLvl, files_t&amp; aFiles) {</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">if</span> (aLvl &gt; _dirs.<a class="code" href="structDirBorder.html#aadccecf246405833d9f7dd8fa4e1ac5a">Lvl</a>)</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">return</span>;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">if</span> (_dirs.<a class="code" href="structDirBorder.html#a93ca6902798b741eb9f3ce75c92ebe60">Dropped</a>.find(aDir) != _dirs.<a class="code" href="structDirBorder.html#a93ca6902798b741eb9f3ce75c92ebe60">Dropped</a>.end())</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">return</span>;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (!boost::filesystem::exists(aDir) || !boost::filesystem::is_directory(aDir)) {</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            std::cout &lt;&lt; boost::format(<span class="stringliteral">&quot;Каталог [%1%] не существует&quot;</span>) % aDir &lt;&lt; std::endl;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">return</span>;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; obj : boost::filesystem::directory_iterator(aDir)) {</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">if</span> (boost::filesystem::is_directory(obj)) {</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                FillFiles(obj, aLvl + 1, aFiles);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordflow">continue</span>;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            }</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">if</span> (boost::filesystem::is_regular_file(obj)) {</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordflow">if</span> (!_filter.<a class="code" href="classFileBorder.html#a6311741c3dfcd2cdddf8db3c8dac6e4c">IsPermittedFile</a>(obj)) {</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    <span class="keywordflow">continue</span>;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                }</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                std::uint64_t size = boost::filesystem::file_size(obj);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                aFiles[size].insert({ obj.path() });</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            }</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div><div class="ttc" id="classFileBorder_html_a6311741c3dfcd2cdddf8db3c8dac6e4c"><div class="ttname"><a href="classFileBorder.html#a6311741c3dfcd2cdddf8db3c8dac6e4c">FileBorder::IsPermittedFile</a></div><div class="ttdeci">bool IsPermittedFile(const boost::filesystem::directory_entry &amp;aObj)</div><div class="ttdoc">файл разрешен для поиска дубликатов </div><div class="ttdef"><b>Definition:</b> file_border.h:17</div></div>
+<div class="ttc" id="file__hash_8h_html"><div class="ttname"><a href="file__hash_8h.html">file_hash.h</a></div></div>
+<div class="ttc" id="structDirBorder_html"><div class="ttname"><a href="structDirBorder.html">DirBorder</a></div><div class="ttdoc">структура хранит в себе пути к каталогам, пути к каталогам, которые исключены и поиска дубликатов...</div><div class="ttdef"><b>Definition:</b> dir_border.h:7</div></div>
+<div class="ttc" id="structDirBorder_html_aadccecf246405833d9f7dd8fa4e1ac5a"><div class="ttname"><a href="structDirBorder.html#aadccecf246405833d9f7dd8fa4e1ac5a">DirBorder::Lvl</a></div><div class="ttdeci">const std::size_t Lvl</div><div class="ttdoc">глубина поиска - 0 только текущий каталог </div><div class="ttdef"><b>Definition:</b> dir_border.h:14</div></div>
+<div class="ttc" id="structDirBorder_html_a93ca6902798b741eb9f3ce75c92ebe60"><div class="ttname"><a href="structDirBorder.html#a93ca6902798b741eb9f3ce75c92ebe60">DirBorder::Dropped</a></div><div class="ttdeci">const std::set&lt; boost::filesystem::path &gt; Dropped</div><div class="ttdoc">каталоги где не нужно осуществлять поиск дубликатов </div><div class="ttdef"><b>Definition:</b> dir_border.h:12</div></div>
+<div class="ttc" id="classFileBorder_html"><div class="ttname"><a href="classFileBorder.html">FileBorder</a></div><div class="ttdoc">класс фильтрующий файлы по размеру и маске </div><div class="ttdef"><b>Definition:</b> file_border.h:8</div></div>
+<div class="ttc" id="classFilesFilter_html_ad17100be3f7451493fd1431f5602561e"><div class="ttname"><a href="classFilesFilter.html#ad17100be3f7451493fd1431f5602561e">FilesFilter::GetFiles</a></div><div class="ttdeci">files_t &amp; GetFiles()</div><div class="ttdoc">Получить файлы, среди которых можно искать дубликаты </div><div class="ttdef"><b>Definition:</b> file_filter.h:24</div></div>
+<div class="ttc" id="classFilesFilter_html_ab69ef032928f6ef453f7a8923cf64b69"><div class="ttname"><a href="classFilesFilter.html#ab69ef032928f6ef453f7a8923cf64b69">FilesFilter::FilesFilter</a></div><div class="ttdeci">FilesFilter(const DirBorder &amp;&amp;aDirs, const FileBorder &amp;&amp;aFilter)</div><div class="ttdef"><b>Definition:</b> file_filter.h:13</div></div>
+<div class="ttc" id="structDirBorder_html_af5717891e07538c327433752cb63d7e6"><div class="ttname"><a href="structDirBorder.html#af5717891e07538c327433752cb63d7e6">DirBorder::Dirs</a></div><div class="ttdeci">const std::set&lt; boost::filesystem::path &gt; Dirs</div><div class="ttdoc">каталоги, где осуществляется поиск дубликатов </div><div class="ttdef"><b>Definition:</b> dir_border.h:10</div></div>
+<div class="ttc" id="file__border_8h_html"><div class="ttname"><a href="file__border_8h.html">file_border.h</a></div></div>
+<div class="ttc" id="classFilesFilter_html"><div class="ttname"><a href="classFilesFilter.html">FilesFilter</a></div><div class="ttdoc">Класс обеспечивает удобный для наших задач доступ к файловой системе, отбор файлов с учетом маски...</div><div class="ttdef"><b>Definition:</b> file_filter.h:10</div></div>
+<div class="ttc" id="dir__border_8h_html"><div class="ttname"><a href="dir__border_8h.html">dir_border.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

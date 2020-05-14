@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
     <ul class="tablist">
       <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
       <li><a href="pages.html"><span>Описания</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
       <li class="current"><a href="files.html"><span>Файлы</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,22 +87,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <div class="title">Файл otus_9.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;args/cmd_args.h&quot;</code><br />
-<code>#include &quot;duplicate/duplicate_finder.h&quot;</code><br />
-<code>#include &quot;file/file_filter.h&quot;</code><br />
-<code>#include &quot;hash/hash_crc32.h&quot;</code><br />
-<code>#include &quot;hash/hash_md5.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="cmd__args_8h_source.html">args/cmd_args.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="duplicate__finder_8h_source.html">duplicate/duplicate_finder.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="file__filter_8h_source.html">file/file_filter.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hash__crc32_8h_source.html">hash/hash_crc32.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hash__md5_8h_source.html">hash/hash_md5.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ihash_8h_source.html">hash/ihash.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для otus_9.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="otus__9_8cpp__incl.png" border="0" usemap="#otus__9_8cpp" alt=""/></div>
 <map name="otus__9_8cpp" id="otus__9_8cpp">
+<area shape="rect" id="node2" href="cmd__args_8h.html" title="args/cmd_args.h" alt="" coords="639,87,768,114"/>
+<area shape="rect" id="node9" href="duplicate__finder_8h.html" title="duplicate/duplicate\l_finder.h" alt="" coords="1821,80,1964,121"/>
+<area shape="rect" id="node10" href="ihash_8h.html" title="hash/ihash.h" alt="" coords="1559,251,1661,278"/>
+<area shape="rect" id="node20" href="file__filter_8h.html" title="file/file_filter.h" alt="" coords="913,87,1021,114"/>
+<area shape="rect" id="node25" href="hash__crc32_8h.html" title="hash/hash_crc32.h" alt="" coords="1068,87,1211,114"/>
+<area shape="rect" id="node27" href="hash__md5_8h.html" title="hash/hash_md5.h" alt="" coords="1334,87,1470,114"/>
+<area shape="rect" id="node11" href="file__hash_8h.html" title="file/file_hash.h" alt="" coords="1319,169,1431,196"/>
+<area shape="rect" id="node21" href="dir__border_8h.html" title="file/dir_border.h" alt="" coords="546,169,666,196"/>
+<area shape="rect" id="node22" href="file__border_8h.html" title="file/file_border.h" alt="" coords="349,169,471,196"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:a9bdd0071bfdac68cbd22d67d85c5b52b"><td class="memItemLeft" align="right" valign="top">boost::function&lt; std::unique_ptr&lt; IHash &gt;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="otus__9_8cpp.html#a9bdd0071bfdac68cbd22d67d85c5b52b">GetHashCalculator</a> (const CmdArgs::HashAlg aAlg)</td></tr>
+<tr class="memitem:a9bdd0071bfdac68cbd22d67d85c5b52b"><td class="memItemLeft" align="right" valign="top">boost::function&lt; std::unique_ptr&lt; <a class="el" href="classIHash.html">IHash</a> &gt;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="otus__9_8cpp.html#a9bdd0071bfdac68cbd22d67d85c5b52b">GetHashCalculator</a> (const <a class="el" href="structCmdArgs.html#ae03b860994791dfbc346988d409baf21">CmdArgs::HashAlg</a> aAlg)</td></tr>
 <tr class="memdesc:a9bdd0071bfdac68cbd22d67d85c5b52b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возвращает указатель на фабрику классов расчета хэш функций  <a href="#a9bdd0071bfdac68cbd22d67d85c5b52b">Подробнее...</a><br /></td></tr>
 <tr class="separator:a9bdd0071bfdac68cbd22d67d85c5b52b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="otus__9_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
@@ -113,9 +124,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boost::function&lt;std::unique_ptr&lt;IHash&gt;)&gt; GetHashCalculator </td>
+          <td class="memname">boost::function&lt;std::unique_ptr&lt;<a class="el" href="classIHash.html">IHash</a>&gt;)&gt; GetHashCalculator </td>
           <td>(</td>
-          <td class="paramtype">const CmdArgs::HashAlg&#160;</td>
+          <td class="paramtype">const <a class="el" href="structCmdArgs.html#ae03b860994791dfbc346988d409baf21">CmdArgs::HashAlg</a>&#160;</td>
           <td class="paramname"><em>aAlg</em></td><td>)</td>
           <td></td>
         </tr>
@@ -129,7 +140,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>TDefaultValue - фабрика классов реализующих интерфейс IHash </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>TDefaultValue - фабрика классов реализующих интерфейс <a class="el" href="classIHash.html" title="интерфейс классов расчета хэш функций ">IHash</a> </dd></dl>
 
 </div>
 </div>

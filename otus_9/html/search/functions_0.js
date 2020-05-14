@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gethashcalculator',['GetHashCalculator',['../otus__9_8cpp.html#a9bdd0071bfdac68cbd22d67d85c5b52b',1,'otus_9.cpp']]]
+  ['dirborder',['DirBorder',['../structDirBorder.html#a772b90d9da6e5418d53bf1cc38a8cd0f',1,'DirBorder']]],
+  ['duplicatefinder',['DuplicateFinder',['../classDuplicateFinder.html#a55f603ad4cf047b8a61ef3076a3cd2ef',1,'DuplicateFinder']]]
 ];
