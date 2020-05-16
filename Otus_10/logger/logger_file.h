@@ -72,7 +72,7 @@ private:
     void SaveLog(std::string aStr) override {
         m_Deque.push_back(aStr);
         std::unique_lock<std::mutex> locker(m_MutexThread);
-        m_Condition.notify_all();
+        m_Condition.notify_one();
     }
 
     std::thread CreateThread() {
