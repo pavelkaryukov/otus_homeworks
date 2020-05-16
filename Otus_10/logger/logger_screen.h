@@ -76,6 +76,6 @@ private:
     }
 
     std::thread CreateThread() {
-        return std::thread([&]() { PrintFunc(); });
+        return std::thread(&LoggerScreen::PrintFunc, this);
     }
 };
