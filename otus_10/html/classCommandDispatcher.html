@@ -107,9 +107,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 Открытые члены</h2></td></tr>
 <tr class="memitem:a49b7eb314c66f2e10e1c0fd5316305ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#a49b7eb314c66f2e10e1c0fd5316305ee">CommandDispatcher</a> ()=default</td></tr>
 <tr class="separator:a49b7eb314c66f2e10e1c0fd5316305ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf4a7fe7a302fc5f8196e2fdb7d769ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#abf4a7fe7a302fc5f8196e2fdb7d769ed">CommandDispatcher</a> (const std::size_t aBulkSize, std::ostream &amp;aStream, const std::size_t aFileLoggerrsNumber)</td></tr>
-<tr class="memdesc:abf4a7fe7a302fc5f8196e2fdb7d769ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор по умолчанию  <a href="#abf4a7fe7a302fc5f8196e2fdb7d769ed">Подробнее...</a><br /></td></tr>
-<tr class="separator:abf4a7fe7a302fc5f8196e2fdb7d769ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3dbf945805bd90295fb5e1f0aa91a05"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#ac3dbf945805bd90295fb5e1f0aa91a05">CommandDispatcher</a> (const std::size_t aBulkSize, std::ostream &amp;aStream, const std::size_t aFileLoggerrsNumber, std::shared_ptr&lt; std::mutex &gt; &amp;aMutex)</td></tr>
+<tr class="memdesc:ac3dbf945805bd90295fb5e1f0aa91a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор по умолчанию  <a href="#ac3dbf945805bd90295fb5e1f0aa91a05">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac3dbf945805bd90295fb5e1f0aa91a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e21c91f77b81575213ebf8580ce2fa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandDispatcher.html#a9e21c91f77b81575213ebf8580ce2fa5">ProcessCmdLine</a> (const std::string &amp;aStr)</td></tr>
 <tr class="memdesc:a9e21c91f77b81575213ebf8580ce2fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет новую команду.  <a href="#a9e21c91f77b81575213ebf8580ce2fa5">Подробнее...</a><br /></td></tr>
 <tr class="separator:a9e21c91f77b81575213ebf8580ce2fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,7 +148,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 
 </div>
 </div>
-<a class="anchor" id="abf4a7fe7a302fc5f8196e2fdb7d769ed"></a>
+<a class="anchor" id="ac3dbf945805bd90295fb5e1f0aa91a05"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -171,7 +171,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::size_t&#160;</td>
-          <td class="paramname"><em>aFileLoggerrsNumber</em>&#160;</td>
+          <td class="paramname"><em>aFileLoggerrsNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; std::mutex &gt; &amp;&#160;</td>
+          <td class="paramname"><em>aMutex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

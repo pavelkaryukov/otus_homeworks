@@ -105,9 +105,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:abcaa835061a1c592dfbf97e89e08e13d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCmdLogger.html#abcaa835061a1c592dfbf97e89e08e13d">CmdLogger</a> (std::ostream &amp;aStream, const std::size_t aFileLoggersNumber)</td></tr>
-<tr class="memdesc:abcaa835061a1c592dfbf97e89e08e13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор класса агрегатора для логгеров  <a href="#abcaa835061a1c592dfbf97e89e08e13d">Подробнее...</a><br /></td></tr>
-<tr class="separator:abcaa835061a1c592dfbf97e89e08e13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a689aef7753b53d595c96ca3388c4906e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCmdLogger.html#a689aef7753b53d595c96ca3388c4906e">CmdLogger</a> (std::ostream &amp;aStream, const std::size_t aFileLoggersNumber, std::shared_ptr&lt; std::mutex &gt; &amp;aMutex)</td></tr>
+<tr class="memdesc:a689aef7753b53d595c96ca3388c4906e"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор класса агрегатора для логгеров  <a href="#a689aef7753b53d595c96ca3388c4906e">Подробнее...</a><br /></td></tr>
+<tr class="separator:a689aef7753b53d595c96ca3388c4906e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a855449e1f6d1ada92fe357cacdaf069b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCmdLogger.html#a855449e1f6d1ada92fe357cacdaf069b">Save</a> (const std::string aStr, const std::size_t aCommandsNum)</td></tr>
 <tr class="separator:a855449e1f6d1ada92fe357cacdaf069b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01f38acef3cdbc9ff346430cd987d12b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCmdLogger.html#a01f38acef3cdbc9ff346430cd987d12b">Exit</a> ()</td></tr>
@@ -119,7 +119,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <div class="textblock"><p>класс агрегатор для логгеров </p>
 <p>Screen logger яв-ся обязательным </p>
 </div><h2 class="groupheader">Конструктор(ы)</h2>
-<a class="anchor" id="abcaa835061a1c592dfbf97e89e08e13d"></a>
+<a class="anchor" id="a689aef7753b53d595c96ca3388c4906e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -136,7 +136,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::size_t&#160;</td>
-          <td class="paramname"><em>aFileLoggersNumber</em>&#160;</td>
+          <td class="paramname"><em>aFileLoggersNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; std::mutex &gt; &amp;&#160;</td>
+          <td class="paramname"><em>aMutex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
