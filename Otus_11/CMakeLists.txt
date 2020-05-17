@@ -56,7 +56,7 @@ target_include_directories(
 	bulk_async_test
 	PRIVATE
 	${PROJECT_SOURCE_DIR}
-	${PROJECT_SOURCE_DIR}/lib
+	${PROJECT_SOURCE_DIR}/lib/dispatcher
 )
 
 target_link_libraries(bulk_async_test ${CMAKE_THREAD_LIBS_INIT} libasync $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
