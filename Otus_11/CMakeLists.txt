@@ -37,7 +37,7 @@ target_link_libraries(libasync  ${CMAKE_THREAD_LIBS_INIT}  $<$<AND:$<CXX_COMPILE
 target_include_directories(
 	libasync
 	PRIVATE
-	${PROJECT_SOURCE_DIR}/lib
+	${PROJECT_SOURCE_DIR}/lib/
 	${PROJECT_SOURCE_DIR}
 	${Boost_INCLUDE_DIRS}
 )

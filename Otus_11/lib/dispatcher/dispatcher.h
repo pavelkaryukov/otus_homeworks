@@ -1,6 +1,6 @@
 #pragma once
-#include "command/simple_command.h"
-#include "logger/logger.h"
+#include "lib/command/simple_command.h"
+#include "lib/logger/logger.h"
 #include <boost/format.hpp> 
 #include <deque>  
 #include <iostream> 
