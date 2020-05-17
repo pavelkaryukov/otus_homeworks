@@ -14,7 +14,7 @@ set(DISPATCHER_SRC     "lib/dispatcher/dispatcher.h" ${CONCURRENT_SRC} ${LOG_SRC
 
 set(ASYNC_LIB_SRC "lib/bulk_async.h" "lib/bulk_async.cpp" ${DISPATCHER_SRC})
 
-add_library(libasync ${ASYNC_LIB_SRC})
+add_library(libasync STATIC ${ASYNC_LIB_SRC})
 
 set_target_properties (
 	libasync PROPERTIES 
