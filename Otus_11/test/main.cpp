@@ -1,6 +1,7 @@
 #include "lib/bulk_async.h" 
 #include <condition_variable>
 #include <mutex>
+#include <thread>
 
 std::condition_variable g_Condition;
 std::mutex g_MutexThread;
