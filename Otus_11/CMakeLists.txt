@@ -57,5 +57,5 @@ target_include_directories(
 	${PROJECT_SOURCE_DIR}
 )
 
-target_link_libraries(bulk_async_test libasync $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+target_link_libraries(bulk_async_test ${CMAKE_THREAD_LIBS_INIT} libasync $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 
