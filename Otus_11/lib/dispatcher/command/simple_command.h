@@ -1,6 +1,6 @@
 #pragma once
-#include "lib/command/icommand.h"
-#include "lib/logger/logger.h"
+#include "command/icommand.h"
+#include "logger/logger.h"
 #include <iostream> 
 /**
 * \brief   простейшая имплементация интерфейса IMyCommand

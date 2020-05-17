@@ -1,6 +1,6 @@
 #pragma once       
-#include "lib/logger/logger_screen.h"
-#include "lib/logger/logger_file.h"
+#include "logger/logger_screen.h"
+#include "logger/logger_file.h"
 #include <string> 
 /**
 * \brief  класс агрегатор для логгеров
