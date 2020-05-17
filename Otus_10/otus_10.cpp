@@ -36,7 +36,8 @@ int main(int argc, char** argv) {
     const auto[bulkSize, threadsNum] = GetArgs(argc, argv);
 
     {
-        CommandDispatcher dispatcher{ bulkSize, std::cout, threadsNum };
+        std::shared_ptr<std::mutex> outMutex = std::make_shared<std::mutex>();
+        CommandDispatcher dispatcher{ bulkSize, std::cout, threadsNum, outMutex };
         std::string str;
         while (std::getline(std::cin, str)) {
             if (str == "off")

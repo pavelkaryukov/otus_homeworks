@@ -14,7 +14,7 @@ public:
     * \details ScreenLogger - обязательный, кол-во FileLogger - опционально
     * \param[in] aBulkSize - размер статической очереди
     */
-    CmdLogger(std::ostream& aStream, const std::size_t aFileLoggersNumber) : m_Stream(aStream) {
+    CmdLogger(std::ostream& aStream, const std::size_t aFileLoggersNumber, std::shared_ptr<std::mutex>& aMutex) : m_Stream(aStream), m_ScreenMutex(aMutex) {
         m_LoggerScreen = std::make_unique<LoggerScreen>(aStream, m_ScreenMutex);
         for (auto i = 0U; i < aFileLoggersNumber; ++i)
             m_FileLoggers.emplace_back(std::make_unique<LoggerFile>());

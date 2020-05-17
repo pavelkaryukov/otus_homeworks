@@ -19,7 +19,7 @@ public:
         m_Execute.store(false);
         {
             std::unique_lock<std::mutex> locker(m_MutexThread);
-            m_Condition.notify_all();
+            m_Condition.notify_one();
         }
 
         if (m_Thread.joinable())

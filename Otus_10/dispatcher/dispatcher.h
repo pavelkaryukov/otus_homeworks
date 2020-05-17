@@ -27,8 +27,8 @@ public:
     * \param[in] aStream - поток вывода
     * \param[in] aFileLoggerrsNumber - количество потоков вывода на экран
     */
-    CommandDispatcher(const std::size_t aBulkSize, std::ostream& aStream, const std::size_t aFileLoggerrsNumber) 
-        : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1), m_Logger(CmdLogger{ aStream, aFileLoggerrsNumber }) {
+    CommandDispatcher(const std::size_t aBulkSize, std::ostream& aStream, const std::size_t aFileLoggerrsNumber, std::shared_ptr<std::mutex>& aMutex) 
+        : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1), m_Logger(CmdLogger{ aStream, aFileLoggerrsNumber, aMutex}) {
         if (aBulkSize == 0) {
             std::cout << boost::format("BulkSize == {%1%} - incorrect value, BulkSize was changed on {%2%}") % aBulkSize % 1 << std::endl;
         }
@@ -86,7 +86,7 @@ private:
     std::deque<std::unique_ptr<IMyCommand>> m_Commands;
     const std::size_t m_BulkSize = 1;
     std::size_t m_StartBraceCounter = 0;
-    CmdLogger m_Logger = {std::cout, 2};
+    CmdLogger m_Logger/* = {std::cout, 2, }*/;
 
     std::size_t m_LinesNum    = 0;
     std::size_t m_BulksNum    = 0;

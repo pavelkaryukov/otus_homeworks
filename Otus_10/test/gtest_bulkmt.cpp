@@ -12,7 +12,8 @@
 
      std::stringstream ss;
      {
-         CommandDispatcher dispatcher{ 3, ss, 2 };
+         std::shared_ptr<std::mutex> outMutex = std::make_shared<std::mutex>();
+         CommandDispatcher dispatcher{ 3, ss, 2, outMutex };
          dispatcher.ProcessCmdLine("{{{");
          dispatcher.ProcessCmdLine("cmd1");
          dispatcher.ProcessCmdLine("cmd2");
@@ -48,7 +49,8 @@ TEST(test_bulkmt, test_bulkmt_valid_data) {
 
     std::stringstream ss;
     {
-        CommandDispatcher dispatcher{ 3, ss, 2 };
+        std::shared_ptr<std::mutex> outMutex = std::make_shared<std::mutex>();
+        CommandDispatcher dispatcher{ 3, ss, 2, outMutex };
         dispatcher.ProcessCmdLine("cmd1");
         dispatcher.ProcessCmdLine("}");
         dispatcher.ProcessCmdLine("}");
