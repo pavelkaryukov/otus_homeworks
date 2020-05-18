@@ -9,10 +9,9 @@ namespace {
         AsyncDispatcher() = default;
 
         handle_t Add(const std::size_t aBulkSize, std::ostream& aOutStream) {
-            //if (!m_OutPrintMutex)
-            //    return 0;
+            if (!m_OutPrintMutex)
+                return 0;
 
-            //Try catch and ...
             std::lock_guard<std::mutex> locker(m_Mutex);
             ++m_Counter;
             m_Dispatchers.insert({ m_Counter, std::make_unique<CommandDispatcher>(aBulkSize, aOutStream, 2, m_OutPrintMutex) });
@@ -27,8 +26,10 @@ namespace {
             }
 
             if (iter == m_Dispatchers.end()) {
-                //Во избежания dead lock минимизируем
-                std::cout << "Cant find elem with id = " << std::endl; //TODO:: доделать вывод на экран, с блокировкой mutex
+                if (m_OutPrintMutex && m_OutPrintMutex->try_lock()) {
+                    std::cout << "Cant find elem with id = " << aHandle << std::endl;
+                    m_OutPrintMutex->unlock();
+                }
                 return;
             }
             if (iter->second) {
@@ -44,8 +45,10 @@ namespace {
             }
 
             if (iter == m_Dispatchers.end()) {
-                //Во избежания dead lock минимизируем
-                std::cout << "Cant find elem with id = " << std::endl; //TODO:: доделать вывод на экран, с блокировкой mutex
+                if (m_OutPrintMutex && m_OutPrintMutex->try_lock()) {
+                    std::cout << "Cant find elem with id = " << aHandle << std::endl;
+                    m_OutPrintMutex->unlock();
+                }
                 return;
             }
 
@@ -64,7 +67,6 @@ namespace {
         std::mutex m_Mutex;
         std::shared_ptr<std::mutex> m_OutPrintMutex = std::make_shared<std::mutex>();
         handle_t m_Counter = 0;
-        //Задумка такая, что мьютекс контролирует вставку элементов в hashmap
     };
 }
 
@@ -72,17 +74,14 @@ namespace async {
     AsyncDispatcher g_Dispatcher;
 
     handle_t connect(std::size_t bulk, std::ostream& aOutStream) {
-        std::cout << "Connect method id=" << std::this_thread::get_id() << std::endl;
         return g_Dispatcher.Add(bulk, aOutStream);
     }
 
     void receive(handle_t handle, const char *data, std::size_t size) {
-        std::cout << "Receive method id=" << std::this_thread::get_id() << std::endl;
         g_Dispatcher.ReceiveMsg(handle, data, size);
     }    
     
     void disconnect(handle_t handle) {
-        std::cout << "Disconnect method id=" << std::this_thread::get_id() << std::endl;
         g_Dispatcher.CloseDispatcher(handle);
     }
 }

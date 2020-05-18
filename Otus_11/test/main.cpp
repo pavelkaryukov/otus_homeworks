@@ -5,18 +5,8 @@
 #include <vector>
 #include <chrono>
 
-
-std::condition_variable_any g_Condition;
-std::mutex g_MutexThread;
-
 void ThreadFunc() {
-    std::cout << "Create thread id=" << std::this_thread::get_id() << std::endl;
-    {
-        std::unique_lock<std::mutex> locker(g_MutexThread);
-        //g_Condition.wait_for(locker, std::chrono::seconds(2));
-        g_Condition.wait(locker);
-    }
-    std::cout << "WakeUp id=" << std::this_thread::get_id() << std::endl;
+    std::cout << "Create thread, id=" << std::this_thread::get_id() << std::endl;
     std::string testCmd = "cmd1";
     auto handl1 = async::connect(3);
     auto handl2 = async::connect(2);
@@ -42,15 +32,9 @@ void ThreadFunc() {
 int main() {
     //Создание объектов из разных потоков, должно быть 42 bulk суммарно (42 файла)
     std::vector<std::unique_ptr<std::thread>> threads;
-    for (int i = 0; i <= 2; ++i) {
+    for (int i = 0; i <= 6; ++i) {
         threads.emplace_back(std::make_unique<std::thread>(std::thread{ []() { ThreadFunc(); }}));
     }
-    {
-        std::unique_lock<std::mutex> locker(g_MutexThread);
-        std::cout << "WakeUp All" << std::endl;
-        g_Condition.notify_all();
-    }
-
     for (auto& thread : threads) {
         thread->join();
     }
