@@ -72,14 +72,17 @@ namespace async {
     AsyncDispatcher g_Dispatcher;
 
     handle_t connect(std::size_t bulk, std::ostream& aOutStream) {
+        std::cout << "Connect method id=" << std::this_thread::get_id() << std::endl;
         return g_Dispatcher.Add(bulk, aOutStream);
     }
 
     void receive(handle_t handle, const char *data, std::size_t size) {
+        std::cout << "Receive method id=" << std::this_thread::get_id() << std::endl;
         g_Dispatcher.ReceiveMsg(handle, data, size);
     }    
     
-    void disconnect(handle_t handle){
+    void disconnect(handle_t handle) {
+        std::cout << "Disconnect method id=" << std::this_thread::get_id() << std::endl;
         g_Dispatcher.CloseDispatcher(handle);
     }
 }
