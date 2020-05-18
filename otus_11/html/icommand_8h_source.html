@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>BulkMT_ASYNC: Исходный файл lib/dispatcher/command/icommand.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">BulkMT_ASYNC
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="namespaces.html"><span>Пространства&#160;имен</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_33602f307eacccce57ec1e0ce60238e9.html">dispatcher</a></li><li class="navelem"><a class="el" href="dir_58ac5c9590c96924892f0b5e29c30be3.html">command</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">icommand.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="icommand_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span> </div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="classIMyCommand.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="classIMyCommand.html">IMyCommand</a> {</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classIMyCommand.html#a45a14c23dd372162a7fd869840c2e5fd">    8</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classIMyCommand.html#a45a14c23dd372162a7fd869840c2e5fd">log_text_t</a> = std::string;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    </div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classIMyCommand.html#a45a14c23dd372162a7fd869840c2e5fd">log_text_t</a> <a class="code" href="classIMyCommand.html#a376dda108eea6c81a619b52f6af86077">Execute</a>() = 0;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classIMyCommand.html#a20457a4b82bf847bf024dad8eaa057f2">~IMyCommand</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div><div class="ttc" id="classIMyCommand_html_a376dda108eea6c81a619b52f6af86077"><div class="ttname"><a href="classIMyCommand.html#a376dda108eea6c81a619b52f6af86077">IMyCommand::Execute</a></div><div class="ttdeci">virtual log_text_t Execute()=0</div><div class="ttdoc">Выполнить команду </div></div>
+<div class="ttc" id="classIMyCommand_html"><div class="ttname"><a href="classIMyCommand.html">IMyCommand</a></div><div class="ttdoc">Интерфейс команды </div><div class="ttdef"><b>Definition:</b> icommand.h:6</div></div>
+<div class="ttc" id="classIMyCommand_html_a20457a4b82bf847bf024dad8eaa057f2"><div class="ttname"><a href="classIMyCommand.html#a20457a4b82bf847bf024dad8eaa057f2">IMyCommand::~IMyCommand</a></div><div class="ttdeci">virtual ~IMyCommand()=default</div></div>
+<div class="ttc" id="classIMyCommand_html_a45a14c23dd372162a7fd869840c2e5fd"><div class="ttname"><a href="classIMyCommand.html#a45a14c23dd372162a7fd869840c2e5fd">IMyCommand::log_text_t</a></div><div class="ttdeci">std::string log_text_t</div><div class="ttdef"><b>Definition:</b> icommand.h:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
