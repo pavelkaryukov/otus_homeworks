@@ -14,10 +14,13 @@ set(DISPATCHER_SRC     "lib/dispatcher/dispatcher.h" ${CONCURRENT_SRC} ${LOG_SRC
 
 set(ASYNC_LIB_SRC "lib/bulk_async.h" "lib/bulk_async.cpp" ${DISPATCHER_SRC})
 
-add_library(libasync STATIC ${ASYNC_LIB_SRC})
+add_library(libasync_static STATIC ${ASYNC_LIB_SRC})
+add_library(libasync SHARED ${ASYNC_LIB_SRC})
 
 set_target_properties (
-	libasync PROPERTIES 
+	libasync_static 
+	libasync
+	PROPERTIES 
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON	
 )
@@ -31,8 +34,17 @@ endif()
 
 Find_package(Threads)
 
-target_link_libraries(libasync  ${CMAKE_THREAD_LIBS_INIT}  $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+target_link_libraries( libasync_static ${CMAKE_THREAD_LIBS_INIT}  $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+target_link_libraries( libasync ${CMAKE_THREAD_LIBS_INIT}  $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 
+
+target_include_directories(
+	libasync_static
+	PRIVATE
+	${PROJECT_SOURCE_DIR}/lib/dispatcher
+	${PROJECT_SOURCE_DIR}
+	${Boost_INCLUDE_DIRS}
+)
 
 target_include_directories(
 	libasync
@@ -59,5 +71,14 @@ target_include_directories(
 	${PROJECT_SOURCE_DIR}/lib/dispatcher
 )
 
-target_link_libraries(bulk_async_test ${CMAKE_THREAD_LIBS_INIT} libasync $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+target_link_libraries(bulk_async_test ${CMAKE_THREAD_LIBS_INIT} libasync_static $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 
+install(TARGETS libasync DESTINATION bin/lib)
+set(CPACK_PACKAGE_NAME "OtusHomeworks")
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VENDOR "Karyukov")
+set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
+include (CPack)
