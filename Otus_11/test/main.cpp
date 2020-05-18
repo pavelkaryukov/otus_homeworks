@@ -42,7 +42,7 @@ void ThreadFunc() {
 int main() {
     //Создание объектов из разных потоков, должно быть 42 bulk суммарно (42 файла)
     std::vector<std::unique_ptr<std::thread>> threads;
-    for (int i = 0; i <= 6; ++i) {
+    for (int i = 0; i <= 2; ++i) {
         threads.emplace_back(std::make_unique<std::thread>(std::thread{ []() { ThreadFunc(); }}));
     }
     {
