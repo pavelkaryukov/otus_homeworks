@@ -9,8 +9,8 @@ namespace {
         AsyncDispatcher() = default;
 
         handle_t Add(const std::size_t aBulkSize, std::ostream& aOutStream) {
-            if (!m_OutPrintMutex)
-                return 0;
+            //if (!m_OutPrintMutex)
+            //    return 0;
 
             //Try catch and ...
             std::lock_guard<std::mutex> locker(m_Mutex);
