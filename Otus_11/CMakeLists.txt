@@ -73,7 +73,9 @@ target_include_directories(
 
 target_link_libraries(bulk_async_test ${CMAKE_THREAD_LIBS_INIT} libasync_static $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 
-install(TARGETS libasync DESTINATION bin/lib)
+install(TARGETS libasync libasync_static  DESTINATION bin/lib)
+install(FILES ${PROJECT_SOURCE_DIR}/lib/bulk_async.h DESTINATION bin/lib)
+
 set(CPACK_PACKAGE_NAME "OtusHomeworks")
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
