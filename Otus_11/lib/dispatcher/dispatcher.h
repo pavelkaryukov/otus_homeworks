@@ -5,11 +5,7 @@
 #include <deque>  
 #include <iostream> 
 #include <string> 
-/*! \mainpage Otus_10 (BulkMT)
- *
- * \r\n  Диспетчер задач (многопоточный)
- *
- */
+
 /*! CommandDispatcher */
 /**
 * \brief  Аккумулятор  и исполнитель очереди задач

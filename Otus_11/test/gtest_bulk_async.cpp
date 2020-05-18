@@ -1,11 +1,11 @@
 #include <gtest/gtest.h> // googletest header file
 #include "lib/bulk_async.h" 
+#include <algorithm>          
+#include <chrono>   
+#include <set>
+#include <sstream>
 #include <thread>
 #include <vector>
-#include <chrono>
-#include <sstream>  
-#include <algorithm>          
-#include <set>
 
 void FillSet(std::set<std::string>& aSet, std::stringstream&  aSS) {
     std::string str;
