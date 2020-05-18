@@ -6,14 +6,15 @@
 #include <chrono>
 
 
-std::condition_variable g_Condition;
+std::condition_variable_any g_Condition;
 std::mutex g_MutexThread;
 
 void ThreadFunc() {
     std::cout << "Create thread id=" << std::this_thread::get_id() << std::endl;
     {
         std::unique_lock<std::mutex> locker(g_MutexThread);
-        g_Condition.wait_for(locker, std::chrono::seconds(2));
+        //g_Condition.wait_for(locker, std::chrono::seconds(2));
+        g_Condition.wait(locker);
     }
     std::cout << "WakeUp id=" << std::this_thread::get_id() << std::endl;
     std::string testCmd = "cmd1";
