@@ -37,9 +37,9 @@ void ThreadFunc() {
 
 int main() {
     //Создание объектов из разных потоков, должно быть 42 bulk суммарно (42 файла)
-    std::vector<std::thread> threads;
+    std::vector<std::unique_ptr<std::thread>> threads;
     for (int i = 0; i <= 6; ++i) {
-        threads.emplace_back(std::thread{ []() { ThreadFunc(); }});
+        threads.emplace_back(std::make_unique<std::thread>(std::thread{ []() { ThreadFunc(); }}));
     }
     {
         std::unique_lock<std::mutex> locker(g_MutexThread);
@@ -47,7 +47,7 @@ int main() {
     }
 
     for (auto& thread : threads) {
-        thread.join();
+        thread->join();
     }
 
     return 0;
