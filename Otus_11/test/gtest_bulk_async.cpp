@@ -1,6 +1,5 @@
+#include <gtest/gtest.h> // googletest header file
 #include "lib/bulk_async.h" 
-#include <condition_variable>
-#include <mutex>
 #include <thread>
 #include <vector>
 #include <chrono>
@@ -37,39 +36,42 @@ void ThreadFunc() {
     async::receive(handl2, testCmd.data(), testCmd.size());
     async::receive(handl2, testCmd.data(), testCmd.size());
     async::disconnect(handl2);
-    
+
     std::stringstream expectedSS;
-    expectedSS << "bulk: cmd1, cmd1"                              << std::endl;
-    expectedSS << "bulk: cmd1, cmd1"                              << std::endl;
-    expectedSS << "bulk: cmd1, cmd1, cmd1"                        << std::endl;
-    expectedSS << "bulk: cmd1"                                    << std::endl;
-    expectedSS << "main stream: 4 lines, 2 blocks, 4 commands"    << std::endl;
-    expectedSS << "log thread: 2 - blocks, 4 - commands"          << std::endl;
-    expectedSS << "file_1 thread: 1 - blocks, 1 - commands"       << std::endl;
-    expectedSS << "file_2 thread: 1 - blocks, 3 - commands"       << std::endl;
-    expectedSS << "bulk: cmd1, cmd1"                              << std::endl;
-    expectedSS << "bulk: cmd1, cmd1"                              << std::endl;
-    expectedSS << "main stream: 8 lines, 4 blocks, 8 commands"     << std::endl;
-    expectedSS << "log thread: 4 - blocks, 8 - commands"           << std::endl;
-    expectedSS << "file_1 thread: 2 - blocks, 4 - commands"        << std::endl;
-    expectedSS << "file_2 thread: 2 - blocks, 4 - commands"        << std::endl;
+    expectedSS << "bulk: cmd1, cmd1" << std::endl;
+    expectedSS << "bulk: cmd1, cmd1" << std::endl;
+    expectedSS << "bulk: cmd1, cmd1, cmd1" << std::endl;
+    expectedSS << "bulk: cmd1" << std::endl;
+    expectedSS << "main stream: 4 lines, 2 blocks, 4 commands" << std::endl;
+    expectedSS << "log thread: 2 - blocks, 4 - commands" << std::endl;
+    expectedSS << "file_1 thread: 1 - blocks, 1 - commands" << std::endl;
+    expectedSS << "file_2 thread: 1 - blocks, 3 - commands" << std::endl;
+    expectedSS << "bulk: cmd1, cmd1" << std::endl;
+    expectedSS << "bulk: cmd1, cmd1" << std::endl;
+    expectedSS << "main stream: 8 lines, 4 blocks, 8 commands" << std::endl;
+    expectedSS << "log thread: 4 - blocks, 8 - commands" << std::endl;
+    expectedSS << "file_1 thread: 2 - blocks, 4 - commands" << std::endl;
+    expectedSS << "file_2 thread: 2 - blocks, 4 - commands" << std::endl;
 
     std::set<std::string> set1;
     std::set<std::string> set2;
     FillSet(set1, ss);
     FillSet(set2, expectedSS);
-    bool res = set1 == set2;
+    ASSERT_EQ(set1, set2);
 }
 
-int main() {
-    //Создание объектов из разных потоков, должно быть 42 bulk суммарно (42 файла)
+TEST(gtest_bulk_async, gtest_bulk_async_multi_thread) {
     std::vector<std::thread> threads;
     for (int i = 0; i <= 6; ++i) {
-        threads.emplace_back(std::thread{ []() { ThreadFunc(); }});
+        threads.emplace_back(std::thread{ []() { ThreadFunc(); } });
     }
     for (auto& thread : threads) {
         thread.join();
     }
+}
 
+int main(int argc, char** argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
     return 0;
 }

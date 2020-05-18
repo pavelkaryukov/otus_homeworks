@@ -55,7 +55,7 @@ target_include_directories(
 )
 
 ##################################
-##########TEST_BLOCK##############
+#######USAGE_EXAMPLE_BLOCK########
 add_executable(bulk_async_test "test/main.cpp" ) 
 
 set_target_properties (
@@ -73,6 +73,43 @@ target_include_directories(
 
 target_link_libraries(bulk_async_test ${CMAKE_THREAD_LIBS_INIT} libasync_static $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 
+
+##################################
+###########TEST_BLOCK#############
+find_package(GTest REQUIRED)
+
+if(NOT GTEST_FOUND )
+	message(SEND_ERROR "Failed to find GTest")
+	return()
+endif()
+
+add_executable(gtest_bulk_async "test/gtest_bulk_async.cpp" ) 
+
+set_target_properties (
+	gtest_bulk_async  PROPERTIES 
+	CXX_STANDARD 17
+	CXX_STANDARD_REQUIRED ON	
+)
+
+target_include_directories(			
+	gtest_bulk_async 
+	PRIVATE
+	${GTEST_INCLUDE_DIRS}
+	${PROJECT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/lib/dispatcher
+)
+
+target_link_libraries(gtest_bulk_async 
+	${GTEST_BOTH_LIBRARIES} 
+	${CMAKE_THREAD_LIBS_INIT}  
+	libasync_static
+	$<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+)
+
+enable_testing()
+add_test(gtest_bulk_async gtest_bulk_async)
+##############################################
+###################INSTALL####################
 install(TARGETS libasync libasync_static  DESTINATION bin/lib)
 install(FILES ${PROJECT_SOURCE_DIR}/lib/bulk_async.h DESTINATION bin/lib)
 
