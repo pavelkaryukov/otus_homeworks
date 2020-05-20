@@ -1,0 +1,21 @@
+cmake_minimum_required (VERSION 3.8)
+
+project ("Otus_12" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
+
+add_executable(bulk_server main.cpp)
+set_target_properties (
+	bulk_server 
+	PROPERTIES 
+	CXX_STANDARD 17
+	CXX_STANDARD_REQUIRED ON	
+)
+
+find_package(Boost COMPONENTS system REQUIRED)
+find_package(Threads)
+
+include_directories(${Boost_INCLUDE_DIR})
+
+target_link_libraries(bulk_server
+        ${Boost_LIBRARIES}
+        ${CMAKE_THREAD_LIBS_INIT}
+)
