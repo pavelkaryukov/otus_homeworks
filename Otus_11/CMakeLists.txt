@@ -22,8 +22,10 @@ set_target_properties (
 	libasync
 	PROPERTIES 
 	CXX_STANDARD 17
-	CXX_STANDARD_REQUIRED ON	
+	CXX_STANDARD_REQUIRED ON
+	OUTPUT_NAME libasync
 )
+
 
 find_package(Boost REQUIRED)
 if(NOT Boost_FOUND)
@@ -106,6 +108,10 @@ target_link_libraries(gtest_bulk_async
 	$<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
 )
 
+# Copy output
+#file(COPY ${CMAKE_BINARY_DIR}/libasync.dll DESTINATION ${PROJECT_SOURCE_DIR}/../Otus_12/lib)
+file(COPY ${PROJECT_SOURCE_DIR}/lib/bulk_async.h DESTINATION ${CMAKE_BINARY_DIR}/Otus_11)
+#CMAKE_CURRENT_BINARY_DIR
 enable_testing()
 add_test(gtest_bulk_async gtest_bulk_async)
 ##############################################

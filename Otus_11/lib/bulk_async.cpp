@@ -62,6 +62,10 @@ namespace {
             }
         }
 
+        bool Exist(const handle_t aHandle) {
+            std::lock_guard<std::mutex> locker(m_Mutex);
+            return  m_Dispatchers.find(aHandle) != m_Dispatchers.end();
+        }
     private:
         std::unordered_map<handle_t, std::unique_ptr<CommandDispatcher>> m_Dispatchers;
         std::mutex m_Mutex;
@@ -83,5 +87,9 @@ namespace async {
     
     void disconnect(handle_t handle) {
         g_Dispatcher.CloseDispatcher(handle);
+    }
+
+    bool exist(handle_t handle) {
+        return g_Dispatcher.Exist(handle);
     }
 }
