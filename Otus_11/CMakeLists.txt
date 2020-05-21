@@ -23,7 +23,7 @@ set_target_properties (
 	PROPERTIES 
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON
-	#OUTPUT_NAME libasync
+	OUTPUT_NAME libasync
 )
 
 
@@ -117,8 +117,8 @@ enable_testing()
 add_test(gtest_bulk_async gtest_bulk_async)
 ##############################################
 ###################INSTALL####################
-install(TARGETS libasync libasync_static  DESTINATION bin/lib)
-install(FILES ${PROJECT_SOURCE_DIR}/lib/bulk_async.h DESTINATION bin/lib)
+install(TARGETS libasync libasync_static  DESTINATION bin/lib/)
+install(FILES ${PROJECT_SOURCE_DIR}/lib/bulk_async.h DESTINATION bin/lib/)
 
 set(CPACK_PACKAGE_NAME "OtusHomeworks")
 set(CPACK_GENERATOR DEB)
