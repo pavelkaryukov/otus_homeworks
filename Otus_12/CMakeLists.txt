@@ -20,12 +20,11 @@ target_include_directories(	bulk_server
 	${Boost_INCLUDE_DIR}
 )
 
-find_library (CURL_LIBRARY NAMES libasync  HINTS ${PROJECT_SOURCE_DIR}/lib)
-#IF (WIN32)
-#	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.lib)	
-#	#set (CURL_LIBRARY ${CMAKE_BINARY_DIR}/Otus_11/libasync.lib)
-#	# set stuff for windows
-#ELSE()
+#find_library (CURL_LIBRARY NAMES libasync  HINTS ${PROJECT_SOURCE_DIR}/lib)
+IF (WIN32)
+	set(ASYNC_LIB_PATH ${PROJECT_SOURCE_DIR}/lib/libasync.lib)	
+ELSE()
+	set(ASYNC_LIB_PATH ${PROJECT_SOURCE_DIR}/lib/libasync.a)
 #	#set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.a)
 #	#set (CURL_LIBRARY ${CMAKE_BINARY_DIR}/Otus_11/liblibasync.a)
 #	  # set stuff for other systems
@@ -35,5 +34,5 @@ message("------------\r\n"  ${CURL_LIBRARY} "------------\r\n")
 target_link_libraries(bulk_server
         ${Boost_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
-		${CURL_LIBRARY}# учитывать возможность a файла 
+		${ASYNC_LIB_PATH}# учитывать возможность a файла 
 )
