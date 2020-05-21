@@ -21,11 +21,11 @@ target_include_directories(	bulk_server
 )
 
 IF (WIN32)
-	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync.lib)
+	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.lib)
   # set stuff for windows
 ELSE()
 
-	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync.a)
+	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.a)
   # set stuff for other systems
 ENDIF()
 
