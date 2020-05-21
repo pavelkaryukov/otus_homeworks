@@ -1,4 +1,4 @@
-#include "duplicate/duplicate_finder.h"
+п»ї#include "duplicate/duplicate_finder.h"
 #include "file/file_filter.h" 
 #include "hash/hash_crc32.h"
 #include "hash/ihash.h"
@@ -8,7 +8,7 @@
 TEST(test_bayan, test_bayan_1) {
     const std::string expectedOutput = "\"file_1.lib\"\"file_1.txt\"\"file_2.lib\"\"file_2.txt\"\"file_3.lib\"\"file_3.txt\"";
     testing::internal::CaptureStdout();
-    //файлы file_4.lib file_4.txt  являются уникальными
+    //С„Р°Р№Р»С‹ file_4.lib file_4.txt  В¤РІР»В¤СЋС‚СЃВ¤ СѓРЅРёРєР°Р»СЊРЅС‹РјРё
     FilesFilter fileFilter{ {{ "test_catalog" } , {}, 0}, {0, {"*"}} };
     DuplicateFinder finder{ boost::factory<std::unique_ptr<HashCRC32>>(), 50 };
     finder.OutputDuplicated(fileFilter.GetFiles(), false);

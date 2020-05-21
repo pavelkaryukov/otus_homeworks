@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.8)
+п»їcmake_minimum_required (VERSION 3.8)
 
 project ("Otus_12" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 set(ASYNC_LIB_DIR ${CMAKE_BINARY_DIR}/../Otus_11/)		 
@@ -29,7 +29,7 @@ ENDIF()
 target_link_libraries(bulk_server
         ${Boost_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
-		${ASYNC_LIB_PATH}# учитывать возможность a файла 
+		${ASYNC_LIB_PATH}# СѓС‡РёС‚С‹РІР°С‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ a С„Р°Р№Р»Р° 
 )
 
 add_subdirectory ("client")

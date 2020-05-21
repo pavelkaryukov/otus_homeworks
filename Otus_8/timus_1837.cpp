@@ -1,4 +1,4 @@
-#include <cctype>
+п»ї#include <cctype>
 #include <map>
 #include <set>
 #include <string>
@@ -67,7 +67,7 @@ team_t GetTeam(const std::string& aTeamStr, players_t& aPlayers) {
         return {};
     for (const auto& player : players){
         if (team.find(player) != team.end())
-            return {}; //Нет места однофамильцам в команде
+            return {}; //РќРµС‚ РјРµСЃС‚Р° РѕРґРЅРѕС„Р°РјРёР»СЊС†Р°Рј РІ РєРѕРјР°РЅРґРµ
         aPlayers[player] = TeamWeight::Undefined;
         team.insert(player);
     }

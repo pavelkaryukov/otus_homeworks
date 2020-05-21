@@ -1,18 +1,18 @@
-#pragma once
+п»ї#pragma once
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/filesystem.hpp>     
 #include <boost/regex.hpp>
 #include <string>
 #include <vector>
-///\brief класс фильтрующий файлы по размеру и маске
+///\brief РєР»Р°СЃСЃ С„РёР»СЊС‚СЂСѓСЋС‰РёР№ С„Р°Р№Р»С‹ РїРѕ СЂР°Р·РјРµСЂСѓ Рё РјР°СЃРєРµ
 class FileBorder {
 public:
     FileBorder(const std::size_t aMinSize, const std::vector<std::string>&  aMasks) :
         _minSize(aMinSize != 0 ? aMinSize : 1), _filter(MaskToRegexVect(aMasks)) {}
     
     /**
-    * \brief  файл разрешен для поиска дубликатов
-    * \details проверяет файл на соотвесткие маски имени и размера
+    * \brief  С„Р°Р№Р» СЂР°Р·СЂРµС€РµРЅ РґР»СЏ РїРѕРёСЃРєР° РґСѓР±Р»РёРєР°С‚РѕРІ
+    * \details РїСЂРѕРІРµСЂСЏРµС‚ С„Р°Р№Р» РЅР° СЃРѕРѕС‚РІРµСЃС‚РєРёРµ РјР°СЃРєРё РёРјРµРЅРё Рё СЂР°Р·РјРµСЂР°
     */
     bool IsPermittedFile(const boost::filesystem::directory_entry& aObj) {
         return IsPermittedSize(aObj) && IsPermittedMask(aObj);

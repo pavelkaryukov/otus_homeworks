@@ -1,4 +1,4 @@
-#include "dispatcher/dispatcher.h"
+п»ї#include "dispatcher/dispatcher.h"
 #include <cctype> 
 #include <cstring>
 
@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
     setlocale(LC_ALL, "Russian");
     std::size_t N = 0;
     if (argc == 1) {
-        std::cout << "Количество команд в одной куче (bulk) не было установлено. Установлено  значение по умолчанию = 3" << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = 3" << std::endl;
         N = 3;
     }
     else {
@@ -27,12 +27,12 @@ int main(int argc, char** argv) {
             N = std::atoi(argv[1]);
         }
         else {
-            std::cout << "Количество команд в одной куче (bulk) имеет не валидное значение ["<<argv[1]<<"]. Установлено  значение по умолчанию = 3" << std::endl;
+            std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РёРјРµРµС‚ РЅРµ РІР°Р»РёРґРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ ["<<argv[1]<<"]. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = 3" << std::endl;
             N = 3;
         }
     }
 
-    const std::size_t kBulkSize = N > 0 ? N : 1; // кол-во команда в одной булке
+    const std::size_t kBulkSize = N > 0 ? N : 1; // РєРѕР»-РІРѕ РєРѕРјР°РЅРґР° РІ РѕРґРЅРѕР№ Р±СѓР»РєРµ
 
     CommandDispatcher dispatcher{ kBulkSize};
     std::string str;

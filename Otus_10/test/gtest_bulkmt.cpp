@@ -1,4 +1,4 @@
-#include <gtest/gtest.h> // googletest header file
+﻿#include <gtest/gtest.h> // googletest header file
 #include "dispatcher/dispatcher.h"
 #include <sstream>
 

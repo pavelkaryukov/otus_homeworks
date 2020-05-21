@@ -1,10 +1,10 @@
-#pragma once
+п»ї#pragma once
 #include "command/icommand.h"
 #include "logger/logger.h"
 #include <iostream> 
 /**
-* \brief   простейшая имплементация интерфейса IMyCommand
-* \details при исполнение возвращает свое имя
+* \brief   РїСЂРѕСЃС‚РµР№С€Р°СЏ РёРјРїР»РµРјРµРЅС‚Р°С†РёСЏ РёРЅС‚РµСЂС„РµР№СЃР° IMyCommand
+* \details РїСЂРё РёСЃРїРѕР»РЅРµРЅРёРµ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРІРѕРµ РёРјСЏ
 */
 class SimpleCommand final : public IMyCommand {
 public:

@@ -1,18 +1,18 @@
-#pragma once       
+п»ї#pragma once       
 #include "logger/logger_screen.h"
 #include "logger/logger_file.h"
 #include <string> 
 /**
-* \brief  класс агрегатор для логгеров
-* \details Screen logger яв-ся обязательным 
+* \brief  РєР»Р°СЃСЃ Р°РіСЂРµРіР°С‚РѕСЂ РґР»СЏ Р»РѕРіРіРµСЂРѕРІ
+* \details Screen logger СЏРІ-СЃСЏ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рј 
 */
 class CmdLogger {
     using logger_t = std::unique_ptr<ILogger>;
 public:
     /**
-    * \brief  конструктор класса агрегатора для логгеров
-    * \details ScreenLogger - обязательный, кол-во FileLogger - опционально
-    * \param[in] aBulkSize - размер статической очереди
+    * \brief  РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР° Р°РіСЂРµРіР°С‚РѕСЂР° РґР»СЏ Р»РѕРіРіРµСЂРѕРІ
+    * \details ScreenLogger - РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№, РєРѕР»-РІРѕ FileLogger - РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ
+    * \param[in] aBulkSize - СЂР°Р·РјРµСЂ СЃС‚Р°С‚РёС‡РµСЃРєРѕР№ РѕС‡РµСЂРµРґРё
     */
     CmdLogger(std::ostream& aStream, const std::size_t aFileLoggersNumber, std::shared_ptr<std::mutex>& aMutex) : m_Stream(aStream), m_ScreenMutex(aMutex) {
         m_LoggerScreen = std::make_unique<LoggerScreen>(aStream, m_ScreenMutex);

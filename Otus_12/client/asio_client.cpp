@@ -1,4 +1,4 @@
-#include <boost/asio.hpp>
+п»ї#include <boost/asio.hpp>
 #include <string>
 #include <iostream>
 
@@ -9,20 +9,20 @@ std::pair<std::string, std::size_t> GetArgs(int argc, char** argv) {
     const std::size_t kDefaultPort = 753;
 
     if (argc <= 1) {
-        std::cout << "IP не был установлен. значение по умолчанию = " << kDefaultIP<< std::endl;
-        std::cout << "Port не был установлен, значение по умолчанию = " << kDefaultPort << std::endl;
+        std::cout << "IP РЅРµ Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ. Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultIP<< std::endl;
+        std::cout << "Port РЅРµ Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ, Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultPort << std::endl;
         return { kDefaultIP , kDefaultPort };
     }
 
     const std::string ip = std::string(argv[1]);
     if (argc < 3) {
-        std::cout << "Port не был установлен, значение по умолчанию = " << kDefaultPort << std::endl;
+        std::cout << "Port РЅРµ Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ, Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultPort << std::endl;
         return { ip , kDefaultPort };
     }
 
     const std::size_t port = std::atoi(argv[2]);
     if (port <= 0) {
-        std::cout << "Port не был установлен, значение по умолчанию = " << kDefaultPort << std::endl;
+        std::cout << "Port РЅРµ Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ, Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultPort << std::endl;
         return { ip , kDefaultPort };
     }
 

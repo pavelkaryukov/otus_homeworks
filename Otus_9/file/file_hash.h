@@ -1,18 +1,18 @@
-#pragma once
+п»ї#pragma once
 #include "hash/ihash.h"
 #include <boost/filesystem.hpp>     
 #include <fstream>
 #include <iostream>
 #include <string>
 /**
-* \brief  класс хранит текущее  состояние обработки файла (путь, хэш сумму, алгоритм хэширофания).
+* \brief  РєР»Р°СЃСЃ С…СЂР°РЅРёС‚ С‚РµРєСѓС‰РµРµ  СЃРѕСЃС‚РѕСЏРЅРёРµ РѕР±СЂР°Р±РѕС‚РєРё С„Р°Р№Р»Р° (РїСѓС‚СЊ, С…СЌС€ СЃСѓРјРјСѓ, Р°Р»РіРѕСЂРёС‚Рј С…СЌС€РёСЂРѕС„Р°РЅРёСЏ).
 */
 struct FileHasher {
-    ///\brief  Путь к файлу
+    ///\brief  РџСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
     boost::filesystem::path Path;
-    ///\brief  объект класса реализующий алгоритм хэширования (интерфейс IHash)
+    ///\brief  РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° СЂРµР°Р»РёР·СѓСЋС‰РёР№ Р°Р»РіРѕСЂРёС‚Рј С…СЌС€РёСЂРѕРІР°РЅРёСЏ (РёРЅС‚РµСЂС„РµР№СЃ IHash)
     std::unique_ptr<IHash> Hasher;
-    ///\brief  поток std::ifstream для доступа к файлу
+    ///\brief  РїРѕС‚РѕРє std::ifstream РґР»СЏ РґРѕСЃС‚СѓРїР° Рє С„Р°Р№Р»Сѓ
     std::ifstream File;
 
     bool operator<(const FileHasher& aRhs) const {

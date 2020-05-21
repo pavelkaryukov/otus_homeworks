@@ -15,7 +15,7 @@ std::pair<std::size_t, std::size_t> GetArgs(int argc, char** argv) {
         std::cout << "Количество команд в одной куче (bulk) не было установлено. Установлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
         std::cout << "Количество команд в потоков записи файла не было установлено. Установлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
         return { kDefaultBulkSize , kDefaultThreadNum };
-    }
+    } 
 
     if (argc < 3) {
         std::cout << "Количество команд в потоков записи файла не было установлено. Установлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;

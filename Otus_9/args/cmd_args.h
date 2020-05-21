@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <boost/format.hpp>
 #include <boost/program_options.hpp>
 #include <cctype>
@@ -6,13 +6,13 @@
 #include <string>
 #include <vector>
 //using namespace boost::program_options::;
-//--dir, D - директория сканирования (может быть несколько)
-//--except, E - директория исключенная из сканирования (может быть несколько)
-//--lvl, L - уровень сканирования (0 - только текущий каталог)
-//--min, M - минимальный размер рассматриваемых файлов
-//--mask,N - маски имени файлов, не регистрозависимые
-//--block,S - размер блока
-//--hash, H --алгоритм хэширования (реализуем crc32, md5, что нибудь ещё)
+//--dir, D - РґРёСЂРµРєС‚РѕСЂРёСЏ СЃРєР°РЅРёСЂРѕРІР°РЅРёСЏ (РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ)
+//--except, E - РґРёСЂРµРєС‚РѕСЂРёСЏ РёСЃРєР»СЋС‡РµРЅРЅР°СЏ РёР· СЃРєР°РЅРёСЂРѕРІР°РЅРёСЏ (РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ)
+//--lvl, L - СѓСЂРѕРІРµРЅСЊ СЃРєР°РЅРёСЂРѕРІР°РЅРёСЏ (0 - С‚РѕР»СЊРєРѕ С‚РµРєСѓС‰РёР№ РєР°С‚Р°Р»РѕРі)
+//--min, M - РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ СЂР°СЃСЃРјР°С‚СЂРёРІР°РµРјС‹С… С„Р°Р№Р»РѕРІ
+//--mask,N - РјР°СЃРєРё РёРјРµРЅРё С„Р°Р№Р»РѕРІ, РЅРµ СЂРµРіРёСЃС‚СЂРѕР·Р°РІРёСЃРёРјС‹Рµ
+//--block,S - СЂР°Р·РјРµСЂ Р±Р»РѕРєР°
+//--hash, H --Р°Р»РіРѕСЂРёС‚Рј С…СЌС€РёСЂРѕРІР°РЅРёСЏ (СЂРµР°Р»РёР·СѓРµРј crc32, md5, С‡С‚Рѕ РЅРёР±СѓРґСЊ РµС‰С‘)
 struct CmdArgs {
     enum class HashAlg {
         crc32,
@@ -31,7 +31,7 @@ struct CmdArgs {
     bool StartProcess = false;
     
     void SetHashAlg(std::string aStr) {
-        //передача по значению так.как  строка будет преобразована к нижнему регистру
+        //РїРµСЂРµРґР°С‡Р° РїРѕ Р·РЅР°С‡РµРЅРёСЋ С‚Р°Рє.РєР°Рє  СЃС‚СЂРѕРєР° Р±СѓРґРµС‚ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅР° Рє РЅРёР¶РЅРµРјСѓ СЂРµРіРёСЃС‚СЂСѓ
         std::transform(aStr.begin(), aStr.end(), aStr.begin(), [](unsigned char c) { return std::tolower(c); });
         if (aStr == "crc32") {
             Algorithm = HashAlg::crc32;
@@ -40,7 +40,7 @@ struct CmdArgs {
             Algorithm = HashAlg::md5;
         }
         else {
-            std::cout << boost::format("Неизвестный hash-алгорит=\"%1%\", установлено значение по умолчанию = crc32") % aStr << std::endl;
+            std::cout << boost::format("РќРµРёР·РІРµСЃС‚РЅС‹Р№ hash-Р°Р»РіРѕСЂРёС‚=\"%1%\", СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = crc32") % aStr << std::endl;
         }
     }
 
@@ -79,16 +79,16 @@ struct CmdArgs {
 CmdArgs GetArgs(int argc, char** argv) {
     CmdArgs procArgs;
     std::string hash;
-    boost::program_options::options_description desc{ "Options" };//TODO::сделать конструктор класса от аргументов командной стороки ?
+    boost::program_options::options_description desc{ "Options" };//TODO::СЃРґРµР»Р°С‚СЊ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР° РѕС‚ Р°СЂРіСѓРјРµРЅС‚РѕРІ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚РѕСЂРѕРєРё ?
     desc.add_options()
         ("help,h", "Help screen")
-        ("dir,D", boost::program_options::value<std::vector<std::string>>(&procArgs.Dirs), "директория сканирования (может быть несколько)")
-        ("except,E", boost::program_options::value<std::vector<std::string>>(&procArgs.Dropped), "директория исключенная из сканирования (может быть несколько)")
-        ("lvl,L", boost::program_options::value<std::size_t>(&procArgs.Lvl), "уровень сканирования (0 - только текущий каталог)")
-        ("min,M", boost::program_options::value<std::size_t>(&procArgs.MinFileSize), "минимальный размер рассматриваемых файлов (0 - без ограничения)")
-        ("mask,N", boost::program_options::value<std::vector<std::string>>(&procArgs.Masks), "маски имени файлов, не регистрозависимые (может быть несколько)")
-        ("block,B", boost::program_options::value<std::size_t>(&procArgs.BlockSize), "размер вычитываемого блока")
-        ("hash,H", boost::program_options::value<std::string>(&hash), "алгоритм хэширования (реализуем crc32, md5, что нибудь ещё)");
+        ("dir,D", boost::program_options::value<std::vector<std::string>>(&procArgs.Dirs), "РґРёСЂРµРєС‚РѕСЂРёСЏ СЃРєР°РЅРёСЂРѕРІР°РЅРёСЏ (РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ)")
+        ("except,E", boost::program_options::value<std::vector<std::string>>(&procArgs.Dropped), "РґРёСЂРµРєС‚РѕСЂРёСЏ РёСЃРєР»СЋС‡РµРЅРЅР°СЏ РёР· СЃРєР°РЅРёСЂРѕРІР°РЅРёСЏ (РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ)")
+        ("lvl,L", boost::program_options::value<std::size_t>(&procArgs.Lvl), "СѓСЂРѕРІРµРЅСЊ СЃРєР°РЅРёСЂРѕРІР°РЅРёСЏ (0 - С‚РѕР»СЊРєРѕ С‚РµРєСѓС‰РёР№ РєР°С‚Р°Р»РѕРі)")
+        ("min,M", boost::program_options::value<std::size_t>(&procArgs.MinFileSize), "РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ СЂР°СЃСЃРјР°С‚СЂРёРІР°РµРјС‹С… С„Р°Р№Р»РѕРІ (0 - Р±РµР· РѕРіСЂР°РЅРёС‡РµРЅРёСЏ)")
+        ("mask,N", boost::program_options::value<std::vector<std::string>>(&procArgs.Masks), "РјР°СЃРєРё РёРјРµРЅРё С„Р°Р№Р»РѕРІ, РЅРµ СЂРµРіРёСЃС‚СЂРѕР·Р°РІРёСЃРёРјС‹Рµ (РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ)")
+        ("block,B", boost::program_options::value<std::size_t>(&procArgs.BlockSize), "СЂР°Р·РјРµСЂ РІС‹С‡РёС‚С‹РІР°РµРјРѕРіРѕ Р±Р»РѕРєР°")
+        ("hash,H", boost::program_options::value<std::string>(&hash), "Р°Р»РіРѕСЂРёС‚Рј С…СЌС€РёСЂРѕРІР°РЅРёСЏ (СЂРµР°Р»РёР·СѓРµРј crc32, md5, С‡С‚Рѕ РЅРёР±СѓРґСЊ РµС‰С‘)");
 
     boost::program_options::command_line_parser parser{ argc, argv };
     parser.options(desc).allow_unregistered().style(
@@ -101,7 +101,7 @@ CmdArgs GetArgs(int argc, char** argv) {
     boost::program_options::store(parsed_options, vm);
     boost::program_options::notify(vm);
     if (procArgs.Dirs.empty()) {
-        std::cout << "Т.к. параметр --dir не был установлен,  поиск дубликатов будет осуществлен в текущем каталоге" << std::endl;
+        std::cout << "Рў.Рє. РїР°СЂР°РјРµС‚СЂ --dir РЅРµ Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ,  РїРѕРёСЃРє РґСѓР±Р»РёРєР°С‚РѕРІ Р±СѓРґРµС‚ РѕСЃСѓС‰РµСЃС‚РІР»РµРЅ РІ С‚РµРєСѓС‰РµРј РєР°С‚Р°Р»РѕРіРµ" << std::endl;
         procArgs.Dirs = { "." };
     }
 

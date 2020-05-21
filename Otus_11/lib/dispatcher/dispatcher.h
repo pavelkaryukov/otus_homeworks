@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "command/simple_command.h"
 #include "logger/logger.h"
 #include <boost/format.hpp> 
@@ -8,8 +8,8 @@
 
 /*! CommandDispatcher */
 /**
-* \brief  Аккумулятор  и исполнитель очереди задач
-* \details задачи выполняются в статической очереди (по X штук за раз) или в динамической (блоки отделенные скобками {})
+* \brief  РђРєРєСѓРјСѓР»СЏС‚РѕСЂ  Рё РёСЃРїРѕР»РЅРёС‚РµР»СЊ РѕС‡РµСЂРµРґРё Р·Р°РґР°С‡
+* \details Р·Р°РґР°С‡Рё РІС‹РїРѕР»РЅСЏСЋС‚СЃСЏ РІ СЃС‚Р°С‚РёС‡РµСЃРєРѕР№ РѕС‡РµСЂРµРґРё (РїРѕ X С€С‚СѓРє Р·Р° СЂР°Р·) РёР»Рё РІ РґРёРЅР°РјРёС‡РµСЃРєРѕР№ (Р±Р»РѕРєРё РѕС‚РґРµР»РµРЅРЅС‹Рµ СЃРєРѕР±РєР°РјРё {})
 */
 class CommandDispatcher {
 public:
@@ -17,11 +17,11 @@ public:
     CommandDispatcher() = default;
 
     /**
-    * \brief  конструктор по умолчанию
-    * \details при передачи не валидного размера статической очереди - будет установлено значение по умолчанию = 1
-    * \param[in] aBulkSize - размер статической очереди
-    * \param[in] aStream - поток вывода
-    * \param[in] aFileLoggerrsNumber - количество потоков вывода на экран
+    * \brief  РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+    * \details РїСЂРё РїРµСЂРµРґР°С‡Рё РЅРµ РІР°Р»РёРґРЅРѕРіРѕ СЂР°Р·РјРµСЂР° СЃС‚Р°С‚РёС‡РµСЃРєРѕР№ РѕС‡РµСЂРµРґРё - Р±СѓРґРµС‚ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = 1
+    * \param[in] aBulkSize - СЂР°Р·РјРµСЂ СЃС‚Р°С‚РёС‡РµСЃРєРѕР№ РѕС‡РµСЂРµРґРё
+    * \param[in] aStream - РїРѕС‚РѕРє РІС‹РІРѕРґР°
+    * \param[in] aFileLoggerrsNumber - РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕС‚РѕРєРѕРІ РІС‹РІРѕРґР° РЅР° СЌРєСЂР°РЅ
     */
     CommandDispatcher(const std::size_t aBulkSize, std::ostream& aStream, const std::size_t aFileLoggerrsNumber, std::shared_ptr<std::mutex>& aMutex) 
         : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1), m_Logger(CmdLogger{ aStream, aFileLoggerrsNumber, aMutex}) {
@@ -31,12 +31,12 @@ public:
     }
 
     /**
-    * \brief  метод добавляет новую команду.
+    * \brief  РјРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РЅРѕРІСѓСЋ РєРѕРјР°РЅРґСѓ.
     * \details 
-    * \param[in] aStr - командная строка
-    * - { - открыть блок
-    * - } - закрыть блок
-    * - команда
+    * \param[in] aStr - РєРѕРјР°РЅРґРЅР°СЏ СЃС‚СЂРѕРєР°
+    * - { - РѕС‚РєСЂС‹С‚СЊ Р±Р»РѕРє
+    * - } - Р·Р°РєСЂС‹С‚СЊ Р±Р»РѕРє
+    * - РєРѕРјР°РЅРґР°
     */
     void ProcessCmdLine(const std::string& aStr) {
         ++m_LinesNum;
@@ -56,16 +56,16 @@ public:
     }
 
     /**
-    * \brief  метод выполняет все скопленные команды.
-    * \details Bulk size должен быть статическим
+    * \brief  РјРµС‚РѕРґ РІС‹РїРѕР»РЅСЏРµС‚ РІСЃРµ СЃРєРѕРїР»РµРЅРЅС‹Рµ РєРѕРјР°РЅРґС‹.
+    * \details Bulk size РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃС‚Р°С‚РёС‡РµСЃРєРёРј
     */
     void Flush() {
         ExecuteCommands(true);
     }
 
     /**
-    * \brief  деструктор.
-    * \details Logger выполнит и отцепит все свои потоки, а статистика ниток будет выведена
+    * \brief  РґРµСЃС‚СЂСѓРєС‚РѕСЂ.
+    * \details Logger РІС‹РїРѕР»РЅРёС‚ Рё РѕС‚С†РµРїРёС‚ РІСЃРµ СЃРІРѕРё РїРѕС‚РѕРєРё, Р° СЃС‚Р°С‚РёСЃС‚РёРєР° РЅРёС‚РѕРє Р±СѓРґРµС‚ РІС‹РІРµРґРµРЅР°
     */
     ~CommandDispatcher() {
         m_Logger.Exit();
@@ -146,7 +146,7 @@ private:
 
     void ProcessCloseBrace() {
         if (m_StartBraceCounter == 0)
-            return;//Игнорируем некорректный ввод
+            return;//РРіРЅРѕСЂРёСЂСѓРµРј РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ
         --m_StartBraceCounter;
         if (m_StartBraceCounter == 0) {
             ExecuteCommands(true);

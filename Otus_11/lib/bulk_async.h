@@ -1,33 +1,33 @@
-#pragma once
+п»ї#pragma once
 #include <cctype>
 #include <iostream>
 /*! \mainpage Otus_11 (BulkMT_ASYNC)
  *
- * \r\n  Диспетчер задач (многопоточный асинхронный)
+ * \r\n  Ж’РёСЃРїРµС‚С‡РµСЂ Р·Р°РґР°С‡ (РјРЅРѕРіРѕРїРѕС‚РѕС‡РЅС‹Р№ Р°СЃРёРЅС…СЂРѕРЅРЅС‹Р№)
  *
  */
 namespace async {
     using handle_t = std::uint64_t;
 
     /**
-    * \brief  создание обработчика команд
-    * \param[in] bulk - кол-во команд в куче
-    * \param[in] aOutStream - поток вывода лога
-    * \return id обработчика (если 0 - то логгер не создан)
+    * \brief  СЃРѕР·РґР°РЅРёРµ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєРѕРјР°РЅРґ
+    * \param[in] bulk - РєРѕР»-РІРѕ РєРѕРјР°РЅРґ РІ РєСѓС‡Рµ
+    * \param[in] aOutStream - РїРѕС‚РѕРє РІС‹РІРѕРґР° Р»РѕРіР°
+    * \return id РѕР±СЂР°Р±РѕС‚С‡РёРєР° (РµСЃР»Рё 0 - С‚Рѕ Р»РѕРіРіРµСЂ РЅРµ СЃРѕР·РґР°РЅ)
     */
     handle_t connect(std::size_t bulk, std::ostream& aOutStream = std::cout);
 
     /**
-    * \brief  обработка команды
-    * \param[in] handle - id обработчика
-    * \param[in] data - указатель на начало буффера
-    * \param[in] size - размер буффера
+    * \brief  РѕР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґС‹
+    * \param[in] handle - id РѕР±СЂР°Р±РѕС‚С‡РёРєР°
+    * \param[in] data - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С‡Р°Р»Рѕ Р±СѓС„С„РµСЂР°
+    * \param[in] size - СЂР°Р·РјРµСЂ Р±СѓС„С„РµСЂР°
     */
     void receive(handle_t handle, const char *data, std::size_t size);
 
     /**
-    * \brief  уничтожение обработчика
-    * \param[in] handle - id обработчика
+    * \brief  СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ РѕР±СЂР°Р±РѕС‚С‡РёРєР°
+    * \param[in] handle - id РѕР±СЂР°Р±РѕС‚С‡РёРєР°
     */
     void disconnect(handle_t handle);
 }

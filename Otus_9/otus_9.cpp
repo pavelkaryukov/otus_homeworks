@@ -1,4 +1,4 @@
-#include "args/cmd_args.h"    
+п»ї#include "args/cmd_args.h"    
 #include "duplicate/duplicate_finder.h"
 #include "file/file_filter.h" 
 #include "hash/hash_crc32.h"
@@ -6,15 +6,15 @@
 #include "hash/ihash.h"
 /*! \mainpage Otus_9 (Bayan)
  *
- * \r\n  Поиск файлов дубликатов в папке
+ * \r\n  РџРѕРёСЃРє С„Р°Р№Р»РѕРІ РґСѓР±Р»РёРєР°С‚РѕРІ РІ РїР°РїРєРµ
  *
  */
 
  /**
- * \brief  Возвращает указатель на фабрику классов расчета хэш функций
- * \details возвращенная фабрика создает объекты реализующие алгоритм iHash.
- * \param[in] aAlg - алгоритм хэширования
- * \return TDefaultValue - фабрика классов реализующих интерфейс IHash
+ * \brief  Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С„Р°Р±СЂРёРєСѓ РєР»Р°СЃСЃРѕРІ СЂР°СЃС‡РµС‚Р° С…СЌС€ С„СѓРЅРєС†РёР№
+ * \details РІРѕР·РІСЂР°С‰РµРЅРЅР°СЏ С„Р°Р±СЂРёРєР° СЃРѕР·РґР°РµС‚ РѕР±СЉРµРєС‚С‹ СЂРµР°Р»РёР·СѓСЋС‰РёРµ Р°Р»РіРѕСЂРёС‚Рј iHash.
+ * \param[in] aAlg - Р°Р»РіРѕСЂРёС‚Рј С…СЌС€РёСЂРѕРІР°РЅРёСЏ
+ * \return TDefaultValue - С„Р°Р±СЂРёРєР° РєР»Р°СЃСЃРѕРІ СЂРµР°Р»РёР·СѓСЋС‰РёС… РёРЅС‚РµСЂС„РµР№СЃ IHash
  */
 boost::function<std::unique_ptr<IHash>()> GetHashCalculator(const CmdArgs::HashAlg aAlg) {
     switch (aAlg) {

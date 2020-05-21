@@ -1,7 +1,7 @@
-#pragma once
+п»ї#pragma once
 #include <string> 
 /**
-* \brief  Интерфейс команды
+* \brief  РРЅС‚РµСЂС„РµР№СЃ РєРѕРјР°РЅРґС‹
 */
 class IMyCommand {
 protected:
@@ -9,8 +9,8 @@ protected:
 public:
     
     /**
-    * \brief  Выполнить команду
-    * \return log_text_t - лог результатов выполнения команды
+    * \brief  Р’С‹РїРѕР»РЅРёС‚СЊ РєРѕРјР°РЅРґСѓ
+    * \return log_text_t - Р»РѕРі СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РІС‹РїРѕР»РЅРµРЅРёСЏ РєРѕРјР°РЅРґС‹
     */
     virtual log_text_t Execute() = 0;
 

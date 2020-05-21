@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.8)
 
 project ("Otus_10" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 set(CMD_SRC     "command/icommand.h" "command/simple_command.h")

@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "hash/ihash.h"
 #include "file/file_hash.h"
 #include <boost/function.hpp>
@@ -9,17 +9,17 @@
 #include <string>   
 #include <unordered_map>                                                                          
 #include <unordered_set>
-///\brief  класс поиска дубликатов файлов
+///\brief  РєР»Р°СЃСЃ РїРѕРёСЃРєР° РґСѓР±Р»РёРєР°С‚РѕРІ С„Р°Р№Р»РѕРІ
 class DuplicateFinder{
     using hash_sum_t = std::string;
     using hashs_t = std::unordered_map<hash_sum_t, std::size_t>;
     using files_t = std::unordered_map<std::uint64_t, std::set<boost::filesystem::path>>;
 public:
     /**
-    * \brief  конструктор
-    * \param[in] aHashFactory - фабрика функций хэширования
-    * \param[in] aBuffSize - размер блока, подающегося на функцию хэширования
-    * \return - объект класса  DuplicateFinder
+    * \brief  РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+    * \param[in] aHashFactory - С„Р°Р±СЂРёРєР° С„СѓРЅРєС†РёР№ С…СЌС€РёСЂРѕРІР°РЅРёСЏ
+    * \param[in] aBuffSize - СЂР°Р·РјРµСЂ Р±Р»РѕРєР°, РїРѕРґР°СЋС‰РµРіРѕСЃСЏ РЅР° С„СѓРЅРєС†РёСЋ С…СЌС€РёСЂРѕРІР°РЅРёСЏ
+    * \return - РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР°  DuplicateFinder
     */
     DuplicateFinder(boost::function<std::unique_ptr<IHash>()>&& aHashFactory, const std::size_t aBuffSize) : 
         _hasherFactory(std::move(aHashFactory)), _blockSize(aBuffSize != 0 ? aBuffSize : 1024) {
@@ -27,9 +27,9 @@ public:
     }
 
     /**
-    * \brief  вывод на экран файлов дубликатов (если они есть)
-    * \param[in] aFiles - список файлов
-    * \param[in] aFullPaths - полный путь к файлу
+    * \brief  РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ С„Р°Р№Р»РѕРІ РґСѓР±Р»РёРєР°С‚РѕРІ (РµСЃР»Рё РѕРЅРё РµСЃС‚СЊ)
+    * \param[in] aFiles - СЃРїРёСЃРѕРє С„Р°Р№Р»РѕРІ
+    * \param[in] aFullPaths - РїРѕР»РЅС‹Р№ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
     */
     void OutputDuplicated(const files_t& aFiles, const bool aFullPaths) {
         std::vector<FileHasher> vect;
@@ -58,7 +58,7 @@ private:
         std::uintmax_t processed = 0;
         hashs_t hashs;
         while (processed < kFileSize && aFiles.size() >= 1) {
-            hashs = MakeHashIteration(aFiles, processed);// переделать на unordered map ???
+            hashs = MakeHashIteration(aFiles, processed);// РїРµСЂРµРґРµР»Р°С‚СЊ РЅР° unordered map ???
             EraseUniaqueFiles(aFiles, hashs);           
         }
 

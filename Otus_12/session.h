@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "bulk_async.h"
 #include <iostream>
 #include <memory>
@@ -37,7 +37,7 @@ private:
             boost::asio::buffer(m_Data, kMaxLength),
             [this, self](boost::system::error_code ec, std::size_t length) {
                 if (!ec) {
-                    m_AllCmds += std::string{ m_Data, length };//важный момент, нарезка сообщений осуществляется по \n
+                    m_AllCmds += std::string{ m_Data, length };//РІР°Р¶РЅС‹Р№ РјРѕРјРµРЅС‚, РЅР°СЂРµР·РєР° СЃРѕРѕР±С‰РµРЅРёР№ РѕСЃСѓС‰РµСЃС‚РІР»В¤РµС‚СЃВ¤ РїРѕ \n
                     ProcessAllCommands();
                     auto receivedStr = std::string{ m_Data, length };
                     do_read();
@@ -60,8 +60,8 @@ private:
     }
 
     void ProcessAllCommands() {
-        //TCP протокол потоко ориентированный, потому, так как возможна фрагметация хоть по байту,
-        //мы нарезаем сообщения по символ перевода строки
+        //TCP РїСЂРѕС‚РѕРєРѕР» РїРѕС‚РѕРєРѕ РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Р№, РїРѕС‚РѕРјСѓ, С‚Р°Рє РєР°Рє РІРѕР·РјРѕР¶РЅР° С„СЂР°РіРјРµС‚Р°С†РёВ¤ С…РѕС‚СЊ РїРѕ Р±Р°Р№С‚Сѓ,
+        //РјС‹ РЅР°СЂРµР·Р°РµРј СЃРѕРѕР±С‰РµРЅРёВ¤ РїРѕ СЃРёРјРІРѕР» РїРµСЂРµРІРѕРґР° СЃС‚СЂРѕРєРё
         auto beginPos = m_AllCmds.begin();
         auto endPos = m_AllCmds.find('\n');
         while (endPos != std::string::npos && beginPos < m_AllCmds.end()){
@@ -106,8 +106,8 @@ private:
     }
 
     void UseUniqueHandler(const std::string aStr) {
-        if (m_UniqueHandler == 0) //Ленивая инициализация
-            m_UniqueHandler = async::connect(3);//Уникальные обработчики используются только для обработки динамических сообщений, стало быть размер балка не важен
+        if (m_UniqueHandler == 0) //Р‹РµРЅРёРІР°В¤ РёРЅРёС†РёР°Р»РёР·Р°С†РёВ¤
+            m_UniqueHandler = async::connect(3);//вЂќРЅРёРєР°Р»СЊРЅС‹Рµ РѕР±СЂР°Р±РѕС‚С‡РёРєРё РёСЃРїРѕР»СЊР·СѓСЋС‚СЃВ¤ С‚РѕР»СЊРєРѕ РґР»В¤ РѕР±СЂР°Р±РѕС‚РєРё РґРёРЅР°РјРёС‡РµСЃРєРёС… СЃРѕРѕР±С‰РµРЅРёР№, СЃС‚Р°Р»Рѕ Р±С‹С‚СЊ СЂР°Р·РјРµСЂ Р±Р°Р»РєР° РЅРµ РІР°Р¶РµРЅ
         async::receive(m_UniqueHandler, aStr.data(), aStr.size());
     }
 

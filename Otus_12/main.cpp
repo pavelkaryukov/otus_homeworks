@@ -1,4 +1,4 @@
-#include "bulk_server.h"
+п»ї#include "bulk_server.h"
 #include <boost/format.hpp>
 
 std::pair<std::size_t, std::size_t> GetArgs(int argc, char** argv) {
@@ -6,26 +6,26 @@ std::pair<std::size_t, std::size_t> GetArgs(int argc, char** argv) {
     const std::size_t kDefaultBulkSize = 3;
 
     if (argc <= 1) {
-        std::cout << "Порт не был установлен. Установлено  значение по умолчанию = " << kDefaultPort << std::endl;
-        std::cout << "Количество команд в одной куче (bulk) не было установлено. Установлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
+        std::cout << "РџРѕСЂС‚ РЅРµ Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultPort << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultBulkSize << std::endl;
         return { kDefaultPort , kDefaultBulkSize };
     }
 
     const std::size_t port = std::atoi(argv[1]);
     if (port <= 0) {
-        std::cout << "Значение Порта не валидно. Установлено  значение по умолчанию = " << kDefaultPort << std::endl;
-        std::cout << "Количество команд в одной куче (bulk) не было установлено. Установлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
+        std::cout << "Р—РЅР°С‡РµРЅРёРµ РџРѕСЂС‚Р° РЅРµ РІР°Р»РёРґРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultPort << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultBulkSize << std::endl;
         return { kDefaultPort , kDefaultBulkSize };
     }
 
     if (argc < 3) {
-        std::cout << "Количество команд в одной куче (bulk) не было установлено. Установлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultBulkSize << std::endl;
         return { port , kDefaultBulkSize };
     }
 
     const std::size_t bulkSize = std::atoi(argv[2]);
     if (bulkSize <= 0) {
-        std::cout << "Количество команд в потоков записи файла не было установлено. Установлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РїРѕС‚РѕРєРѕРІ Р·Р°РїРёСЃРё С„Р°Р№Р»Р° РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultBulkSize << std::endl;
         return { port , kDefaultBulkSize };
     }
 

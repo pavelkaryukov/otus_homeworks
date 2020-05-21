@@ -1,25 +1,25 @@
-#pragma once
+п»ї#pragma once
 #include "hash/ihash.h"             
 #include <boost/format.hpp>
 #include <boost/uuid/detail/md5.hpp>
 /**
-* \brief  класс расчета хэш сумм по алгоритму MD5
+* \brief  РєР»Р°СЃСЃ СЂР°СЃС‡РµС‚Р° С…СЌС€ СЃСѓРјРј РїРѕ Р°Р»РіРѕСЂРёС‚РјСѓ MD5
 */
 class HashMD5 final : public IHash {
 public:
     /**
-    * \brief итерация расчета хэш функции для буффера (алгоритм MD5)
-    * \param[in] aData - указатель на начало буфера
-    * \param[in] aLen - длина буффера в байтах
+    * \brief РёС‚РµСЂР°С†РёСЏ СЂР°СЃС‡РµС‚Р° С…СЌС€ С„СѓРЅРєС†РёРё РґР»СЏ Р±СѓС„С„РµСЂР° (Р°Р»РіРѕСЂРёС‚Рј MD5)
+    * \param[in] aData - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С‡Р°Р»Рѕ Р±СѓС„РµСЂР°
+    * \param[in] aLen - РґР»РёРЅР° Р±СѓС„С„РµСЂР° РІ Р±Р°Р№С‚Р°С…
     */   
     void ProcessBuffer(const void* aData, const std::size_t aLen) override {
         _hash.process_bytes(aData, aLen);
     }
 
     /**
-     * \brief  Получить рассчитанную раньше хэш функцию
-     * \details возвращает результат общего расчета хэш суммы
-     * \return std::string - хэш сумма представляется ввиде строки
+     * \brief  РџРѕР»СѓС‡РёС‚СЊ СЂР°СЃСЃС‡РёС‚Р°РЅРЅСѓСЋ СЂР°РЅСЊС€Рµ С…СЌС€ С„СѓРЅРєС†РёСЋ
+     * \details РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РѕР±С‰РµРіРѕ СЂР°СЃС‡РµС‚Р° С…СЌС€ СЃСѓРјРјС‹
+     * \return std::string - С…СЌС€ СЃСѓРјРјР° РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚СЃСЏ РІРІРёРґРµ СЃС‚СЂРѕРєРё
      */
     const std::string Result() override {
         _hash.get_digest(_digest);

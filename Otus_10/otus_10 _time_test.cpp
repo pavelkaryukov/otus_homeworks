@@ -1,4 +1,4 @@
-#include "dispatcher/dispatcher.h"
+п»ї#include "dispatcher/dispatcher.h"
 #include <boost/format.hpp>
 #include <sstream>
 #include <chrono> 
@@ -26,15 +26,15 @@ void MakeTest() {
         throw std::logic_error("MakeTest(): can't create file");
     }
     const std::size_t kCommandsNumber = 50000;
-    std::string str1 = boost::str(boost::format("Кол-во команд=[%1%], команд в блоке = [10]\n") % kCommandsNumber);
+    std::string str1 = boost::str(boost::format("РљРѕР»-РІРѕ РєРѕРјР°РЅРґ=[%1%], РєРѕРјР°РЅРґ РІ Р±Р»РѕРєРµ = [10]\n") % kCommandsNumber);
     file << str1;
     for (auto threadsNum = 1U; threadsNum <= 64; ++threadsNum) {
-        std::string str = boost::str(boost::format("%1%.Кол-во ниток=[%2%]\n") % threadsNum % threadsNum);
+        std::string str = boost::str(boost::format("%1%.РљРѕР»-РІРѕ РЅРёС‚РѕРє=[%2%]\n") % threadsNum % threadsNum);
         auto start = std::chrono::high_resolution_clock::now();
         MakeTestIter(threadsNum, kCommandsNumber);
         auto stop = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-        str += boost::str(boost::format("  Время работы=[%1%] миллисекунд.\n") % duration.count());
+        str += boost::str(boost::format("  Р’СЂРµРјСЏ СЂР°Р±РѕС‚С‹=[%1%] РјРёР»Р»РёСЃРµРєСѓРЅРґ.\n") % duration.count());
         file << str;
         std::cout << "Threads=" << threadsNum << std::endl;
     }
@@ -49,18 +49,18 @@ int main(int argc, char** argv) {
 
     std::size_t N = 0;
     if (argc == 1) {
-        std::cout << "Количество команд в одной куче (bulk) не было установлено. Установлено  значение по умолчанию = 3" << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = 3" << std::endl;
         N = 3;
     }
     else {
         N = std::atoi(argv[1]);
         if (N <= 0) {
-            std::cout << "Количество команд в одной куче (bulk) имеет не валидное значение [" << argv[1] << "]. Установлено  значение по умолчанию = 3" << std::endl;
+            std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РёРјРµРµС‚ РЅРµ РІР°Р»РёРґРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ [" << argv[1] << "]. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = 3" << std::endl;
             N = 3;
         }
     }
 
-    const std::size_t kBulkSize = N > 0 ? N : 1; // кол-во команда в одной булке
+    const std::size_t kBulkSize = N > 0 ? N : 1; // РєРѕР»-РІРѕ РєРѕРјР°РЅРґР° РІ РѕРґРЅРѕР№ Р±СѓР»РєРµ
 
     {
         CommandDispatcher dispatcher{ kBulkSize, std::cout, 2};
@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
                 return 0;
             }
         }
-        dispatcher.Flush(); //Подумать, что можно сделать, что бы программа не взрывалась
+        dispatcher.Flush(); //РџРѕРґСѓРјР°С‚СЊ, С‡С‚Рѕ РјРѕР¶РЅРѕ СЃРґРµР»Р°С‚СЊ, С‡С‚Рѕ Р±С‹ РїСЂРѕРіСЂР°РјРјР° РЅРµ РІР·СЂС‹РІР°Р»Р°СЃСЊ
     }
     return 0;
 }

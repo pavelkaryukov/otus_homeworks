@@ -1,4 +1,4 @@
-#include "lib/bulk_async.h"
+п»ї#include "lib/bulk_async.h"
 #include <algorithm>   
 #include <chrono>          
 #include <set>
@@ -60,7 +60,7 @@ void ThreadFunc() {
 }
 
 int main() {
-    //Создание объектов из разных потоков, должно быть 42 bulk суммарно (42 файла)
+    //вЂ”РѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚РѕРІ РёР· СЂР°Р·РЅС‹С… РїРѕС‚РѕРєРѕРІ, РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 42 bulk СЃСѓРјРјР°СЂРЅРѕ (42 С„Р°Р№Р»Р°)
     std::vector<std::thread> threads;
     for (int i = 0; i <= 6; ++i) {
         threads.emplace_back(std::thread{ []() { ThreadFunc(); }});

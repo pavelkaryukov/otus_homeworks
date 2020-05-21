@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "concurrent/concurrent_deque.h" 
 #include "logger/ilogger.h"
 #include <atomic>

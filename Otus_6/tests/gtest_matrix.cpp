@@ -1,4 +1,4 @@
-#include "matrix.h"
+п»ї#include "matrix.h"
 #include <gtest/gtest.h> // googletest header file
 
 void FillMatrixTest(Matrix<int, -1>& aMatrix) {
@@ -21,7 +21,7 @@ TEST(test_matrix, Operators) {
     int a2= matrix[100][100];
     ASSERT_EQ(matrix.size(), 0);
     ASSERT_EQ(a2, 0);
-    //TODO:: Написать тест проверяющий работоспособность всех операторов
+    //TODO:: РќР°РїРёСЃР°С‚СЊ С‚РµСЃС‚ РїСЂРѕРІРµСЂСЏСЋС‰РёР№ СЂР°Р±РѕС‚РѕСЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ РІСЃРµС… РѕРїРµСЂР°С‚РѕСЂРѕРІ
 }
 
 TEST(test_matrix, AddElement) {

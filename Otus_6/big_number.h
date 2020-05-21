@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <boost/format.hpp>
 #include <iomanip>
 #include <cstddef>
@@ -158,7 +158,7 @@ public:
         }
 
         if (aRhs.RealSize() == 0)
-            return false;//  â òàêîì ñëó÷àå îíè ðàâíû
+            return false;//  Ð² Ñ‚Ð°ÐºÐ¾Ð¼ ÑÐ»ÑƒÑ‡Ð°Ðµ Ð¾Ð½Ð¸ Ñ€Ð°Ð²Ð½Ñ‹
 
         for (int index = aRhs.RealSize() - 1; index >= 0; --index) {
             if (_Data[index] > aRhs._Data[index])

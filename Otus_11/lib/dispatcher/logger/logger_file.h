@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "logger/ilogger.h"
 #include <atomic>
 #include <boost/format.hpp> 
