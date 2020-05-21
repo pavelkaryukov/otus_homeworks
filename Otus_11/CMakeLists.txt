@@ -23,7 +23,7 @@ set_target_properties (
 	PROPERTIES 
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON
-	OUTPUT_NAME libasync
+	#OUTPUT_NAME libasync
 )
 
 

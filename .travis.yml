@@ -55,7 +55,8 @@ script:
 - ./test_bulkmt  	   
 - doxygen
 - cd ..									
-- cd Otus_11/							
+- cd Otus_11/	
+- ls
 - ./gtest_bulk_async	
 - doxygen
 - cd ..
