@@ -19,13 +19,14 @@ target_include_directories(	bulk_server
 	${CMAKE_BINARY_DIR}/Otus_11 
 	${Boost_INCLUDE_DIR}
 )
-find_library (CURL_LIBRARY NAMES libasync_static HINTS ${CMAKE_BINARY_DIR}/Otus_11)
 message("------------\r\n"  ${CURL_LIBRARY} "------------\r\n")
 IF (WIN32)
-	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.lib)
-  # set stuff for windows
+	#set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.lib)	
+	find_library (CURL_LIBRARY NAMES libasync HINTS ${CMAKE_BINARY_DIR}/Otus_11)
+	# set stuff for windows
 ELSE()
-	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.a)
+	#set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.a)
+	find_library (CURL_LIBRARY NAMES liblibasync HINTS ${CMAKE_BINARY_DIR}/Otus_11)
   # set stuff for other systems
 ENDIF()
 
