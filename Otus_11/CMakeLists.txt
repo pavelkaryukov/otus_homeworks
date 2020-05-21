@@ -111,6 +111,7 @@ target_link_libraries(gtest_bulk_async
 # Copy output
 #file(COPY ${CMAKE_BINARY_DIR}/libasync.dll DESTINATION ${PROJECT_SOURCE_DIR}/../Otus_12/lib)
 file(COPY ${PROJECT_SOURCE_DIR}/lib/bulk_async.h DESTINATION ${CMAKE_BINARY_DIR}/Otus_11)
+
 #CMAKE_CURRENT_BINARY_DIR
 enable_testing()
 add_test(gtest_bulk_async gtest_bulk_async)
