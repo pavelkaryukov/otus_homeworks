@@ -28,7 +28,7 @@ ELSE()
 #	#set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.a)
 #	#set (CURL_LIBRARY ${CMAKE_BINARY_DIR}/Otus_11/liblibasync.a)
 #	  # set stuff for other systems
-#ENDIF()
+ENDIF()
 message("------------\r\n"  ${CURL_LIBRARY} "------------\r\n")
 
 target_link_libraries(bulk_server
