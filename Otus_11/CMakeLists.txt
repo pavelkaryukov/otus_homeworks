@@ -117,7 +117,8 @@ enable_testing()
 add_test(gtest_bulk_async gtest_bulk_async)
 ##############################################
 ###################INSTALL####################
-install(TARGETS libasync libasync_static  DESTINATION bin/lib/)
+install(TARGETS libasync  DESTINATION bin/lib/)	   
+install(TARGETS libasync_static  DESTINATION bin/lib/)
 install(FILES ${PROJECT_SOURCE_DIR}/lib/bulk_async.h DESTINATION bin/lib/)
 
 set(CPACK_PACKAGE_NAME "OtusHomeworks")
