@@ -1,30 +1,30 @@
-#include "dispatcher/dispatcher.h"
+п»ї#include "dispatcher/dispatcher.h"
 
 std::pair<std::size_t, std::size_t> GetArgs(int argc, char** argv) {
     const std::size_t kDefaultBulkSize  = 3;
     const std::size_t kDefaultThreadNum = 2;
 
     if (argc <= 1) {
-        std::cout << "Количество команд в одной куче (bulk) не было установлено. Установлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
-        std::cout << "Количество команд в потоков записи файла не было установлено. Установлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultBulkSize << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РїРѕС‚РѕРєРѕРІ Р·Р°РїРёСЃРё С„Р°Р№Р»Р° РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultThreadNum << std::endl;
         return { kDefaultBulkSize , kDefaultThreadNum };
     }
 
     const std::size_t bulkSize = std::atoi(argv[1]);
     if (bulkSize <= 0) {
-        std::cout << "Количество команд в одной куче (bulk) не было установлено. Установлено  значение по умолчанию = " << kDefaultBulkSize << std::endl;
-        std::cout << "Количество команд в потоков записи файла не было установлено. Установлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РѕРґРЅРѕР№ РєСѓС‡Рµ (bulk) РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultBulkSize << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РїРѕС‚РѕРєРѕРІ Р·Р°РїРёСЃРё С„Р°Р№Р»Р° РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultThreadNum << std::endl;
         return { kDefaultBulkSize , kDefaultThreadNum };
     }
 
     if (argc < 3) {
-        std::cout << "Количество команд в потоков записи файла не было установлено. Установлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РїРѕС‚РѕРєРѕРІ Р·Р°РїРёСЃРё С„Р°Р№Р»Р° РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultThreadNum << std::endl;
         return { bulkSize , kDefaultThreadNum };
     }
 
     const std::size_t threadsNum = std::atoi(argv[2]);
     if (threadsNum <= 0) {
-        std::cout << "Количество команд в потоков записи файла не было установлено. Установлено  значение по умолчанию = " << kDefaultThreadNum << std::endl;
+        std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґ РІ РїРѕС‚РѕРєРѕРІ Р·Р°РїРёСЃРё С„Р°Р№Р»Р° РЅРµ Р±С‹Р»Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ. РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ  Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = " << kDefaultThreadNum << std::endl;
         return { bulkSize , kDefaultThreadNum };
     }
 
@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
                 return 0;
             }
         }
-        dispatcher.Flush(); //Подумать, что можно сделать, что бы программа не взрывалась
+        dispatcher.Flush(); //РџРѕРґСѓРјР°С‚СЊ, С‡С‚Рѕ РјРѕР¶РЅРѕ СЃРґРµР»Р°С‚СЊ, С‡С‚Рѕ Р±С‹ РїСЂРѕРіСЂР°РјРјР° РЅРµ РІР·СЂС‹РІР°Р»Р°СЃСЊ
     }
     return 0;
 }
