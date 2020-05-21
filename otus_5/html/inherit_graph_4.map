@@ -1,6 +1,6 @@
 <map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
 <area shape="rect" id="node1" href="$classIShape.html" title="Интерфейс фигуры " alt="" coords="5,56,72,83"/>
 <area shape="rect" id="node2" href="$classCircle.html" title="фигура круг, реализует интерфейс IShape. " alt="" coords="133,5,191,32"/>
-<area shape="rect" id="node3" href="$classLine.html" title="фигура Линия, реализует интерфейс IShape. " alt="" coords="138,56,186,83"/>
+<area shape="rect" id="node3" href="$classLine.html" title="фигура Ћини¤, реализует интерфейс IShape. " alt="" coords="138,56,186,83"/>
 <area shape="rect" id="node4" href="$classRectangle.html" title="фигура прямоугольник, реализует интерфейс IShape. " alt="" coords="120,107,204,133"/>
 </map>
