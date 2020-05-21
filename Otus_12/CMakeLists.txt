@@ -20,19 +20,29 @@ target_include_directories(	bulk_server
 	${Boost_INCLUDE_DIR}
 )
 
-#find_library (CURL_LIBRARY NAMES libasync  HINTS ${PROJECT_SOURCE_DIR}/lib)
 IF (WIN32)
 	set(ASYNC_LIB_PATH ${PROJECT_SOURCE_DIR}/lib/libasync.lib)	
 ELSE()
 	set(ASYNC_LIB_PATH ${PROJECT_SOURCE_DIR}/lib/libasync.a)
-#	#set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.a)
-#	#set (CURL_LIBRARY ${CMAKE_BINARY_DIR}/Otus_11/liblibasync.a)
-#	  # set stuff for other systems
 ENDIF()
-message("------------\r\n"  ${CURL_LIBRARY} "------------\r\n")
 
 target_link_libraries(bulk_server
         ${Boost_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
 		${ASYNC_LIB_PATH}# учитывать возможность a файла 
 )
+
+add_subdirectory ("client")
+
+##############################################
+###################INSTALL####################
+install(TARGETS bulk_server  DESTINATION bin)	   
+set(CPACK_PACKAGE_NAME "OtusHomeworks")
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VENDOR "Karyukov")
+set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
+include (CPack)
+   

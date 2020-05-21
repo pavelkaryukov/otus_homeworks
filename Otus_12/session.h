@@ -40,8 +40,7 @@ private:
                     m_AllCmds += std::string{ m_Data, length };//важный момент, нарезка сообщений осуществляется по \n
                     ProcessAllCommands();
                     auto receivedStr = std::string{ m_Data, length };
-                    std::cout << "receive " << length << "=" << receivedStr << std::endl;
-                    do_write(length);
+                    do_read();
                 }
             }
         );

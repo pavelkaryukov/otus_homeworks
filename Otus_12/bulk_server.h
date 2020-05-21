@@ -20,7 +20,6 @@ private:
             if (!ec) {
                 std::make_shared<Session>(std::move(socket), m_Handler)->start();
             }
-
             do_accept();
         });
     }

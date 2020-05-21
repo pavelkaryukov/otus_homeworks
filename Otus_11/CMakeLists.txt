@@ -18,14 +18,13 @@ add_library(libasync_static STATIC ${ASYNC_LIB_SRC})
 add_library(libasync SHARED ${ASYNC_LIB_SRC})
 
 set_target_properties (
-	libasync_static 
 	libasync
+	libasync_static
 	PROPERTIES 
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON
-	#OUTPUT_NAME libasync
+	OUTPUT_NAME libasync
 )
-
 
 find_package(Boost REQUIRED)
 if(NOT Boost_FOUND)
@@ -109,7 +108,6 @@ target_link_libraries(gtest_bulk_async
 )
 
 # Copy output
-#file(COPY ${CMAKE_BINARY_DIR}/libasync.dll DESTINATION ${PROJECT_SOURCE_DIR}/../Otus_12/lib)
 file(COPY ${PROJECT_SOURCE_DIR}/lib/bulk_async.h DESTINATION ${CMAKE_BINARY_DIR}/Otus_11)
 
 #CMAKE_CURRENT_BINARY_DIR
