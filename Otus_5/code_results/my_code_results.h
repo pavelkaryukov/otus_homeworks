@@ -1,6 +1,6 @@
-#pragma once
-///\brief Коды возвращаемых ошибок
-enum class CodeResults {//Предполагается дальнейшее расширение
+п»ї#pragma once
+///\brief РљРѕРґС‹ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РѕС€РёР±РѕРє
+enum class CodeResults {//РџСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ РґР°Р»СЊРЅРµР№С€РµРµ СЂР°СЃС€РёСЂРµРЅРёРµ
     Succes,
     CantPaintShapeOnCanvas,
     NoAccessToElement,

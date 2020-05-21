@@ -1,4 +1,4 @@
-#include "acm_timus.h"
+п»ї#include "acm_timus.h"
 #include <cctype>
 #include <iostream>
 #include <cmath>
@@ -10,15 +10,15 @@ static const std::string kDelimeters = "\r\n\t ";
 //-----------------------------------------------------------------------------
 enum class NumberOfUnits
 {
-    few,        //от 1   до 4	  несколько few
-    several,    //от 5   до 9	  немного several
-    pack,       //от 10  до 19	  отряд pack
-    lots,       //от 20  до 49	  толпа lots
-    horde,      //от 50  до 99	  орда horde
-    throng,     //от 100 до 249	  множество throng
-    swarm,      //от 250 до 499	  сонмище swarm
-    zounds,     //от 500 до 999	  полчище zounds
-    legion,     //от 1000	      легион legion
+    few,        //РѕС‚ 1   РґРѕ 4	  РЅРµСЃРєРѕР»СЊРєРѕ few
+    several,    //РѕС‚ 5   РґРѕ 9	  РЅРµРјРЅРѕРіРѕ several
+    pack,       //РѕС‚ 10  РґРѕ 19	  РѕС‚СЂСЏРґ pack
+    lots,       //РѕС‚ 20  РґРѕ 49	  С‚РѕР»РїР° lots
+    horde,      //РѕС‚ 50  РґРѕ 99	  РѕСЂРґР° horde
+    throng,     //РѕС‚ 100 РґРѕ 249	  РјРЅРѕР¶РµСЃС‚РІРѕ throng
+    swarm,      //РѕС‚ 250 РґРѕ 499	  СЃРѕРЅРјРёС‰Рµ swarm
+    zounds,     //РѕС‚ 500 РґРѕ 999	  РїРѕР»С‡РёС‰Рµ zounds
+    legion,     //РѕС‚ 1000	      Р»РµРіРёРѕРЅ legion
     unk,
     null
 };
@@ -58,17 +58,17 @@ std::string ConvertToStr(const NumberOfUnits aLocalizedNum)
     }
 }
 //-----------------------------------------------------------------------------
-static const std::string kErrorInputData = "Некорректные входные данные:";
+static const std::string kErrorInputData = "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ РІС…РѕРґРЅС‹Рµ РґР°РЅРЅС‹Рµ:";
 std::pair<bool, std::string> acm_timus::ToLocalizedNumberOfUnits(const std::string& aStr)
 {
     if (!mystr::IsCorrectNumber(aStr.c_str()))
-        return  { false, kErrorInputData + "Не число\r\n" };
+        return  { false, kErrorInputData + "РќРµ С‡РёСЃР»Рѕ\r\n" };
     auto digit = std::atoi(aStr.c_str());
     if ((digit < 1) || (digit > 2000)) 
-        return { false, kErrorInputData + ":Число не из диапозона (1..2000)\r\n" };
+        return { false, kErrorInputData + ":Р§РёСЃР»Рѕ РЅРµ РёР· РґРёР°РїРѕР·РѕРЅР° (1..2000)\r\n" };
     auto numberOfUnits = GetLocalizedNumberOfUnits(digit);
     if (numberOfUnits == NumberOfUnits::null)
-        return { false, kErrorInputData + ":Число не из диапозона (1..2000)\r\n" };
+        return { false, kErrorInputData + ":Р§РёСЃР»Рѕ РЅРµ РёР· РґРёР°РїРѕР·РѕРЅР° (1..2000)\r\n" };
 
     return {true, ConvertToStr(numberOfUnits)};
 }
@@ -92,7 +92,7 @@ bool IsGrishaCanSolve(const std::size_t aSolvedInFirstHourTasks)
 {
     if ((aSolvedInFirstHourTasks > 11) || (aSolvedInFirstHourTasks < 0))
         return false;
-    const std::size_t kNumberOfTasks = 12, kRestTime = 4 * 60; // 12 заданий на 5 часов, 
+    const std::size_t kNumberOfTasks = 12, kRestTime = 4 * 60; // 12 Р·Р°РґР°РЅРёР№ РЅР° 5 С‡Р°СЃРѕРІ, 
     const std::size_t restTasks = kNumberOfTasks - aSolvedInFirstHourTasks;
     return  restTasks * 45 <= kRestTime;
 }
@@ -100,10 +100,10 @@ bool IsGrishaCanSolve(const std::size_t aSolvedInFirstHourTasks)
 std::string acm_timus::GrishaCanSolve(const std::string& aSolvedInFirstHourTasksStr)
 {
     if (!mystr::IsCorrectNumber(aSolvedInFirstHourTasksStr.c_str()))
-        return kErrorInputData + aSolvedInFirstHourTasksStr + " - Не число\r\n";
+        return kErrorInputData + aSolvedInFirstHourTasksStr + " - РќРµ С‡РёСЃР»Рѕ\r\n";
     auto numberOfTasks = std::atoi(aSolvedInFirstHourTasksStr.c_str());
     if ((numberOfTasks < 0) || (numberOfTasks > 11)) {
-        return kErrorInputData + "Число {" + aSolvedInFirstHourTasksStr + "} < 0 или > 11";
+        return kErrorInputData + "Р§РёСЃР»Рѕ {" + aSolvedInFirstHourTasksStr + "} < 0 РёР»Рё > 11";
     }
     return IsGrishaCanSolve(numberOfTasks) ? "YES" : "NO";
 }
@@ -117,7 +117,7 @@ std::size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
 {
     auto tokens = mystr::GetTokens(aStr, kDelimeters, mystr::IsCorrectNumber);
     if (tokens.size() < 3) {
-        std::cout << kErrorInputData << "Не достаточное количество аргументов" << std::endl;
+        std::cout << kErrorInputData << "РќРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ" << std::endl;
         return 0;
     }
     auto numberOfPannels = std::atoi(tokens[0].c_str()), sizeA = std::atoi(tokens[1].c_str()), sizeB = std::atoi(tokens[2].c_str());
@@ -127,7 +127,7 @@ std::size_t acm_timus::NecessarySulfideThoriumWeight(std::string aStr)
     };
 
     if (!FromRange(numberOfPannels) || !FromRange(sizeA) || !FromRange(sizeB)) {
-        std::cout << kErrorInputData << numberOfPannels << ", " << sizeA << ", " << sizeB << " вне диапазона  1..100" << std::endl;
+        std::cout << kErrorInputData << numberOfPannels << ", " << sizeA << ", " << sizeB << " РІРЅРµ РґРёР°РїР°Р·РѕРЅР°  1..100" << std::endl;
         return 0;
     }
     return 2 * numberOfPannels * sizeA * sizeB;
@@ -150,7 +150,7 @@ void acm_timus::AcmTimusTaskExecute()
     auto task1293a = acm_timus::NecessarySulfideThoriumWeight("5 2 3");
     auto task1293b = acm_timus::NecessarySulfideThoriumWeight("5 223 3");
     auto task1293c = acm_timus::NecessarySulfideThoriumWeight("5 2 ");
-    //TODO:: Вывод в командную строку на английском языке
+    //TODO:: Р’С‹РІРѕРґ РІ РєРѕРјР°РЅРґРЅСѓСЋ СЃС‚СЂРѕРєСѓ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ
 }
 //-----------------------------------------------------------------------------
 void acm_timus::TwoGangsta(const std::string& aStr)
@@ -178,7 +178,7 @@ bool acm_timus::CanOpen(const std::pair<std::string, std::string>& aLocksStr)
     if (!mystr::IsCorrectNumber(aLocksStr.first.c_str()) || !mystr::IsCorrectNumber(aLocksStr.second.c_str()))
         return false;
     std::pair<std::size_t, std::size_t> locks = { std::stoi(aLocksStr.first),  std::stoi(aLocksStr.second) };    
-    // поидеи - в первый день будут только четные числа, во второй только не четные
+    // РїРѕРёРґРµРё - РІ РїРµСЂРІС‹Р№ РґРµРЅСЊ Р±СѓРґСѓС‚ С‚РѕР»СЊРєРѕ С‡РµС‚РЅС‹Рµ С‡РёСЃР»Р°, РІРѕ РІС‚РѕСЂРѕР№ С‚РѕР»СЊРєРѕ РЅРµ С‡РµС‚РЅС‹Рµ
     return (locks.first % 2 == 0) || (locks.second % 2 == 1);
 }
 
@@ -376,7 +376,7 @@ std::string acm_timus::CommandNumbersCount(std::vector<std::pair<std::size_t, st
             [](std::size_t aNum)->bool { return aNum <= 1'000'000'000; }
         );
         if ((numbers.size() != playerData.first))
-            continue;//Как бы не ретерн
+            continue;//РљР°Рє Р±С‹ РЅРµ СЂРµС‚РµСЂРЅ
         for (const auto number : numbers) {
             teamNumbersMap[number]++;
         }

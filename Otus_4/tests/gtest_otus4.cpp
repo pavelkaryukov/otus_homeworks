@@ -1,10 +1,10 @@
-#include <gtest/gtest.h> // googletest header file
+п»ї#include <gtest/gtest.h> // googletest header file
 #include "ip_to_str.h"
 #include <array>
 #include <list>
 #include <vector>
 //-----------------------------------------------------------------------------
-TEST(gtest_print_ip,  PrintTuple)//TODO::Переделать тест
+TEST(gtest_print_ip,  PrintTuple)//TODO::С•РµСЂРµРґРµР»Р°С‚СЊ С‚РµСЃС‚
 {
     std::tuple<int, int, int, int>   tuple1 = { 1, 12, 25, 67 };
     std::tuple<int, short, std::uint64_t> tuple2 = { 1, 12, 25};

@@ -1,14 +1,14 @@
-#pragma once
+п»ї#pragma once
 #include "file_system/all_files.h"
 #include "work_space/canvas.h"
-//Засунуть лямбду вызова select file from application
+//Р—Р°СЃСѓРЅСѓС‚СЊ Р»СЏРјР±РґСѓ РІС‹Р·РѕРІР° select file from application
 class FileManager final {
 public:   
     /**
-    * \brief импортирует класс художника из файла
-    * \param[out] aPainter перенастраиваемый художник
-    * \details Осуществляется замена холста и отрисованных фигур
-    * \return  CodeResults  код ошибки
+    * \brief РёРјРїРѕСЂС‚РёСЂСѓРµС‚ РєР»Р°СЃСЃ С…СѓРґРѕР¶РЅРёРєР° РёР· С„Р°Р№Р»Р°
+    * \param[out] aPainter РїРµСЂРµРЅР°СЃС‚СЂР°РёРІР°РµРјС‹Р№ С…СѓРґРѕР¶РЅРёРє
+    * \details РћСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ Р·Р°РјРµРЅР° С…РѕР»СЃС‚Р° Рё РѕС‚СЂРёСЃРѕРІР°РЅРЅС‹С… С„РёРіСѓСЂ
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Import(Painter& aPainter) {
         auto [res, filePtr] = SelectFile();
@@ -25,9 +25,9 @@ public:
     }
     
     /**
-    * \brief экспорт состояние художника в файл
-    * \param[in] aPainter объект класса художник
-    * \return  CodeResults  код ошибки
+    * \brief СЌРєСЃРїРѕСЂС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ С…СѓРґРѕР¶РЅРёРєР° РІ С„Р°Р№Р»
+    * \param[in] aPainter РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° С…СѓРґРѕР¶РЅРёРє
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Export(const Painter& aPainter) {
         auto [res, filePtr] = SelectFile();
@@ -38,9 +38,9 @@ public:
     }
 
     /**
-    * \brief сохранение состояние художника в файл
-    * \param[in] aPainter объект класса художник
-    * \return  CodeResults  код ошибки
+    * \brief СЃРѕС…СЂР°РЅРµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёРµ С…СѓРґРѕР¶РЅРёРєР° РІ С„Р°Р№Р»
+    * \param[in] aPainter РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° С…СѓРґРѕР¶РЅРёРє
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Save(const Painter& aPainter) {
         if (m_File != nullptr)
@@ -59,7 +59,7 @@ public:
 private:
     std::unique_ptr<IFile> m_File;
 
-    //Путь к файлу
+    //РџСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
     using OperationResult = std::pair<CodeResults, std::unique_ptr<IFile>>;
 
     OperationResult CreateFile(const std::filesystem::path aPath, const FileTypes aFType = FileTypes::VECT) {
@@ -85,7 +85,7 @@ private:
     }
 
     OperationResult SelectFile() {
-        //Диалог выбора файла
+        //Р”РёР°Р»РѕРі РІС‹Р±РѕСЂР° С„Р°Р№Р»Р°
         const std::filesystem::path filePath = "testfile.vect";
         OperationResult  res = { CodeResults::Succes, std::unique_ptr<IFile>(new FileVect(filePath)) };
         return res;

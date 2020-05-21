@@ -1,39 +1,39 @@
-#pragma once
+п»ї#pragma once
 #include "file_system/files/ifile.h"
 /**
-* \brief Класс Vect-file
-* \details формат поддерживаемый мои редактором, внутри себя хранит не только картинку(используемую для холста) но и фигуры
+* \brief РљР»Р°СЃСЃ Vect-file
+* \details С„РѕСЂРјР°С‚ РїРѕРґРґРµСЂР¶РёРІР°РµРјС‹Р№ РјРѕРё СЂРµРґР°РєС‚РѕСЂРѕРј, РІРЅСѓС‚СЂРё СЃРµР±СЏ С…СЂР°РЅРёС‚ РЅРµ С‚РѕР»СЊРєРѕ РєР°СЂС‚РёРЅРєСѓ(РёСЃРїРѕР»СЊР·СѓРµРјСѓСЋ РґР»СЏ С…РѕР»СЃС‚Р°) РЅРѕ Рё С„РёРіСѓСЂС‹
 */
 class FileVect final: public IFile {
 public:
     FileVect() = default;
     
     /**
-    * \brief Конструктор файла
-    * \param[in] aPath - путь к файлу
-    * \return CodeResults код ошибки
+    * \brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ С„Р°Р№Р»Р°
+    * \param[in] aPath - РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     explicit FileVect(const std::filesystem::path aPath) : IFile(aPath) {}
 
     /**
-    * \brief Открытие файла
-    * \return CodeResults код ошибки
+    * \brief РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Open() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
-    * \brief Создание файла
-    * \return CodeResults код ошибки
+    * \brief РЎРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Create() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
-    * \brief Сохранение файла
-    * \return CodeResults код ошибки
+    * \brief РЎРѕС…СЂР°РЅРµРЅРёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Save() override {
         std::cout << "FileVect::Save(); FileName: " << m_Path << std::endl;
@@ -41,27 +41,27 @@ public:
     }
 
     /**
-    * \brief Закрытие файла
-    * \return CodeResults код ошибки
+    * \brief Р—Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Close() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
-    * \brief Получить холст из файла
-    * \return CodeResults код ошибки
+    * \brief РџРѕР»СѓС‡РёС‚СЊ С…РѕР»СЃС‚ РёР· С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     std::unique_ptr<Canvas> GetCanvas() override {
-        const std::size_t testX = 1600, testY = 1200;//Тестовые размеры, 
+        const std::size_t testX = 1600, testY = 1200;//РўРµСЃС‚РѕРІС‹Рµ СЂР°Р·РјРµСЂС‹, 
         const TColor testColor = { 89, 76, 25, 9 };
         return std::make_unique<Canvas>(testX, testY, testColor);
     }
 
     /**
-    * \brief Получить фигуры из файла
-    * \param[out] aPainter- Маляр, в который будут добавлены фигуры
-    * \return CodeResults код ошибки
+    * \brief РџРѕР»СѓС‡РёС‚СЊ С„РёРіСѓСЂС‹ РёР· С„Р°Р№Р»Р°
+    * \param[out] aPainter- РњР°Р»СЏСЂ, РІ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґСѓС‚ РґРѕР±Р°РІР»РµРЅС‹ С„РёРіСѓСЂС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults GetShapes(Painter& aPainter) override {
         aPainter.AddShape<Circle>({ 0, 9 }, { 10, 78 }, 6, { 89, 76, 22, 35 });

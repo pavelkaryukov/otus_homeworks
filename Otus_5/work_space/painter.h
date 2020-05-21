@@ -1,11 +1,11 @@
-#pragma once
+п»ї#pragma once
 #include "shape/ishape.h"
 #include "work_space/canvas.h" 
 #include <map>
 
 /**
-* \brief класс Painter (маляр)
-* \details Класс Маляр, хранит в себе все фигуры и отрисовывает их на холств
+* \brief РєР»Р°СЃСЃ Painter (РјР°Р»СЏСЂ)
+* \details РљР»Р°СЃСЃ РњР°Р»СЏСЂ, С…СЂР°РЅРёС‚ РІ СЃРµР±Рµ РІСЃРµ С„РёРіСѓСЂС‹ Рё РѕС‚СЂРёСЃРѕРІС‹РІР°РµС‚ РёС… РЅР° С…РѕР»СЃС‚РІ
 */
 class Painter final {
 public:
@@ -13,10 +13,10 @@ public:
 #pragma region Constructors
 
     /**
-    * \brief Конструктор класса Painter
-    * \param[in] aCanvas rvalue Canvas - холс
-    * \details создает объект класса маляр
-    * \return  объект класса Painter
+    * \brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР° Painter
+    * \param[in] aCanvas rvalue Canvas - С…РѕР»СЃ
+    * \details СЃРѕР·РґР°РµС‚ РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° РјР°Р»СЏСЂ
+    * \return  РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° Painter
     */
     Painter(Canvas&& aCanvas) {
         m_Canvas = std::make_shared<Canvas>(std::move(aCanvas));
@@ -25,13 +25,13 @@ public:
 
 #pragma region ShapeHandlers
     /**
-    * \brief Добавляет фигуру и отрисовывает на холсте
-    * \param[in] aCoordBegin координата начала фигуры
-    * \param[in] aCoordEnd координата конца фигуры
-    * \param[in] aThickness ширина линии фигуры
-    * \param[in] aColor цвет фигуры - ARGB
-    * \details Добавляет фигуру  в m_Shapes и отрисовывает на холсте
-    * \return CodeResults код ошибки
+    * \brief Р”РѕР±Р°РІР»СЏРµС‚ С„РёРіСѓСЂСѓ Рё РѕС‚СЂРёСЃРѕРІС‹РІР°РµС‚ РЅР° С…РѕР»СЃС‚Рµ
+    * \param[in] aCoordBegin РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР°С‡Р°Р»Р° С„РёРіСѓСЂС‹
+    * \param[in] aCoordEnd РєРѕРѕСЂРґРёРЅР°С‚Р° РєРѕРЅС†Р° С„РёРіСѓСЂС‹
+    * \param[in] aThickness С€РёСЂРёРЅР° Р»РёРЅРёРё С„РёРіСѓСЂС‹
+    * \param[in] aColor С†РІРµС‚ С„РёРіСѓСЂС‹ - ARGB
+    * \details Р”РѕР±Р°РІР»СЏРµС‚ С„РёРіСѓСЂСѓ  РІ m_Shapes Рё РѕС‚СЂРёСЃРѕРІС‹РІР°РµС‚ РЅР° С…РѕР»СЃС‚Рµ
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     template<class T>
     CodeResults AddShape(
@@ -50,7 +50,7 @@ public:
     }
 
     /**
-    * \brief Отрисовывает все фигуры на холсте
+    * \brief РћС‚СЂРёСЃРѕРІС‹РІР°РµС‚ РІСЃРµ С„РёРіСѓСЂС‹ РЅР° С…РѕР»СЃС‚Рµ
     */
     void PaintAllShapes() {
         for (const auto&[id, shape] : m_Shapes) {
@@ -59,9 +59,9 @@ public:
     }
 
     /**
-    * \brief Отрисовка фигуры на холсте
-    * \param[in] aID идентификатор фигуры
-    * \return CodeResults код ошибки
+    * \brief РћС‚СЂРёСЃРѕРІРєР° С„РёРіСѓСЂС‹ РЅР° С…РѕР»СЃС‚Рµ
+    * \param[in] aID РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„РёРіСѓСЂС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults PaintShape(const shapeid_t aID) {
         auto iter = m_Shapes.find(aID);
@@ -72,9 +72,9 @@ public:
     }
 
     /**
-    * \brief Удаляет фигуру с холста
-    * \param[in] aID идентификатор фигуры
-    * \return CodeResults код ошибки
+    * \brief РЈРґР°Р»СЏРµС‚ С„РёРіСѓСЂСѓ СЃ С…РѕР»СЃС‚Р°
+    * \param[in] aID РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„РёРіСѓСЂС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults EraseShape(const shapeid_t aID) {
         auto iter = m_Shapes.find(aID);
@@ -88,8 +88,8 @@ public:
 
 #pragma region ChangeStatePainterMethods
     /**
-    * \brief Отчистить состояние маляра
-    * \details уничтожит все фигуры, обнулит холст, сбросит генератор ID
+    * \brief РћС‚С‡РёСЃС‚РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РјР°Р»СЏСЂР°
+    * \details СѓРЅРёС‡С‚РѕР¶РёС‚ РІСЃРµ С„РёРіСѓСЂС‹, РѕР±РЅСѓР»РёС‚ С…РѕР»СЃС‚, СЃР±СЂРѕСЃРёС‚ РіРµРЅРµСЂР°С‚РѕСЂ ID
     */
     void Clear() {
         m_Id.Clear();
@@ -100,10 +100,10 @@ public:
 
 #pragma region CanvasHandlers
     /**
-    * \brief Изменеяет размер холста
-    * \param[in] aX новая ширина холста
-    * \param[in] aY новая высота холста
-    * \return CodeResults код ошибки
+    * \brief РР·РјРµРЅРµСЏРµС‚ СЂР°Р·РјРµСЂ С…РѕР»СЃС‚Р°
+    * \param[in] aX РЅРѕРІР°СЏ С€РёСЂРёРЅР° С…РѕР»СЃС‚Р°
+    * \param[in] aY РЅРѕРІР°СЏ РІС‹СЃРѕС‚Р° С…РѕР»СЃС‚Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults ResizeCanvas(const std::size_t aX, const std::size_t aY) {
         std::cout << "Painter: Resize Canvas\r\n";
@@ -114,12 +114,12 @@ public:
     }
 
     /**
-    * \brief Замена фона холста
-    * \param[in] aColor новый цвет ARGB
-    * \return CodeResults код ошибки
+    * \brief Р—Р°РјРµРЅР° С„РѕРЅР° С…РѕР»СЃС‚Р°
+    * \param[in] aColor РЅРѕРІС‹Р№ С†РІРµС‚ ARGB
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults ChangeCanvasColor(const TColor aColor) {
-        std::cout << "Painter: Resize Canvas\r\n";//Фигуры перерисовывать не надо
+        std::cout << "Painter: Resize Canvas\r\n";//Р¤РёРіСѓСЂС‹ РїРµСЂРµСЂРёСЃРѕРІС‹РІР°С‚СЊ РЅРµ РЅР°РґРѕ
         auto res = m_Canvas->ChangeColor(aColor);
         if (res != CodeResults::Succes)
             return res;
@@ -127,10 +127,10 @@ public:
     }
     
     /**
-    * \brief Замена холста
-    * \param[in] aCanvas новый холст 
-    * \details после изменения холста все фигуры получат новый холст и будут заново отрисованы
-    * \return CodeResults код ошибки
+    * \brief Р—Р°РјРµРЅР° С…РѕР»СЃС‚Р°
+    * \param[in] aCanvas РЅРѕРІС‹Р№ С…РѕР»СЃС‚ 
+    * \details РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёСЏ С…РѕР»СЃС‚Р° РІСЃРµ С„РёРіСѓСЂС‹ РїРѕР»СѓС‡Р°С‚ РЅРѕРІС‹Р№ С…РѕР»СЃС‚ Рё Р±СѓРґСѓС‚ Р·Р°РЅРѕРІРѕ РѕС‚СЂРёСЃРѕРІР°РЅС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults ChangeCanvas(std::unique_ptr<Canvas> aCanvas) {
         m_Canvas = std::move(aCanvas);
@@ -142,8 +142,8 @@ public:
     }
 
     /**
-    * \brief Получить размер текущего холста
-    * \return std::pair<std::size_t, std::size_t>  ширина и высота холста
+    * \brief РџРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ С‚РµРєСѓС‰РµРіРѕ С…РѕР»СЃС‚Р°
+    * \return std::pair<std::size_t, std::size_t>  С€РёСЂРёРЅР° Рё РІС‹СЃРѕС‚Р° С…РѕР»СЃС‚Р°
     */
     std::pair<std::size_t, std::size_t> GetCanvasSize() const{
         return m_Canvas->GetSize();

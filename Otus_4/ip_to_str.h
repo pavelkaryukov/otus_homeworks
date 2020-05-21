@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "tuple_utils.h"
 #include <cstdint>
 #include <string>  
@@ -9,30 +9,30 @@
 /*! \mainpage Otus_4 (Print_IP)
  *
  * link: https://otus.ru/media-private/5c/4e/04_homework-12995-5c4ebc.pdf?hash=JvrtYNNSngfx3plRVe-kPg&expires=1583690347
- * \r\nРеализация функции печати условного IP адреса 
+ * \r\nР РµР°Р»РёР·Р°С†РёСЏ С„СѓРЅРєС†РёРё РїРµС‡Р°С‚Рё СѓСЃР»РѕРІРЅРѕРіРѕ IP Р°РґСЂРµСЃР° 
  *
  */
-///\brief Функции  печати IPv4 Style
+///\brief Р¤СѓРЅРєС†РёРё  РїРµС‡Р°С‚Рё IPv4 Style
 namespace MyIP
 {
     /**
     * \enum ByteOrder
-    * \brief Порядок байт при конвертации в ip строку
+    * \brief РџРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РїСЂРё РєРѕРЅРІРµСЂС‚Р°С†РёРё РІ ip СЃС‚СЂРѕРєСѓ
     */
     enum class ByteOrder
     {
         /** 
-        * \brief Порядок байт - сначала старший
+        * \brief РџРѕСЂСЏРґРѕРє Р±Р°Р№С‚ - СЃРЅР°С‡Р°Р»Р° СЃС‚Р°СЂС€РёР№
         */
         BigEndian,
         /**
-        * \brief Порядок байт - сначала младший 
+        * \brief РџРѕСЂСЏРґРѕРє Р±Р°Р№С‚ - СЃРЅР°С‡Р°Р»Р° РјР»Р°РґС€РёР№ 
         */
         LittleEndian
     };
     /**
     * \enum ErrorCode
-    * \brief Код ошибки возвращаемый функцией ToStr
+    * \brief РљРѕРґ РѕС€РёР±РєРё РІРѕР·РІСЂР°С‰Р°РµРјС‹Р№ С„СѓРЅРєС†РёРµР№ ToStr
     */
     enum class ErrorCode
     {
@@ -53,24 +53,24 @@ namespace MyIP
         */
         Success
     };
-    ///\brief Приватные функции и константы
+    ///\brief РџСЂРёРІР°С‚РЅС‹Рµ С„СѓРЅРєС†РёРё Рё РєРѕРЅСЃС‚Р°РЅС‚С‹
     namespace {
         /**
-        * \brief При конвертации в строку среднестастическая длина элемента, нужно при резервирование памяти для строки
+        * \brief РџСЂРё РєРѕРЅРІРµСЂС‚Р°С†РёРё РІ СЃС‚СЂРѕРєСѓ СЃСЂРµРґРЅРµСЃС‚Р°СЃС‚РёС‡РµСЃРєР°СЏ РґР»РёРЅР° СЌР»РµРјРµРЅС‚Р°, РЅСѓР¶РЅРѕ РїСЂРё СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРёРµ РїР°РјСЏС‚Рё РґР»СЏ СЃС‚СЂРѕРєРё
         */
         std::size_t kOneElementStrSize = 4;
         /**
-        * \brief В зависимости от порядка байт, определяет место вставки в строку
-        * \param[in] aStr Строка в которую будет осуществлятся вставка     
-        * \param[in] aOrder порядок байт (little endian - big endian)
-        * \return  std::size_t  позиция вставки
+        * \brief Р’ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РїРѕСЂСЏРґРєР° Р±Р°Р№С‚, РѕРїСЂРµРґРµР»СЏРµС‚ РјРµСЃС‚Рѕ РІСЃС‚Р°РІРєРё РІ СЃС‚СЂРѕРєСѓ
+        * \param[in] aStr РЎС‚СЂРѕРєР° РІ РєРѕС‚РѕСЂСѓСЋ Р±СѓРґРµС‚ РѕСЃСѓС‰РµСЃС‚РІР»СЏС‚СЃСЏ РІСЃС‚Р°РІРєР°     
+        * \param[in] aOrder РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ (little endian - big endian)
+        * \return  std::size_t  РїРѕР·РёС†РёСЏ РІСЃС‚Р°РІРєРё
         */
         std::size_t InsertedPos(const std::string& aStr, const ByteOrder aOrder)
         {
             return (aOrder == ByteOrder::BigEndian) ? aStr.size() : 0;
         }
-        //стянуто с http://coliru.stacked-crooked.com/a/a5d838b098495d9f
-        ///\brief Определяет имеет ли объект итератор
+        //СЃС‚СЏРЅСѓС‚Рѕ СЃ http://coliru.stacked-crooked.com/a/a5d838b098495d9f
+        ///\brief РћРїСЂРµРґРµР»СЏРµС‚ РёРјРµРµС‚ Р»Рё РѕР±СЉРµРєС‚ РёС‚РµСЂР°С‚РѕСЂ
         template <typename T, typename = void>
         struct is_iterable : std::false_type {};
         // this gets used only when we can call std::begin() and std::end() on that type
@@ -81,19 +81,19 @@ namespace MyIP
         constexpr bool is_iterable_v = is_iterable<T>::value;
     }   
 
-    ///\brief возврашаемый результат функций ToStr, пара строка + код ошибки
+    ///\brief РІРѕР·РІСЂР°С€Р°РµРјС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚ С„СѓРЅРєС†РёР№ ToStr, РїР°СЂР° СЃС‚СЂРѕРєР° + РєРѕРґ РѕС€РёР±РєРё
     struct [[nodiscard]] ConvertResult {
         std::string Result;
         ErrorCode   Code;
     };
     /**
-    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aBegin указатель (итератор) на начало
-    * \param[in] aEnd указатель (итератор) на конец  
-    * \param[in] aOrder порядок байт (little endian - big endian)
-    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * \return  std::string  строковое представление ip адреса
-    * \return  ErrorCode  код ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РїРµС‡Р°С‚Рё ip Р°РґСЂРµСЃР°, РґРµР»РёРјРµС‚СЂ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё '.', РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ
+    * \param[in] aBegin СѓРєР°Р·Р°С‚РµР»СЊ (РёС‚РµСЂР°С‚РѕСЂ) РЅР° РЅР°С‡Р°Р»Рѕ
+    * \param[in] aEnd СѓРєР°Р·Р°С‚РµР»СЊ (РёС‚РµСЂР°С‚РѕСЂ) РЅР° РєРѕРЅРµС†  
+    * \param[in] aOrder РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ (little endian - big endian)
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> РіРґРµ
+    * \return  std::string  СЃС‚СЂРѕРєРѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ ip Р°РґСЂРµСЃР°
+    * \return  ErrorCode  РєРѕРґ РѕС€РёР±РєРё
     */
     template<class T>
     ConvertResult ToStr(const T aBegin, const T aEnd, const ByteOrder aOrder)
@@ -116,12 +116,12 @@ namespace MyIP
         return { res, ErrorCode::Success };
     }
     /**
-    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aObj объект контейнер
-    * \param[in] aOrder порядок байт (little endian - big endian)
-    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * \return  std::string  строковое представление ip адреса
-    * \return  ErrorCode  код ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РїРµС‡Р°С‚Рё ip Р°РґСЂРµСЃР°, РґРµР»РёРјРµС‚СЂ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё '.', РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ
+    * \param[in] aObj РѕР±СЉРµРєС‚ РєРѕРЅС‚РµР№РЅРµСЂ
+    * \param[in] aOrder РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ (little endian - big endian)
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> РіРґРµ
+    * \return  std::string  СЃС‚СЂРѕРєРѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ ip Р°РґСЂРµСЃР°
+    * \return  ErrorCode  РєРѕРґ РѕС€РёР±РєРё
     */
     template <class TContainer>
     typename std::enable_if<is_iterable_v<TContainer>, ConvertResult>::type ToStr(const TContainer& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
@@ -131,12 +131,12 @@ namespace MyIP
         return ToStr<decltype(beginIter)>(beginIter, endIter, aOrder);
     }
     /**
-    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aObj объект интегрального типа
-    * \param[in] aOrder порядок байт (little endian - big endian)
-    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * \return  std::string  строковое представление ip адреса
-    * \return  ErrorCode  код ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РїРµС‡Р°С‚Рё ip Р°РґСЂРµСЃР°, РґРµР»РёРјРµС‚СЂ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё '.', РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ
+    * \param[in] aObj РѕР±СЉРµРєС‚ РёРЅС‚РµРіСЂР°Р»СЊРЅРѕРіРѕ С‚РёРїР°
+    * \param[in] aOrder РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ (little endian - big endian)
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> РіРґРµ
+    * \return  std::string  СЃС‚СЂРѕРєРѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ ip Р°РґСЂРµСЃР°
+    * \return  ErrorCode  РєРѕРґ РѕС€РёР±РєРё
     */
     template<class T>
     typename std::enable_if<std::is_integral_v<T>, ConvertResult>::type ToStr(const T& aObj, const ByteOrder aOrder = ByteOrder::BigEndian)
@@ -148,12 +148,12 @@ namespace MyIP
      }
 
     /**
-    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aStr строка, которая будет возвращена
-    * \tparam TOrder - enum ByteOrder - порядок байт при выводе
-    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * \return  std::string  строковое представление ip адреса
-    * \return  ErrorCode  код ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РїРµС‡Р°С‚Рё ip Р°РґСЂРµСЃР°, РґРµР»РёРјРµС‚СЂ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё '.', РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ
+    * \param[in] aStr СЃС‚СЂРѕРєР°, РєРѕС‚РѕСЂР°СЏ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰РµРЅР°
+    * \tparam TOrder - enum ByteOrder - РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РїСЂРё РІС‹РІРѕРґРµ
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> РіРґРµ
+    * \return  std::string  СЃС‚СЂРѕРєРѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ ip Р°РґСЂРµСЃР°
+    * \return  ErrorCode  РєРѕРґ РѕС€РёР±РєРё
     */
     template<ByteOrder TOrder>
     typename std::enable_if<TOrder == ByteOrder::BigEndian, ConvertResult>::type ToStr(const std::string& aStr) {
@@ -161,12 +161,12 @@ namespace MyIP
     }
 
     /**
-    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aStr строка, которая будет возвращена
-    * \tparam TOrder - enum ByteOrder - порядок байт при выводе
-    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * \return  std::string  строковое представление ip адреса
-    * \return  ErrorCode  код ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РїРµС‡Р°С‚Рё ip Р°РґСЂРµСЃР°, РґРµР»РёРјРµС‚СЂ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё '.', РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ
+    * \param[in] aStr СЃС‚СЂРѕРєР°, РєРѕС‚РѕСЂР°СЏ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰РµРЅР°
+    * \tparam TOrder - enum ByteOrder - РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РїСЂРё РІС‹РІРѕРґРµ
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> РіРґРµ
+    * \return  std::string  СЃС‚СЂРѕРєРѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ ip Р°РґСЂРµСЃР°
+    * \return  ErrorCode  РєРѕРґ РѕС€РёР±РєРё
     */
     template<ByteOrder TOrder>
     typename std::enable_if<TOrder == ByteOrder::LittleEndian, ConvertResult>::type ToStr(const std::string& aStr) {
@@ -174,27 +174,27 @@ namespace MyIP
     }
 
     /**
-    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aStr строка, которая будет возвращена
-    * \param[in] aOrder enum ByteOrder - порядок байт при выводе
-    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * \return  std::string  строковое представление ip адреса
-    * \return  ErrorCode  код ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РїРµС‡Р°С‚Рё ip Р°РґСЂРµСЃР°, РґРµР»РёРјРµС‚СЂ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё '.', РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ
+    * \param[in] aStr СЃС‚СЂРѕРєР°, РєРѕС‚РѕСЂР°СЏ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰РµРЅР°
+    * \param[in] aOrder enum ByteOrder - РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РїСЂРё РІС‹РІРѕРґРµ
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> РіРґРµ
+    * \return  std::string  СЃС‚СЂРѕРєРѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ ip Р°РґСЂРµСЃР°
+    * \return  ErrorCode  РєРѕРґ РѕС€РёР±РєРё
     */
     ConvertResult ToStr(const std::string& aStr, const ByteOrder aOrder = ByteOrder::BigEndian)
     {
         return (aOrder == ByteOrder::BigEndian) ? ToStr<ByteOrder::BigEndian>(aStr) : ToStr<ByteOrder::LittleEndian>(aStr);
     }
     /**
-    * \brief функция печати ip адреса, делиметр между элементами '.', порядок байт можно поменять
-    * \param[in] aTuple объект Tuple
-    * \param[in] aOrder порядок байт (little endian - big endian)
-    * \return  ConvertResult = std::pair<std::string, ErrorCode> где
-    * \return  std::string  строковое представление ip адреса
-    * \return  ErrorCode  код ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РїРµС‡Р°С‚Рё ip Р°РґСЂРµСЃР°, РґРµР»РёРјРµС‚СЂ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё '.', РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ
+    * \param[in] aTuple РѕР±СЉРµРєС‚ Tuple
+    * \param[in] aOrder РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚ (little endian - big endian)
+    * \return  ConvertResult = std::pair<std::string, ErrorCode> РіРґРµ
+    * \return  std::string  СЃС‚СЂРѕРєРѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ ip Р°РґСЂРµСЃР°
+    * \return  ErrorCode  РєРѕРґ РѕС€РёР±РєРё
     */
     template<typename...Types>
-    ConvertResult ToStr(const std::tuple<Types...> aTuple, const ByteOrder aOrder = ByteOrder::BigEndian) //TODO::добавить порядок байт
+    ConvertResult ToStr(const std::tuple<Types...> aTuple, const ByteOrder aOrder = ByteOrder::BigEndian) //TODO::РґРѕР±Р°РІРёС‚СЊ РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚
     {
         const std::size_t size = std::tuple_size< std::tuple<Types...>>::value;
         std::string resStr;
@@ -221,8 +221,8 @@ namespace MyIP
         return { resStr, errorCode };
     }
     /**
-    * \brief функция вывода на экран текста кода ошибки
-    * \param[in] aCode код ошибки 
+    * \brief С„СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° РЅР° СЌРєСЂР°РЅ С‚РµРєСЃС‚Р° РєРѕРґР° РѕС€РёР±РєРё
+    * \param[in] aCode РєРѕРґ РѕС€РёР±РєРё 
     */
     std::string ErrorCodeToStr(const ErrorCode aCode)
     {
@@ -240,8 +240,8 @@ namespace MyIP
         }
     }
     /**
-    * \brief функция вывода на экран ip адреса, полученно в результате работы функции ToStr
-    * \param[in] aRes результат обработки функции ToStr
+    * \brief С„СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° РЅР° СЌРєСЂР°РЅ ip Р°РґСЂРµСЃР°, РїРѕР»СѓС‡РµРЅРЅРѕ РІ СЂРµР·СѓР»СЊС‚Р°С‚Рµ СЂР°Р±РѕС‚С‹ С„СѓРЅРєС†РёРё ToStr
+    * \param[in] aRes СЂРµР·СѓР»СЊС‚Р°С‚ РѕР±СЂР°Р±РѕС‚РєРё С„СѓРЅРєС†РёРё ToStr
     */
     void PrintIpAddr(const ConvertResult& aRes)
     {

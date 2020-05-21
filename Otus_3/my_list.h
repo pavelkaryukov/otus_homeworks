@@ -1,4 +1,4 @@
-#pragma once 
+п»ї#pragma once 
 #include <memory>
 #include <vector>
 ////-----------------------------------------------------------------------------
@@ -94,7 +94,7 @@ private:
         MyListIterator& operator++()
         {
             if (m_Value == nullptr)
-                throw std::runtime_error("Wrong Iterator (== nullptr)");//TODO::Сделать нормальные исключения
+                throw std::runtime_error("Wrong Iterator (== nullptr)");//TODO::вЂ”РґРµР»Р°С‚СЊ РЅРѕСЂРјР°Р»СЊРЅС‹Рµ РёСЃРєР»СЋС‡РµРЅРёВ¤
             m_Value = (m_Value->Next != nullptr) ? m_Value->Next : nullptr;
             return *this;
         }
@@ -102,7 +102,7 @@ private:
         MyListIterator& operator--()
         {
             if (m_Value == nullptr)
-                throw std::runtime_error("Wrong Iterator (== nullptr)");//TODO::Сделать нормальные исключения
+                throw std::runtime_error("Wrong Iterator (== nullptr)");//TODO::вЂ”РґРµР»Р°С‚СЊ РЅРѕСЂРјР°Р»СЊРЅС‹Рµ РёСЃРєР»СЋС‡РµРЅРёВ¤
             m_Value = (m_Value->Previous != nullptr) ? m_Value->Previous : nullptr;
             return *this;
         }        
@@ -178,7 +178,7 @@ public:
             return;
         }
         BindNodes(m_LastNode, (NodePtr)ptr);
-        m_LastNode = ptr;// TODO:: проверить
+        m_LastNode = ptr;// TODO:: РїСЂРѕРІРµСЂРёС‚СЊ
 	};
     //-----------------------------------------------------------------------------
     std::size_t size() const

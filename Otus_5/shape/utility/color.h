@@ -1,24 +1,24 @@
-#pragma once
+п»ї#pragma once
 #include <cstdint>
-///\brief цвет объекта на экране
+///\brief С†РІРµС‚ РѕР±СЉРµРєС‚Р° РЅР° СЌРєСЂР°РЅРµ
 struct TColor final {
-    ///\brief прозрачность пикселя
+    ///\brief РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ РїРёРєСЃРµР»СЏ
     std::uint8_t Alpha = 0;
-    ///\brief красный цвет пикселя
+    ///\brief РєСЂР°СЃРЅС‹Р№ С†РІРµС‚ РїРёРєСЃРµР»СЏ
     std::uint8_t Red = 0;
-    ///\brief зеленый цвет пикселя
+    ///\brief Р·РµР»РµРЅС‹Р№ С†РІРµС‚ РїРёРєСЃРµР»СЏ
     std::uint8_t Green = 0;
-    ///\brief синия цвет пикселя
+    ///\brief СЃРёРЅРёСЏ С†РІРµС‚ РїРёРєСЃРµР»СЏ
     std::uint8_t Blue = 0;
 
     TColor() = default;
     /**
-    * @brief Конструктор TColor
-    * @param aAlpha Прозрачность
-    * @param aRed Интенсивность красного
-    * @param aGreen Интенсивность зеленого
-    * @param aBlue Интенсивность синиго
-    * @return объект TColor
+    * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ TColor
+    * @param aAlpha РџСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ
+    * @param aRed РРЅС‚РµРЅСЃРёРІРЅРѕСЃС‚СЊ РєСЂР°СЃРЅРѕРіРѕ
+    * @param aGreen РРЅС‚РµРЅСЃРёРІРЅРѕСЃС‚СЊ Р·РµР»РµРЅРѕРіРѕ
+    * @param aBlue РРЅС‚РµРЅСЃРёРІРЅРѕСЃС‚СЊ СЃРёРЅРёРіРѕ
+    * @return РѕР±СЉРµРєС‚ TColor
     */
     TColor(const std::uint8_t aAlpha, const std::uint8_t aRed, const std::uint8_t aGreen, const std::uint8_t aBlue) :
         Alpha(aAlpha),

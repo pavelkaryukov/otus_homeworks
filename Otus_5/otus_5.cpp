@@ -1,4 +1,4 @@
-#include "application/application.h"
+п»ї#include "application/application.h"
 
 void TestApplication() {
     Application app;
@@ -9,7 +9,7 @@ void TestApplication() {
     app.AddLine  ({ 65, 36  }, { 80, 96 });
     app.SetColor(TColor{ 85, 66, 1, 82 });
     app.SetThickness(15);
-    app.AddRectangle({ 0 , 66  }, { 88, 90 });// его должен убить
+    app.AddRectangle({ 0 , 66  }, { 88, 90 });// РµРіРѕ РґРѕР»Р¶РµРЅ СѓР±РёС‚СЊ
     app.AddRectangle({ 33, 500 }, { 98, 756 });
     app.AddLine     ({ 65, 36  }, { 80, 96 });
     app.DeleteShape(3);

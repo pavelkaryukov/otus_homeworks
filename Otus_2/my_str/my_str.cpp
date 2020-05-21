@@ -1,4 +1,4 @@
-#include "my_str.h"
+п»ї#include "my_str.h"
 
 #include <cctype>
 #include <iostream>
@@ -61,7 +61,7 @@ std::vector<std::size_t> mystr::ConvertStrArrayToNumbers(const std::vector<std::
         if ((aIsCorrectNum == nullptr) || aIsCorrectNum(digit)) {
             res.emplace_back(digit);
         } else {
-            return {};//Если число не соответсвует определенному условию - вернуть пустой вектор
+            return {};//Р•СЃР»Рё С‡РёСЃР»Рѕ РЅРµ СЃРѕРѕС‚РІРµС‚СЃРІСѓРµС‚ РѕРїСЂРµРґРµР»РµРЅРЅРѕРјСѓ СѓСЃР»РѕРІРёСЋ - РІРµСЂРЅСѓС‚СЊ РїСѓСЃС‚РѕР№ РІРµРєС‚РѕСЂ
         }
     }
     return res;

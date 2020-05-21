@@ -1,7 +1,7 @@
-#pragma once
+п»ї#pragma once
 #include "shape/ishape.h"
 #include <iostream>
-///\brief фигура круг, реализует интерфейс IShape 
+///\brief С„РёРіСѓСЂР° РєСЂСѓРі, СЂРµР°Р»РёР·СѓРµС‚ РёРЅС‚РµСЂС„РµР№СЃ IShape 
 class Circle final : public IShape {
 public:
     Circle() = default;

@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "work_space/painter.h"
 #include "code_results/my_code_results.h"
 #include "shape/circle.h"
@@ -8,25 +8,25 @@
 #include <optional>
 /*! \mainpage Otus_5 (graphic_editor)
  *
- * \r\n   Макет классов простейшего векторного редактора
+ * \r\n   РњР°РєРµС‚ РєР»Р°СЃСЃРѕРІ РїСЂРѕСЃС‚РµР№С€РµРіРѕ РІРµРєС‚РѕСЂРЅРѕРіРѕ СЂРµРґР°РєС‚РѕСЂР°
  *
  */
  /*! Application class */
- /// \brief Класс векторный редактор (предполагается что гуи будет использовать его методы)
- /// \details содержит в себе файловый мэнеджер (class FileManager) и класс художник(ClassPainter)
+ /// \brief РљР»Р°СЃСЃ РІРµРєС‚РѕСЂРЅС‹Р№ СЂРµРґР°РєС‚РѕСЂ (РїСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ С‡С‚Рѕ РіСѓРё Р±СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РµРіРѕ РјРµС‚РѕРґС‹)
+ /// \details СЃРѕРґРµСЂР¶РёС‚ РІ СЃРµР±Рµ С„Р°Р№Р»РѕРІС‹Р№ РјСЌРЅРµРґР¶РµСЂ (class FileManager) Рё РєР»Р°СЃСЃ С…СѓРґРѕР¶РЅРёРє(ClassPainter)
 class Application final{
 public:
 #pragma region Constructros
-    ///\brief конструктор по умолчанию - размер холста будет 800x600
+    ///\brief РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ - СЂР°Р·РјРµСЂ С…РѕР»СЃС‚Р° Р±СѓРґРµС‚ 800x600
     Application() = default;
 
     /**
-        * \brief конструктор
-        * \param[in] aX Ширина холста
-        * \param[in] aY Высота холста
-        * \param[in] TColor Цвет фона холста
-        * \param[in] aThickness Толщина линий, рисуемых фигур
-        * \return  объект класса Application
+        * \brief РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+        * \param[in] aX РЁРёСЂРёРЅР° С…РѕР»СЃС‚Р°
+        * \param[in] aY Р’С‹СЃРѕС‚Р° С…РѕР»СЃС‚Р°
+        * \param[in] TColor Р¦РІРµС‚ С„РѕРЅР° С…РѕР»СЃС‚Р°
+        * \param[in] aThickness РўРѕР»С‰РёРЅР° Р»РёРЅРёР№, СЂРёСЃСѓРµРјС‹С… С„РёРіСѓСЂ
+        * \return  РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° Application
         */
     Application(
         const std::size_t              aX,
@@ -39,12 +39,12 @@ public:
 
 #pragma region ShapeAddingMethods  
     /**
-    * \brief метод добавляет окружность на холст
-    * \param[in] aBegin координата начала фигуры
-    * \param[in] aEnd координата конца фигуры
-    * \param[in] aThickness Толщина линий, рисуемых фигур
-    * \param[in] TColor Цвет фона холста
-    * \return  CodeResults  код ошибки
+    * \brief РјРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РѕРєСЂСѓР¶РЅРѕСЃС‚СЊ РЅР° С…РѕР»СЃС‚
+    * \param[in] aBegin РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР°С‡Р°Р»Р° С„РёРіСѓСЂС‹
+    * \param[in] aEnd РєРѕРѕСЂРґРёРЅР°С‚Р° РєРѕРЅС†Р° С„РёРіСѓСЂС‹
+    * \param[in] aThickness РўРѕР»С‰РёРЅР° Р»РёРЅРёР№, СЂРёСЃСѓРµРјС‹С… С„РёРіСѓСЂ
+    * \param[in] TColor Р¦РІРµС‚ С„РѕРЅР° С…РѕР»СЃС‚Р°
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults AddCircle(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
         std::cout << boost::format("Class Application:: method AddCircle\r\n");
@@ -52,12 +52,12 @@ public:
     }
 
     /**
-    * \brief метод добавляет линию на холст
-    * \param[in] aBegin координата начала фигуры
-    * \param[in] aEnd координата конца фигуры
-    * \param[in] aThickness Толщина линий, рисуемых фигур
-    * \param[in] TColor Цвет фона холста
-    * \return  CodeResults  код ошибки
+    * \brief РјРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ Р»РёРЅРёСЋ РЅР° С…РѕР»СЃС‚
+    * \param[in] aBegin РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР°С‡Р°Р»Р° С„РёРіСѓСЂС‹
+    * \param[in] aEnd РєРѕРѕСЂРґРёРЅР°С‚Р° РєРѕРЅС†Р° С„РёРіСѓСЂС‹
+    * \param[in] aThickness РўРѕР»С‰РёРЅР° Р»РёРЅРёР№, СЂРёСЃСѓРµРјС‹С… С„РёРіСѓСЂ
+    * \param[in] TColor Р¦РІРµС‚ С„РѕРЅР° С…РѕР»СЃС‚Р°
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults AddLine(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
         std::cout << boost::format("Class Application:: method AddLine\r\n");
@@ -65,12 +65,12 @@ public:
     }
 
     /**
-    * \brief метод добавляет прямоугольник на холст
-    * \param[in] aBegin координата начала фигуры
-    * \param[in] aEnd координата конца фигуры
-    * \param[in] aThickness Толщина линий, рисуемых фигур
-    * \param[in] TColor Цвет фона холста
-    * \return  CodeResults  код ошибки
+    * \brief РјРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РЅР° С…РѕР»СЃС‚
+    * \param[in] aBegin РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР°С‡Р°Р»Р° С„РёРіСѓСЂС‹
+    * \param[in] aEnd РєРѕРѕСЂРґРёРЅР°С‚Р° РєРѕРЅС†Р° С„РёРіСѓСЂС‹
+    * \param[in] aThickness РўРѕР»С‰РёРЅР° Р»РёРЅРёР№, СЂРёСЃСѓРµРјС‹С… С„РёРіСѓСЂ
+    * \param[in] TColor Р¦РІРµС‚ С„РѕРЅР° С…РѕР»СЃС‚Р°
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults AddRectangle(const TCoord aBegin, const TCoord aEnd, const IShape::thickens_t aThck, const TColor aColor) {
         std::cout << boost::format("Class Application:: method AddRectangle\r\n");
@@ -78,33 +78,33 @@ public:
     }
 
     /**
-    * \brief метод добавляет окружность на холст
-    * \param[in] aBegin координата начала фигуры
-    * \param[in] aEnd координата конца фигуры
-    * \details Толщина линий и цвет будут выданы классом Application
-    * \return  CodeResults  код ошибки
+    * \brief РјРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РѕРєСЂСѓР¶РЅРѕСЃС‚СЊ РЅР° С…РѕР»СЃС‚
+    * \param[in] aBegin РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР°С‡Р°Р»Р° С„РёРіСѓСЂС‹
+    * \param[in] aEnd РєРѕРѕСЂРґРёРЅР°С‚Р° РєРѕРЅС†Р° С„РёРіСѓСЂС‹
+    * \details РўРѕР»С‰РёРЅР° Р»РёРЅРёР№ Рё С†РІРµС‚ Р±СѓРґСѓС‚ РІС‹РґР°РЅС‹ РєР»Р°СЃСЃРѕРј Application
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults AddCircle(const TCoord aBegin, const TCoord aEnd) {
         return AddCircle(aBegin, aEnd, m_Thickness, m_Color);
     }
 
     /**
-    * \brief метод добавляет линию на холст
-    * \param[in] aBegin координата начала фигуры
-    * \param[in] aEnd координата конца фигуры
-    * \details Толщина линий и цвет будут выданы классом Application
-    * \return  CodeResults  код ошибки
+    * \brief РјРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ Р»РёРЅРёСЋ РЅР° С…РѕР»СЃС‚
+    * \param[in] aBegin РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР°С‡Р°Р»Р° С„РёРіСѓСЂС‹
+    * \param[in] aEnd РєРѕРѕСЂРґРёРЅР°С‚Р° РєРѕРЅС†Р° С„РёРіСѓСЂС‹
+    * \details РўРѕР»С‰РёРЅР° Р»РёРЅРёР№ Рё С†РІРµС‚ Р±СѓРґСѓС‚ РІС‹РґР°РЅС‹ РєР»Р°СЃСЃРѕРј Application
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults AddLine(const TCoord aBegin, const TCoord aEnd) {
         return AddLine(aBegin, aEnd, m_Thickness, m_Color);
     }
 
     /**
-    * \brief метод добавляет прямоугольник на холст
-    * \param[in] aBegin координата начала фигуры
-    * \param[in] aEnd координата конца фигуры
-    * \details Толщина линий и цвет будут выданы классом Application
-    * \return  CodeResults  код ошибки
+    * \brief РјРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РЅР° С…РѕР»СЃС‚
+    * \param[in] aBegin РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР°С‡Р°Р»Р° С„РёРіСѓСЂС‹
+    * \param[in] aEnd РєРѕРѕСЂРґРёРЅР°С‚Р° РєРѕРЅС†Р° С„РёРіСѓСЂС‹
+    * \details РўРѕР»С‰РёРЅР° Р»РёРЅРёР№ Рё С†РІРµС‚ Р±СѓРґСѓС‚ РІС‹РґР°РЅС‹ РєР»Р°СЃСЃРѕРј Application
+    * \return  CodeResults  РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults AddRectangle(const TCoord aBegin, const TCoord aEnd) {
         return m_Painter.AddShape<Rectangle>(aBegin, aEnd, m_Thickness, m_Color);
@@ -114,8 +114,8 @@ public:
 #pragma region ChangeStateAppMethods
 
     /**
-    * \brief метод задает толщину рисуемых на холсте фигур
-    * \param[in] aThickness толщина от 0 до 255
+    * \brief РјРµС‚РѕРґ Р·Р°РґР°РµС‚ С‚РѕР»С‰РёРЅСѓ СЂРёСЃСѓРµРјС‹С… РЅР° С…РѕР»СЃС‚Рµ С„РёРіСѓСЂ
+    * \param[in] aThickness С‚РѕР»С‰РёРЅР° РѕС‚ 0 РґРѕ 255
     */
     void SetThickness(const IShape::thickens_t aThickness) {
         std::cout << boost::format("Class Application:: method SetThickness\r\n");
@@ -123,8 +123,8 @@ public:
     }
 
     /**
-    * \brief метод задает цвет рисуемых на холсте фигур
-    * \param[in] aColor цвет и интенсивность (ARGB)
+    * \brief РјРµС‚РѕРґ Р·Р°РґР°РµС‚ С†РІРµС‚ СЂРёСЃСѓРµРјС‹С… РЅР° С…РѕР»СЃС‚Рµ С„РёРіСѓСЂ
+    * \param[in] aColor С†РІРµС‚ Рё РёРЅС‚РµРЅСЃРёРІРЅРѕСЃС‚СЊ (ARGB)
     */
     void SetColor(const TColor aColor) {
         std::cout << boost::format("Class Application:: method SetColor\r\n");
@@ -135,22 +135,22 @@ public:
 #pragma  region ShapeHandlers
 
     /**
-    * \brief метод возвращает ID выделенной фигуры
-    * \param[in] aX положение мышки на холсте - ось абсцисс
-    * \param[in] aY положение мышки на холсте - ось ординат
-    * \details положение мышки передаст GUI
-    * \return опциональное значение которого ID выделенной фигуры
+    * \brief РјРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ ID РІС‹РґРµР»РµРЅРЅРѕР№ С„РёРіСѓСЂС‹
+    * \param[in] aX РїРѕР»РѕР¶РµРЅРёРµ РјС‹С€РєРё РЅР° С…РѕР»СЃС‚Рµ - РѕСЃСЊ Р°Р±СЃС†РёСЃСЃ
+    * \param[in] aY РїРѕР»РѕР¶РµРЅРёРµ РјС‹С€РєРё РЅР° С…РѕР»СЃС‚Рµ - РѕСЃСЊ РѕСЂРґРёРЅР°С‚
+    * \details РїРѕР»РѕР¶РµРЅРёРµ РјС‹С€РєРё РїРµСЂРµРґР°СЃС‚ GUI
+    * \return РѕРїС†РёРѕРЅР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РєРѕС‚РѕСЂРѕРіРѕ ID РІС‹РґРµР»РµРЅРЅРѕР№ С„РёРіСѓСЂС‹
     */
     std::optional<Painter::shapeid_t> SelectShape(const std::size_t aX, const std::size_t aY) {
-        //Ткнул мышкой в экра - получил id фигуры  
+        //РўРєРЅСѓР» РјС‹С€РєРѕР№ РІ СЌРєСЂР° - РїРѕР»СѓС‡РёР» id С„РёРіСѓСЂС‹  
         throw std::logic_error("Method SelectShape not implemented");
     }
 
     /**
-    * \brief Метод удаляет фигуру с холста
-    * \param[in] aID айдишник удаляемой фигуры
-    * \details предполагается использование вкупе с SelectShape
-    * \return CodeResults код ошибки
+    * \brief РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ С„РёРіСѓСЂСѓ СЃ С…РѕР»СЃС‚Р°
+    * \param[in] aID Р°Р№РґРёС€РЅРёРє СѓРґР°Р»СЏРµРјРѕР№ С„РёРіСѓСЂС‹
+    * \details РїСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РІРєСѓРїРµ СЃ SelectShape
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults DeleteShape(const std::size_t aID) {
         return m_Painter.EraseShape(aID);
@@ -160,37 +160,37 @@ public:
 #pragma region CanvasHandlers
 
     /**
-    * \brief Метод заменяет холст
-    * \details предполагается вызов диалога выбора холста и его замена
-    * \return CodeResults код ошибки
+    * \brief РњРµС‚РѕРґ Р·Р°РјРµРЅСЏРµС‚ С…РѕР»СЃС‚
+    * \details РїСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ РІС‹Р·РѕРІ РґРёР°Р»РѕРіР° РІС‹Р±РѕСЂР° С…РѕР»СЃС‚Р° Рё РµРіРѕ Р·Р°РјРµРЅР°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults ChangeCanvas() {
-        //Диалог Смены канваса
-        //Вызов ChangeCanvasColor
+        //Р”РёР°Р»РѕРі РЎРјРµРЅС‹ РєР°РЅРІР°СЃР°
+        //Р’С‹Р·РѕРІ ChangeCanvasColor
         return CodeResults::Succes;
     }
 
     /**
-    * \brief Метод изменяет размер холста
-    * \details все фигуры сохранятся на холсте
-    * \return CodeResults код ошибки
+    * \brief РњРµС‚РѕРґ РёР·РјРµРЅСЏРµС‚ СЂР°Р·РјРµСЂ С…РѕР»СЃС‚Р°
+    * \details РІСЃРµ С„РёРіСѓСЂС‹ СЃРѕС…СЂР°РЅСЏС‚СЃСЏ РЅР° С…РѕР»СЃС‚Рµ
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults ResizeCanvas(const std::size_t aX, const std::size_t aY) {
         return m_Painter.ResizeCanvas(aX, aY);
     }
 
     /**
-    * \brief Метод изменяет цвет холста
-    * \details все фигуры сохранятся на холсте
-    * \return CodeResults код ошибки
+    * \brief РњРµС‚РѕРґ РёР·РјРµРЅСЏРµС‚ С†РІРµС‚ С…РѕР»СЃС‚Р°
+    * \details РІСЃРµ С„РёРіСѓСЂС‹ СЃРѕС…СЂР°РЅСЏС‚СЃСЏ РЅР° С…РѕР»СЃС‚Рµ
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults ChangeCanvasColor(const TColor aColor) {
         return m_Painter.ChangeCanvasColor(aColor);
     }
 
     /**
-    * \brief Метод возвращает текущий размер холста
-    * \return std::pair<std::size_t, std::size_t> ширина + высота холста
+    * \brief РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰РёР№ СЂР°Р·РјРµСЂ С…РѕР»СЃС‚Р°
+    * \return std::pair<std::size_t, std::size_t> С€РёСЂРёРЅР° + РІС‹СЃРѕС‚Р° С…РѕР»СЃС‚Р°
     */
     std::pair<std::size_t, std::size_t> GetCanvasSize() const {
         return m_Painter.GetCanvasSize();
@@ -200,9 +200,9 @@ public:
 #pragma region FileSystemMethods
 
     /**
-    * \brief Импорт состояния редактора из файла
-    * \details Импорт холст и фигур (фигуры будут получены только если файл *.vect) из файла
-    * \return CodeResults код ошибки
+    * \brief РРјРїРѕСЂС‚ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЂРµРґР°РєС‚РѕСЂР° РёР· С„Р°Р№Р»Р°
+    * \details РРјРїРѕСЂС‚ С…РѕР»СЃС‚ Рё С„РёРіСѓСЂ (С„РёРіСѓСЂС‹ Р±СѓРґСѓС‚ РїРѕР»СѓС‡РµРЅС‹ С‚РѕР»СЊРєРѕ РµСЃР»Рё С„Р°Р№Р» *.vect) РёР· С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Import() {
         m_Painter.Clear();
@@ -212,17 +212,17 @@ public:
     }
 
     /**
-    * \brief Экспорт состояния редактора в файл
-    * \details Экспорт холста и фигур (фигуры будут экспортированны только если файл *.vect) в файла
-    * \return CodeResults код ошибки
+    * \brief Р­РєСЃРїРѕСЂС‚ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЂРµРґР°РєС‚РѕСЂР° РІ С„Р°Р№Р»
+    * \details Р­РєСЃРїРѕСЂС‚ С…РѕР»СЃС‚Р° Рё С„РёРіСѓСЂ (С„РёРіСѓСЂС‹ Р±СѓРґСѓС‚ СЌРєСЃРїРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹ С‚РѕР»СЊРєРѕ РµСЃР»Рё С„Р°Р№Р» *.vect) РІ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Export() {
         return m_FileManager.Export(m_Painter);
     }
 
     /**
-    * \brief Сохранение текущего состояния редактора
-    * \return CodeResults код ошибки
+    * \brief РЎРѕС…СЂР°РЅРµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЂРµРґР°РєС‚РѕСЂР°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Save() {
         return m_FileManager.Save(m_Painter);

@@ -1,7 +1,7 @@
-#pragma once       
+п»ї#pragma once       
 #include "shape/ishape.h"
 #include <iostream>
-///\brief фигура Линия, реализует интерфейс IShape
+///\brief С„РёРіСѓСЂР° Р‹РёРЅРёВ¤, СЂРµР°Р»РёР·СѓРµС‚ РёРЅС‚РµСЂС„РµР№СЃ IShape
 class Line final : public IShape {
 public:
     Line() = default;

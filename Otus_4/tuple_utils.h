@@ -1,6 +1,6 @@
-#pragma once
+п»ї#pragma once
 #include <tuple>
-///Стянуто https://blog.tartanllama.xyz/exploding-tuples-fold-expressions/
+///РЎС‚СЏРЅСѓС‚Рѕ https://blog.tartanllama.xyz/exploding-tuples-fold-expressions/
 namespace tuple_utils
 {
     //-----------------------------------------------------------------------------

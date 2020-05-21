@@ -1,61 +1,61 @@
-#pragma once
+п»ї#pragma once
 #include "file_system/files/ifile.h"
-///\brief Класс JPG-file
+///\brief РљР»Р°СЃСЃ JPG-file
 class FileJPG final : public IFile {
 public:
     FileJPG() = default;
     
     /**
-    * \brief Конструктор файла
-    * \param[in] aPath - путь к файлу
-    * \return CodeResults код ошибки
+    * \brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ С„Р°Р№Р»Р°
+    * \param[in] aPath - РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     FileJPG(const std::filesystem::path aPath) : IFile(aPath) {}
 
     /**
-    * \brief Открытие файла
-    * \return CodeResults код ошибки
+    * \brief РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Open() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
-    * \brief Создание файла
-    * \return CodeResults код ошибки
+    * \brief РЎРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Create() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
-    * \brief Сохранение файла
-    * \return CodeResults код ошибки
+    * \brief РЎРѕС…СЂР°РЅРµРЅРёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Save() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
-    * \brief Закрытие файла
-    * \return CodeResults код ошибки
+    * \brief Р—Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Close() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
-    * \brief Получить холст из файла
-    * \return CodeResults код ошибки
+    * \brief РџРѕР»СѓС‡РёС‚СЊ С…РѕР»СЃС‚ РёР· С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     std::unique_ptr<Canvas> GetCanvas() override {
         throw std::logic_error("The method or operation is not implemented.");
     }
 
     /**
-    * \brief Получить фигуры из файла
-    * \param[out] aPainter- Маляр, в который будут добавлены фигуры
-    * \return CodeResults код ошибки
+    * \brief РџРѕР»СѓС‡РёС‚СЊ С„РёРіСѓСЂС‹ РёР· С„Р°Р№Р»Р°
+    * \param[out] aPainter- РњР°Р»СЏСЂ, РІ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґСѓС‚ РґРѕР±Р°РІР»РµРЅС‹ С„РёРіСѓСЂС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults GetShapes(Painter& aPainter) override {
         throw std::logic_error("The method or operation is not implemented.");

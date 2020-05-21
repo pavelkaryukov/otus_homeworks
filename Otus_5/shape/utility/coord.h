@@ -1,18 +1,18 @@
-#pragma once
+п»ї#pragma once
 #include <cstddef>
-///\brief Координата объекта на экране
+///\brief РљРѕРѕСЂРґРёРЅР°С‚Р° РѕР±СЉРµРєС‚Р° РЅР° СЌРєСЂР°РЅРµ
 struct TCoord final {
-    ///\brief Координата объекта на экране
+    ///\brief РљРѕРѕСЂРґРёРЅР°С‚Р° РѕР±СЉРµРєС‚Р° РЅР° СЌРєСЂР°РЅРµ
     std::size_t X = 0;
-    ///\brief Координата объекта на экране
+    ///\brief РљРѕРѕСЂРґРёРЅР°С‚Р° РѕР±СЉРµРєС‚Р° РЅР° СЌРєСЂР°РЅРµ
     std::size_t Y = 0;
 
     TCoord() = default;
     /**
-    * @brief Конструктор TCoord
-    * @param aX - положение на оси абсцисс
-    * @param aY - положение на оси ординат
-    * @return объект TColor
+    * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ TCoord
+    * @param aX - РїРѕР»РѕР¶РµРЅРёРµ РЅР° РѕСЃРё Р°Р±СЃС†РёСЃСЃ
+    * @param aY - РїРѕР»РѕР¶РµРЅРёРµ РЅР° РѕСЃРё РѕСЂРґРёРЅР°С‚
+    * @return РѕР±СЉРµРєС‚ TColor
     */
     TCoord(const std::size_t aX, const std::size_t aY) : X(aX), Y(aY) {};
 };

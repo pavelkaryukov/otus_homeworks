@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <tuple>
 #include <cstdint>
 #include <string>
@@ -12,7 +12,7 @@ namespace ip_filter
         //constructors
         IPv4() = default;
         IPv4(std::uint8_t aIP_1, std::uint8_t aIP_2, std::uint8_t aIP_3, std::uint8_t aIP_4 );
-        explicit IPv4(std::uint32_t aIPv4);//пусть старший байт слева в IP
+        explicit IPv4(std::uint32_t aIPv4);//РїСѓСЃС‚СЊ СЃС‚Р°СЂС€РёР№ Р±Р°Р№С‚ СЃР»РµРІР° РІ IP
         explicit IPv4(std::string aIPv4);
         //Convert Methods
         std::string ToStr() const;

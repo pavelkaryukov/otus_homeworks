@@ -1,10 +1,10 @@
-cmake_minimum_required (VERSION 3.8)
+п»їcmake_minimum_required (VERSION 3.8)
 
 project ("Otus_2" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
 set (BIN_POW_SRC   "bin_pow/bin_pow.cpp" "bin_pow/bin_pow.h")
 set (IP_FILTER_SRC "ip_filter/ip_filter.cpp" "ip_filter/ip_filter.h")
-set (MD5_SRC "md5/md5.cpp" "md5/md5.h")#Заменить на lib файд
+set (MD5_SRC "md5/md5.cpp" "md5/md5.h")#Р—Р°РјРµРЅРёС‚СЊ РЅР° lib С„Р°Р№Рґ
 set (MYSTR_FOLDER "my_str")
 set (MYSTR_SRC ${MYSTR_FOLDER}/my_str.cpp ${MYSTR_FOLDER}/my_str.h)
 set (TEST_FILE_PATH ${PROJECT_SOURCE_DIR}/examples/ip_filter-12995-758870.tsv)
@@ -16,7 +16,7 @@ file(COPY ${TEST_FILE_PATH}
 add_library(mystr STATIC ${MYSTR_SRC}) 							
 add_library(md5sum STATIC ${MD5_SRC})
 add_library(binpow STATIC ${BIN_POW_SRC})
-#библиотеки
+#Р±РёР±Р»РёРѕС‚РµРєРё
 set_target_properties (
 	mystr 
 	md5sum
@@ -171,7 +171,7 @@ enable_testing()
 add_test(boost_test boost_test)
 add_test(gtest_test gtest_test)
 
-#Сборка пакета
+#РЎР±РѕСЂРєР° РїР°РєРµС‚Р°
 install(TARGETS Otus_2 DESTINATION bin)
 set(CPACK_PACKAGE_NAME "OtusHomeworks")
 set(CPACK_GENERATOR DEB)

@@ -1,4 +1,4 @@
-#include "ip_filter.h"
+п»ї#include "ip_filter.h"
 #include "my_str.h"
 #include <iostream>
 #include <fstream>
@@ -72,7 +72,7 @@ namespace ip_filter
     //-----------------------------------------------------------------------------
     std::string SortAndFilterIPv4ForOtus(IpList& aIPv4List)
     {
-        std::sort(aIPv4List.begin(), aIPv4List.end(), CmpMore);// обратный лексеграфический порядок
+        std::sort(aIPv4List.begin(), aIPv4List.end(), CmpMore);// РѕР±СЂР°С‚РЅС‹Р№ Р»РµРєСЃРµРіСЂР°С„РёС‡РµСЃРєРёР№ РїРѕСЂСЏРґРѕРє
         std::string resStr = IpListToStr(aIPv4List);
 
         auto filtered1 = Filter(aIPv4List, CmpB1);
@@ -187,7 +187,7 @@ namespace ip_filter
                 aVect.emplace_back(0);
             }
         }
-        return std::tie(aVect[0], aVect[1], aVect[2], aVect[3]);//Так как вектор берется из строки то предполагаем что первый элемент - больший
+        return std::tie(aVect[0], aVect[1], aVect[2], aVect[3]);//РўР°Рє РєР°Рє РІРµРєС‚РѕСЂ Р±РµСЂРµС‚СЃСЏ РёР· СЃС‚СЂРѕРєРё С‚Рѕ РїСЂРµРґРїРѕР»Р°РіР°РµРј С‡С‚Рѕ РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ - Р±РѕР»СЊС€РёР№
     }
     //-----------------------------------------------------------------------------
 }

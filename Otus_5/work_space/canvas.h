@@ -1,31 +1,31 @@
-#pragma once
+п»ї#pragma once
 #include "shape/ishape.h"
 #include "code_results/my_code_results.h"
 #include <map>
 
 /**
-* \brief класс Холст
-* \details рабочая зона для отрисовки фигур
+* \brief РєР»Р°СЃСЃ РҐРѕР»СЃС‚
+* \details СЂР°Р±РѕС‡Р°СЏ Р·РѕРЅР° РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё С„РёРіСѓСЂ
 */
 class Canvas final {
 public:
     Canvas() = default;
     
     /**
-    * \brief конструктор холста
-    * \param[in] aX  ширина холста
-    * \param[in] aY  высота холста
-    * \param[in] aColor  Цвет фона холста ARGB
-    * \details после изменения размеров холста все фигуры будут заново отрисованы
-    * \return CodeResults код ошибки
+    * \brief РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ С…РѕР»СЃС‚Р°
+    * \param[in] aX  С€РёСЂРёРЅР° С…РѕР»СЃС‚Р°
+    * \param[in] aY  РІС‹СЃРѕС‚Р° С…РѕР»СЃС‚Р°
+    * \param[in] aColor  Р¦РІРµС‚ С„РѕРЅР° С…РѕР»СЃС‚Р° ARGB
+    * \details РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂРѕРІ С…РѕР»СЃС‚Р° РІСЃРµ С„РёРіСѓСЂС‹ Р±СѓРґСѓС‚ Р·Р°РЅРѕРІРѕ РѕС‚СЂРёСЃРѕРІР°РЅС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     Canvas(const std::size_t aX, const std::size_t aY, const TColor aColor) : m_X(aX), m_Y(aY), m_Color(aColor) {}
 
     /**
-    * \brief Изменеяет размер холста
-    * \param[in] aX новая ширина холста
-    * \param[in] aY новая высота холста
-    * \return CodeResults код ошибки
+    * \brief РР·РјРµРЅРµСЏРµС‚ СЂР°Р·РјРµСЂ С…РѕР»СЃС‚Р°
+    * \param[in] aX РЅРѕРІР°СЏ С€РёСЂРёРЅР° С…РѕР»СЃС‚Р°
+    * \param[in] aY РЅРѕРІР°СЏ РІС‹СЃРѕС‚Р° С…РѕР»СЃС‚Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults Resize(const std::size_t aX, const std::size_t aY) {
         m_X = aX;
@@ -38,10 +38,10 @@ public:
     }
 
     /**
-    * \brief Замена фона
-    * \param[in] aColor новый цвет ARGB
-    * \details после изменения Цвета холста все фигуры будут заново отрисованы
-    * \return CodeResults код ошибки
+    * \brief Р—Р°РјРµРЅР° С„РѕРЅР°
+    * \param[in] aColor РЅРѕРІС‹Р№ С†РІРµС‚ ARGB
+    * \details РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёСЏ Р¦РІРµС‚Р° С…РѕР»СЃС‚Р° РІСЃРµ С„РёРіСѓСЂС‹ Р±СѓРґСѓС‚ Р·Р°РЅРѕРІРѕ РѕС‚СЂРёСЃРѕРІР°РЅС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults ChangeColor(const TColor aColor) {
         m_Color = aColor;
@@ -49,8 +49,8 @@ public:
     }
 
     /**
-    * \brief Получить размер
-    * \return std::pair<std::size_t, std::size_t>  ширина и высота холста
+    * \brief РџРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ
+    * \return std::pair<std::size_t, std::size_t>  С€РёСЂРёРЅР° Рё РІС‹СЃРѕС‚Р° С…РѕР»СЃС‚Р°
     */
     std::pair<std::size_t, std::size_t> GetSize() const {
         return { m_X, m_Y };

@@ -1,67 +1,67 @@
-#pragma once
+п»ї#pragma once
 #include "code_results/my_code_results.h"
 #include "work_space/canvas.h"
 #include "shape/ishape.h"
 #include <filesystem> 
-//Поддерживаемые файлы
+//РџРѕРґРґРµСЂР¶РёРІР°РµРјС‹Рµ С„Р°Р№Р»С‹
 enum class FileTypes {
     BMP,
     JPG,
     VECT,
     UNK
 };
-///\brief интерфейс файла
+///\brief РёРЅС‚РµСЂС„РµР№СЃ С„Р°Р№Р»Р°
 class IFile {
 public:
     IFile() : m_Path("") {}
 
     /**
-    * \brief Конструктор файла
-    * \param[in] aPath - путь к файлу
-    * \return CodeResults код ошибки
+    * \brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ С„Р°Р№Р»Р°
+    * \param[in] aPath - РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     IFile(const std::filesystem::path aPath) : m_Path(aPath) {}
 
     /**
-    * \brief Открытие файла
-    * \return CodeResults код ошибки
+    * \brief РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     virtual CodeResults Open() = 0;
 
     /**
-    * \brief Создание файла
-    * \return CodeResults код ошибки
+    * \brief РЎРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     virtual CodeResults Create() = 0;
 
     /**
-    * \brief Сохранение файла
-    * \return CodeResults код ошибки
+    * \brief РЎРѕС…СЂР°РЅРµРЅРёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     virtual CodeResults Save() = 0;
 
     /**
-    * \brief Закрытие файла
-    * \return CodeResults код ошибки
+    * \brief Р—Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     virtual CodeResults Close() = 0;
     
     /**
-    * \brief Получить холст из файла
-    * \return CodeResults код ошибки
+    * \brief РџРѕР»СѓС‡РёС‚СЊ С…РѕР»СЃС‚ РёР· С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
-    virtual std::unique_ptr<Canvas> GetCanvas() = 0;              // При экспорте файла - файловый мэнеджер получает канвас и набор фигур
+    virtual std::unique_ptr<Canvas> GetCanvas() = 0;              // РџСЂРё СЌРєСЃРїРѕСЂС‚Рµ С„Р°Р№Р»Р° - С„Р°Р№Р»РѕРІС‹Р№ РјСЌРЅРµРґР¶РµСЂ РїРѕР»СѓС‡Р°РµС‚ РєР°РЅРІР°СЃ Рё РЅР°Р±РѕСЂ С„РёРіСѓСЂ
     
     /**
-    * \brief Получить фигуры из файла
-    * \param[out] aPainter- Маляр, в который будут добавлены фигуры
-    * \return CodeResults код ошибки
+    * \brief РџРѕР»СѓС‡РёС‚СЊ С„РёРіСѓСЂС‹ РёР· С„Р°Р№Р»Р°
+    * \param[out] aPainter- РњР°Р»СЏСЂ, РІ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґСѓС‚ РґРѕР±Р°РІР»РµРЅС‹ С„РёРіСѓСЂС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
-    virtual CodeResults GetShapes(Painter& aPainter) = 0; // При экспорте файла - файловый мэнеджер получает канвас и набор фигур
+    virtual CodeResults GetShapes(Painter& aPainter) = 0; // РџСЂРё СЌРєСЃРїРѕСЂС‚Рµ С„Р°Р№Р»Р° - С„Р°Р№Р»РѕРІС‹Р№ РјСЌРЅРµРґР¶РµСЂ РїРѕР»СѓС‡Р°РµС‚ РєР°РЅРІР°СЃ Рё РЅР°Р±РѕСЂ С„РёРіСѓСЂ
     
     /**
-    * \brief Получить холст из файла
-    * \return CodeResults код ошибки
+    * \brief РџРѕР»СѓС‡РёС‚СЊ С…РѕР»СЃС‚ РёР· С„Р°Р№Р»Р°
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     std::filesystem::path GetFileName() const {
         return m_Path;

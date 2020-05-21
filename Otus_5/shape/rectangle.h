@@ -1,7 +1,7 @@
-#pragma once
+п»ї#pragma once
 #include "shape/ishape.h"
 #include <iostream>
-///\brief фигура прямоугольник, реализует интерфейс IShape 
+///\brief С„РёРіСѓСЂР° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє, СЂРµР°Р»РёР·СѓРµС‚ РёРЅС‚РµСЂС„РµР№СЃ IShape 
 class Rectangle final : public IShape {
 public:
     Rectangle() = default;

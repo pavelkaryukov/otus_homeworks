@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "code_results/my_code_results.h"
 #include "shape/utility/coord.h"
 #include "shape/utility/color.h"
@@ -10,7 +10,7 @@
 #include <memory>
 #include <iostream>
 #include <boost/format.hpp>
-///\brief Интерфейс фигуры
+///\brief РРЅС‚РµСЂС„РµР№СЃ С„РёРіСѓСЂС‹
 class IShape { 
 public:
     using thickens_t = std::uint8_t;
@@ -30,12 +30,12 @@ public:
     {}
 
     /**
-    * \brief смена состояния фигуры
-    * \param[in] aCoordBegin - координаты нового  фигуры
-    * \param[in] aCoordEnd   - координаты нового  фигуры
-    * \param[in] aThickness  - новая ширина фигуры
-    * \param[in] aColor      - новый цвет фигуры
-    * \return CodeResults код ошибки
+    * \brief СЃРјРµРЅР° СЃРѕСЃС‚РѕСЏРЅРёСЏ С„РёРіСѓСЂС‹
+    * \param[in] aCoordBegin - РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅРѕРІРѕРіРѕ  С„РёРіСѓСЂС‹
+    * \param[in] aCoordEnd   - РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅРѕРІРѕРіРѕ  С„РёРіСѓСЂС‹
+    * \param[in] aThickness  - РЅРѕРІР°СЏ С€РёСЂРёРЅР° С„РёРіСѓСЂС‹
+    * \param[in] aColor      - РЅРѕРІС‹Р№ С†РІРµС‚ С„РёРіСѓСЂС‹
+    * \return CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults SetState( const TCoord aCoordBegin, const TCoord aCoordEnd, const thickens_t aThickness, const TColor aColor ) {
         m_CoordBegin = aCoordBegin; 
@@ -46,47 +46,47 @@ public:
     }
 
     /**
-    * \brief функция создает копию фигуры
-    * \param[in] aCoordBegin - координаты положения копии фигуры
-    * \param[in] aCoordEnd   - координаты положения копии фигуры
-    * \return  std::unique_ptr<IShape>  указатель на интерфейс IShape
+    * \brief С„СѓРЅРєС†РёСЏ СЃРѕР·РґР°РµС‚ РєРѕРїРёСЋ С„РёРіСѓСЂС‹
+    * \param[in] aCoordBegin - РєРѕРѕСЂРґРёРЅР°С‚С‹ РїРѕР»РѕР¶РµРЅРёСЏ РєРѕРїРёРё С„РёРіСѓСЂС‹
+    * \param[in] aCoordEnd   - РєРѕРѕСЂРґРёРЅР°С‚С‹ РїРѕР»РѕР¶РµРЅРёСЏ РєРѕРїРёРё С„РёРіСѓСЂС‹
+    * \return  std::unique_ptr<IShape>  СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РёРЅС‚РµСЂС„РµР№СЃ IShape
     */
     virtual std::unique_ptr<IShape> Clone(const TCoord aCoordBegin, const TCoord aCoordEnd) = 0;
 
     /**
-    * \brief функция Отрисовывает фигуру на рабочей поверхности
-    * \return  CodeResults  Код возможной ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РћС‚СЂРёСЃРѕРІС‹РІР°РµС‚ С„РёРіСѓСЂСѓ РЅР° СЂР°Р±РѕС‡РµР№ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
+    * \return  CodeResults  РљРѕРґ РІРѕР·РјРѕР¶РЅРѕР№ РѕС€РёР±РєРё
     */
     virtual CodeResults Paint() = 0;
-    ///\brief деструктор
+    ///\brief РґРµСЃС‚СЂСѓРєС‚РѕСЂ
     virtual ~IShape() {
         Erase();
     }
 
-    ///\brief Получить ширину линии
+    ///\brief РџРѕР»СѓС‡РёС‚СЊ С€РёСЂРёРЅСѓ Р»РёРЅРёРё
     thickens_t GetThickness() const {
         return m_Thickness;
     }
-    ///\brief цвет ширину линии фигуры
+    ///\brief С†РІРµС‚ С€РёСЂРёРЅСѓ Р»РёРЅРёРё С„РёРіСѓСЂС‹
     CodeResults ChangeThickness(const std::uint8_t aThickness) {
-        m_Thickness = aThickness; //Оператор сравнения
+        m_Thickness = aThickness; //РћРїРµСЂР°С‚РѕСЂ СЃСЂР°РІРЅРµРЅРёСЏ
         return CodeResults::Succes;
     }
-    ///\brief получить цвет фигуры
+    ///\brief РїРѕР»СѓС‡РёС‚СЊ С†РІРµС‚ С„РёРіСѓСЂС‹
     TColor GetColor() const {
         return m_Color;
     }
 
-    ///\brief изменить цвет фигуры
+    ///\brief РёР·РјРµРЅРёС‚СЊ С†РІРµС‚ С„РёРіСѓСЂС‹
     CodeResults ChangeColor(TColor aColor) {
         m_Color = aColor;
         return CodeResults::Succes;
     }
 
     /**
-    * \brief перенос фигуры на другой холст
-    * \param[in] aCanvas - указатель на новый холст
-    * \return  CodeResults код ошибки
+    * \brief РїРµСЂРµРЅРѕСЃ С„РёРіСѓСЂС‹ РЅР° РґСЂСѓРіРѕР№ С…РѕР»СЃС‚
+    * \param[in] aCanvas - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРѕРІС‹Р№ С…РѕР»СЃС‚
+    * \return  CodeResults РєРѕРґ РѕС€РёР±РєРё
     */
     CodeResults ChangeCanvas(std::shared_ptr<Canvas> aCanvas) {
         m_Canvas = aCanvas;
@@ -97,8 +97,8 @@ protected:
 private:
     IShape() = default;
     /**
-    * \brief функция Стирает фигуру с рабочей поверхности ()
-    * \return  CodeResults  Код возможной ошибки
+    * \brief С„СѓРЅРєС†РёСЏ РЎС‚РёСЂР°РµС‚ С„РёРіСѓСЂСѓ СЃ СЂР°Р±РѕС‡РµР№ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё ()
+    * \return  CodeResults  РљРѕРґ РІРѕР·РјРѕР¶РЅРѕР№ РѕС€РёР±РєРё
     */
     void Erase() {
         std::cout << "Erase figure from Canvas: " << m_Canvas.get() << std::endl;
@@ -107,13 +107,13 @@ private:
     bool StateIsValid() {
         return true;
     }
-    ///\brief положение начала объекта на экране
+    ///\brief РїРѕР»РѕР¶РµРЅРёРµ РЅР°С‡Р°Р»Р° РѕР±СЉРµРєС‚Р° РЅР° СЌРєСЂР°РЅРµ
     TCoord m_CoordBegin;
-    ///\brief положение конца объекта на экране
+    ///\brief РїРѕР»РѕР¶РµРЅРёРµ РєРѕРЅС†Р° РѕР±СЉРµРєС‚Р° РЅР° СЌРєСЂР°РЅРµ
     TCoord m_CoordEnd;
-    ///\brief толщина линии
+    ///\brief С‚РѕР»С‰РёРЅР° Р»РёРЅРёРё
     std::uint8_t m_Thickness;
-    ///\brief цвет фигуры
+    ///\brief С†РІРµС‚ С„РёРіСѓСЂС‹
     TColor m_Color;
 };
-///\brief Создает фигуру
+///\brief РЎРѕР·РґР°РµС‚ С„РёРіСѓСЂСѓ

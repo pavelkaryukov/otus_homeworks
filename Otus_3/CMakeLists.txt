@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+п»їcmake_minimum_required(VERSION 3.5)
 
 project ("Otus_3" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
@@ -50,8 +50,8 @@ target_include_directories(
 
 enable_testing()
 add_test(gtest_test_otus3 gtest_test_otus3)
-#Сборка пакета
-#Не забудь её как нибудь вынести
+#РЎР±РѕСЂРєР° РїР°РєРµС‚Р°
+#РќРµ Р·Р°Р±СѓРґСЊ РµС‘ РєР°Рє РЅРёР±СѓРґСЊ РІС‹РЅРµСЃС‚Рё
 install(TARGETS Otus_3 DESTINATION bin)
 set(CPACK_PACKAGE_NAME "OtusHomeworks")
 set(CPACK_GENERATOR DEB)
