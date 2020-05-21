@@ -26,7 +26,7 @@ IF (WIN32)
 	# set stuff for windows
 ELSE()
 	#set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync_static.a)
-	find_library (CURL_LIBRARY NAMES liblibasync HINTS ${CMAKE_BINARY_DIR}/Otus_11)
+	find_library (CURL_LIBRARY NAMES liblibasync.a HINTS ${CMAKE_BINARY_DIR}/Otus_11)
   # set stuff for other systems
 ENDIF()
 
