@@ -9,3 +9,12 @@ set_target_properties (
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON	
 )
+
+find_package(Boost REQUIRED)
+if(NOT Boost_FOUND)
+	message(SEND_ERROR "Failed to find boost")
+	return()
+endif()
+
+target_include_directories(join_server PRIVATE ${Boost_INCLUDE_DIRS})
+
