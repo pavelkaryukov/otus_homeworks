@@ -17,18 +17,6 @@ public:
 
         return { { ResultCode::Codes::Succes },  iter};
     }
-    
-   /* ResultCode Erase(Cortej&& aCortej) {
-        if (m_Table.find(aCortej) == m_Table.end())
-            return ResultCode{ ResultCode::Codes::NotExist };
-
-        auto res = m_Table.erase(aCortej);
-
-        if (res == 1)
-            return ResultCode{ ResultCode::Codes::Succes };                                          
-        else                                             
-            return ResultCode{ ResultCode::Codes::Error  };
-    }*/
 
     std::size_t Size() const {
         return m_Table.size();

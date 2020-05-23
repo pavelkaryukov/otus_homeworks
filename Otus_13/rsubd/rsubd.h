@@ -43,8 +43,8 @@ public:
 
     std::string SimmetricDifference() const {
         std::string res;
-        FillDataVect(res, m_TableA, 'A');
-        FillDataVect(res, m_TableB, 'B');
+        FillStrSymmetricDiff(res, m_TableA, 'A');
+        FillStrSymmetricDiff(res, m_TableB, 'B');
         return res;
     }
 
@@ -66,7 +66,7 @@ private:
             return &m_TableA;
     }
 
-    void FillDataVect(std::string& aStr, const MyTable& aTable, const char aName) const {
+    void FillStrSymmetricDiff(std::string& aStr, const MyTable& aTable, const char aName) const {
         for (const auto& elem : aTable) {
             if (elem.HaveIdent)
                 continue;
