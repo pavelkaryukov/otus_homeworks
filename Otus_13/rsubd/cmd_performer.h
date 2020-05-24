@@ -35,6 +35,8 @@ private:
 
         if (cmd == "SYMMETRIC_DIFFERENCE")
             return ProcessCmd_SymmetricDiffernce();
+        
+        return boost::str(boost::format("ERROR: Unknown command [%1%]") % cmd);
     }
 
     std::string ProcessCmd_Insert(std::vector<std::string>& aTokens) {
