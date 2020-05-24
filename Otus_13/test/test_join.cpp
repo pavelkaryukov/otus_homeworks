@@ -53,9 +53,7 @@ TEST(test_join, test_dispatcher) {
     
     auto str = ss.str();
     auto str2 = MakeExpected().str();
-    auto str22 = std::string(str.begin(), str.begin() + str.size());
-    auto str32 = std::string(str2.begin(), str2.begin() + str2.size());
-    ASSERT_STRCASEEQ(str22.c_str(), str32.c_str());
+    ASSERT_TRUE(str == str2);
 }
 
 int main(int argc, char** argv) {
