@@ -31,23 +31,25 @@ std::stringstream MakeExpected() {
 TEST(test_join, test_dispatcher) {
     auto printMutex = std::make_shared<std::mutex>();
     std::stringstream ss;
-    DispatherSUBD executor1{ ss, printMutex };
-    
-    executor1.ProcessCommand("INSERT A 0 Tolstoy");
-    executor1.ProcessCommand("INSERT A 2");
-    executor1.ProcessCommand("INsERT A 2");
-    executor1.ProcessCommand("INSERT Z 21");
-    executor1.ProcessCommand("INSERT B 2 Puskin");
-    executor1.ProcessCommand("INSERT B 3 Lermontov");
-    executor1.ProcessCommand("INSERT B 2 Dostaevskii");
+    {
+        DispatherSUBD executor1{ ss, printMutex };
 
-    executor1.ProcessCommand("INTERSECTION");
-    executor1.ProcessCommand("SYMMETRIC_DIFFERENCE");
+        executor1.ProcessCommand("INSERT A 0 Tolstoy");
+        executor1.ProcessCommand("INSERT A 2");
+        executor1.ProcessCommand("INsERT A 2");
+        executor1.ProcessCommand("INSERT Z 21");
+        executor1.ProcessCommand("INSERT B 2 Puskin");
+        executor1.ProcessCommand("INSERT B 3 Lermontov");
+        executor1.ProcessCommand("INSERT B 2 Dostaevskii");
 
-    executor1.ProcessCommand("TRUNCATE Z");
-    executor1.ProcessCommand("TRUNCATE A");
-    executor1.ProcessCommand("TRUNCATE B");
-    executor1.Exit();
+        executor1.ProcessCommand("INTERSECTION");
+        executor1.ProcessCommand("SYMMETRIC_DIFFERENCE");
+
+        executor1.ProcessCommand("TRUNCATE Z");
+        executor1.ProcessCommand("TRUNCATE A");
+        executor1.ProcessCommand("TRUNCATE B");
+        executor1.Exit();
+    }
     
     auto str = ss.str();
     auto str2 = MakeExpected().str();
