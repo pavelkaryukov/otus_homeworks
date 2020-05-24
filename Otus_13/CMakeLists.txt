@@ -30,7 +30,35 @@ Find_package(Threads)
 target_include_directories(join_server PRIVATE  ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
 target_link_libraries(join_server  ${CMAKE_THREAD_LIBS_INIT}  $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
 
+####################################################
+##################_TEST_BLOCK_######################
+find_package(GTest REQUIRED)
+if(NOT GTEST_FOUND )
+	message(SEND_ERROR "Failed to find GTest")
+	return()
+endif()
 
+add_executable(test_join "test/test_join.cpp" ${RSUBD_SRC} ${DISPATCHER_SRC} ${CONCURRENT_SRC})
+
+set_target_properties (
+	test_join  PROPERTIES 
+	CXX_STANDARD 17
+	CXX_STANDARD_REQUIRED ON	
+)
+
+target_include_directories(test_join PRIVATE  ${GTEST_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
+
+target_link_libraries(test_join  
+    ${GTEST_BOTH_LIBRARIES} 
+    ${CMAKE_THREAD_LIBS_INIT}  
+    $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+)
+
+enable_testing()
+add_test(test_join test_join)
+
+####################################################
+################_INSTALL_BLOCK_#####################
 install(TARGETS join_server DESTINATION bin)
 set(CPACK_PACKAGE_NAME "OtusHomeworks")
 set(CPACK_GENERATOR DEB)

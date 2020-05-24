@@ -56,12 +56,11 @@ private:
             auto head = m_Deque.front();
             m_Deque.pop_front();
             {
-                //ќбработка комманд, так.как работа m_CmdPerformer осуществл¤етс¤ только из этой нитки, то обойдемс¤ без mutex
+                //Обработка комманд, так.как работа m_CmdPerformer осуществл¤етс¤ только из этой нитки, то обойдемс¤ без mutex
                 if (!m_MutexPrint || !m_Stream)
                     return;
 
                 std::lock_guard<std::mutex> lockPrint(*m_MutexPrint);
-                m_Stream << boost::format("thread id=[%1%]") % std::this_thread::get_id() << std::endl;
                 m_Stream << m_CmdPerformer.ProcessCommand(head) << std::endl;
             }
         }
