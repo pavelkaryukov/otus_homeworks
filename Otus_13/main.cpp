@@ -1,5 +1,5 @@
 //#include "rsubd/rsubd.h"
-#include "rsubd/subd_dispatcher.h"
+#include "rsubd/cmd_performer.h"
 
 void Test() {
     RSUBD mySubd;
@@ -21,7 +21,7 @@ void Test() {
 }
 
 void Test2() {
-    SubdDispatcher interpretarot;
+    CmdPerformer interpretarot;
     auto str1 = interpretarot.ProcessCommand("INSERT A 0 lean");
     auto str2 = interpretarot.ProcessCommand("INSERT A 2");
     auto str3 = interpretarot.ProcessCommand("INsERT A 2");
@@ -30,6 +30,12 @@ void Test2() {
     auto str6 = interpretarot.ProcessCommand("INSERT B 3 ahmustafa");
     auto str7 = interpretarot.ProcessCommand("INSERT B 2 dzhigurde");
 
+    auto str13 = interpretarot.ProcessCommand("INTERSECTION");
+    auto str12 = interpretarot.ProcessCommand("SYMMETRIC_DIFFERENCE");
+
+    auto str9  = interpretarot.ProcessCommand("TRUNCATE Z");
+    auto str10 = interpretarot.ProcessCommand("TRUNCATE A");
+    auto str11 = interpretarot.ProcessCommand("TRUNCATE B");
     int stop1 = 0;
 }
 
