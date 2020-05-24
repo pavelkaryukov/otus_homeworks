@@ -144,6 +144,11 @@ void MainTest() {
     std::cout << "expected" << std::endl;
     std::cout << str2 << std::endl;
     std::cout << "end_expected" << std::endl;
+
+    if (str == str2)
+        std::cout << "СТРОКИ ЭКВИВАЛЕНТНЫ" << std::endl;
+    else 
+        std::cout << "СТРОКИ НЕ ЭКВИВАЛЕНТНЫ" << std::endl;
 }
 
 int main(int argc, char** argv) {
