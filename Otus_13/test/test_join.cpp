@@ -1,6 +1,7 @@
 #include <gtest/gtest.h> // googletest header file
 #include "dispatcher/dispatcher.h"
 #include <sstream>
+#include <fstream>
 
 std::stringstream MakeExpected() {
      const std::vector<std::string> kStrs = {
@@ -53,6 +54,11 @@ TEST(test_join, test_dispatcher) {
     
     auto str = ss.str();
     auto str2 = MakeExpected().str();
+    {
+        std::ofstream fout1("str1.txt"), fout2("str2.txt");
+        fout1 << str;
+        fout2 << str2;
+    }
     ASSERT_TRUE(str == str2);
 }
 
