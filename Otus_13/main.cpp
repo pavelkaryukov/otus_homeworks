@@ -1,4 +1,6 @@
-#include "rsubd/rsubd.h"
+//#include "rsubd/rsubd.h"
+#include "rsubd/subd_dispatcher.h"
+
 void Test() {
     RSUBD mySubd;
     auto code1 = mySubd.Insert("A", { { 1, "perchik" } });
@@ -18,8 +20,21 @@ void Test() {
     int stop1 = 0;
 }
 
+void Test2() {
+    SubdDispatcher interpretarot;
+    auto str1 = interpretarot.ProcessCommand("INSERT A 0 lean");
+    auto str2 = interpretarot.ProcessCommand("INSERT A 2");
+    auto str3 = interpretarot.ProcessCommand("INsERT A 2");
+    auto str4 = interpretarot.ProcessCommand("INSERT Z 21");
+    auto str5 = interpretarot.ProcessCommand("INSERT B 2 ahper");
+    auto str6 = interpretarot.ProcessCommand("INSERT B 3 ahmustafa");
+    auto str7 = interpretarot.ProcessCommand("INSERT B 2 dzhigurde");
+
+    int stop1 = 0;
+}
+
 int main(int argc, char** argv) {
     std::locale::global(std::locale(""));
-    Test();
+    Test2();
     return 0;
 }

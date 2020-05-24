@@ -24,6 +24,8 @@ public:
             return "Кортеж с этим id уже существет";
             case Codes::NotExist:
             return "Кортеж с этим id не существет";
+            case Codes::TableNotExist:
+            return "Таблица не существует";
             case Codes::Error:
             default:
             return "Неизвестная ошибка";
