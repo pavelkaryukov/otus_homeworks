@@ -1,7 +1,7 @@
-#pragma once
+п»ї#pragma once
 #include <boost/format.hpp>
 #include "rsubd/my_table.h"
-#include "rsubd/code_result.h" //TODO:: стереть
+#include "rsubd/code_result.h" //TODO:: СЃС‚РµСЂРµС‚СЊ
 
 class RSUBD {
 public:
@@ -15,7 +15,7 @@ public:
         if (!insertRes.IsSucces())
             return insertRes;
 
-        GetAnother(table)->MarkDuplicate(*iter);// Взведет  флажки у обоих элементов, если id идетичен       
+        GetAnother(table)->MarkDuplicate(*iter);// В¬Р·РІРµРґРµС‚  С„Р»Р°Р¶РєРё Сѓ РѕР±РѕРёС… СЌР»РµРјРµРЅС‚РѕРІ, РµСЃР»Рё id РёРґРµС‚РёС‡РµРЅ       
         return res;
     }
 

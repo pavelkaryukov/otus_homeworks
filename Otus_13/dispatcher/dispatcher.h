@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "concurrent/concurrent_deque.h"
 #include "rsubd/cmd_performer.h"
 #include <atomic>
@@ -56,7 +56,7 @@ private:
             auto head = m_Deque.front();
             m_Deque.pop_front();
             {
-                //Обработка комманд, так.как работа m_CmdPerformer осуществляется только из этой нитки, то обойдемся без mutex
+                //СњР±СЂР°Р±РѕС‚РєР° РєРѕРјРјР°РЅРґ, С‚Р°Рє.РєР°Рє СЂР°Р±РѕС‚Р° m_CmdPerformer РѕСЃСѓС‰РµСЃС‚РІР»В¤РµС‚СЃВ¤ С‚РѕР»СЊРєРѕ РёР· СЌС‚РѕР№ РЅРёС‚РєРё, С‚Рѕ РѕР±РѕР№РґРµРјСЃВ¤ Р±РµР· mutex
                 if (!m_MutexPrint || !m_Stream)
                     return;
 

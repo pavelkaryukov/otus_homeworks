@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "rsubd/rsubd.h"
 #include <boost/tokenizer.hpp>
 
@@ -40,18 +40,18 @@ private:
     std::string ProcessCmd_Insert(std::vector<std::string>& aTokens) {
         const std::size_t minSize = 2;
         if (aTokens.size() < minSize)
-            return "ERROR: Нет id элемента для вставки";
+            return "ERROR: РќРµС‚ id СЌР»РµРјРµРЅС‚Р° РґР»СЏ РІСЃС‚Р°РІРєРё";
         int id = 0;
         
         try {
             id = std::stoi(aTokens[1]);
         }
         catch (std::exception& exc) {
-            return boost::str(boost::format("ERROR: не корректный ID = [%1%]") % aTokens[1]);
+            return boost::str(boost::format("ERROR: РЅРµ РєРѕСЂСЂРµРєС‚РЅС‹Р№ ID = [%1%]") % aTokens[1]);
         }
         
         if (id < 0)
-            return boost::str(boost::format("ERROR: не корректный ID = [%1%]")%aTokens[1]);
+            return boost::str(boost::format("ERROR: РЅРµ РєРѕСЂСЂРµРєС‚РЅС‹Р№ ID = [%1%]")%aTokens[1]);
         
         std::string value = (aTokens.size() >= 3) ? aTokens[2] : "";
         auto res = m_Rsubd.Insert(aTokens[0], { {id, value} });
@@ -63,7 +63,7 @@ private:
 
     std::string ProcessCmd_Truncate(std::vector<std::string>& aTokens) {
         if (aTokens.empty())
-            return "ERROR: Не указана таблица для отчистки";
+            return "ERROR: РќРµ СѓРєР°Р·Р°РЅР° С‚Р°Р±Р»РёС†Р° РґР»СЏ РѕС‚С‡РёСЃС‚РєРё";
 
         auto res = m_Rsubd.Truncate(aTokens[0]);
         if (!res.IsSucces())            

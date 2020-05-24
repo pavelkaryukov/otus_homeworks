@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "rsubd/cortej.h"    
 #include "rsubd/code_result.h"
 #include <set>
@@ -26,13 +26,14 @@ public:
         m_Table.clear();
     }
 
-    bool MarkDuplicate(const Cortej& aCortej) {
+    void MarkDuplicate(const Cortej& aCortej) {
         auto iter = m_Table.find(aCortej);
         if (iter == m_Table.end())
-            return false;
+            return;
 
         iter->HaveIdent = true;
         aCortej.HaveIdent = true;
+        return;
     }
 
     auto begin() const {

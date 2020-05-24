@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <string>
 
 
@@ -17,18 +17,18 @@ public:
     std::string What() const {
         switch (m_Code) {
             case Codes::Succes:
-            return "Операция успешно завершена.";
+            return "РћРїРµСЂР°С†РёСЏ СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅР°.";
             case Codes::CantInsert:
-            return "Не удается вставить кортеж в таблицу.";
+            return "РќРµ СѓРґР°РµС‚СЃСЏ РІСЃС‚Р°РІРёС‚СЊ РєРѕСЂС‚РµР¶ РІ С‚Р°Р±Р»РёС†Сѓ.";
             case Codes::Exist:
-            return "Кортеж с этим id уже существет";
+            return "РљРѕСЂС‚РµР¶ СЃ СЌС‚РёРј id СѓР¶Рµ СЃСѓС‰РµСЃС‚РІРµС‚";
             case Codes::NotExist:
-            return "Кортеж с этим id не существет";
+            return "РљРѕСЂС‚РµР¶ СЃ СЌС‚РёРј id РЅРµ СЃСѓС‰РµСЃС‚РІРµС‚";
             case Codes::TableNotExist:
-            return "Таблица не существует";
+            return "РўР°Р±Р»РёС†Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚";
             case Codes::Error:
             default:
-            return "Неизвестная ошибка";
+            return "РќРµРёР·РІРµСЃС‚РЅР°СЏ РѕС€РёР±РєР°";
         }
     }
 
