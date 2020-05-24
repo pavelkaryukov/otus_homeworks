@@ -53,9 +53,9 @@ TEST(test_join, test_dispatcher) {
     
     auto str = ss.str();
     auto str2 = MakeExpected().str();
-
-    ASSERT_STRCASEEQ(str.c_str(), str2.c_str());
-    int stop1 = 0;
+    auto str22 = std::string(str.begin(), str.begin() + str.size());
+    auto str32 = std::string(str2.begin(), str2.begin() + str2.size());
+    ASSERT_STRCASEEQ(str22.c_str(), str32.c_str());
 }
 
 int main(int argc, char** argv) {
