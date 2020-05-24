@@ -1,4 +1,4 @@
-#include <gtest/gtest.h> // googletest header file
+п»ї#include <gtest/gtest.h> // googletest header file
 #include "dispatcher/dispatcher.h"
 #include <sstream>
 #include <fstream>
@@ -8,10 +8,10 @@ std::stringstream MakeExpected() {
          "OK",
          "OK",
          "ERROR: Unknown command [INsERT]",
-         "ERROR: [Таблица не существует]",
+         "ERROR: [РўР°Р±Р»РёС†Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚]",
          "OK",
          "OK",
-         "ERROR: [Кортеж с этим id уже существет]",
+         "ERROR: [РљРѕСЂС‚РµР¶ СЃ СЌС‚РёРј id СѓР¶Рµ СЃСѓС‰РµСЃС‚РІРµС‚]",
          "2,,Puskin",
          "OK",
          "",
@@ -19,7 +19,7 @@ std::stringstream MakeExpected() {
          "3,,Lermontov",
          "OK",
          "",
-         "ERROR: [Таблица не существует]",
+         "ERROR: [РўР°Р±Р»РёС†Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚]",
          "OK",
          "OK"
      };    
@@ -54,12 +54,8 @@ TEST(test_join, test_dispatcher) {
     
     auto str = ss.str();
     auto str2 = MakeExpected().str();
-    {
-        std::ofstream fout1("str1.txt"), fout2("str2.txt");
-        fout1 << str;
-        fout2 << str2;
-    }
-    ASSERT_TRUE(str == str2);
+
+    ASSERT_STRCASEEQ(str.c_str(), str2.c_str());
 }
 
 int main(int argc, char** argv) {
