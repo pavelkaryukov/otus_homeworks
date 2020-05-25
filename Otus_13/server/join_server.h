@@ -29,5 +29,5 @@ private:
     }
 
     tcp_ip_t::acceptor m_Acceptor;
-    std::shared_ptr<DispatherSUBD> m_Dispatcher = std::make_shared<DispatherSUBD>();
+    std::shared_ptr<DispatherSUBD> m_Dispatcher = nullptr;
 };
