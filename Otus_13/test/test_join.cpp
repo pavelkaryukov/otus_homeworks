@@ -2,6 +2,7 @@
 #include "dispatcher/dispatcher.h"
 #include <sstream>
 #include <fstream>
+#include "server/join_server.h"
 
 std::stringstream MakeExpected() {
      const std::vector<std::string> kStrs = {

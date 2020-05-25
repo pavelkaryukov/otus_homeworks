@@ -19,7 +19,7 @@ set_target_properties (
 	CXX_STANDARD_REQUIRED ON	
 )
 
-find_package(Boost REQUIRED)
+find_package(Boost COMPONENTS system REQUIRED)
 if(NOT Boost_FOUND)
 	message(SEND_ERROR "Failed to find boost")
 	return()
@@ -28,7 +28,11 @@ endif()
 Find_package(Threads)
 
 target_include_directories(join_server PRIVATE  ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
-target_link_libraries(join_server  ${CMAKE_THREAD_LIBS_INIT}  $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>)
+target_link_libraries(join_server  
+    ${CMAKE_THREAD_LIBS_INIT}  
+    ${Boost_LIBRARIES}
+    $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+)
 
 ####################################################
 ##################_TEST_BLOCK_######################

@@ -1,6 +1,6 @@
 ﻿//#include "rsubd/rsubd.h"
 #include "rsubd/cmd_performer.h"
-#include "dispatcher/dispatcher.h"
+#include "server/join_server.h"
 #include <sstream>
 
 void Test() {
@@ -153,6 +153,19 @@ void MainTest() {
 
 int main(int argc, char** argv) {
     std::locale::global(std::locale(""));
-    MainTest();
+    const std::size_t kDefaultPort = 753;
+    
+    try {
+        const std::size_t port = kDefaultPort;
+        std::cout << boost::format("Сервер будет запущен на порту = [%1%]") % port << std::endl;
+        boost::asio::io_context io_context;
+        auto printMutex = std::make_shared<std::mutex>();
+        JoinServer server(io_context, port, printMutex, std::cout);
+        io_context.run();
+    }
+    catch (const std::exception& ex) {
+        std::cerr << "Exception: " << ex.what() << "\n";
+    }
+
     return 0;
 }
