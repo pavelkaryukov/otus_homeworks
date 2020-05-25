@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include <boost/format.hpp>
 #include "rsubd/my_table.h"
-#include "rsubd/code_result.h" //TODO:: стереть
 
 class RSUBD {
 public:

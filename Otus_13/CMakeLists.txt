@@ -3,15 +3,17 @@
 project ("Otus_13" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
 set(RSUBD_SRC     
-    "rsubd/cmd_performer.h" "rsubd/code_result.h" "rsubd/cortej.h"
-     "rsubd/my_table.h" "rsubd/rsubd.h"
+    "rsubd/cmd_performer.h" 
+    "rsubd/code_result.h" 
+    "rsubd/cortej.h"
+    "rsubd/my_table.h" 
+    "rsubd/rsubd.h"
 )
 set(DISPATCHER_SRC     "dispatcher/dispatcher.h")
-
 set(CONCURRENT_SRC     "concurrent/concurrent_deque.h")
+set(SERVER_SRC         "server/join_server.h" "server/session.h")
 
-
-add_executable(join_server main.cpp ${RSUBD_SRC} ${DISPATCHER_SRC} ${CONCURRENT_SRC})
+add_executable(join_server main.cpp ${RSUBD_SRC} ${DISPATCHER_SRC} ${CONCURRENT_SRC} ${SERVER_SRC})
 set_target_properties (
 	join_server 
 	PROPERTIES 
@@ -53,7 +55,6 @@ set_target_properties (
 target_include_directories(test_join PRIVATE  ${GTEST_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
 
 target_link_libraries(test_join  
-    ${Boost_LIBRARIES}
     ${GTEST_BOTH_LIBRARIES} 
     ${CMAKE_THREAD_LIBS_INIT}  
     $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
@@ -73,3 +74,5 @@ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 set(CPACK_PACKAGE_VENDOR "Karyukov")
 set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
 include (CPack)
+
+add_subdirectory ("client")

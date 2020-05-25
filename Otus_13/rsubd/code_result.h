@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include <string>
 
-
 class ResultCode {
 public:       
     enum class Codes {

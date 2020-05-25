@@ -76,12 +76,12 @@ private:
 
     std::string ProcessCmd_Intersection() {
         auto str = m_Rsubd.Intersection();
-        return str + "OK\n";
+        return str + "OK";
     }
 
     std::string ProcessCmd_SymmetricDiffernce() {
-        auto str = m_Rsubd.SimmetricDifference();
-        return str + "OK\n";
+        auto str = m_Rsubd.SimmetricDifference();     
+        return str + "OK";
     }
 
     separator_t m_Separator = separator_t(" \r\n");

@@ -1,6 +1,6 @@
-﻿#pragma once
-#include "rsubd/cortej.h"    
+﻿#pragma once  
 #include "rsubd/code_result.h"
+#include "rsubd/cortej.h"    
 #include <set>
 
 class MyTable {
