@@ -62,6 +62,7 @@ script:
 - cd Otus_13/
 - ./test_join
 - cd ..
+- ls
 - cmake --build . --target package
 deploy:
 - provider: pages2
