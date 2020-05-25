@@ -63,6 +63,7 @@ target_link_libraries(test_join
 enable_testing()
 add_test(test_join test_join)
 
+add_subdirectory ("client")
 ####################################################
 ################_INSTALL_BLOCK_#####################
 install(TARGETS join_server DESTINATION bin)
@@ -74,5 +75,3 @@ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 set(CPACK_PACKAGE_VENDOR "Karyukov")
 set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
 include (CPack)
-
-add_subdirectory ("client")
