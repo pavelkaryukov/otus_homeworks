@@ -14,11 +14,9 @@ std::stringstream MakeExpected() {
          "ERROR: [Кортеж с этим id уже существет]",
          "2,,Puskin",
          "OK",
-         "",
          "0,Tolstoy,",
          "3,,Lermontov",
          "OK",
-         "",
          "ERROR: [Таблица не существует]",
          "OK",
          "OK"
