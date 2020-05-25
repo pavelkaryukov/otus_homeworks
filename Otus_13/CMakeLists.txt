@@ -29,8 +29,8 @@ Find_package(Threads)
 
 target_include_directories(join_server PRIVATE  ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
 target_link_libraries(join_server  
-    ${CMAKE_THREAD_LIBS_INIT}  
     ${Boost_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}  
     $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
 )
 
@@ -53,6 +53,7 @@ set_target_properties (
 target_include_directories(test_join PRIVATE  ${GTEST_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
 
 target_link_libraries(test_join  
+    ${Boost_LIBRARIES}
     ${GTEST_BOTH_LIBRARIES} 
     ${CMAKE_THREAD_LIBS_INIT}  
     $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
