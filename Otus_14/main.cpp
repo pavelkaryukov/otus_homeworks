@@ -1,7 +1,9 @@
 #include "mapper/my_mapper.h" 
 #include "mapper/hasher/hasher_crc32.h"
 #include "mapper/hasher/hasher_string.h"
+#include "file_splitter/file_splitter.h"
 #include <vector> 
+#include <limits>
 
 void Test() {
     std::string str1 = "раз два три лети";
@@ -33,8 +35,25 @@ void Test2() {
     auto hashes2 = mapper2.Calc(vect);
 }
 
+void Test3() {
+    std::filesystem::path fpath = { "c:\\my_programs\\otus\\otus_homeworks_all\\ip\\GeoIPCountryWhois.csv" };
+    auto str = fpath.filename();
+    auto blocks = file_split::GetBlocksFromFile(fpath, 10);
+    std::ifstream file(fpath, std::ios::binary);
+
+    if (!file || !file.is_open())
+        throw std::logic_error("");
+    std::size_t partNum = 0;
+
+    for (const auto& block : blocks) {
+        file_split::SaveFilePart(file, block, partNum++);
+    }
+}
+
+
 int main(int argc, char** argv) {
     Test();
     Test2();
+    Test3();
     return 0;
 }

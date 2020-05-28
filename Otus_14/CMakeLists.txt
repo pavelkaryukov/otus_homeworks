@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 3.8)
 
 project ("Otus_14" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
-
-add_executable(map_reduce main.cpp)
+set(SPLIT_SRC "file_splitter/file_splitter.h" "file_splitter/file_splitter.cpp")
+add_executable(map_reduce main.cpp ${SPLIT_SRC})
 set_target_properties (
 	map_reduce 
 	PROPERTIES 
