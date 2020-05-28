@@ -2,6 +2,7 @@
 #include "mapper/hasher/hasher_crc32.h"
 #include "mapper/hasher/hasher_string.h"
 #include "file_splitter/file_splitter.h"
+#include "map_reduce/map_reduce.h"
 #include <vector> 
 #include <limits>
 
@@ -50,10 +51,15 @@ void Test3() {
     }
 }
 
+void Test4() {
+    std::filesystem::path fpath = { "c:\\my_programs\\otus\\otus_homeworks_all\\ip\\GeoIPCountryWhois.csv" };
+    MapReduce<std::string> mapReducer{ boost::factory<std::unique_ptr<HasherString>>(), 10, 10 };
+    mapReducer.Process(fpath);
+    int stop1 = 0;
+}
+
 
 int main(int argc, char** argv) {
-    Test();
-    Test2();
-    Test3();
+    Test4();
     return 0;
 }
