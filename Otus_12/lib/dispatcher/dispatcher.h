@@ -25,6 +25,7 @@ public:
     */
     CommandDispatcher(const std::size_t aBulkSize, std::ostream& aStream, const std::size_t aFileLoggerrsNumber, std::shared_ptr<std::mutex>& aMutex) 
         : m_BulkSize(aBulkSize != 0 ? aBulkSize : 1), m_Logger(CmdLogger{ aStream, aFileLoggerrsNumber, aMutex}) {
+        std::cout << "aFileLoggerrsNumber = " << aFileLoggerrsNumber << std::endl;
         if (aBulkSize == 0) {
             std::cout << boost::format("BulkSize == {%1%} - incorrect value, BulkSize was changed on {%2%}") % aBulkSize % 1 << std::endl;
         }
