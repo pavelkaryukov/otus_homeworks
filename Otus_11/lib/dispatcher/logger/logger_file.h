@@ -59,8 +59,10 @@ private:
         auto id = std::this_thread::get_id();
         for (int i= 0; i <= 1000; ++i) {
             std::string filename = boost::str(boost::format("bulk_%1%_id[%2%]_%3%.txt")%createTime%id%i);
+            std::cout << "filename=" << filename << std::endl;
             if (std::filesystem::exists(filename))
                 continue;
+            std::cout << "filename=" << filename << std::endl;
             std::ofstream file(filename);
             if (file.is_open()) {
                 file << aStr;
