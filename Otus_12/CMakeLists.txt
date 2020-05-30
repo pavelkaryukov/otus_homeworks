@@ -2,16 +2,16 @@
 
 project ("Otus_12" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
-set(CMD_SRC            "../Otus_11/lib/dispatcher/command/icommand.h" 
-                       "../Otus_11/lib/dispatcher/command/simple_command.h")
-set(LOG_SRC            "../Otus_11/lib/dispatcher/logger/logger.h" 
-                       "../Otus_11/lib/dispatcher/logger/logger_screen.h" 
-                       "../Otus_11/lib/dispatcher/logger/logger_file.h")
-set(CONCURRENT_SRC     "../Otus_11/lib/dispatcher/concurrent/concurrent_deque.h")
-set(DISPATCHER_SRC     "../Otus_11/lib/dispatcher/dispatcher.h" ${CONCURRENT_SRC} ${LOG_SRC} ${CMD_SRC})   
+set(CMD_SRC            "lib/dispatcher/command/icommand.h" 
+                       "lib/dispatcher/command/simple_command.h")
+set(LOG_SRC            "lib/dispatcher/logger/logger.h" 
+                       "lib/dispatcher/logger/logger_screen.h" 
+                       "lib/dispatcher/logger/logger_file.h")
+set(CONCURRENT_SRC     "lib/dispatcher/concurrent/concurrent_deque.h")
+set(DISPATCHER_SRC     "lib/dispatcher/dispatcher.h" ${CONCURRENT_SRC} ${LOG_SRC} ${CMD_SRC})   
 #\dispatcher block
 
-set(ASYNC_LIB_SRC "../Otus_11/lib/bulk_async.h" "../Otus_11/lib/bulk_async.cpp" ${DISPATCHER_SRC})
+set(ASYNC_LIB_SRC "lib/bulk_async.h" "lib/bulk_async.cpp" ${DISPATCHER_SRC})
 
 
 
@@ -29,7 +29,7 @@ find_package(Threads)
 target_include_directories(	bulk_server 
 	PRIVATE 
 	${Boost_INCLUDE_DIR}
-    "../Otus_11/"
+    ${PROJECT_SOURCE_DIR}/lib
 )
 
 
