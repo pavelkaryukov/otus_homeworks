@@ -5,6 +5,8 @@
 #include "map_reduce/map_reduce.h"
 #include <vector> 
 #include <limits>
+//TODO:: Передача функтора
+//TODO:: Сделать Thread Pool
 
 void Test() {
     std::string str1 = "раз два три лети";
@@ -53,7 +55,7 @@ void Test3() {
 
 void Test4() {
     std::filesystem::path fpath = { "c:\\my_programs\\otus\\otus_homeworks_all\\ip\\GeoIPCountryWhois.csv" };
-    MapReduce<std::string> mapReducer{ boost::factory<std::unique_ptr<HasherString>>(), 10, 10 };
+    MapReduce<std::string> mapReducer{ boost::factory<std::unique_ptr<HasherString>>(), 10, 16 };
     mapReducer.Process(fpath);
     int stop1 = 0;
 }
