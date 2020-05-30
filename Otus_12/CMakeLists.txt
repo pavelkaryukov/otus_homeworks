@@ -30,6 +30,7 @@ target_include_directories(	bulk_server
 	PRIVATE 
 	${Boost_INCLUDE_DIR}
     ${PROJECT_SOURCE_DIR}/lib
+    ${PROJECT_SOURCE_DIR}/lib/dispatcher
 )
 
 
