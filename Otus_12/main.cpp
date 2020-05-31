@@ -34,7 +34,7 @@ std::pair<std::size_t, std::size_t> GetArgs(int argc, char** argv) {
 
 
 int main(int argc, char** argv) {
-    std::locale::global(std::locale(""));
+    //std::locale::global(std::locale(""));
     const auto[port, bulkSize] = GetArgs(argc, argv);
     std::cout << boost::format("Bulk server was started on port = [%1%], with bulk size = [%2%]") % port % bulkSize << std::endl;
     try {
