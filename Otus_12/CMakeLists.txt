@@ -1,21 +1,9 @@
 ﻿cmake_minimum_required (VERSION 3.8)
 
 project ("Otus_12" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
+set(ASYNC_LIB_DIR ${CMAKE_BINARY_DIR}/../Otus_11/)		 
 
-set(CMD_SRC            "lib/dispatcher/command/icommand.h" 
-                       "lib/dispatcher/command/simple_command.h")
-set(LOG_SRC            "lib/dispatcher/logger/logger.h" 
-                       "lib/dispatcher/logger/logger_screen.h" 
-                       "lib/dispatcher/logger/logger_file.h")
-set(CONCURRENT_SRC     "lib/dispatcher/concurrent/concurrent_deque.h")
-set(DISPATCHER_SRC     "lib/dispatcher/dispatcher.h" ${CONCURRENT_SRC} ${LOG_SRC} ${CMD_SRC})   
-#\dispatcher block
-
-set(ASYNC_LIB_SRC "lib/bulk_async.h" "lib/bulk_async.cpp" ${DISPATCHER_SRC})
-
-
-
-add_executable(bulk_server main.cpp ${ASYNC_LIB_SRC})
+add_executable(bulk_server main.cpp)
 set_target_properties (
 	bulk_server 
 	PROPERTIES 
@@ -28,15 +16,21 @@ find_package(Threads)
 
 target_include_directories(	bulk_server 
 	PRIVATE 
+	${CMAKE_BINARY_DIR}/Otus_11 
 	${Boost_INCLUDE_DIR}
-    ${PROJECT_SOURCE_DIR}/lib
-    ${PROJECT_SOURCE_DIR}/lib/dispatcher
 )
 
+IF (WIN32)
+	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/async.lib)	
+ELSE()
+	set(ASYNC_LIB_PATH ${CMAKE_BINARY_DIR}/Otus_11/libasync.a)
+ENDIF()
 
 target_link_libraries(bulk_server
         ${Boost_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
+		${ASYNC_LIB_PATH} 
+        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
 )
 
 add_subdirectory ("client")
