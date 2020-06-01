@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "mapper/hasher/ihasher.h"
 #include "mapper/my_mapper.h"
 #include "file_splitter/file_splitter.h"
@@ -28,7 +28,7 @@ public:
         m_ReducerFunc(aReducerFunc){
     }
 
-    std::size_t Process(std::filesystem::path aFilePath) {
+    std::size_t Process(std::filesystem::path aFilePath, const std::size_t aPrefixSize) {
         if (!std::filesystem::exists(aFilePath)) {
             std::cout << boost::format("File=[%1%] not exist") % aFilePath << std::endl;
             return 0;
@@ -36,26 +36,25 @@ public:
         auto blocks = file_split::GetBlocksFromFile(aFilePath, m_MapThreads);
         std::vector<std::thread> threads;
         for (const auto& block : blocks) {
-            threads.push_back(std::thread(&MapReduce::MapBlock, this, m_HasherFactory(), block, aFilePath));
+            threads.push_back(std::thread(&MapReduce::MapBlock, this, m_HasherFactory(), block, aFilePath, aPrefixSize));
         }
 
         RunThreads(threads);
         if (m_MappedData.empty())
-            return 0;//TODO::СООБЩЕНИЕ
+            return 0;//TODO::вЂ”СњСњР…Сћв‰€РЊВ»в‰€
         ShuffleAll();
 
         std::list<map_t> reducedMap;
         std::size_t counter = 0;
         for (auto&[data, mutex] : m_ReducedData) {
-            //запускаем функтор
+            //Р·Р°РїСѓСЃРєР°РµРј С„СѓРЅРєС‚РѕСЂ
             reducedMap.push_back(map_t());
             threads.push_back(std::thread(m_ReducerFunc, std::move(data), counter++, std::ref(reducedMap.back())));
             data.clear();
         }
         m_ReducedData.clear();
         RunThreads(threads);
-        std::size_t numOfUniqueHashs = GetAllReducedSize(reducedMap);
-        return numOfUniqueHashs;
+        return GetAllReducedSize(reducedMap);
     }
 
 private:
@@ -68,11 +67,16 @@ private:
     std::function<void(std::vector<THash>&&, const std::size_t, std::reference_wrapper<map_t>)> m_ReducerFunc = nullptr;
 
 
-    void MapBlock(std::unique_ptr<IHasher<THash>>&& aHasher, file_split::block aBlock, std::filesystem::path aFilePath) {
+    void MapBlock(
+        std::unique_ptr<IHasher<THash>>&& aHasher, 
+        file_split::block aBlock, 
+        std::filesystem::path aFilePath, 
+        const std::size_t aPrefixSize
+    ) {
         if (!aHasher)
             return;
 
-        Mapper<THash> mapper{ std::move(aHasher) };
+        Mapper<THash> mapper{ std::move(aHasher), aPrefixSize };
 
         auto hashes = mapper.Calc(aFilePath, aBlock);
         std::lock_guard<decltype(m_Mutex)> locker(m_Mutex);
@@ -121,7 +125,7 @@ private:
                 std::inplace_merge(reduced.begin(), std::next(reduced.begin(), reducedSize), reduced.end());
                 ++iter;
                 if ( iter != m_ReducedData.end() && reduced.size() > aPortionSize) {
-                    auto borderIter = FindFirstUniqueIter(reduced, aPortionSize);//TODO:: сделать замену на метод, проверяющий на границе дубликаты
+                    auto borderIter = FindFirstUniqueIter(reduced, aPortionSize);//TODO:: СЃРґРµР»Р°С‚СЊ Р·Р°РјРµРЅСѓ РЅР° РјРµС‚РѕРґ, РїСЂРѕРІРµСЂВ¤СЋС‰РёР№ РЅР° РіСЂР°РЅРёС†Рµ РґСѓР±Р»РёРєР°С‚С‹
                     std::move(borderIter, reduced.end(), std::back_inserter(aHashs));
                     reduced.erase(borderIter, reduced.end());
                 }
@@ -147,3 +151,4 @@ private:
         aThreads.clear();
     }
 };
+                                                                                                                        

@@ -1,16 +1,17 @@
-#pragma once                
+Ôªø#pragma once                
 #include "mapper/hasher/ihasher.h"
 #include <boost/crc.hpp>
 #include <cstddef>
 
 class HasherCRC : public IHasher<std::size_t> {
 public:
-    std::size_t CalcHash(const void* aPtr, const std::size_t aSize) override {
-        m_Òrc32.process_bytes(aPtr, aSize);
-        auto res = m_Òrc32.checksum();
-        m_Òrc32.reset();
+    std::size_t CalcHash(const void* aPtr, const std::size_t aSize, const std::size_t aPrefixSize) override {
+        const std::size_t len = (aPrefixSize != 0) ? std::min(aPrefixSize, aSize) : aSize;
+        m_—Årc32.process_bytes(aPtr, len);
+        auto res = m_—Årc32.checksum();
+        m_—Årc32.reset();
         return res;
     }
 private:
-    boost::crc_32_type  m_Òrc32;
+    boost::crc_32_type  m_—Årc32;
 };

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "mapper/hasher/ihasher.h"
 #include "file_splitter/file_splitter.h"
 #include <algorithm>
@@ -8,7 +8,7 @@
 template<class THash>
 class Mapper {
 public:
-    Mapper(std::unique_ptr<IHasher<THash>>&& aMapper) : m_Hasher(std::move(aMapper)) {
+    Mapper(std::unique_ptr<IHasher<THash>>&& aMapper, const std::size_t aPrefixSize) : m_Hasher(std::move(aMapper)), m_PrefixSize(aPrefixSize) {
     }
     
     std::vector<THash> Calc(const std::vector<std::string>& aStrs) {
@@ -39,7 +39,7 @@ public:
         std::string str;
         while (std::getline(file, str)) {
             std::size_t pos = file.tellg();
-            auto hash = m_Hasher->CalcHash(str.data(), str.size());
+            auto hash = m_Hasher->CalcHash(str.data(), str.size(), m_PrefixSize);
             res.insert(std::upper_bound(res.begin(), res.end(), hash), hash);
             if (pos >= fileSize || pos >= aBlock.end)
                 break;
@@ -49,4 +49,5 @@ public:
 private:
     Mapper() = default;
     std::unique_ptr<IHasher<THash>> m_Hasher;
+    const std::size_t m_PrefixSize = 0;
 };

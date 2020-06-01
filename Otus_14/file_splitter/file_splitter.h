@@ -1,9 +1,10 @@
-#pragma once
+п»ї#pragma once
 #include <boost/format.hpp>
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <vector>
-//TODO:: заполнить сообщения об ошибках при генерации исключений
+//TODO:: Р·Р°РїРѕР»РЅРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєР°С… РїСЂРё РіРµРЅРµСЂР°С†РёРё РёСЃРєР»СЋС‡РµРЅРёР№
 
 namespace file_split {
     struct block {
