@@ -3,6 +3,7 @@
 #include "mapper/hasher/hasher_string.h"
 #include "file_splitter/file_splitter.h"
 #include "map_reduce/map_reduce.h"
+#include "reducer/reducer.h"
 #include <vector> 
 #include <limits>
 //TODO:: Передача функтора
@@ -39,7 +40,7 @@ void Test2() {
 }
 
 void Test3() {
-    std::filesystem::path fpath = { "c:\\my_programs\\otus\\otus_homeworks_all\\ip\\GeoIPCountryWhois.csv" };
+    std::filesystem::path fpath = { "c:\\my_programs\\otus\\otus_homeworks_all_2\\ip\\GeoIPCountryWhois.csv" };
     auto str = fpath.filename();
     auto blocks = file_split::GetBlocksFromFile(fpath, 10);
     std::ifstream file(fpath, std::ios::binary);
@@ -54,8 +55,12 @@ void Test3() {
 }
 
 void Test4() {
-    std::filesystem::path fpath = { "c:\\my_programs\\otus\\otus_homeworks_all\\ip\\GeoIPCountryWhois.csv" };
-    MapReduce<std::string> mapReducer{ boost::factory<std::unique_ptr<HasherString>>(), 10, 16 };
+    std::filesystem::path fpath = { "c:\\my_programs\\otus\\otus_homeworks_all_2\\ip\\GeoIPCountryWhois.csv" };
+    using hash_t = std::string;
+    using hashFactory_t = boost::factory<std::unique_ptr<HasherString>>;
+    using map_t = std::map<hash_t, std::size_t>;
+
+    MapReduce<hash_t> mapReducer{ hashFactory_t(), 10,  16, ReduceFunc<hash_t>};
     mapReducer.Process(fpath);
     int stop1 = 0;
 }

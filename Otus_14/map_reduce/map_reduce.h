@@ -2,6 +2,7 @@
 #include "mapper/hasher/ihasher.h"
 #include "mapper/my_mapper.h"
 #include "file_splitter/file_splitter.h"
+#include "reducer/reducer.h"
 #include <boost/function.hpp>
 #include <boost/functional/factory.hpp>
 #include <iostream>
@@ -9,18 +10,22 @@
 #include <mutex>
 #include <list>    
 #include <limits>
+#include <map>
 
 template<class THash>
 class MapReduce {
     using hashs_t = std::vector<THash>;
+    using map_t = std::map<THash, std::size_t>;
 public:
     MapReduce(
         boost::function<std::unique_ptr<IHasher<THash>>()>&& aHasherFactory,
         const std::size_t aMapThr,
-        const std::size_t aRedThr
+        const std::size_t aRedThr,
+        std::function<void(std::vector<THash>&&, const std::size_t)> aReducerFunc
     ) : m_HasherFactory(std::move(aHasherFactory)), 
         m_MapThreads(aMapThr <= 0 ? 1 : aMapThr), 
-        m_ReduceThreads(aRedThr <= 0 ? 1 : aRedThr) {
+        m_ReduceThreads(aRedThr <= 0 ? 1 : aRedThr),
+        m_ReducerFunc(aReducerFunc){
     }
 
     void Process(std::filesystem::path aFilePath) {
@@ -33,19 +38,22 @@ public:
         for (const auto& block : blocks) {
             threads.push_back(std::thread(&MapReduce::MapBlock, this, m_HasherFactory(), block, aFilePath));
         }
-        for (auto& thr : threads) {
-            if (thr.joinable())
-                thr.join();
-        }
-        threads.clear();
+
+        RunThreads(threads);
         if (m_MappedData.empty())
             return;//TODO::ÑÎÎÁÙÅÍÈÅ
         ShuffleAll();
 
-        for (const auto& [data, mutex] : m_ReducedData) {
+        std::vector<map_t> reducedMap;
+        std::size_t counter = 0;
+        for (auto&[data, mutex] : m_ReducedData) {
             //çàïóñêàåì ôóíêòîð
-            int stop1 = 0;
+            reducedMap.push_back(map_t());
+            threads.push_back(std::thread(m_ReducerFunc, std::move(data), counter++));
+            data.clear();
         }
+        
+        RunThreads(threads);
     }
 
 private:
@@ -55,6 +63,9 @@ private:
     std::mutex m_Mutex;
     std::list<hashs_t> m_MappedData;
     std::list<std::pair<hashs_t, std::mutex>> m_ReducedData;
+    std::size_t m_NumberOfMapped = 0;
+    std::size_t m_NumberOfReduced = 0;
+    std::function<void(std::vector<THash>&&, const std::size_t)> m_ReducerFunc = nullptr;
 
 
     void MapBlock(std::unique_ptr<IHasher<THash>>&& aHasher, file_split::block aBlock, std::filesystem::path aFilePath) {
@@ -73,25 +84,17 @@ private:
         const std::size_t numberOfMapped = GetAllMappedSize();
         const std::size_t portionSize = GetAllMappedSize() / m_ReduceThreads;
         m_ReducedData.resize(m_ReduceThreads);
-       
+        //TODO::Thread pool
         for (auto& hashs : m_MappedData) {
             threads.push_back(std::thread(&MapReduce::ShuffleOne, this, std::move(hashs), portionSize));
             hashs.clear();
         }
         m_MappedData.clear();
 
-        for (auto& thr : threads) {
-            if (thr.joinable())
-                thr.join();
-        }
+        RunThreads(threads);
 
         //TODO:: ÓÄÀËÈÒÜ ÁËÎÊ
-        const std::size_t numberOfReduced = GetAllReducedSize();
-        auto iter1 = m_ReducedData.rbegin()->first.rbegin();
-        for (iter1; iter1 != m_ReducedData.rbegin()->first.rend(); ++iter1){
-            auto str1 = *iter1;
-        }
-        int stop1 = 0;
+        //const std::size_t numberOfReduced = GetAllReducedSize();
     }
 
     std::size_t GetAllMappedSize() {
@@ -102,13 +105,13 @@ private:
         return numberOfElements;
     }
 
-    std::size_t GetAllReducedSize() {
-        std::size_t numberOfElements = 0;
-        for (auto& [data, mutex]: m_ReducedData) {
-            numberOfElements += data.size();
-        }
-        return numberOfElements;
-    }
+//     std::size_t GetAllReducedSize() {
+//         std::size_t numberOfElements = 0;
+//         for (auto& [data, mutex]: m_ReducedData) {
+//             numberOfElements += data.size();
+//         }
+//         return numberOfElements;
+//     }
 
     void ShuffleOne(hashs_t&& aHashs, const std::size_t aPortionSize) {
         while (!aHashs.empty()){
@@ -137,5 +140,13 @@ private:
             ++nextIter;
         }
         return iter;
+    }
+
+    void RunThreads(std::vector<std::thread>& aThreads) {
+        for (auto& thr : aThreads) {
+            if (thr.joinable())
+                thr.join();
+        }
+        aThreads.clear();
     }
 };
