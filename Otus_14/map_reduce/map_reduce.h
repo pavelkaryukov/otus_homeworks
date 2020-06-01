@@ -28,10 +28,10 @@ public:
         m_ReducerFunc(aReducerFunc){
     }
 
-    void Process(std::filesystem::path aFilePath) {
+    std::size_t Process(std::filesystem::path aFilePath) {
         if (!std::filesystem::exists(aFilePath)) {
             std::cout << boost::format("File=[%1%] not exist") % aFilePath << std::endl;
-            return;
+            return 0;
         }
         auto blocks = file_split::GetBlocksFromFile(aFilePath, m_MapThreads);
         std::vector<std::thread> threads;
@@ -41,7 +41,7 @@ public:
 
         RunThreads(threads);
         if (m_MappedData.empty())
-            return;//TODO::яннаыемхе
+            return 0;//TODO::яннаыемхе
         ShuffleAll();
 
         std::list<map_t> reducedMap;
@@ -52,15 +52,15 @@ public:
             threads.push_back(std::thread(m_ReducerFunc, std::move(data), counter++, std::ref(reducedMap.back())));
             data.clear();
         }
-        
+        m_ReducedData.clear();
         RunThreads(threads);
         std::size_t numOfUniqueHashs = GetAllReducedSize(reducedMap);
-        int stop1 = 0;
+        return numOfUniqueHashs;
     }
 
 private:
-    std::size_t m_MapThreads = 1;
-    std::size_t m_ReduceThreads = 1;
+    const std::size_t m_MapThreads = 1;
+    const std::size_t m_ReduceThreads = 1;
     boost::function<std::unique_ptr<IHasher<THash>>()> m_HasherFactory;
     std::mutex m_Mutex;
     std::list<hashs_t> m_MappedData;

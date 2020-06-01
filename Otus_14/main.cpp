@@ -61,7 +61,7 @@ void Test4() {
     using map_t = std::map<hash_t, std::size_t>;
 
     MapReduce<hash_t> mapReducer{ hashFactory_t(), 10,  16, ReduceFunc<hash_t>};
-    mapReducer.Process(fpath);
+    const auto uniqueHashs = mapReducer.Process(fpath);
     int stop1 = 0;
 }
 
