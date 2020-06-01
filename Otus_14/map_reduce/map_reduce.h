@@ -21,7 +21,7 @@ public:
         boost::function<std::unique_ptr<IHasher<THash>>()>&& aHasherFactory,
         const std::size_t aMapThr,
         const std::size_t aRedThr,
-        std::function<void(std::vector<THash>&&, const std::size_t)> aReducerFunc
+        std::function<void(std::vector<THash>&&, const std::size_t, std::reference_wrapper<map_t>)> aReducerFunc
     ) : m_HasherFactory(std::move(aHasherFactory)), 
         m_MapThreads(aMapThr <= 0 ? 1 : aMapThr), 
         m_ReduceThreads(aRedThr <= 0 ? 1 : aRedThr),
@@ -44,16 +44,18 @@ public:
             return;//TODO::—ŒŒ¡Ÿ≈Õ»≈
         ShuffleAll();
 
-        std::vector<map_t> reducedMap;
+        std::list<map_t> reducedMap;
         std::size_t counter = 0;
         for (auto&[data, mutex] : m_ReducedData) {
             //Á‡ÔÛÒÍ‡ÂÏ ÙÛÌÍÚÓ
             reducedMap.push_back(map_t());
-            threads.push_back(std::thread(m_ReducerFunc, std::move(data), counter++));
+            threads.push_back(std::thread(m_ReducerFunc, std::move(data), counter++, std::ref(reducedMap.back())));
             data.clear();
         }
         
         RunThreads(threads);
+        std::size_t numOfUniqueHashs = GetAllReducedSize(reducedMap);
+        int stop1 = 0;
     }
 
 private:
@@ -63,9 +65,7 @@ private:
     std::mutex m_Mutex;
     std::list<hashs_t> m_MappedData;
     std::list<std::pair<hashs_t, std::mutex>> m_ReducedData;
-    std::size_t m_NumberOfMapped = 0;
-    std::size_t m_NumberOfReduced = 0;
-    std::function<void(std::vector<THash>&&, const std::size_t)> m_ReducerFunc = nullptr;
+    std::function<void(std::vector<THash>&&, const std::size_t, std::reference_wrapper<map_t>)> m_ReducerFunc = nullptr;
 
 
     void MapBlock(std::unique_ptr<IHasher<THash>>&& aHasher, file_split::block aBlock, std::filesystem::path aFilePath) {
@@ -84,7 +84,7 @@ private:
         const std::size_t numberOfMapped = GetAllMappedSize();
         const std::size_t portionSize = GetAllMappedSize() / m_ReduceThreads;
         m_ReducedData.resize(m_ReduceThreads);
-        //TODO::Thread pool
+
         for (auto& hashs : m_MappedData) {
             threads.push_back(std::thread(&MapReduce::ShuffleOne, this, std::move(hashs), portionSize));
             hashs.clear();
@@ -92,9 +92,6 @@ private:
         m_MappedData.clear();
 
         RunThreads(threads);
-
-        //TODO:: ”ƒ¿À»“‹ ¡ÀŒ 
-        //const std::size_t numberOfReduced = GetAllReducedSize();
     }
 
     std::size_t GetAllMappedSize() {
@@ -105,13 +102,13 @@ private:
         return numberOfElements;
     }
 
-//     std::size_t GetAllReducedSize() {
-//         std::size_t numberOfElements = 0;
-//         for (auto& [data, mutex]: m_ReducedData) {
-//             numberOfElements += data.size();
-//         }
-//         return numberOfElements;
-//     }
+     std::size_t GetAllReducedSize(std::list<map_t>& aReduced) {
+         std::size_t numberOfElements = 0;
+         for (const auto& data: aReduced) {
+             numberOfElements += data.size();
+         }
+         return numberOfElements;
+     }
 
     void ShuffleOne(hashs_t&& aHashs, const std::size_t aPortionSize) {
         while (!aHashs.empty()){
