@@ -31,6 +31,38 @@ target_link_libraries(yamr
 )
 
 ####################################################
+##################_TEST_BLOCK_######################
+set (TEST_FILE_PATH ${PROJECT_SOURCE_DIR}/../ip_database/test.csv)
+file(COPY ${TEST_FILE_PATH}
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+find_package(GTest REQUIRED)
+if(NOT GTEST_FOUND )
+	message(SEND_ERROR "Failed to find GTest")
+	return()
+endif()
+
+add_executable(test_yamr "test/test_yamr.cpp" ${SPLIT_SRC} ${MAP_REDUCE_SRC} ${MAPPER_SRC} ${PREFIX_SRC} ${REDUCER_SRC})
+
+set_target_properties (
+	test_yamr  PROPERTIES 
+	CXX_STANDARD 17
+	CXX_STANDARD_REQUIRED ON	
+)
+
+target_include_directories(test_yamr PRIVATE  ${GTEST_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
+
+target_link_libraries(test_yamr  
+    ${GTEST_BOTH_LIBRARIES} 
+    ${CMAKE_THREAD_LIBS_INIT}  
+    $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+)
+
+enable_testing()
+add_test(test_yamr test_yamr)
+
+
+####################################################
 ################_INSTALL_BLOCK_#####################
 install(TARGETS yamr DESTINATION bin)
 set(CPACK_PACKAGE_NAME "OtusHomeworks")
