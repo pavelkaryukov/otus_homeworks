@@ -41,7 +41,8 @@ public:
 
         RunThreads(threads);
         if (m_MappedData.empty())
-            return 0;//TODO::—ќќЅў≈Ќ»≈
+            return 0;
+
         ShuffleAll();
 
         std::list<map_t> reducedMap;

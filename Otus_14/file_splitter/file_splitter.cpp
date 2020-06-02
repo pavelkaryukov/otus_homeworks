@@ -3,8 +3,9 @@
 namespace file_split {
 
     std::size_t NewLineStartPos(std::ifstream& aFile, const std::size_t aStartPos, const std::size_t aFileSize) {
-        if (!aFile.is_open())
-            throw std::logic_error("");
+        if (!aFile || !aFile.is_open())
+            throw std::logic_error(boost::str(boost::format("Не удается открыть файл")));
+
         auto pos = aStartPos;
         aFile.seekg(pos);
         const std::size_t buffSize = 256;
@@ -28,18 +29,18 @@ namespace file_split {
     
     std::vector<block> GetBlocksFromFile(const std::filesystem::path aPath, const std::size_t aParts) {
         if (aParts < 1)
-            throw std::logic_error("");
+            throw std::logic_error("Кол-во блоков меньше 1");
 
         if (!std::filesystem::exists(aPath))
-            throw std::logic_error("");
+            throw std::logic_error(boost::str(boost::format("Файл с именем [%1%] не существет")%aPath));
 
         std::ifstream file{ aPath };
         if (!file.is_open())
-            throw std::logic_error("");
+            throw std::logic_error(boost::str(boost::format("Не удается открыть файл с именем [%1%]")%aPath));
 
         const std::size_t fileSize = std::filesystem::file_size(aPath);
         if (fileSize == 0)
-            throw std::logic_error("");
+            throw std::logic_error(boost::str(boost::format("Файл с именем [%1%] пуст") % aPath));
 
         const std::size_t expectedBlockSize = fileSize / aParts;
         std::vector<block> blocks;
@@ -63,10 +64,11 @@ namespace file_split {
         std::ofstream filePart(boost::str(boost::format("file_part_%1%") % aCounter), std::ios::binary);
 
         if (!filePart || !filePart.is_open())
-            throw std::logic_error("");
+            throw std::logic_error("Не удается открыть файл");
+
         aFile.seekg(aBlock.begin);
         if (!aFile)
-            throw std::logic_error("");
+            throw std::logic_error("Поток ввода std::ofstream поврежден");
 
         std::size_t pos = aBlock.begin;
         std::vector<char> data;

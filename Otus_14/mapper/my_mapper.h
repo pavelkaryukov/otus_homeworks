@@ -12,9 +12,9 @@ public:
     }
     
     std::vector<THash> Calc(const std::vector<std::string>& aStrs) {
-        if (!m_Hasher)
-            return {};
-
+        if (!m_Hasher) 
+            throw std::logic_error("m_Hasher не инициализирован");
+        
         std::vector<THash> res;
         for (const auto& str : aStrs) {
             res.emplace_back(m_Hasher->CalcHash(str.data(), str.size()));
@@ -23,16 +23,19 @@ public:
     }
 
     std::vector<THash> Calc(std::filesystem::path& aPath, const file_split::block& aBlock) {
+        if (aBlock.begin > aBlock.end)
+            throw std::logic_error(boost::str(boost::format("Конец блока [%1%] меньше начала [%2%]") % aBlock.end % aBlock.begin));
         if (!m_Hasher)
-           throw std::logic_error("");
+            throw std::logic_error("m_Hasher не инициализирован");
 
         std::ifstream file(aPath/*, std::ios::binary*/);
         if (!file || !file.is_open())
-            throw std::logic_error("");
+            throw std::logic_error(boost::str(boost::format("файл с именем [%1%] не удается открыть")%aPath));
         
         const std::size_t fileSize = std::filesystem::file_size(aPath);
         if (fileSize <= aBlock.begin)
-            throw std::logic_error("");
+            throw std::logic_error(boost::str(boost::format("Размер файла [%1%] <= начала блока[%2%]") % fileSize % aBlock.begin);
+
         file.seekg(aBlock.begin);
 
         std::vector<THash> res;

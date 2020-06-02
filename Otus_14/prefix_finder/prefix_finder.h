@@ -8,17 +8,16 @@
 
 std::size_t GetPrefixSize(std::filesystem::path aPath, const std::size_t aMapThreads, const std::size_t aReducerThreads) {
     if (!std::filesystem::exists(aPath)) {
-        std::cout << boost::format("‘айл с именем [%1%] не существует") % aPath << std::endl;
+        std::cout << boost::format("Файл с именем [%1%] не существует") % aPath << std::endl;
         return 0;
     }
-    std::filesystem::path fpath = { "c:\\my_programs\\otus\\otus_homeworks_all_2\\ip\\GeoIPCountryWhois.csv" };
     using hash_t = std::string;
     using hashFactory_t = boost::factory<std::unique_ptr<HasherString>>;
     MapReduce<hash_t> mapReducer{ hashFactory_t(), aMapThreads,  aReducerThreads, ReduceFunc<hash_t> };
     const std::size_t uniqueHashs = mapReducer.Process(aPath, 0);
     std::size_t prefixSize = 0;
     std::size_t uniqueHashsWithPrefix = 0;
-    //уникальность ip адреса обеспечивает 16 символов (")
+    
     while (uniqueHashsWithPrefix!= uniqueHashs) {
         uniqueHashsWithPrefix = mapReducer.Process(aPath, ++prefixSize);
     }

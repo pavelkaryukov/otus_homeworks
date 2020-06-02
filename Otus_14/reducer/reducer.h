@@ -12,7 +12,7 @@ void ReduceFunc( std::vector<THash>&& aHashs,  const std::size_t aNumberOfData, 
     }
     
     std::ofstream file(boost::str(boost::format("reduced_part[%1%]") % aNumberOfData));
-    if (!file.is_open()) {
+    if (!file || !file.is_open()) {
         std::cout << "Cant open file" << std::endl;
         return;
     }
