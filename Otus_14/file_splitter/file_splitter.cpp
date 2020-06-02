@@ -72,7 +72,7 @@ namespace file_split {
 
         std::size_t pos = aBlock.begin;
         std::vector<char> data;
-        const std::size_t buffSize = std::min(aBlock.end - aBlock.begin, 256U * 1024U);//256 кб хватит всем
+        const std::size_t buffSize = std::min(aBlock.end - aBlock.begin, std::size_t(256 * 1024));//256 кб хватит всем
         data.resize(buffSize);
 
         while (aFile && aFile.tellg() < aBlock.end) {
