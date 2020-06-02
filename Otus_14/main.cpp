@@ -15,7 +15,7 @@ Args GetArgs(int argc, char** argv) {
     if (!std::filesystem::exists(res.FileName))
         throw std::invalid_argument(boost::str(boost::format("Файл с именем [%1%] отсутсвует") % res.FileName));
 
-    if (argc >= 2) {
+    if (argc >= 3) {
         auto thrMap = std::atoi(argv[2]);
         if (thrMap <= 0) {
             std::cout << boost::format("Не валидное количество Map потоков = [%1%], установленно значение по умолчанию=[%2%]")
@@ -26,7 +26,7 @@ Args GetArgs(int argc, char** argv) {
         }
     }
     
-    if (argc >= 3) {
+    if (argc >= 4) {
         auto redMap = std::atoi(argv[3]);
         if (redMap <= 0) {
             std::cout << boost::format("Не валидное количество Reduce потоков = [%1%], установленно значение по умолчанию=[%2%]")
