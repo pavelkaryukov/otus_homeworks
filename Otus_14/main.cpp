@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
         auto prefixSize = GetPrefixSize(args.FileName, args.ThreadsMap, args.ThreadsReduce);
         std::cout << boost::format("Минимальный размер префикса = [%1%]") % prefixSize << std::endl;
     }
-    catch (std::exception e) {
+    catch (std::exception& e) {
         std::cout << e.what() << std::endl;
     }
     //"c:\\my_programs\\otus\\otus_homeworks_all_2\\ip\\GeoIPCountryWhois.csv"
