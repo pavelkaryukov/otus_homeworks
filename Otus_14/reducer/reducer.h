@@ -4,6 +4,7 @@
 #include <functional>
 #include <fstream>
 #include <boost/format.hpp>
+#include <iostream>
 
 template<class THash>
 void ReduceFunc( std::vector<THash>&& aHashs,  const std::size_t aNumberOfData, std::reference_wrapper<std::map<THash, std::size_t>> aMap) {

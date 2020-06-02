@@ -11,7 +11,7 @@ Args GetArgs(int argc, char** argv) {
     if (argc == 1)
         throw std::invalid_argument("Отсутсвует имя файла");
     Args res;
-    res.FileName = { argv[1] };
+    res.FileName = { std::string(argv[1]) };
     if (!std::filesystem::exists(res.FileName))
         throw std::invalid_argument(boost::str(boost::format("Файл с именем [%1%] отсутсвует") % res.FileName));
 
