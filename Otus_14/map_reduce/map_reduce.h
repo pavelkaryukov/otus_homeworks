@@ -6,11 +6,11 @@
 #include <boost/function.hpp>
 #include <boost/functional/factory.hpp>
 #include <iostream>
-#include <thread>
-#include <mutex>
-#include <list>    
+#include <map> 
+#include <mutex>   
 #include <limits>
-#include <map>
+#include <list>    
+#include <thread>
 
 template<class THash>
 class MapReduce {

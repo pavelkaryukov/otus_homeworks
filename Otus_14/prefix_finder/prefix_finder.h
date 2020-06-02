@@ -2,8 +2,8 @@
 #include "mapper/my_mapper.h" 
 #include "mapper/hasher/hasher_crc32.h"
 #include "mapper/hasher/hasher_string.h"
-#include "file_splitter/file_splitter.h"
 #include "map_reduce/map_reduce.h"
+#include "file_splitter/file_splitter.h"
 #include "reducer/reducer.h"
 
 std::size_t GetPrefixSize(std::filesystem::path aPath, const std::size_t aMapThreads, const std::size_t aReducerThreads) {

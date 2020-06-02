@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <cstddef>
+
 template<class Res>
 class IHasher {
 public:

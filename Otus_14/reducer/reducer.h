@@ -1,10 +1,10 @@
-﻿#pragma once
-#include <vector>
-#include <map>
-#include <functional>
-#include <fstream>
+﻿#pragma once      
 #include <boost/format.hpp>
-#include <iostream>
+#include <fstream>
+#include <functional>
+#include <iostream>     
+#include <map>          
+#include <vector>
 
 template<class THash>
 void ReduceFunc( std::vector<THash>&& aHashs,  const std::size_t aNumberOfData, std::reference_wrapper<std::map<THash, std::size_t>> aMap) {
