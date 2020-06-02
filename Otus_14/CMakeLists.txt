@@ -7,9 +7,9 @@ set(MAPPER_SRC "mapper/my_mapper.h"  "mapper/hasher/ihasher.h" "mapper/hasher/ha
 set(PREFIX_SRC "prefix_finder/prefix_finder.h")
 set(REDUCER_SRC "reducer/reducer.h")
 
-add_executable(map_reduce main.cpp ${SPLIT_SRC} ${MAP_REDUCE_SRC} ${MAPPER_SRC} ${PREFIX_SRC} ${REDUCER_SRC}) 
+add_executable(yamr main.cpp ${SPLIT_SRC} ${MAP_REDUCE_SRC} ${MAPPER_SRC} ${PREFIX_SRC} ${REDUCER_SRC}) 
 set_target_properties (
-	map_reduce 
+	yamr 
 	PROPERTIES 
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON	
@@ -23,9 +23,21 @@ endif()
  
 Find_package(Threads)
 
-target_include_directories(map_reduce PRIVATE  ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
-target_link_libraries(map_reduce  
+target_include_directories(yamr PRIVATE  ${PROJECT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
+target_link_libraries(yamr  
     ${Boost_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}  
     $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
 )
+
+####################################################
+################_INSTALL_BLOCK_#####################
+install(TARGETS yamr DESTINATION bin)
+set(CPACK_PACKAGE_NAME "OtusHomeworks")
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VENDOR "Karyukov")
+set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
+include (CPack)
