@@ -25,6 +25,7 @@ namespace file_split {
             pos += len;
         }
 
+        return pos;
     }
     
     std::vector<block> GetBlocksFromFile(const std::filesystem::path aPath, const std::size_t aParts) {

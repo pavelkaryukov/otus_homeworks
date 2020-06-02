@@ -36,20 +36,19 @@ Args GetArgs(int argc, char** argv) {
             res.ThreadsReduce= redMap;
         }
     }
+
+    return res;
 }
 
 int main(int argc, char** argv) {
     std::locale::global(std::locale(""));
-    try
-    {
+    try {
         auto args = GetArgs(argc, argv);
         auto prefixSize = GetPrefixSize(args.FileName, args.ThreadsMap, args.ThreadsReduce);
         std::cout << boost::format("Минимальный размер префикса = [%1%]") % prefixSize << std::endl;
     }
-    catch (std::exception e)
-    {
+    catch (std::exception e) {
         std::cout << e.what() << std::endl;
-    	
     }
     //"c:\\my_programs\\otus\\otus_homeworks_all_2\\ip\\GeoIPCountryWhois.csv"
     return 0;
