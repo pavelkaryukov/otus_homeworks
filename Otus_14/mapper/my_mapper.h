@@ -34,7 +34,7 @@ public:
         
         const std::size_t fileSize = std::filesystem::file_size(aPath);
         if (fileSize <= aBlock.begin)
-            throw std::logic_error(boost::str(boost::format("Размер файла [%1%] <= начала блока[%2%]") % fileSize % aBlock.begin);
+            throw std::logic_error(boost::str(boost::format("Размер файла [%1%] <= начала блока[%2%]") % fileSize % aBlock.begin));
 
         file.seekg(aBlock.begin);
 

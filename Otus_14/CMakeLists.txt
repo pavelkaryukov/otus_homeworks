@@ -2,7 +2,12 @@
 
 project ("Otus_14" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 set(SPLIT_SRC "file_splitter/file_splitter.h" "file_splitter/file_splitter.cpp")
-add_executable(map_reduce main.cpp ${SPLIT_SRC})
+set(MAP_REDUCE_SRC "map_reduce/map_reduce.h")
+set(MAPPER_SRC "mapper/my_mapper.h"  "mapper/hasher/ihasher.h" "mapper/hasher/hasher_string.h" "mapper/hasher/hasher_crc32.h")
+set(PREFIX_SRC "prefix_finder/prefix_finder.h")
+set(REDUCER_SRC "reducer/reducer.h")
+
+add_executable(map_reduce main.cpp ${SPLIT_SRC} ${MAP_REDUCE_SRC} ${MAPPER_SRC} ${PREFIX_SRC} ${REDUCER_SRC}) 
 set_target_properties (
 	map_reduce 
 	PROPERTIES 
