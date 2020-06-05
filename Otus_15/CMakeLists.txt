@@ -16,14 +16,14 @@ if(NOT dlib_FOUND)
 	message(SEND_ERROR "Failed to find dlib")
 	return()
 endif()   
+Find_package(Threads)
 
 message("\r\n\r\n${dlib_INCLUDE_DIRS}\r\n\r\n")
 message("\r\n\r\n${dlib_LIBS}\r\n\r\n")
 message("\r\n\r\n${dlib_LIBRARIES}\r\n\r\n")
-#message(SEND_ERROR "Failed to find dlib")
-		
-#set(dlib_LIBRARIES ${dlib_LIBRARIES} "ws2_32;winmm;comctl32;gdi32;imm32")
-#set(dlib_LIBS      ${dlib_LIBRARIES} "ws2_32;winmm;comctl32;gdi32;imm32")
-#set(dlib_INCLUDE_DIRS "C:/Program Files (x86)/Project/include" "")
-target_include_directories(kkmeans PRIVATE  ${dlib_INCLUDE_DIRS} )
-target_link_libraries(kkmeans ${dlib_LIBS} )
+target_include_directories(kkmeans PRIVATE  ${PROJECT_SOURCE_DIR} ${dlib_INCLUDE_DIRS} )
+target_link_libraries(kkmeans 
+    ${dlib_LIBS}      
+    ${CMAKE_THREAD_LIBS_INIT}  
+    $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+)
