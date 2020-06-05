@@ -26,3 +26,5 @@ add_subdirectory ("Otus_12")
 add_subdirectory ("Otus_13")
 add_subdirectory ("Otus_14")
 add_subdirectory ("Otus_15")
+
+#add_subdirectory ("Otus_15")
