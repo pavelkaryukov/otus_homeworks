@@ -16,6 +16,8 @@ if(NOT dlib_FOUND)
 	message(SEND_ERROR "Failed to find dlib")
 	return()
 endif()   
+find_package(BLAS)
+find_package(LAPACK)
 Find_package(Threads)
 
 message("\r\n\r\n${dlib_INCLUDE_DIRS}\r\n\r\n")
@@ -36,7 +38,7 @@ IF (WIN32)
     )
 ELSE()
     target_link_libraries(kkmeans 
-        dlib
+        dlib::dlib
         blas
         lapack
         ${CMAKE_THREAD_LIBS_INIT}  
