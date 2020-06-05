@@ -1,10 +1,10 @@
-﻿cmake_minimum_required (VERSION 3.8.2)
+cmake_minimum_required (VERSION 3.8.2)
 
 project ("Otus_15" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
-add_executable(cat main.cpp ) 
+add_executable(kkmeans main.cpp ) 
 set_target_properties (
-	cat 
+	kkmeans 
 	PROPERTIES 
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED ON	
@@ -25,5 +25,5 @@ message("\r\n\r\n${dlib_LIBRARIES}\r\n\r\n")
 #set(dlib_LIBRARIES ${dlib_LIBRARIES} "ws2_32;winmm;comctl32;gdi32;imm32")
 #set(dlib_LIBS      ${dlib_LIBRARIES} "ws2_32;winmm;comctl32;gdi32;imm32")
 #set(dlib_INCLUDE_DIRS "C:/Program Files (x86)/Project/include" "")
-target_include_directories(cat PRIVATE  ${dlib_INCLUDE_DIRS} )
-target_link_libraries(cat ${dlib_LIBS} )
+target_include_directories(kkmeans PRIVATE  ${dlib_INCLUDE_DIRS} )
+target_link_libraries(kkmeans ${dlib_LIBS} )
