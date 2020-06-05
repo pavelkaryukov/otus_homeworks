@@ -11,18 +11,18 @@ set_target_properties (
 )
 
 
-find_package(dlib CONFIG REQUIRED)
-if(NOT dlib_FOUND)
-	message(SEND_ERROR "Failed to find dlib")
-	return()
-endif()   
+find_package(dlib REQUIRED)
+#if(NOT dlib_FOUND)
+#	message(SEND_ERROR "Failed to find dlib")
+#	return()
+#endif()   
 find_package(BLAS)
 find_package(LAPACK)
 Find_package(Threads)
 
-message("\r\n\r\n${dlib_INCLUDE_DIRS}\r\n\r\n")
-message("\r\n\r\n${dlib_LIBS}\r\n\r\n")
-message("\r\n\r\n${dlib_LIBRARIES}\r\n\r\n")
+#message("\r\n\r\n${dlib_INCLUDE_DIRS}\r\n\r\n")
+#message("\r\n\r\n${dlib_LIBS}\r\n\r\n")
+#message("\r\n\r\n${dlib_LIBRARIES}\r\n\r\n")
 target_include_directories(kkmeans PRIVATE  ${PROJECT_SOURCE_DIR} ${dlib_INCLUDE_DIRS} )
 #target_link_libraries(kkmeans 
 #    ${dlib_LIBS}      

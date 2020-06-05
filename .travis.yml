@@ -18,7 +18,9 @@ before_script:
 - sudo apt-get install gcc-8 g++-8
 - sudo apt-get install doxygen
 - sudo apt-get install doxygen graphviz
-- sudo apt-get install libopenblas-dev libdlib-dev libdlib-data libopenblas-base
+- sudo apt-get install libdlib-dev
+- sudo apt-get install libblas-dev
+- sudo apt-get install liblapack-dev
 script:
 - gcc --version
 - cd /home/travis/build/pavelkaryukov/otus_homeworks
