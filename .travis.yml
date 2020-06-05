@@ -28,8 +28,8 @@ script:
 - gcc --version
 - cd /home/travis/build/pavelkaryukov/otus_homeworks
 - pwd
-- sudo cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_CC_COMPILER=gcc-8 .
-- sudo cmake --build .
+- cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_CC_COMPILER=gcc-8 .
+- cmake --build .
 - Otus_1/./boost_test_version
 - Otus_1/./gtest_test_version
 - cd Otus_2
