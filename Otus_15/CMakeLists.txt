@@ -6,7 +6,7 @@ add_executable(kkmeans main.cpp )
 set_target_properties (
 	kkmeans 
 	PROPERTIES 
-	CXX_STANDARD 17
+	CXX_STANDARD 11
 	CXX_STANDARD_REQUIRED ON	
 )
 
