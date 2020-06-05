@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.8.2)
+cmake_minimum_required (VERSION 3.8)
 
 project ("Otus_15" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
@@ -6,12 +6,12 @@ add_executable(kkmeans main.cpp )
 set_target_properties (
 	kkmeans 
 	PROPERTIES 
-	CXX_STANDARD 11
+	CXX_STANDARD 14
 	CXX_STANDARD_REQUIRED ON	
 )
 
 
-find_package(dlib REQUIRED)
+find_package(dlib CONFIG REQUIRED)
 if(NOT dlib_FOUND)
 	message(SEND_ERROR "Failed to find dlib")
 	return()
