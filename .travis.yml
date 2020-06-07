@@ -33,6 +33,7 @@ addons:
       - libdlib-dev
       - libopenblas-dev
 script:
+- dpkg-query -L libdlib-dev | grep grep ".*\.a"
 - cd /usr/lib/
 - ls
 - gcc --version
