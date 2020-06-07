@@ -19,6 +19,7 @@ before_script:
 - sudo apt-get install doxygen
 - sudo apt-get install doxygen graphviz
 - sudo apt-get install libdlib-dev
+- sudo apt-get install libopenblas-dev
 - sudo apt-get install libblas-dev
 - sudo apt-get install liblapack-dev
 - sudo apt-get install libjpeg-dev
@@ -33,6 +34,7 @@ before_script:
 #      - libdlib-dev
 #      - libopenblas-dev
 script:
+- dpkg-query -L libdlib-dev
 - sudo wget http://dlib.net/files/dlib-19.6.tar.bz2
 - sudo tar xvf dlib-19.0.tar.bz2
 - ls
