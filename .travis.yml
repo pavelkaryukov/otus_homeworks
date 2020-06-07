@@ -19,12 +19,12 @@ before_script:
 - sudo apt-get install doxygen
 - sudo apt-get install doxygen graphviz
 #- sudo apt-get install libdlib-dev
-- sudo apt-get install libopenblas-dev
-- sudo apt-get install libblas-dev
-- sudo apt-get install liblapack-dev
-- sudo apt-get install libjpeg-dev
-- sudo apt-get install libx11-dev
-- sudo apt-get install git
+- sudo apt-get -qq install libopenblas-dev
+- sudo apt-get -qq install libblas-dev
+- sudo apt-get -qq install liblapack-dev
+- sudo apt-get -qq install libjpeg-dev
+- sudo apt-get -qq install libx11-dev
+#- sudo apt-get install git
 #addons:
 #  apt:
 #    sources:
@@ -35,12 +35,13 @@ before_script:
 #      - libdlib-dev
 #      - libopenblas-dev
 script:
-- sudo git clone https://github.com/davisking/dlib
-- cd dlib
-- sudo mkdir build
-- cmake ..
-- sudo cmake --build . --target install
-- dpkg-query -L libdlib-dev
+#- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+#- sudo git clone https://github.com/davisking/dlib
+#- cd dlib
+#- sudo mkdir build
+#- cmake ..
+#- sudo cmake --build . --target install
+#- dpkg-query -L libdlib-dev
 #- sudo wget http://dlib.net/files/dlib-19.0.tar.bz2
 #- sudo tar xvf dlib-19.0.tar.bz2
 #- ls
