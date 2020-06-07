@@ -58,7 +58,7 @@ script:
 #- cd /usr/lib/
 #- ls
 #- gcc --version
-- cd /home/travis/build/pavelkaryukov/otus_homeworks/Otus_15
+- cd /home/travis/build/pavelkaryukov/otus_homeworks
 - ls
 - pwd
 - cmake .
