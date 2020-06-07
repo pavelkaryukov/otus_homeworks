@@ -24,6 +24,7 @@ before_script:
 - sudo apt-get install liblapack-dev
 - sudo apt-get install libjpeg-dev
 - sudo apt-get install libx11-dev
+- sudo apt-get install git
 #addons:
 #  apt:
 #    sources:
@@ -34,7 +35,7 @@ before_script:
 #      - libdlib-dev
 #      - libopenblas-dev
 script:
-- git clone https://github.com/davisking/dlib
+- sudo git clone https://github.com/davisking/dlib
 - cd dlib
 - sudo mkdir build
 - cmake ..
