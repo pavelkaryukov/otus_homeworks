@@ -29,20 +29,27 @@ target_include_directories(kkmeans PRIVATE  ${PROJECT_SOURCE_DIR} ${dlib_INCLUDE
 #    ${CMAKE_THREAD_LIBS_INIT}  
 #    $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
 #)
+target_link_libraries(kkmeans 
+    ${DLIB_LIBRARY_DIRS}      
+    blas
+    lapack
+    ${CMAKE_THREAD_LIBS_INIT}  
+    $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+)
 
-IF (WIN32)
-    target_link_libraries(kkmeans 
-        ${dlib_LIBS}      
-        ${CMAKE_THREAD_LIBS_INIT}  
-        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
-    )
-ELSE()
-    target_link_libraries(kkmeans 
-        dlib::dlib
-        blas
-        lapack
-        ${CMAKE_THREAD_LIBS_INIT}  
-        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
-    )
-ENDIF()
+#IF (WIN32)
+#    target_link_libraries(kkmeans 
+#        ${dlib_LIBS}      
+#        ${CMAKE_THREAD_LIBS_INIT}  
+#        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+#    )
+#ELSE()
+#    target_link_libraries(kkmeans 
+#        dlib::dlib
+#        blas
+#        lapack
+#        ${CMAKE_THREAD_LIBS_INIT}  
+#        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+#    )
+#ENDIF()
 
