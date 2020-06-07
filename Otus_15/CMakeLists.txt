@@ -11,7 +11,8 @@ set_target_properties (
 )
 
 
- 
+
+find_package(dlib REQUIRED) 
 find_package(BLAS)
 find_package(LAPACK)
 Find_package(Threads)
@@ -29,7 +30,6 @@ target_link_libraries(kkmeans
     $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
 )
 
-find_package(dlib REQUIRED)
 #if(NOT dlib_FOUND)
 #	message(SEND_ERROR "Failed to find dlib")
 #	return()
