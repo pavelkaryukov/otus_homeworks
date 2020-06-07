@@ -18,7 +18,7 @@ before_script:
 - sudo apt-get install gcc-8 g++-8
 - sudo apt-get install doxygen
 - sudo apt-get install doxygen graphviz
-- sudo apt-get install libdlib-dev
+#- sudo apt-get install libdlib-dev
 - sudo apt-get install libopenblas-dev
 - sudo apt-get install libblas-dev
 - sudo apt-get install liblapack-dev
@@ -34,6 +34,11 @@ before_script:
 #      - libdlib-dev
 #      - libopenblas-dev
 script:
+- git clone https://github.com/davisking/dlib
+- cd dlib
+- sudo mkdir build
+- cmake ..
+- sudo cmake --build . --target install
 - dpkg-query -L libdlib-dev
 #- sudo wget http://dlib.net/files/dlib-19.0.tar.bz2
 #- sudo tar xvf dlib-19.0.tar.bz2
