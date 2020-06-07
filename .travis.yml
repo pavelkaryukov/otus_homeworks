@@ -37,7 +37,7 @@ script:
 - sudo tar xvf dlib-19.6.tar.bz2
 - ls
 - cd dlib-19.6
-- mkdir build
+- sudo mkdir build
 - cd build
 - cmake ..
 - cmake --build . --config Release
