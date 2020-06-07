@@ -35,22 +35,22 @@ before_script:
 #      - libopenblas-dev
 script:
 - dpkg-query -L libdlib-dev
-- sudo wget http://dlib.net/files/dlib-19.0.tar.bz2
-- sudo tar xvf dlib-19.0.tar.bz2
-- ls
-- cd dlib-19.0
-- ls
-- sudo mkdir build
-- cd build 
-- ls
-- cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_CC_COMPILER=gcc-8 ..
-- cmake --build . --config Release
-- sudo make install
-- sudo ldconfig
-- cd ..
-- cd /usr/lib/
-- ls
-- gcc --version
+#- sudo wget http://dlib.net/files/dlib-19.0.tar.bz2
+#- sudo tar xvf dlib-19.0.tar.bz2
+#- ls
+#- cd dlib-19.0
+#- ls
+#- sudo mkdir build
+#- cd build 
+#- ls
+#- cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_CC_COMPILER=gcc-8 ..
+#- cmake --build . --config Release
+#- sudo make install
+#- sudo ldconfig
+#- cd ..
+#- cd /usr/lib/
+#- ls
+#- gcc --version
 - cd /home/travis/build/pavelkaryukov/otus_homeworks
 - ls
 - pwd
