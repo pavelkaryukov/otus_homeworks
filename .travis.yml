@@ -20,10 +20,10 @@ before_script:
 - sudo apt-get install doxygen graphviz
 - sudo apt-get -qq install libdlib-dev
 - sudo apt-get -qq install libopenblas-dev
-- sudo apt-get -qq install libblas-dev
-- sudo apt-get -qq install liblapack-dev
-- sudo apt-get -qq install libjpeg-dev
-- sudo apt-get -qq install libx11-dev
+#- sudo apt-get -qq install libblas-dev
+#- sudo apt-get -qq install liblapack-dev
+#- sudo apt-get -qq install libjpeg-dev
+#- sudo apt-get -qq install libx11-dev
 #- sudo apt-get install git
 #addons:
 #  apt:
@@ -58,7 +58,7 @@ script:
 #- cd /usr/lib/
 #- ls
 #- gcc --version
-- cd /home/travis/build/pavelkaryukov/otus_homeworks
+- cd /home/travis/build/pavelkaryukov/otus_homeworks/Otus_15
 - ls
 - pwd
 - cmake .
