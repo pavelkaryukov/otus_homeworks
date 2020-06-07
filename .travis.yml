@@ -36,7 +36,7 @@ script:
 - sudo wget http://dlib.net/files/dlib-19.6.tar.bz2
 - sudo tar xvf dlib-19.0.tar.bz2
 - ls
-- cd dlib-19.6
+- cd dlib-19.0
 - ls
 - sudo mkdir build
 - cd build 
