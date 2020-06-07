@@ -34,12 +34,12 @@ before_script:
 #      - libopenblas-dev
 script:
 - sudo wget http://dlib.net/files/dlib-19.6.tar.bz2
-- tar xvf dlib-19.6.tar.bz2
-- cd dlib-19.6/
-- mkdir build
-- cd build
-- cmake ..
-- cmake --build . --config Release
+- sudo tar xvf dlib-19.6.tar.bz2
+- sudo cd dlib-19.6/
+- sudo mkdir build
+- sudo cd build
+- sudo cmake ..
+- sudo cmake --build . --config Release
 - sudo make install
 - sudo ldconfig
 - cd ..
