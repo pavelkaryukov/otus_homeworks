@@ -1,6 +1,7 @@
 ﻿#include <boost/format.hpp> 
 #include <dlib/rand.h>
 #include <fstream>
+#include <algorithm>
 
 int main() {
     std::ofstream file("stars.txt");
