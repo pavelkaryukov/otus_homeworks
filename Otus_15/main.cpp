@@ -6,14 +6,15 @@
 using separator_t = boost::char_separator<char>;
 using tokenizer_t = boost::tokenizer<separator_t>;
 std::size_t GetClusterNum(int argc, char** argv) {
+    const std::size_t defaultValue = 4;
     if (argc < 2) {
         std::cout << "Установлено количество кластеров по умолчанию = 1" << std::endl;
-        return 1;
+        return defaultValue;
     }
     auto num = std::atoi(argv[1]);
     if (num <= 0) {
         std::cout << "Установлено количество кластеров по умолчанию = 1" << std::endl;
-        return 1;
+        return defaultValue;
     }
     return num;
 }
@@ -42,12 +43,12 @@ int main(int argc, char** argv) {
             continue;
         coords.push_back(coord);
     }
-    std::ofstream outfile("kkmeans_ex_result.txt");
+    std::ofstream outfile("result.txt");
     if (!outfile || !outfile.is_open()) {
-        std::cout << "Не удается открыть файл" << std::endl;
+        std::cout << "Не удается открыть файл для записи" << std::endl;
         return 1;
     }
-    cluster::CalcClusters(coords, 6/*clusters*/, outfile);
+    cluster::CalcClusters(coords, clusters, outfile);
     //тут процедура кластеризации
     return 0;
 }
