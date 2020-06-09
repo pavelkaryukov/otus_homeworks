@@ -28,9 +28,6 @@ namespace cluster {
         test.set_number_of_centers(aCentersNumber);
         dlib::pick_initial_centers(aCentersNumber, initial_centers, samples, test.get_kernel());
         test.train(samples, initial_centers);
-        for (std::size_t i = 0U; i < aCentersNumber; ++i) {
-            std::cout << boost::format("centroid[%1%]; size[%2%];") % i % test.get_kcentroid(i).dictionary_size() << std::endl;
-        }
         std::vector<unsigned long> assignments = spectral_cluster(kernel_t(0.1), samples, aCentersNumber);
         
         const auto size = std::min(assignments.size(), samples.size());
