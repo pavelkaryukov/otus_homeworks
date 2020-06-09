@@ -8,12 +8,12 @@ using tokenizer_t = boost::tokenizer<separator_t>;
 std::size_t GetClusterNum(int argc, char** argv) {
     const std::size_t defaultValue = 4;
     if (argc < 2) {
-        std::cout << "Установлено количество кластеров по умолчанию = 1" << std::endl;
+        std::cout << "Установлено количество кластеров по умолчанию = 4" << std::endl;
         return defaultValue;
     }
     auto num = std::atoi(argv[1]);
     if (num <= 0) {
-        std::cout << "Установлено количество кластеров по умолчанию = 1" << std::endl;
+        std::cout << "Установлено количество кластеров по умолчанию = 4" << std::endl;
         return defaultValue;
     }
     return num;
