@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
         coords.push_back(coord);
     }
     std::ofstream outfile("kkmeans_ex_result.txt");
-    if (!outfile || outfile.is_open()) {
+    if (!outfile || !outfile.is_open()) {
         std::cout << "Не удается открыть файл" << std::endl;
         return 1;
     }

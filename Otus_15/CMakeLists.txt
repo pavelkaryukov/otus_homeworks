@@ -1,4 +1,4 @@
-п»їcmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.8)
 
 project ("Otus_15" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
@@ -13,7 +13,7 @@ set_target_properties (
 	CXX_STANDARD 14
 	CXX_STANDARD_REQUIRED ON	
 )
- #РёСЃРїРѕР»СЊР·СѓСЋ РґР»СЏ boost::format, boost::tokenizer
+ #использую для boost::format, boost::tokenizer
 find_package(Boost REQUIRED)
 if(NOT Boost_FOUND)
 	message(SEND_ERROR "Failed to find boost")
@@ -82,20 +82,17 @@ ELSE()
 		${CMAKE_THREAD_LIBS_INIT}  
 		$<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
 	)
-
-#     target_include_directories(create_points 
-#        PRIVATE  
-#            ${PROJECT_SOURCE_DIR} 
-#            ${Boost_INCLUDE_DIRS}
-#    )
-#
-#	target_link_libraries( create_points
-#		dlib     
-#		blas
-#		lapack
-#        ${CMAKE_THREAD_LIBS_INIT}  
-#        ${Boost_LIBRARIES}
-#        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
-#    )	
 ENDIF()
+
+####################################################
+################_INSTALL_BLOCK_#####################
+install(TARGETS kkmeans DESTINATION bin)
+set(CPACK_PACKAGE_NAME "OtusHomeworks")
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VENDOR "Karyukov")
+set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
+include (CPack)
 
