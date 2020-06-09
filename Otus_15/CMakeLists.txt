@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.8)
+п»їcmake_minimum_required (VERSION 3.8)
 
 project ("Otus_15" VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER}) 
 
@@ -13,7 +13,7 @@ set_target_properties (
 	CXX_STANDARD 14
 	CXX_STANDARD_REQUIRED ON	
 )
- #использую для boost::format, boost::tokenizer
+ #РёСЃРїРѕР»СЊР·СѓСЋ РґР»СЏ boost::format, boost::tokenizer
 find_package(Boost REQUIRED)
 if(NOT Boost_FOUND)
 	message(SEND_ERROR "Failed to find boost")
