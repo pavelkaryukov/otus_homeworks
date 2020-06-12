@@ -18,9 +18,13 @@ int main(int argc, char** argv) {
         std::string fileName = "model_set1";
         std::size_t clustersNumber = 100;
         auto apartments = GetApartments(file);
+        file.close();
         const double maxCost = FindMaxCost(apartments);//max = 100, min = cost
         const double percentCost = maxCost / 100.00;//TODO:: DELETE
         ClusterData clusterData = FindClusters(apartments, maxCost, clustersNumber);
+        for (int i = 0; i < std::min(clusterData.Assignments.size(), apartments.size()); ++i) {
+            std::cout << apartments[i].Serialize()<< "::" << clusterData.Assignments[i] << std::endl;
+        }
         //Сделать кластеры
         //натренировать классификатор
         //сохранить классификатор
@@ -29,7 +33,8 @@ int main(int argc, char** argv) {
         int stop1 = 0;
     }
     catch (std::exception& e) {
-
+        std::cout << e.what() << std::endl;
+        int stop1 = 0;
     }
     return 0;
 }

@@ -18,12 +18,12 @@ trainer::sample_type ToSample(const Apartment& aApart, const std::size_t aMaxCos
     sample(0) = aApart.Longitude    ();
     sample(1) = aApart.Latitude     ();
     sample(2) = aApart.Rooms        ();
-    sample(3) = aApart.Cost         () / aMaxCost * 100.00;
+    sample(3) = (aApart.Cost        () / aMaxCost) * 100.00;
     sample(4) = aApart.AreaAll      ();
     sample(5) = aApart.AreaKitchen  ();
     sample(6) = ((aApart.Floor() == aApart.NumberOfFloor()) || (aApart.Floor() <= 1)) ? 0 : 1;
     sample(7) = aApart.NumberOfFloor();
-    return {};
+    return sample;
 }
 
 
@@ -31,10 +31,8 @@ ClusterData FindClusters(const std::vector<Apartment>& aApartments, const std::s
     if (aNumberOfClusters == 0)
         throw std::logic_error("Invalid number of clusters == 0");
     ClusterData  data;
-    for (int i = 0; i < aApartments.size(); ++i) {
-        const auto& apart = aApartments[i];
-        data.Samples.push_back(ToSample(apart, aMaxCost));
-    }
+    std::for_each(aApartments.cbegin(), aApartments.cend(), 
+                  [&data, &aMaxCost](const auto& apart) { data.Samples.push_back(ToSample(apart, aMaxCost)); } );
 
     dlib::kcentroid<trainer::kernel_type> kc(trainer::kernel_type(0.1), 0.01, 8);
     dlib::kkmeans<trainer::kernel_type> test(kc);
@@ -42,6 +40,7 @@ ClusterData FindClusters(const std::vector<Apartment>& aApartments, const std::s
     std::vector<trainer::sample_type> initial_centers;
     test.set_number_of_centers(aNumberOfClusters);
     dlib::pick_initial_centers(aNumberOfClusters, initial_centers, data.Samples, test.get_kernel());
-    data.Assignments = spectral_cluster(trainer::kernel_type(0.1), data.Samples, aNumberOfClusters);
+    test.train(data.Samples, initial_centers);
+    //data.Assignments = dlib::spectral_cluster(trainer::kernel_type(0.1), data.Samples, aNumberOfClusters);
     return data;
 }

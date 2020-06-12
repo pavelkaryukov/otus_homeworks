@@ -55,6 +55,34 @@ IF (WIN32)
         ${CMAKE_THREAD_LIBS_INIT}  
         $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
     )
+ELSE()
+	target_include_directories(rclst 
+        PRIVATE  
+            ${PROJECT_SOURCE_DIR} 
+            ${Boost_INCLUDE_DIRS}
+    )
+
+	target_link_libraries( rclst
+	    dlib     
+		blas
+		lapack    
+        ${CMAKE_THREAD_LIBS_INIT}  
+        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+    )
+
+    target_include_directories(rclss 
+        PRIVATE  
+            ${PROJECT_SOURCE_DIR} 
+            ${Boost_INCLUDE_DIRS}
+    )
+
+	target_link_libraries(rclss
+	    dlib     
+		blas
+		lapack     
+        ${CMAKE_THREAD_LIBS_INIT}  
+        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
+    )
 ENDIF()
 
 set (DATASET_FILE_PATH ${PROJECT_SOURCE_DIR}/16.dataset-12995-8e405d.csv)
