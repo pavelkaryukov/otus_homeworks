@@ -22,8 +22,8 @@ int main(int argc, char** argv) {
         const double maxCost = FindMaxCost(apartments);//max = 100, min = cost
         const double percentCost = maxCost / 100.00;//TODO:: DELETE
         ClusterData clusterData = FindClusters(apartments, maxCost, clustersNumber);
-        for (int i = 0; i < std::min(clusterData.Assignments.size(), apartments.size()); ++i) {
-            std::cout << apartments[i].Serialize()<< "::" << clusterData.Assignments[i] << std::endl;
+        for (int i = 0; i < std::min(clusterData.Labels.size(), apartments.size()); ++i) {
+            std::cout << apartments[i].Serialize()<< "::" << clusterData.Labels[i] << std::endl;
         }
         //Сделать кластеры
         //натренировать классификатор

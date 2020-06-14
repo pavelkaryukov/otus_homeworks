@@ -10,7 +10,7 @@ namespace trainer {
 
 struct ClusterData {
     std::vector<trainer::sample_type> Samples;
-    std::vector<unsigned long> Assignments;
+    std::vector<std::size_t> Labels;
 };
 
 trainer::sample_type ToSample(const Apartment& aApart, const std::size_t aMaxCost) {
@@ -34,13 +34,18 @@ ClusterData FindClusters(const std::vector<Apartment>& aApartments, const std::s
     std::for_each(aApartments.cbegin(), aApartments.cend(), 
                   [&data, &aMaxCost](const auto& apart) { data.Samples.push_back(ToSample(apart, aMaxCost)); } );
 
-    dlib::kcentroid<trainer::kernel_type> kc(trainer::kernel_type(0.1), 0.01, 8);
+    dlib::kcentroid<trainer::kernel_type> kc(trainer::kernel_type(0.000001), 0.01, 16);
     dlib::kkmeans<trainer::kernel_type> test(kc);
 
     std::vector<trainer::sample_type> initial_centers;
     test.set_number_of_centers(aNumberOfClusters);
     dlib::pick_initial_centers(aNumberOfClusters, initial_centers, data.Samples, test.get_kernel());
     test.train(data.Samples, initial_centers);
-    data.Assignments = dlib::spectral_cluster(trainer::kernel_type(0.1), data.Samples, aNumberOfClusters);
+
+    //auto vec = dlib::spectral_cluster(trainer::kernel_type(0.1), std::vector<trainer::sample_type>{ data.Samples.begin(), data.Samples.begin() + 100 }, initial_centers.size());
+    for (const auto& sample : data.Samples) {
+        data.Labels.push_back(test(sample));
+    }
+    //auto vec = dlib::spectral_cluster(trainer::kernel_type(0.1), data.Samples, initial_centers.size());
     return data;
 }
