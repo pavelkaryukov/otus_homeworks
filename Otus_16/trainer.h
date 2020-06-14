@@ -41,6 +41,6 @@ ClusterData FindClusters(const std::vector<Apartment>& aApartments, const std::s
     test.set_number_of_centers(aNumberOfClusters);
     dlib::pick_initial_centers(aNumberOfClusters, initial_centers, data.Samples, test.get_kernel());
     test.train(data.Samples, initial_centers);
-    //data.Assignments = dlib::spectral_cluster(trainer::kernel_type(0.1), data.Samples, aNumberOfClusters);
+    data.Assignments = dlib::spectral_cluster(trainer::kernel_type(0.1), data.Samples, aNumberOfClusters);
     return data;
 }
