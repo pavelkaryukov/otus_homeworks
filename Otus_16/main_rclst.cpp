@@ -22,15 +22,10 @@ int main(int argc, char** argv) {
         const double maxCost = FindMaxCost(apartments);//max = 100, min = cost
         const double percentCost = maxCost / 100.00;//TODO:: DELETE
         ClusterData clusterData = FindClusters(apartments, maxCost, clustersNumber);
-        for (int i = 0; i < std::min(clusterData.Labels.size(), apartments.size()); ++i) {
-            std::cout << apartments[i].Serialize()<< "::" << clusterData.Labels[i] << std::endl;
-        }
-        //Сделать кластеры
-        //натренировать классификатор
-        //сохранить классификатор
-        //сохранить данные
-        
-        int stop1 = 0;
+        if (CheckDeserialize(clusterData))
+            std::cout << "Desserialize was corrected" << std::endl;
+        else
+            std::cout << "Error:: Desserialize was uncorrected" << std::endl;
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
