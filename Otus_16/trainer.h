@@ -18,7 +18,7 @@ struct ClusterData {
     std::vector<unsigned long> Labels;
 };
 
-trainer::sample_type ToSample(const Apartment& aApart, const std::size_t aMaxCost) {
+trainer::sample_type ToSample(const Apartment& aApart, const double aMaxCost) {
     trainer::sample_type sample;
     sample(0) = aApart.Longitude    ();
     sample(1) = aApart.Latitude     ();
@@ -57,6 +57,8 @@ ClusterData MakeClassificator(
     }
     return data;
 }
+
+
 
 //TODO::DELETE
 bool CheckDeserialize(ClusterData& aData) {

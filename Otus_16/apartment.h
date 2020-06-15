@@ -123,3 +123,12 @@ double FindMaxCost(const std::vector<Apartment>& aApartments) {
     std::for_each(aApartments.cbegin(), aApartments.cend(), [&maxCost](const auto& apart) { maxCost = std::max(maxCost, apart.Cost()); });
     return maxCost;
 }
+
+double FindMaxCost(const std::string aFileName) {
+    double maxCost = 0;
+    std::ifstream file(boost::str(boost::format("%1%.max_cost") % aFileName));
+    std::string str;
+    std::getline(file, str);
+    maxCost = std::atof(str.c_str());
+    return maxCost ? maxCost : 1;
+}

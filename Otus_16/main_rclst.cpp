@@ -40,14 +40,16 @@ Arguments GetArguments(int argc, char** argv) {
 }
 
 int main(int argc, char** argv) {
-    //std::locale::global(std::locale(""));
-    //получили кол-во кластеров и имя файла 
     try {
         const Arguments args = GetArguments(argc, argv);
         auto apartments = GetApartments(std::cin);//подать потов ввода
         const double maxCost = FindMaxCost(apartments);//max = 100, min = cost
         ClusterData clusterData = MakeClassificator(apartments, maxCost, args.Clusters, args.FileName);
         SaveClusteringAppartmentsInfo(clusterData, apartments, args.FileName);
+        std::ofstream fileMaxCost(boost::str(boost::format("%1%.max_cost") % args.FileName));
+        if (!fileMaxCost || !fileMaxCost.is_open())
+            throw std::bad_exception("Cant open file for writing max cost");
+        fileMaxCost << maxCost;
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
