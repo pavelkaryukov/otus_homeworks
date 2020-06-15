@@ -1,7 +1,6 @@
 ﻿#include "apartment.h"
 #include "trainer.h"
 #include <exception>
-#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -47,12 +46,15 @@ int main(int argc, char** argv) {
         ClusterData clusterData = MakeClassificator(apartments, maxCost, args.Clusters, args.FileName);
         SaveClusteringAppartmentsInfo(clusterData, apartments, args.FileName);
         std::ofstream fileMaxCost(boost::str(boost::format("%1%.max_cost") % args.FileName));
-        if (!fileMaxCost || !fileMaxCost.is_open())
-            throw std::bad_exception("Cant open file for writing max cost");
+        if (!fileMaxCost || !fileMaxCost.is_open()) {
+            std::cout << "Cant open file for writing max cost" << std::endl;
+            return 1;
+        }
         fileMaxCost << maxCost;
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
+		return 1;
     }
     return 0;
 }

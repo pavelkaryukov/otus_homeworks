@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <boost/algorithm/algorithm.hpp>      
 #include <boost/algorithm/string.hpp>
+#include <boost/format.hpp>
+#include <fstream>
 #include <iostream>
 #include <cstddef>
 #include <string>
