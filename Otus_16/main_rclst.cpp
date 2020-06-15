@@ -22,23 +22,32 @@ void SaveClusteringAppartmentsInfo(const ClusterData& aData, const std::vector<A
     }
 }
 
+struct Arguments {
+    std::size_t Clusters;
+    std::string FileName;
+};
+
+Arguments GetArguments(int argc, char** argv) {
+    if (argc < 3)
+        throw std::invalid_argument("Invalid arguments number [<3]");
+
+    std::size_t clusters = std::atoi(argv[1]);
+    if (clusters == 0) 
+        throw std::invalid_argument(boost::str(boost::format("Invalid clusters number = [%1%]")%argv[1]));
+
+    std::string fileName = argv[2];
+    return {clusters, fileName};
+}
+
 int main(int argc, char** argv) {
     //std::locale::global(std::locale(""));
     //получили кол-во кластеров и имя файла 
     try {
-        std::ifstream file("16.dataset-12995-8e405d.csv");
-        if (!file || !file.is_open()) {
-            std::cout << "не удается открыть файл" << std::endl;
-            return 1;
-        }
-        std::string fileName = "model_set1";  //argc fill
-        std::size_t clustersNumber = 100;     //argc fill
-        auto apartments = GetApartments(file);//подать потов ввода
-        file.close();
+        const Arguments args = GetArguments(argc, argv);
+        auto apartments = GetApartments(std::cin);//подать потов ввода
         const double maxCost = FindMaxCost(apartments);//max = 100, min = cost
-        const double percentCost = maxCost / 100.00;//TODO:: DELETE
-        ClusterData clusterData = MakeClassificator(apartments, maxCost, clustersNumber, fileName);
-        SaveClusteringAppartmentsInfo(clusterData, apartments, fileName);
+        ClusterData clusterData = MakeClassificator(apartments, maxCost, args.Clusters, args.FileName);
+        SaveClusteringAppartmentsInfo(clusterData, apartments, args.FileName);
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
