@@ -128,7 +128,7 @@ double FindMaxCost(const std::vector<Apartment>& aApartments) {
 
 double FindMaxCost(const std::string aFileName) {
     double maxCost = 0;
-    std::ifstream file(boost::str(boost::format("%1%.max_cost") % aFileName));
+    std::ifstream file(boost::str(boost::format("%1$.2f.max_cost") % aFileName));
     std::string str;
     std::getline(file, str);
     maxCost = std::atof(str.c_str());
