@@ -32,7 +32,12 @@ trainer::sample_type ToSample(const Apartment& aApart, const std::size_t aMaxCos
 }
 
 
-ClusterData FindClusters(const std::vector<Apartment>& aApartments, const std::size_t aMaxCost, const std::size_t aNumberOfClusters) {
+ClusterData MakeClassificator(
+    const std::vector<Apartment>& aApartments, 
+    const std::size_t aMaxCost, 
+    const std::size_t aNumberOfClusters, 
+    const std::string aFileName
+) {
     if (aNumberOfClusters == 0)
         throw std::logic_error("Invalid number of clusters == 0");
     ClusterData  data;
@@ -40,19 +45,20 @@ ClusterData FindClusters(const std::vector<Apartment>& aApartments, const std::s
                   [&data, &aMaxCost](const auto& apart) { data.Samples.push_back(ToSample(apart, aMaxCost)); } );
 
     dlib::kcentroid<trainer::kernel_type> kc(trainer::kernel_type(0.000001), 0.01, 16);
-    dlib::kkmeans<trainer::kernel_type> test(kc);
+    dlib::kkmeans<trainer::kernel_type> kktrainer(kc);
 
     std::vector<trainer::sample_type> initial_centers;
-    test.set_number_of_centers(aNumberOfClusters);
-    dlib::pick_initial_centers(aNumberOfClusters, initial_centers, data.Samples, test.get_kernel());
-    test.train(data.Samples, initial_centers);
-    dlib::serialize("mega_model.class") << test;
+    kktrainer.set_number_of_centers(aNumberOfClusters);
+    dlib::pick_initial_centers(aNumberOfClusters, initial_centers, data.Samples, kktrainer.get_kernel());
+    kktrainer.train(data.Samples, initial_centers);
+    dlib::serialize(boost::str(boost::format("%1%.classificator") % aFileName)) << kktrainer;
     for (const auto& sample : data.Samples) {
-        data.Labels.push_back(test(sample));
+        data.Labels.push_back(kktrainer(sample));
     }
-
     return data;
 }
+
+//TODO::DELETE
 bool CheckDeserialize(ClusterData& aData) {
     dlib::kcentroid<trainer::kernel_type> kc(trainer::kernel_type(0.000001), 0.01, 16);
     dlib::kkmeans<trainer::kernel_type> test(kc);
@@ -68,23 +74,31 @@ bool CheckDeserialize(ClusterData& aData) {
     return true;
 }
 
-//dlib::one_vs_one_decision_function<trainer::ovo_trainer> 
+////dlib::one_vs_one_decision_function<trainer::ovo_trainer> 
 //bool GetDecissionFunc(ClusterData& aData) {
-//
 //    std::for_each(aData.Labels.begin(), aData.Labels.end(), [](auto& a) {++a; });
-//    for (auto& ll : aData.Labels) {
-//        //ll += 1;
-//        if (ll < 1.00)
-//            std::cout << "label < 1" << std::endl;
-//    }
+////     for (auto& ll : aData.Labels) {
+////         //ll += 1;
+////         if (ll < 1.00)
+////             std::cout << "label < 1" << std::endl;
+////     }
 //    trainer::ovo_trainer trainer;
 //    
 //    dlib::krr_trainer<trainer::rbf_kernel> rbf_trainer;
 //    dlib::svm_nu_trainer<trainer::poly_kernel> poly_trainer;
-//    poly_trainer.set_kernel(trainer::poly_kernel(0.1, 1, 2));
+//    poly_trainer.set_kernel(trainer::poly_kernel(0.1, 1, 8));
 //    rbf_trainer.set_kernel(trainer::rbf_kernel(0.1));
 //    trainer.set_trainer(rbf_trainer);
-//    trainer.set_trainer(poly_trainer, 1, 2);
+//    //trainer.set_trainer(poly_trainer, 1, 8);
+//    try
+//    {
+//        std::cout << cross_validate_multiclass_trainer(trainer, aData.Samples, aData.Labels, 1) << std::endl;
+//    }
+//    catch (std::exception& e)
+//    {
+//        std::cout << e.what() << std::endl;
+//    	
+//    }
 //    dlib::one_vs_one_decision_function<trainer::ovo_trainer> df = trainer.train(aData.Samples, aData.Labels);
 //    std::cout << "Decission Function was trained" << std::endl;
 //    return {};
