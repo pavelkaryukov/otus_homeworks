@@ -1,8 +1,5 @@
 ﻿#include "apartment.h"
 #include "trainer.h"
-#include <exception>
-#include <iostream>
-#include <string>
 
 void SaveClusteringAppartmentsInfo(const ClusterData& aData, const std::vector<Apartment>& aApartments, const std::string aFileName) {
     const auto len = std::min(std::min(aData.Samples.size(), aData.Labels.size()), aApartments.size());
@@ -41,8 +38,8 @@ Arguments GetArguments(int argc, char** argv) {
 int main(int argc, char** argv) {
     try {
         const Arguments args = GetArguments(argc, argv);
-        auto apartments = GetApartments(std::cin);//подать потов ввода
-        const double maxCost = FindMaxCost(apartments);//max = 100, min = cost
+        auto apartments = GetApartments(std::cin);
+        const double maxCost = FindMaxCost(apartments);
         ClusterData clusterData = MakeClassificator(apartments, maxCost, args.Clusters, args.FileName);
         SaveClusteringAppartmentsInfo(clusterData, apartments, args.FileName);
         std::ofstream fileMaxCost(boost::str(boost::format("%1%.max_cost") % args.FileName));

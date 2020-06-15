@@ -1,16 +1,20 @@
 ﻿#pragma once
 #include "apartment.h"
-#include <vector> 
-#include <dlib/clustering.h>        
-//#include <dlib/svm_threaded.h>
+#include <dlib/clustering.h>       
 #include <boost/format.hpp>
 
 namespace trainer {
     using sample_type = dlib::matrix<double, 8, 1>;
     using kernel_type = dlib::radial_basis_kernel<sample_type>;
-    //using ovo_trainer = dlib::one_vs_one_trainer<dlib::any_trainer<sample_type>>;
-    //using poly_kernel =  dlib::polynomial_kernel<sample_type>;
-    //using rbf_kernel  = dlib::radial_basis_kernel<sample_type>;
+}
+
+double GetDistance(const trainer::sample_type& aSample1, const trainer::sample_type& aSample2) {
+    double res = 0; 
+    for (int i = 0; i < 8; ++i) {
+        res += std::abs(aSample1(i) * aSample1(i) - aSample2(i) * aSample2(i));
+    }
+
+    return std::sqrt(res);
 }
 
 struct ClusterData {
@@ -57,51 +61,3 @@ ClusterData MakeClassificator(
     }
     return data;
 }
-
-
-
-//TODO::DELETE
-bool CheckDeserialize(ClusterData& aData) {
-    dlib::kcentroid<trainer::kernel_type> kc(trainer::kernel_type(0.000001), 0.01, 16);
-    dlib::kkmeans<trainer::kernel_type> test(kc);
-    dlib::deserialize("mega_model.class") >> test;
-
-    for (int i = 0; i < std::min(aData.Samples.size(), aData.Labels.size()); ++i) {
-        aData.Samples[i](0) += 0.001;
-        aData.Samples[i](1) -= 0.001;
-        auto label = test(aData.Samples[i]);
-        if (label != aData.Labels[i])
-            continue;;
-    }
-    return true;
-}
-
-////dlib::one_vs_one_decision_function<trainer::ovo_trainer> 
-//bool GetDecissionFunc(ClusterData& aData) {
-//    std::for_each(aData.Labels.begin(), aData.Labels.end(), [](auto& a) {++a; });
-////     for (auto& ll : aData.Labels) {
-////         //ll += 1;
-////         if (ll < 1.00)
-////             std::cout << "label < 1" << std::endl;
-////     }
-//    trainer::ovo_trainer trainer;
-//    
-//    dlib::krr_trainer<trainer::rbf_kernel> rbf_trainer;
-//    dlib::svm_nu_trainer<trainer::poly_kernel> poly_trainer;
-//    poly_trainer.set_kernel(trainer::poly_kernel(0.1, 1, 8));
-//    rbf_trainer.set_kernel(trainer::rbf_kernel(0.1));
-//    trainer.set_trainer(rbf_trainer);
-//    //trainer.set_trainer(poly_trainer, 1, 8);
-//    try
-//    {
-//        std::cout << cross_validate_multiclass_trainer(trainer, aData.Samples, aData.Labels, 1) << std::endl;
-//    }
-//    catch (std::exception& e)
-//    {
-//        std::cout << e.what() << std::endl;
-//    	
-//    }
-//    dlib::one_vs_one_decision_function<trainer::ovo_trainer> df = trainer.train(aData.Samples, aData.Labels);
-//    std::cout << "Decission Function was trained" << std::endl;
-//    return {};
-//}

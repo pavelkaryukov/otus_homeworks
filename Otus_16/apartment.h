@@ -2,14 +2,12 @@
 #include <boost/algorithm/algorithm.hpp>      
 #include <boost/algorithm/string.hpp>
 #include <boost/format.hpp>
+#include <cstddef>
+#include <exception>
 #include <fstream>
 #include <iostream>
-#include <cstddef>
 #include <string>
 #include <vector>
-//долгота;широта;комнат;цена;метраж;кухня;этаж;этажность\n
-//86.116781;55.335492;2;4326901.00;54.00;7.00;5;5\n
-
 
 class Apartment {
 public:
@@ -32,6 +30,7 @@ public:
             m_Valid = true;
         } 
         catch (std::exception& e) {
+            std::cout << e.what() << std::endl;
             m_Valid = false;
         }
     }
@@ -44,31 +43,31 @@ public:
         return m_Valid;
     }
 
-    double Longitude          () const {
+    double Longitude() const {
         return m_Longitude;
     }
 
-    double Latitude           () const {
+    double Latitude () const {
         return m_Latitude;
     }
     
-    std::size_t Rooms         () const {
+    std::size_t Rooms() const {
         return m_Rooms;
     }
 
-    double Cost               () const {
+    double Cost() const {
         return m_Cost;
     }
 
-    double AreaAll            () const {
+    double AreaAll() const {
         return m_AreaAll;
     }
 
-    double AreaKitchen        () const {
+    double AreaKitchen() const {
         return m_AreaKitchen;
     }
 
-    std::size_t  Floor        () const {
+    std::size_t  Floor() const {
         return m_Floor;
     }
     
@@ -128,7 +127,7 @@ double FindMaxCost(const std::vector<Apartment>& aApartments) {
 
 double FindMaxCost(const std::string aFileName) {
     double maxCost = 0;
-    std::ifstream file(boost::str(boost::format("%1$.2f.max_cost") % aFileName));
+    std::ifstream file(boost::str(boost::format("%1%.max_cost") % aFileName));
     std::string str;
     std::getline(file, str);
     maxCost = std::atof(str.c_str());
