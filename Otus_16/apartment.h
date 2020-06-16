@@ -115,10 +115,6 @@ struct ApartmentsBorders {
     Apartment Max;
 };
 
-ApartmentsBorders FindBorders(const std::vector<Apartment>& aApartments) {
-    return {};
-}
-
 double FindMaxCost(const std::vector<Apartment>& aApartments) {
     double maxCost = 0;
     std::for_each(aApartments.cbegin(), aApartments.cend(), [&maxCost](const auto& apart) { maxCost = std::max(maxCost, apart.Cost()); });
