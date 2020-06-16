@@ -2,9 +2,9 @@
 ## Исполняемый файл rclst и rclss. 
 
 #### запуск программы: 
-* __<rclst>__:  cat <apartments.csv> | rclst <number_clusters> <modelfname> 
-* __<rclss>__:  rclss <modelfname> 
+* __rclst__:  cat apartments.csv | rclst number_clusters modelfname 
+* __rclss__:  rclss modelfname 
 #### Описание параметров: 
-* __<apartments.csv>__ - csv файл с набором предложений квартир 
-* __<number_clusters>__ - кол-во кластеров (>1)
-* __<modelfname>__ - имя сохраняемой/загружаемой модели
+* __apartments.csv__ - csv файл с набором предложений квартир 
+* __number_clusters__ - кол-во кластеров (>1)
+* __modelfname__ - имя сохраняемой/загружаемой модели
