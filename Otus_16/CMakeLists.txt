@@ -88,3 +88,20 @@ ENDIF()
 set (DATASET_FILE_PATH ${PROJECT_SOURCE_DIR}/16.dataset-12995-8e405d.csv)
 file(COPY ${DATASET_FILE_PATH} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+
+####################################################
+################_INSTALL_BLOCK_#####################
+install(TARGETS 
+    rclst
+    rclss 
+    DESTINATION bin
+)
+set(CPACK_PACKAGE_NAME "OtusHomeworks")
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VENDOR "Karyukov")
+set(CPACK_PACKAGE_CONTACT "pavelkaryukov@gmail.com")
+include (CPack)
+
